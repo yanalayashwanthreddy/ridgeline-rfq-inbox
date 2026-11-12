@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from .ingest import STRIKE_L, Email
 
-PROMPT_VERSION = "v1"
+PROMPT_VERSION = "v2"
 
 CLASSES = ["rfq", "rfq_revision", "purchase_order", "vendor_quote", "status_inquiry", "auto_reply", "other"]
 REQUEST_CLASSES = {"rfq", "rfq_revision", "purchase_order"}
@@ -40,8 +40,10 @@ photos and scans, a line with a line drawn through it is crossed out too.
 # classification: exactly one. Judge what the CURRENT message does, not the subject line and \
 not the quoted history.
 - rfq: asks Ridgeline to price or check availability of items.
-- rfq_revision: changes a request the same customer made earlier in the thread (quantities, \
-additions, removals).
+- rfq_revision: changes a request the same customer made in an EARLIER EMAIL (quantities, \
+additions, removals) -- typically a reply to that request. A first-time request is an rfq even \
+when its document is labelled "Rev B" or it says "also please add" to its own attachment; a \
+resend of the same request is also an rfq.
 - purchase_order: commits to buy: an attached PO, "please process", "go ahead with items 1-3", \
 "release the order".
 - vendor_quote: a supplier quoting or answering Ridgeline (typically replying to a Ridgeline \
@@ -71,17 +73,27 @@ the customer wrote one, otherwise the original line.
 quoted below): return exactly the accepted items, taken from the quoted quote.
 
 Each line item:
-- raw: the line's text exactly as it appears where you found it. A table row is its cells \
-joined with " | " in order, as shown (without the "R12:" label). For a picture or scan, your \
-faithful transcription of that line, ditto marks included. Do not correct or expand it.
+- raw: the line's text exactly as it appears where you found it, on ONE line. A table row is \
+its cells joined with " | " in order, as shown (without the "R12:" label). For a picture or \
+scan, your faithful transcription of that line, ditto marks included. When the item is shown \
+as a nameplate or label rather than a list line, raw is its identifying line (model or part \
+number) as printed. Do not correct or expand raw.
 - description: the item self-contained, as a sales rep would type it into a quote without \
-re-reading the email: the line's own words plus every heading, section title, note, column \
-header, sheet name, form field (Material:, Rating:, Schedule:), subject line or earlier line \
-that applies to it, and nothing that does not apply to it.
+re-reading the email. Write a clean item specification -- size, item type, and every attribute \
+that applies (schedule or pressure class, material/grade, ends or connection, face, bore, \
+length, finish, trim) -- built from the line's own words plus whatever applies to it from a \
+heading, section title, note, column header, sheet name, form field (Material:, Rating:), \
+subject line or earlier line. Example (invented): a row "3 | 10 | EA | 3x2 | Tee, reducing" \
+on a sheet named "SW FITTINGS 3000# A105" -> "3\\" x 2\\" reducing tee, socket weld, 3000#, A105".
+  * The description is the spec only: no quantity, unit, line number, price, document title, \
+column header names, customer or project name, RFQ/PO number, or delivery notes. Don't paste \
+headings verbatim -- apply what they say.
   * Scope: a note under a section heading applies only to that section. "All pipe SCH 40" \
 applies to pipe, not to the fittings or valves.
   * Overrides beat defaults: under "ALL FITTINGS SCH 40 UNLESS NOTED", a line that says SCH 80 \
-is SCH 80 and must not mention SCH 40.
+is SCH 80 and must not mention SCH 40 at all.
+  * Spell out abbreviations an item type hides in (WN -> weld neck flange, SO -> slip-on \
+flange, BL -> blind flange, SW -> socket weld) while keeping the customer's specs.
   * Items the customer adds in the email body are not covered by an attached form's header \
 fields unless the body says so.
   * Resolve references: "same size", ditto marks, "same as above" -> write out what they mean.

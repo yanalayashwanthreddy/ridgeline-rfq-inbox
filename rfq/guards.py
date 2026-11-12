@@ -19,7 +19,9 @@ ROW_LABEL = re.compile(r"^\s*R\d+:\s*")
 
 
 def norm(s: str) -> str:
-    return re.sub(r"[^a-z0-9/#.]+", " ", s.lower()).strip()
+    # "2-1/2" is one size, not "2" and "1/2": keep a hyphen between digits as part of the token
+    s = re.sub(r"(?<=\d)-(?=\d)", "_", s.lower())
+    return re.sub(r"[^a-z0-9/#._]+", " ", s).strip()
 
 
 def finalize(em: Email, data: dict, truncated: list[str]) -> tuple[dict, list[str]]:
@@ -54,6 +56,10 @@ def finalize(em: Email, data: dict, truncated: list[str]) -> tuple[dict, list[st
         if isinstance(qty, float) and qty.is_integer():
             qty = int(qty)
         src = ln.get("source") if ln.get("source") in sources else "body"
+        raw = _snap(em, raw, src)
+        if STRIKE_L in raw:
+            warn.append(f"dropped struck-through line: {raw!r}")
+            continue
         lines.append({"raw": raw, "description": desc, "qty": qty, "uom": ln.get("uom"), "source": src})
         _grounding(em, raw, src, warn)
 
@@ -92,16 +98,43 @@ def finalize(em: Email, data: dict, truncated: list[str]) -> tuple[dict, list[st
     return record, warn
 
 
+def _source_text(em: Email, src: str) -> str | None:
+    if src == "body":
+        return em.body
+    part = next((p for p in em.parts if p.filename == src), None)
+    return part.text if part is not None and not part.images else None
+
+
+def _snap(em: Email, raw: str, src: str) -> str:
+    """Replace the model's copy of a line with the source line itself, when it is unambiguous.
+
+    The model's transcription of the same row varies run to run (dropping a cell, reformatting a
+    quote mark). If exactly one source line contains every token of `raw` and is not much longer,
+    that line *is* the raw text. Pictures are left alone: there the model's reading is all we have.
+    """
+    text = _source_text(em, src)
+    if not text:
+        return raw
+    want = norm(raw).split()
+    if not want:
+        return raw
+    best = []
+    for line in text.splitlines():
+        line = ROW_LABEL.sub("", line.strip().lstrip(">").strip())
+        line = re.sub(r"\s+\[HIDDEN ROW\]$", "", line)
+        have = norm(line).split()
+        if have and all(t in have for t in want) and len(have) <= 1.6 * len(want) + 2:
+            best.append(line)
+    best = list(dict.fromkeys(best))
+    return best[0] if len(best) == 1 else raw
+
+
 def _grounding(em: Email, raw: str, src: str, warn: list[str]) -> None:
     """Warn (don't drop) when raw text isn't found in its claimed text source.
     Picture sources are skipped: there the model's reading *is* the text."""
-    if src == "body":
-        hay = em.body
-    else:
-        part = next((p for p in em.parts if p.filename == src), None)
-        if part is None or part.images:
-            return
-        hay = part.text
+    hay = _source_text(em, src)
+    if hay is None:
+        return
     toks = [t for t in norm(raw).split() if len(t) > 1]
     if not toks:
         return

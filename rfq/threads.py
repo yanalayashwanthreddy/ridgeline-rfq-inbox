@@ -69,10 +69,34 @@ def _earlier(a: Email, b: Email) -> bool:
     return (a.timestamp or 0) < (b.timestamp or 0)
 
 
-def _fingerprint(em: Email, rec: dict) -> tuple:
-    atts = frozenset(p.sha256 for p in em.parts if not p.inline and p.kind != "skipped")
-    lines = frozenset((norm(ln["raw"]), ln["qty"]) for ln in rec["line_items"])
-    return atts, lines
+def _attachments(em: Email) -> frozenset:
+    return frozenset(p.sha256 for p in em.parts if not p.inline and p.kind != "skipped")
+
+
+def _toks(s: str) -> set:
+    return set(norm(s).split())
+
+
+def same_lines(a: list[dict], b: list[dict]) -> bool:
+    """Same request, tolerant of how the model worded `raw`: equal counts, and every line pairs
+    with a distinct line of equal qty and mostly shared tokens."""
+    if len(a) != len(b) or not a:
+        return False
+    free = list(range(len(b)))
+    for la in a:
+        ta = _toks(la["raw"])
+        best, best_s = None, 0.5
+        for j in free:
+            if la["qty"] != b[j]["qty"]:
+                continue
+            tb = _toks(b[j]["raw"])
+            s = len(ta & tb) / len(ta | tb) if ta | tb else 0
+            if s >= best_s:
+                best, best_s = j, s
+        if best is None:
+            return False
+        free.remove(best)
+    return True
 
 
 def _duplicates(emails, out, order) -> None:
@@ -81,17 +105,15 @@ def _duplicates(emails, out, order) -> None:
         rec, em = out[i], emails[i]
         if rec["classification"] not in REQUEST_CLASSES or not rec["line_items"]:
             continue
-        atts, lines = _fingerprint(em, rec)
         for j in originals:
             o_em, o_rec = emails[j], out[j]
             if _addr(o_em.sender) != _addr(em.sender) and _domain(o_em.sender) != _domain(em.sender):
                 continue
             if em.timestamp and o_em.timestamp and em.timestamp - o_em.timestamp > DUP_WINDOW_DAYS * 86400:
                 continue
-            o_atts, o_lines = _fingerprint(o_em, o_rec)
-            same_lines = lines == o_lines
-            same_files = bool(atts) and atts == o_atts and _jaccard(lines, o_lines) >= 0.9
-            if same_lines or same_files:
+            # the attachments must be byte-identical (or both absent) AND the lines the same:
+            # a "revision" that changes nothing is a resend
+            if _attachments(em) == _attachments(o_em) and same_lines(rec["line_items"], o_rec["line_items"]):
                 rec.update(
                     classification=o_rec["classification"],
                     duplicate_of=j,
@@ -104,6 +126,3 @@ def _duplicates(emails, out, order) -> None:
         else:
             originals.append(i)
 
-
-def _jaccard(a: frozenset, b: frozenset) -> float:
-    return len(a & b) / len(a | b) if a | b else 1.0
