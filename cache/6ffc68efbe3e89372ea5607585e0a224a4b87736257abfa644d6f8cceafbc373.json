@@ -1,0 +1,45 @@
+{
+ "key": "6ffc68efbe3e89372ea5607585e0a224a4b87736257abfa644d6f8cceafbc373",
+ "label": "v4:E020",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:29-0600",
+ "response_id": "resp_00ee40a917821b56006af61ad8a16c87d1a0c6d24fbde21f89",
+ "seconds": 4.62,
+ "usage": {
+  "input_tokens": 2461,
+  "cached_input_tokens": 0,
+  "output_tokens": 612,
+  "reasoning_tokens": 394
+ },
+ "cost_usd": 0.0046,
+ "response": {
+  "classification_reason": "The customer is approving specific quoted items and indicating a purchase order will follow, which constitutes a purchase order.",
+  "classification": "purchase_order",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "8 EA - 3\" 150# RF weld neck flange, A105, STD bore",
+    "description": "3\" 150# RF weld neck flange, A105, standard bore",
+    "qty": 8,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "120 FT - 3\" SCH 40 A53B ERW pipe, PE",
+    "description": "3\" SCH 40 A53B ERW pipe, PE",
+    "qty": 120,
+    "uom": "FT",
+    "source": "body"
+   },
+   {
+    "raw": "16 EA - 3\" 90 deg LR elbow, BW, SCH 40, A234 WPB",
+    "description": "3\" 90° long radius elbow, butt weld, SCH 40, A234 WPB",
+    "qty": 16,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

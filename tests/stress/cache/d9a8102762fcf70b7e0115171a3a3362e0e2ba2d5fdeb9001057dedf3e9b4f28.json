@@ -1,0 +1,45 @@
+{
+ "key": "d9a8102762fcf70b7e0115171a3a3362e0e2ba2d5fdeb9001057dedf3e9b4f28",
+ "label": "v4:S15",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:11-0600",
+ "response_id": "resp_0f44702c4f2f18d8006af61b0179f087d1a789316c791e3090",
+ "seconds": 5.92,
+ "usage": {
+  "input_tokens": 2624,
+  "cached_input_tokens": 0,
+  "output_tokens": 718,
+  "reasoning_tokens": 516
+ },
+ "cost_usd": 0.005199,
+ "response": {
+  "classification_reason": "The sender is asking Ridgeline to price the items shown in the attached image.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "10 3/4\" 150# RF slip-on flange, A105",
+    "description": "3/4\" 150# RF slip-on flange, A105",
+    "qty": 10,
+    "uom": null,
+    "source": "IMG_0091.jpg"
+   },
+   {
+    "raw": "10 3/4\" spiral wound gasket",
+    "description": "3/4\" 150# spiral wound gasket",
+    "qty": 10,
+    "uom": null,
+    "source": "IMG_0091.jpg"
+   },
+   {
+    "raw": "40 1/2\" x 3\" B7 stud w/ 2 nuts",
+    "description": "1/2\" x 3\" B7 stud with 2 nuts",
+    "qty": 40,
+    "uom": null,
+    "source": "IMG_0091.jpg"
+   }
+  ]
+ }
+}

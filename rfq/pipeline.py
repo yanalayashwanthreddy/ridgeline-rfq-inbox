@@ -12,10 +12,10 @@ import traceback
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from .guards import fallback, finalize
+from .guards import fallback, finalize, missing_rows
 from .ingest import Email, load_email
 from .llm import LLM, ModelUnavailable
-from .prompt import INSTRUCTIONS, PROMPT_VERSION, build_input
+from .prompt import INSTRUCTIONS, PROMPT_VERSION, REQUEST_CLASSES, build_input
 from .threads import link
 
 
@@ -28,13 +28,34 @@ def process_one(path: Path, llm: LLM) -> tuple[Email, dict, dict]:
         content, schema, truncated = build_input(em)
         req = llm.request(INSTRUCTIONS, content, schema)
         res = llm.call(req, label=f"{PROMPT_VERSION}:{em.id}")
-        stats.update(cached=res.cached, usage=res.usage, seconds=round(res.seconds, 2), cache_key=res.key)
-        if not res.cached:
-            stats["model_calls"] = 1
-            stats["cost_usd"] = res.cost_usd
+        _account(stats, res)
         record, warns = finalize(em, res.data, truncated)
-        stats["warnings"] += warns
         stats["model_reason"] = res.data.get("classification_reason")
+
+        # Code checks completeness; the model gets one pointed second look (also cached).
+        missed = missing_rows(em, record["line_items"]) if record["classification"] in REQUEST_CLASSES else {}
+        if missed:
+            listing = "\n".join(f"- from {f}: {r}" for f, rows in missed.items() for r in rows)
+            stats["coverage_retry"] = listing
+            note = (
+                "CHECK: your previous answer did not include these numbered rows:\n" + listing +
+                "\nRe-read the email. Return the complete answer again: include each of these rows "
+                "if the customer is asking for it; leave a row out only if it is not requested "
+                "(heading, crossed out, superseded, not among the accepted items)."
+            )
+            req2 = llm.request(INSTRUCTIONS, content + [{"type": "input_text", "text": note}], schema)
+            try:
+                res2 = llm.call(req2, label=f"{PROMPT_VERSION}:{em.id}:coverage")
+                _account(stats, res2)
+                record2, warns2 = finalize(em, res2.data, truncated)
+                left = missing_rows(em, record2["line_items"])
+                if record2["classification"] == record["classification"] and sum(map(len, left.values())) < sum(map(len, missed.values())):
+                    record, warns, missed = record2, warns2, left
+            except ModelUnavailable as e:
+                warns.append(f"coverage retry failed: {e}")
+            if missed:
+                warns.append(f"model left out numbered rows after a second look (judged not requested): {missed}")
+        stats["warnings"] += warns
     except ModelUnavailable as e:
         stats["fallback"] = str(e)
         record = fallback(em, str(e))
@@ -43,6 +64,23 @@ def process_one(path: Path, llm: LLM) -> tuple[Email, dict, dict]:
         stats["traceback"] = traceback.format_exc(limit=5)
         record = fallback(em, f"internal error: {type(e).__name__}")
     return em, record, stats
+
+
+def _account(stats: dict, res) -> None:
+    """Add one call's tokens and cost to the email's stats (a cache hit adds tokens, not cost)."""
+    keys = stats.setdefault("cache_keys", [])
+    keys.append(res.key)
+    stats["cache_key"] = keys[0]
+    stats["cached"] = res.cached if len(keys) == 1 else stats["cached"] and res.cached
+    if stats["usage"] is None:
+        stats["usage"] = dict(res.usage)
+    else:
+        for k, v in res.usage.items():
+            stats["usage"][k] = stats["usage"].get(k, 0) + v
+    stats["seconds"] = round(stats["seconds"] + res.seconds, 2)
+    if not res.cached:
+        stats["model_calls"] += 1
+        stats["cost_usd"] = (stats["cost_usd"] or 0) + (res.cost_usd or 0)
 
 
 def run(email_dir: Path, out_path: Path, llm: LLM, workers: int = 4) -> dict:

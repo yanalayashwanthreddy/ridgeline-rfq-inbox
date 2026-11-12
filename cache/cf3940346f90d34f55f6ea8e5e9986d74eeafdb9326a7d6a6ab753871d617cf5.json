@@ -1,0 +1,23 @@
+{
+ "key": "cf3940346f90d34f55f6ea8e5e9986d74eeafdb9326a7d6a6ab753871d617cf5",
+ "label": "v4:E012",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:20-0600",
+ "response_id": "resp_0bdcb7a95874d2d8006af61ad1dd0887d193e5d9e142c9325c",
+ "seconds": 2.31,
+ "usage": {
+  "input_tokens": 2360,
+  "cached_input_tokens": 0,
+  "output_tokens": 110,
+  "reasoning_tokens": 53
+ },
+ "cost_usd": 0.002265,
+ "response": {
+  "classification_reason": "The sender is asking for an update on an existing quote and timing, not requesting new items or changing the order.",
+  "classification": "status_inquiry",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

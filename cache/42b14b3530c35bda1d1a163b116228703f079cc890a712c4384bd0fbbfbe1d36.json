@@ -1,0 +1,66 @@
+{
+ "key": "42b14b3530c35bda1d1a163b116228703f079cc890a712c4384bd0fbbfbe1d36",
+ "label": "v4:E024",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:33-0600",
+ "response_id": "resp_0f8cf0f30c70523e006af61adcf60487d1abf63401cafb872b",
+ "seconds": 4.84,
+ "usage": {
+  "input_tokens": 2210,
+  "cached_input_tokens": 0,
+  "output_tokens": 654,
+  "reasoning_tokens": 316
+ },
+ "cost_usd": 0.004601,
+ "response": {
+  "classification_reason": "The customer is asking Ridgeline to quote a list of threaded 316 SS 3000# fittings for a glycol line.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "10   90° elbow   1/2″",
+    "description": "1/2\" 90° elbow, threaded, 3000#, 316 SS",
+    "qty": 10,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "6   45° elbow   1/2″",
+    "description": "1/2\" 45° elbow, threaded, 3000#, 316 SS",
+    "qty": 6,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "8   Tee   3/4″",
+    "description": "3/4\" tee, threaded, 3000#, 316 SS",
+    "qty": 8,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "12   Coupling, full   1/2″",
+    "description": "1/2\" full coupling, threaded, 3000#, 316 SS",
+    "qty": 12,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "4   Union   1/2″",
+    "description": "1/2\" union, threaded, 3000#, 316 SS",
+    "qty": 4,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "6   Hex head plug   3/4″",
+    "description": "3/4\" hex head plug, threaded, 3000#, 316 SS",
+    "qty": 6,
+    "uom": null,
+    "source": "body"
+   }
+  ]
+ }
+}

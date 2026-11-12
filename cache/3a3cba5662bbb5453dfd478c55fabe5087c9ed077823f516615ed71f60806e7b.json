@@ -1,0 +1,23 @@
+{
+ "key": "3a3cba5662bbb5453dfd478c55fabe5087c9ed077823f516615ed71f60806e7b",
+ "label": "v4:E014",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:21-0600",
+ "response_id": "resp_007712ff03e00778006af61ad36fb087d1b5082064d3f90850",
+ "seconds": 2.3,
+ "usage": {
+  "input_tokens": 2340,
+  "cached_input_tokens": 0,
+  "output_tokens": 93,
+  "reasoning_tokens": 38
+ },
+ "cost_usd": 0.002174,
+ "response": {
+  "classification_reason": "Bulk promotional sale email advertising flange and gasket pricing, not a request for Ridgeline to quote or supply items.",
+  "classification": "other",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

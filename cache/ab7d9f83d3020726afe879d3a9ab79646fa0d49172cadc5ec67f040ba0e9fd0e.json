@@ -1,0 +1,23 @@
+{
+ "key": "ab7d9f83d3020726afe879d3a9ab79646fa0d49172cadc5ec67f040ba0e9fd0e",
+ "label": "v4:E017",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:23-0600",
+ "response_id": "resp_0a6d3c1c408bb5be006af61ad5b46c87d182863bbdcfbd1b4b",
+ "seconds": 2.12,
+ "usage": {
+  "input_tokens": 2222,
+  "cached_input_tokens": 0,
+  "output_tokens": 176,
+  "reasoning_tokens": 99
+ },
+ "cost_usd": 0.002459,
+ "response": {
+  "classification_reason": "Customer is requesting pricing for a job BOM, but the only attachment is a company logo and no item list is readable.",
+  "classification": "rfq",
+  "needs_review": true,
+  "review_reason": "BOM is not present; the only attachment is a logo image, so the requested items cannot be read.",
+  "line_items": []
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "key": "c8efb1a3a4295e86f0bde562ac0170b1e3fe5f4bc8c844d609ce92c825d8c63f",
+ "label": "v4:E023",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:33-0600",
+ "response_id": "resp_056f7165438ace88006af61adcebb487d19e8b48c5c522ba91",
+ "seconds": 5.22,
+ "usage": {
+  "input_tokens": 2869,
+  "cached_input_tokens": 0,
+  "output_tokens": 594,
+  "reasoning_tokens": 478
+ },
+ "cost_usd": 0.004825,
+ "response": {
+  "classification_reason": "The customer is asking Ridgeline to quote three valves matching the attached photo.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "MODEL: HV-800-FGS",
+    "description": "2 in forged steel gate valve, 800 lb, NPT ends, A105 body, 13CR trim, Halvorsen Valve Co., model HV-800-FGS",
+    "qty": 3,
+    "uom": "EA",
+    "source": "IMG_4417.jpg"
+   }
+  ]
+ }
+}

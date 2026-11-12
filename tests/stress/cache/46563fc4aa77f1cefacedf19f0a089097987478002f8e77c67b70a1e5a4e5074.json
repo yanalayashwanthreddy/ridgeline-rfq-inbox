@@ -1,0 +1,38 @@
+{
+ "key": "46563fc4aa77f1cefacedf19f0a089097987478002f8e77c67b70a1e5a4e5074",
+ "label": "v4:S11",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:03-0600",
+ "response_id": "resp_0c3af28013efeca8006af61afc4bdc87d1aa517cc92db68d2b",
+ "seconds": 3.14,
+ "usage": {
+  "input_tokens": 2155,
+  "cached_input_tokens": 1920,
+  "output_tokens": 316,
+  "reasoning_tokens": 155
+ },
+ "cost_usd": 0.001742,
+ "response": {
+  "classification_reason": "The sender is directing Ridgeline to process a purchase order for specific items and shipping instructions.",
+  "classification": "purchase_order",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "24 ea 2\" SCH 80 A106B SMLS pipe nipple x 6\" long, TBE",
+    "description": "2\" schedule 80 A106B seamless pipe nipple, 6\" long, threaded both ends",
+    "qty": 24,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "12 ea 2\" 3000# forged threaded union, A105",
+    "description": "2\" 3000# forged threaded union, A105",
+    "qty": 12,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

@@ -102,6 +102,30 @@ def test_docx_headings_stay_above_their_tables():
     assert t.index("Carbon Steel Pipe") < t.index("10 jts") < t.index("Socket Weld Fittings")
 
 
+def test_snap_restores_a_truncated_row_but_not_a_prose_sentence():
+    from rfq.guards import _snap
+
+    em = load_email(DEV / "E015.eml")
+    full = '4 | 16 | EA | 2" spiral wound gasket, 316/graphite, 300#, w/ inner ring | 6.40 | 102.40'
+    assert _snap(em, '4 | 16 | EA | 2" spiral wound gasket, 316/graphite, 300#, w/ inner rin', "PO_TPS-88213.pdf") == full
+    em = load_email(DEV / "E002.eml")  # one long prose line: a clause must stay a clause
+    assert _snap(em, "6 tees same size", "body") == "6 tees same size"
+
+
+def test_missing_rows_finds_a_skipped_po_line_and_ignores_struck_hidden_total():
+    from rfq.guards import missing_rows
+
+    em = load_email(DEV / "E015.eml")
+    got = [{"raw": r, "source": "PO_TPS-88213.pdf"} for r in (
+        '1 | 210 | FT | 2" SCH 80 SMLS A106B pipe, PE, random lengths | 11.85 | 2,488.50',
+        '3 | 16 | EA | 2" WN flange, 300# RF, A105, SCH 80 bore | 31.75 | 508.00')]
+    rows = missing_rows(em, got)["PO_TPS-88213.pdf"]
+    assert len(rows) == 4 and rows[0].startswith("2 | 24 | EA")
+    em = load_email(DEV / "E005.eml")  # hidden Rev A sheet and TOTAL row are not "missing"
+    rows = missing_rows(em, [])["Tank14_Piping_RevB.xlsx"]
+    assert len(rows) == 8 and not any("TOTAL" in r for r in rows)
+
+
 def test_whole_dev_inbox_ingests():
     for f in sorted(DEV.glob("*.eml")):
         em = load_email(f)

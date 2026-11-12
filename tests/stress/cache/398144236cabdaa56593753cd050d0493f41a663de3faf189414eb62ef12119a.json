@@ -1,0 +1,52 @@
+{
+ "key": "398144236cabdaa56593753cd050d0493f41a663de3faf189414eb62ef12119a",
+ "label": "v4:S12B",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:08-0600",
+ "response_id": "resp_0f33054b92c544c6006af61aff2aec87d1abb75343b5d760c4",
+ "seconds": 5.83,
+ "usage": {
+  "input_tokens": 2237,
+  "cached_input_tokens": 1920,
+  "output_tokens": 773,
+  "reasoning_tokens": 510
+ },
+ "cost_usd": 0.00386,
+ "response": {
+  "classification_reason": "The sender is revising a previously quoted RFQ by changing item 3, deleting item 5, and confirming the rest.",
+  "classification": "rfq_revision",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "8 ea 6\" 150# RF slip-on flange, A105",
+    "description": "6\" 150# RF slip-on flange, A105",
+    "qty": 8,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "8 ea 6\" 150# spiral wound gasket, 304/graphite",
+    "description": "6\" 150# spiral wound gasket, 304/graphite",
+    "qty": 8,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "4 ea 6\" butterfly valve, lug, lever",
+    "description": "6\" butterfly valve, lug, lever",
+    "qty": 12,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "64 ea 3/4\" x 4-1/2\" B7 stud bolt w/ 2 hvy hex nuts",
+    "description": "3/4\" x 4-1/2\" B7 stud bolt with 2 heavy hex nuts",
+    "qty": 64,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

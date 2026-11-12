@@ -1,0 +1,31 @@
+{
+ "key": "303485e8a649129054f416c4f2aeac78e8f325c945ede64014687948fcf8c6fd",
+ "label": "v4:S02",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:57-0600",
+ "response_id": "resp_04a972e2de42b397006af61af397e887d18ff04e967009c14c",
+ "seconds": 6.72,
+ "usage": {
+  "input_tokens": 2141,
+  "cached_input_tokens": 1920,
+  "output_tokens": 819,
+  "reasoning_tokens": 677
+ },
+ "cost_usd": 0.003995,
+ "response": {
+  "classification_reason": "The customer is requesting a new quote, with one explicitly added blind flange and a separate request to duplicate an earlier PO’s material at double quantity.",
+  "classification": "rfq",
+  "needs_review": true,
+  "review_reason": "The request references PO 7781 for the main items, but that prior order is not attached or listed here, so only the added blind flange can be resolved from this email.",
+  "line_items": [
+   {
+    "raw": "10 ea 2\" 150# RF blind flange, A105.",
+    "description": "2\" 150# raised face blind flange, A105",
+    "qty": 10,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

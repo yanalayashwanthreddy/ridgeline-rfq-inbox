@@ -115,18 +115,60 @@ def _snap(em: Email, raw: str, src: str) -> str:
     text = _source_text(em, src)
     if not text:
         return raw
-    want = norm(raw).split()
+    want = set(norm(raw).split())
     if not want:
         return raw
-    best = []
-    for line in text.splitlines():
-        line = ROW_LABEL.sub("", line.strip().lstrip(">").strip())
-        line = re.sub(r"\s+\[HIDDEN ROW\]$", "", line)
-        have = norm(line).split()
-        if have and all(t in have for t in want) and len(have) <= 1.6 * len(want) + 2:
-            best.append(line)
-    best = list(dict.fromkeys(best))
-    return best[0] if len(best) == 1 else raw
+    scored = []
+    for line in dict.fromkeys(_clean_line(x) for x in text.splitlines()):
+        have = set(norm(line).split())
+        if not have:
+            continue
+        inter = len(want & have)
+        # at most 3 source tokens the model left out: enough to restore dropped cells (item no.,
+        # "EA", a price), not enough to widen a clause into its whole prose sentence.
+        # 0.7 overlap: a row with one truncated word ("inner rin") scores 11/15 = 0.73
+        if len(have) - inter <= 3:
+            scored.append((inter / len(want | have), line))
+    scored.sort(reverse=True)
+    if scored and scored[0][0] >= 0.7 and (len(scored) == 1 or scored[0][0] - scored[1][0] >= 0.15):
+        return scored[0][1]
+    return raw
+
+
+def _clean_line(line: str) -> str:
+    line = ROW_LABEL.sub("", line.strip().lstrip(">").strip())
+    return re.sub(r"\s+\[HIDDEN ROW\]$", "", line)
+
+
+def _jac(a: str, b: str) -> float:
+    ta, tb = set(norm(a).split()), set(norm(b).split())
+    return len(ta & tb) / len(ta | tb) if ta | tb else 0.0
+
+
+def missing_rows(em: Email, lines: list[dict]) -> dict[str, list[str]]:
+    """Numbered table rows in text attachments that no extracted line accounts for.
+
+    A row counts when it has 3+ cells, one of its first two cells is a bare integer (item no. or
+    qty), and it has words. Struck-through, hidden and total rows are excluded: code already
+    knows those are not requests."""
+    out: dict[str, list[str]] = {}
+    for p in em.parts:
+        if p.kind != "text" or not p.text:
+            continue
+        hidden = {norm(r) for r in p.hidden_rows}
+        mine = [ln["raw"] for ln in lines if ln["source"] == p.filename]
+        for line in p.text.splitlines():
+            if STRIKE_L in line or "[HIDDEN" in line:
+                continue
+            row = _clean_line(line)
+            cells = [c.strip() for c in row.split(" | ")]
+            if len(cells) < 3 or not any(re.fullmatch(r"\d+", c) for c in cells[:2]):
+                continue
+            if not re.search(r"[A-Za-z]{2}", row) or re.search(r"\b(sub)?total\b", row, re.I) or norm(row) in hidden:
+                continue
+            if not any(_jac(row, r) >= 0.6 for r in mine):
+                out.setdefault(p.filename, []).append(row)
+    return out
 
 
 def _grounding(em: Email, raw: str, src: str, warn: list[str]) -> None:

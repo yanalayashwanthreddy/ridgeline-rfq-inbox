@@ -1,0 +1,38 @@
+{
+ "key": "3ebf5561ca99adc63f6da751216863e98c5dca8c181f769becfc52e5ddbdf090",
+ "label": "v4:S17",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:10-0600",
+ "response_id": "resp_009dda4d00b0e11e006af61b02754487d1bf267b66ea8e64db",
+ "seconds": 4.41,
+ "usage": {
+  "input_tokens": 2137,
+  "cached_input_tokens": 1920,
+  "output_tokens": 407,
+  "reasoning_tokens": 270
+ },
+ "cost_usd": 0.002138,
+ "response": {
+  "classification_reason": "Customer is requesting pricing on three line items, with one line crossed out and not included.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "12 | 1\" copper 90 elbow, wrot, CxC",
+    "description": "1\" copper 90° wrought copper elbow, CxC",
+    "qty": 12,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "4 | 1\" ball valve, bronze, solder",
+    "description": "1\" bronze ball valve, solder",
+    "qty": 4,
+    "uom": null,
+    "source": "body"
+   }
+  ]
+ }
+}

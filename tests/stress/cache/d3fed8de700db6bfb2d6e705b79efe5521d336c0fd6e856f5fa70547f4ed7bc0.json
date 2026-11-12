@@ -1,0 +1,38 @@
+{
+ "key": "d3fed8de700db6bfb2d6e705b79efe5521d336c0fd6e856f5fa70547f4ed7bc0",
+ "label": "v4:S03",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:54-0600",
+ "response_id": "resp_0f62e468e3d20d9f006af61af3ad8087d1b190ffa52b5a4695",
+ "seconds": 3.09,
+ "usage": {
+  "input_tokens": 2194,
+  "cached_input_tokens": 0,
+  "output_tokens": 289,
+  "reasoning_tokens": 147
+ },
+ "cost_usd": 0.002946,
+ "response": {
+  "classification_reason": "Customer is asking Ridgeline to quote the attached valve list.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "12 | 1\" | Gate valve",
+    "description": "1\" gate valve, socket weld, 800#, A105",
+    "qty": 12,
+    "uom": null,
+    "source": "Line3_Valves.docx"
+   },
+   {
+    "raw": "6 | 1\" | Check valve, swing",
+    "description": "1\" swing check valve, socket weld, 800#, A105",
+    "qty": 6,
+    "uom": null,
+    "source": "Line3_Valves.docx"
+   }
+  ]
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "key": "aa70654290f2ed6eb1b902a795ba2e2d7ebc74c38ce60ee62e10d9798d6ac5a2",
+ "label": "v4:S04",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:58-0600",
+ "response_id": "resp_0252f4f52fa15024006af61af3969c87d1ac0306855f715117",
+ "seconds": 6.97,
+ "usage": {
+  "input_tokens": 2244,
+  "cached_input_tokens": 1920,
+  "output_tokens": 977,
+  "reasoning_tokens": 772
+ },
+ "cost_usd": 0.004784,
+ "response": {
+  "classification_reason": "Ridgeline employee is forwarding a customer's request for pricing and adding one more item to quote.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "6 ea 4\" 300# RF weld neck flange, A105, SCH 80 bore",
+    "description": "4\" 300# RF weld neck flange, A105, SCH 80 bore",
+    "qty": 6,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "2 ea 4\" 300# RF blind flange, A105",
+    "description": "4\" 300# RF blind flange, A105",
+    "qty": 2,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "8 sets of 4\" 300# spiral wound gaskets, 316/graphite",
+    "description": "4\" 300# spiral wound gasket, 316/graphite",
+    "qty": 8,
+    "uom": "SET",
+    "source": "body"
+   }
+  ]
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "key": "1155e5db55267ed6ba1a2a3cc0195375808a62ee3a120b9d42eae054a6601d8a",
+ "label": "v4:S01",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:53-0600",
+ "response_id": "resp_06a6c7e32fb8ef40006af61af38a8487d1b7a9d03f7f218246",
+ "seconds": 1.88,
+ "usage": {
+  "input_tokens": 2138,
+  "cached_input_tokens": 0,
+  "output_tokens": 74,
+  "reasoning_tokens": 31
+ },
+ "cost_usd": 0.001937,
+ "response": {
+  "classification_reason": "Automatic out-of-office reply with alternate contact information.",
+  "classification": "auto_reply",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

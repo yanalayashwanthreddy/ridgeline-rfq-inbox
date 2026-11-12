@@ -1,0 +1,23 @@
+{
+ "key": "694ee3646ee4ebb5bb5ecffb36f68ee388903a983a348a0db83b464866cf6652",
+ "label": "v4:S05",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:03-0600",
+ "response_id": "resp_0091cd0b0d0e8b0f006af61afd0b2c87d18dc32a91649899af",
+ "seconds": 9.77,
+ "usage": {
+  "input_tokens": 2253,
+  "cached_input_tokens": 0,
+  "output_tokens": 144,
+  "reasoning_tokens": 84
+ },
+ "cost_usd": 0.002338,
+ "response": {
+  "classification_reason": "This message is an invoice/remittance notice from Accounts Receivable for a prior purchase order, not a request for pricing or a new order.",
+  "classification": "other",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

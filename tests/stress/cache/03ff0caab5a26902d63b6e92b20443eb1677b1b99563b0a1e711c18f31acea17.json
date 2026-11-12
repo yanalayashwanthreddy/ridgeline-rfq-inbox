@@ -1,0 +1,23 @@
+{
+ "key": "03ff0caab5a26902d63b6e92b20443eb1677b1b99563b0a1e711c18f31acea17",
+ "label": "v4:S07",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:58-0600",
+ "response_id": "resp_001fc61247f57653006af61af8c3e887d1925a55c32ba53377",
+ "seconds": 2.34,
+ "usage": {
+  "input_tokens": 2121,
+  "cached_input_tokens": 1920,
+  "output_tokens": 139,
+  "reasoning_tokens": 79
+ },
+ "cost_usd": 0.00092,
+ "response": {
+  "classification_reason": "The sender is asking whether Ridgeline received an earlier RFQ and inquiring about quote status, without requesting any new items.",
+  "classification": "status_inquiry",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

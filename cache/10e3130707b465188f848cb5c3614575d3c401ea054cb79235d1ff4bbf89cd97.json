@@ -1,0 +1,66 @@
+{
+ "key": "10e3130707b465188f848cb5c3614575d3c401ea054cb79235d1ff4bbf89cd97",
+ "label": "v4:E016",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:25-0600",
+ "response_id": "resp_06ba8cbd23bab284006af61ad4324487d1a2425653c6e7cdea",
+ "seconds": 5.03,
+ "usage": {
+  "input_tokens": 2433,
+  "cached_input_tokens": 0,
+  "output_tokens": 791,
+  "reasoning_tokens": 343
+ },
+ "cost_usd": 0.005384,
+ "response": {
+  "classification_reason": "Forwarded customer email requests a quote and lead times for the attached condensate return material list.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "60 | FT | 1-1/2\" | Pipe, SCH 80, A106B SMLS, PE",
+    "description": "1-1/2\" pipe, SCH 80, A106B seamless, PE",
+    "qty": 60,
+    "uom": "FT",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "12 | EA | 1-1/2\" | 90 elbow, SW, 3000#, A105",
+    "description": "1-1/2\" 90 degree elbow, socket weld, 3000#, A105",
+    "qty": 12,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "6 | EA | 1-1/2\" | Tee, SW, 3000#, A105",
+    "description": "1-1/2\" tee, socket weld, 3000#, A105",
+    "qty": 6,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "8 | EA | 1-1/2\" | Union, SW, 3000#, A105",
+    "description": "1-1/2\" union, socket weld, 3000#, A105",
+    "qty": 8,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "4 | EA | 1-1/2\" | Gate valve, 800#, SW, A105",
+    "description": "1-1/2\" gate valve, socket weld, 800#, A105",
+    "qty": 4,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "2 | EA | 1-1/2\" | Y-strainer, 800#, SW, A105",
+    "description": "1-1/2\" Y-strainer, socket weld, 800#, A105",
+    "qty": 2,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   }
+  ]
+ }
+}

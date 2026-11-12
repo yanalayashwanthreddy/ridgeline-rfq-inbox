@@ -8,7 +8,7 @@
     "line_items": [
       {
         "raw": "12 jts - 2\" SCH 40 A53B ERW black pipe, PE",
-        "description": "2\" SCH 40 A53B ERW black pipe, plain end",
+        "description": "2\" schedule 40 A53B ERW black pipe, plain ends",
         "qty": 12,
         "uom": "EA",
         "source": "body"
@@ -29,7 +29,7 @@
       },
       {
         "raw": "200 ft - 3/4\" SCH 40 galvanized pipe, TBE",
-        "description": "3/4\" SCH 40 galvanized pipe, threaded both ends",
+        "description": "3/4\" schedule 40 galvanized pipe, threaded both ends",
         "qty": 200,
         "uom": "FT",
         "source": "body"
@@ -38,7 +38,7 @@
         "raw": "4\" 150# RF slip-on flange, A105 x 6",
         "description": "4\" 150# RF slip-on flange, A105",
         "qty": 6,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       }
     ]
@@ -52,37 +52,37 @@
     "line_items": [
       {
         "raw": "10 of the 1/2 90s",
-        "description": "1/2 in. 316 SS threaded 90-degree elbow",
+        "description": "1/2\" 90 degree threaded elbow, 316 SS",
         "qty": 10,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
         "raw": "6 tees same size",
-        "description": "1/2 in. 316 SS threaded tee",
+        "description": "1/2\" threaded tee, 316 SS",
         "qty": 6,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
         "raw": "a couple caps",
-        "description": "316 SS threaded cap",
+        "description": "1/2\" threaded cap, 316 SS",
         "qty": null,
         "uom": null,
         "source": "body"
       },
       {
         "raw": "12 of the 3/4 couplings",
-        "description": "3/4 in. 316 SS threaded coupling",
+        "description": "3/4\" threaded coupling, 316 SS",
         "qty": 12,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
         "raw": "20 of the 3/4 close nipples",
-        "description": "3/4 in. 316 SS close nipple, threaded",
+        "description": "3/4\" close nipple, 316 SS",
         "qty": 20,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       }
     ]
@@ -96,28 +96,28 @@
     "line_items": [
       {
         "raw": "1) 20 jts - 2\"",
-        "description": "2\" pipe, SCH 40, A53B, ERW, threaded and coupled",
+        "description": "2\" SCH 40 A53B ERW T&C pipe",
         "qty": 20,
         "uom": "EA",
         "source": "body"
       },
       {
         "raw": "2) 10 jts - 3\"",
-        "description": "3\" pipe, SCH 40, A53B, ERW, threaded and coupled",
+        "description": "3\" SCH 40 A53B ERW T&C pipe",
         "qty": 10,
         "uom": "EA",
         "source": "body"
       },
       {
         "raw": "3) 6 jts - 4\"",
-        "description": "4\" pipe, SCH 40, A53B, ERW, threaded and coupled",
+        "description": "4\" SCH 40 A53B ERW T&C pipe",
         "qty": 6,
         "uom": "EA",
         "source": "body"
       },
       {
         "raw": "4) 12 ea - 2\" 90 ell",
-        "description": "2\" 90 elbow, 150# malleable iron, black",
+        "description": "2\" 90 ell, 150# malleable iron, black",
         "qty": 12,
         "uom": "EA",
         "source": "body"
@@ -161,21 +161,21 @@
     "line_items": [
       {
         "raw": "1) 20 jts - 2\"",
-        "description": "2\" pipe, SCH 40, A53B, ERW, T&C",
+        "description": "2\" pipe, SCH 40, A53B, ERW, threaded and coupled",
         "qty": 20,
         "uom": "EA",
         "source": "body"
       },
       {
         "raw": "2) 14 jts - 3\"",
-        "description": "3\" pipe, SCH 40, A53B, ERW, T&C",
+        "description": "3\" pipe, SCH 40, A53B, ERW, threaded and coupled",
         "qty": 14,
         "uom": "EA",
         "source": "body"
       },
       {
         "raw": "3) 6 jts - 4\"",
-        "description": "4\" pipe, SCH 40, A53B, ERW, T&C",
+        "description": "4\" pipe, SCH 40, A53B, ERW, threaded and coupled",
         "qty": 6,
         "uom": "EA",
         "source": "body"
@@ -226,56 +226,56 @@
     "line_items": [
       {
         "raw": "1 | 12 | EA | 6\" | 90 LR elbow",
-        "description": "6\" 90° long radius elbow, butt weld, SCH 40, A234 WPB",
+        "description": "6\" butt-weld 90° long radius elbow, SCH 40, A234 WPB",
         "qty": 12,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "2 | 6 | EA | 6\" | 45 elbow",
-        "description": "6\" 45° elbow, butt weld, SCH 40, A234 WPB",
+        "description": "6\" butt-weld 45° elbow, SCH 40, A234 WPB",
         "qty": 6,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "3 | 4 | EA | 8\" | 90 LR elbow",
-        "description": "8\" 90° long radius elbow, butt weld, SCH 40, A234 WPB",
+        "description": "8\" butt-weld 90° long radius elbow, SCH 40, A234 WPB",
         "qty": 4,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "4 | 4 | EA | 6\" | Tee, straight",
-        "description": "6\" straight tee, butt weld, SCH 40, A234 WPB",
+        "description": "6\" butt-weld straight tee, SCH 40, A234 WPB",
         "qty": 4,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "5 | 3 | EA | 8\" x 6\" | Reducer, concentric",
-        "description": "8\" x 6\" concentric reducer, butt weld, SCH 40, A234 WPB",
+        "description": "8\" x 6\" butt-weld concentric reducer, SCH 40, A234 WPB",
         "qty": 3,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "6 | 2 | EA | 6\" x 4\" | Reducer, concentric, SCH 80",
-        "description": "6\" x 4\" concentric reducer, butt weld, SCH 80, A234 WPB",
+        "description": "6\" x 4\" butt-weld concentric reducer, SCH 80, A234 WPB",
         "qty": 2,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "7 | 2 | EA | 8\" | Cap",
-        "description": "8\" cap, butt weld, SCH 40, A234 WPB",
+        "description": "8\" butt-weld cap, SCH 40, A234 WPB",
         "qty": 2,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
       },
       {
         "raw": "8 | 2 | EA | 6\" | Cap",
-        "description": "6\" cap, butt weld, SCH 40, A234 WPB",
+        "description": "6\" butt-weld cap, SCH 40, A234 WPB",
         "qty": 2,
         "uom": "EA",
         "source": "Tank14_Piping_RevB.xlsx"
@@ -291,98 +291,98 @@
     "line_items": [
       {
         "raw": "1 | 7 | EA | 1/2\" | WELD NECK FLANGE, STD BORE",
-        "description": "1/2\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "1/2\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 7,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "2 | 3 | EA | 3/4\" | WELD NECK FLANGE, STD BORE",
-        "description": "3/4\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "3/4\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 3,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "3 | 8 | EA | 1\" | WELD NECK FLANGE, STD BORE",
-        "description": "1\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "1\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 8,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "4 | 4 | EA | 1-1/4\" | WELD NECK FLANGE, STD BORE",
-        "description": "1-1/4\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "1-1/4\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 4,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "5 | 9 | EA | 1-1/2\" | WELD NECK FLANGE, STD BORE",
-        "description": "1-1/2\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "1-1/2\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 9,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "6 | 5 | EA | 2\" | WELD NECK FLANGE, STD BORE",
-        "description": "2\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "2\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 5,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "7 | 10 | EA | 2-1/2\" | WELD NECK FLANGE, STD BORE",
-        "description": "2-1/2\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "2-1/2\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 10,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "8 | 6 | EA | 3\" | WELD NECK FLANGE, STD BORE",
-        "description": "3\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "3\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 6,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "9 | 2 | EA | 4\" | WELD NECK FLANGE, STD BORE",
-        "description": "4\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "4\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 2,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "10 | 7 | EA | 6\" | WELD NECK FLANGE, STD BORE",
-        "description": "6\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "6\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 7,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "11 | 3 | EA | 8\" | WELD NECK FLANGE, STD BORE",
-        "description": "8\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "8\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 3,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "12 | 8 | EA | 10\" | WELD NECK FLANGE, STD BORE",
-        "description": "10\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "10\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 8,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "13 | 4 | EA | 12\" | WELD NECK FLANGE, STD BORE",
-        "description": "12\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "12\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 4,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
       },
       {
         "raw": "14 | 9 | EA | 14\" | WELD NECK FLANGE, STD BORE",
-        "description": "14\" weld neck flange, standard bore, ASTM A105, 150# RF",
+        "description": "14\" weld neck flange, ASTM A105, 150# RF, STD BORE",
         "qty": 9,
         "uom": "EA",
         "source": "RFQ_PF-26-3091.pdf"
@@ -608,13 +608,13 @@
     "line_items": [
       {
         "raw": "8 - 2\" galv 90 elbow",
-        "description": "2\" galvanized 90 degree elbow",
+        "description": "2\" galvanized 90° elbow",
         "qty": 8,
         "uom": "EA",
         "source": "IMG_4172.jpeg"
       },
       {
-        "raw": "4 - ,, tee",
+        "raw": "4 - \"\" tee",
         "description": "2\" galvanized tee",
         "qty": 4,
         "uom": "EA",
@@ -628,7 +628,7 @@
         "source": "IMG_4172.jpeg"
       },
       {
-        "raw": "6 - 1\" x 4\" ,,",
+        "raw": "6 - 1\" x 4\" \"\"",
         "description": "1\" x 4\" galvanized nipple",
         "qty": 6,
         "uom": "EA",
@@ -673,225 +673,225 @@
     "review_reason": null,
     "line_items": [
       {
-        "raw": "1 | 6 | EA | 1\" | WN 150# RF",
-        "description": "1\" weld neck flange, 150#, raised face",
+        "raw": "6 | EA | 1\" | WN 150# RF",
+        "description": "1\" weld neck flange, 150# RF",
         "qty": 6,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "2 | 4 | EA | 1-1/2\" | WN 150# RF",
-        "description": "1-1/2\" weld neck flange, 150#, raised face",
+        "raw": "4 | EA | 1-1/2\" | WN 150# RF",
+        "description": "1-1/2\" weld neck flange, 150# RF",
         "qty": 4,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "3 | 10 | EA | 2\" | WN 150# RF",
-        "description": "2\" weld neck flange, 150#, raised face",
+        "raw": "10 | EA | 2\" | WN 150# RF",
+        "description": "2\" weld neck flange, 150# RF",
         "qty": 10,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "4 | 8 | EA | 3\" | WN 150# RF",
-        "description": "3\" weld neck flange, 150#, raised face",
+        "raw": "8 | EA | 3\" | WN 150# RF",
+        "description": "3\" weld neck flange, 150# RF",
         "qty": 8,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "5 | 12 | EA | 4\" | WN 150# RF",
-        "description": "4\" weld neck flange, 150#, raised face",
+        "raw": "12 | EA | 4\" | WN 150# RF",
+        "description": "4\" weld neck flange, 150# RF",
         "qty": 12,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "6 | 6 | EA | 6\" | WN 150# RF",
-        "description": "6\" weld neck flange, 150#, raised face",
+        "raw": "6 | EA | 6\" | WN 150# RF",
+        "description": "6\" weld neck flange, 150# RF",
         "qty": 6,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "7 | 4 | EA | 8\" | WN 150# RF",
-        "description": "8\" weld neck flange, 150#, raised face",
+        "raw": "4 | EA | 8\" | WN 150# RF",
+        "description": "8\" weld neck flange, 150# RF",
         "qty": 4,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "8 | 4 | EA | 2\" | SO 150# RF",
-        "description": "2\" slip-on flange, 150#, raised face",
+        "raw": "4 | EA | 2\" | SO 150# RF",
+        "description": "2\" slip-on flange, 150# RF",
         "qty": 4,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "9 | 4 | EA | 3\" | SO 150# RF",
-        "description": "3\" slip-on flange, 150#, raised face",
+        "raw": "4 | EA | 3\" | SO 150# RF",
+        "description": "3\" slip-on flange, 150# RF",
         "qty": 4,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "10 | 6 | EA | 4\" | SO 150# RF",
-        "description": "4\" slip-on flange, 150#, raised face",
+        "raw": "6 | EA | 4\" | SO 150# RF",
+        "description": "4\" slip-on flange, 150# RF",
         "qty": 6,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "11 | 4 | EA | 6\" | SO 150# RF",
-        "description": "6\" slip-on flange, 150#, raised face",
+        "raw": "4 | EA | 6\" | SO 150# RF",
+        "description": "6\" slip-on flange, 150# RF",
         "qty": 4,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "12 | 2 | EA | 2\" | BL 150# RF",
-        "description": "2\" blind flange, 150#, raised face",
+        "raw": "2 | EA | 2\" | BL 150# RF",
+        "description": "2\" blind flange, 150# RF",
         "qty": 2,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "13 | 2 | EA | 4\" | BL 150# RF",
-        "description": "4\" blind flange, 150#, raised face",
+        "raw": "2 | EA | 4\" | BL 150# RF",
+        "description": "4\" blind flange, 150# RF",
         "qty": 2,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "14 | 2 | EA | 6\" | BL 150# RF",
-        "description": "6\" blind flange, 150#, raised face",
+        "raw": "2 | EA | 6\" | BL 150# RF",
+        "description": "6\" blind flange, 150# RF",
         "qty": 2,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "15 | 10 | EA | 1\" | Spiral wound, 304/graphite, 150#",
+        "raw": "10 | EA | 1\" | Spiral wound, 304/graphite, 150#",
         "description": "1\" spiral wound gasket, 304/graphite, 150#",
         "qty": 10,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "16 | 6 | EA | 1-1/2\" | Spiral wound, 304/graphite, 150#",
+        "raw": "6 | EA | 1-1/2\" | Spiral wound, 304/graphite, 150#",
         "description": "1-1/2\" spiral wound gasket, 304/graphite, 150#",
         "qty": 6,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "17 | 20 | EA | 2\" | Spiral wound, 304/graphite, 150#",
+        "raw": "20 | EA | 2\" | Spiral wound, 304/graphite, 150#",
         "description": "2\" spiral wound gasket, 304/graphite, 150#",
         "qty": 20,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "18 | 12 | EA | 3\" | Spiral wound, 304/graphite, 150#",
+        "raw": "12 | EA | 3\" | Spiral wound, 304/graphite, 150#",
         "description": "3\" spiral wound gasket, 304/graphite, 150#",
         "qty": 12,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "19 | 16 | EA | 4\" | Spiral wound, 304/graphite, 150#",
+        "raw": "16 | EA | 4\" | Spiral wound, 304/graphite, 150#",
         "description": "4\" spiral wound gasket, 304/graphite, 150#",
         "qty": 16,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "20 | 8 | EA | 6\" | Spiral wound, 304/graphite, 150#",
+        "raw": "8 | EA | 6\" | Spiral wound, 304/graphite, 150#",
         "description": "6\" spiral wound gasket, 304/graphite, 150#",
         "qty": 8,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "21 | 4 | EA | 8\" | Spiral wound, 304/graphite, 150#",
+        "raw": "4 | EA | 8\" | Spiral wound, 304/graphite, 150#",
         "description": "8\" spiral wound gasket, 304/graphite, 150#",
         "qty": 4,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "22 | 2 | EA | 10\" | Spiral wound, 304/graphite, 150#",
+        "raw": "2 | EA | 10\" | Spiral wound, 304/graphite, 150#",
         "description": "10\" spiral wound gasket, 304/graphite, 150#",
         "qty": 2,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "23 | 32 | EA | 1/2\" x 3\" | B7 w/ 2 heavy hex nuts",
-        "description": "1/2\" x 3\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "32 | EA | 1/2\" x 3\" | B7 w/ 2 heavy hex nuts",
+        "description": "1/2\" x 3\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 32,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "24 | 24 | EA | 5/8\" x 3-1/4\" | B7 w/ 2 heavy hex nuts",
-        "description": "5/8\" x 3-1/4\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "24 | EA | 5/8\" x 3-1/4\" | B7 w/ 2 heavy hex nuts",
+        "description": "5/8\" x 3-1/4\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 24,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "25 | 16 | EA | 5/8\" x 3-1/2\" | B7 w/ 2 heavy hex nuts",
-        "description": "5/8\" x 3-1/2\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "16 | EA | 5/8\" x 3-1/2\" | B7 w/ 2 heavy hex nuts",
+        "description": "5/8\" x 3-1/2\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 16,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "26 | 48 | EA | 3/4\" x 4\" | B7 w/ 2 heavy hex nuts",
-        "description": "3/4\" x 4\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "48 | EA | 3/4\" x 4\" | B7 w/ 2 heavy hex nuts",
+        "description": "3/4\" x 4\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 48,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "27 | 24 | EA | 3/4\" x 4-1/4\" | B7 w/ 2 heavy hex nuts",
-        "description": "3/4\" x 4-1/4\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "24 | EA | 3/4\" x 4-1/4\" | B7 w/ 2 heavy hex nuts",
+        "description": "3/4\" x 4-1/4\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 24,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "28 | 32 | EA | 3/4\" x 4-1/2\" | B7 w/ 2 heavy hex nuts",
-        "description": "3/4\" x 4-1/2\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "32 | EA | 3/4\" x 4-1/2\" | B7 w/ 2 heavy hex nuts",
+        "description": "3/4\" x 4-1/2\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 32,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "29 | 16 | EA | 7/8\" x 5\" | B7 w/ 2 heavy hex nuts",
-        "description": "7/8\" x 5\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "16 | EA | 7/8\" x 5\" | B7 w/ 2 heavy hex nuts",
+        "description": "7/8\" x 5\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 16,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "30 | 16 | EA | 7/8\" x 5-1/4\" | B7 w/ 2 heavy hex nuts",
-        "description": "7/8\" x 5-1/4\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "16 | EA | 7/8\" x 5-1/4\" | B7 w/ 2 heavy hex nuts",
+        "description": "7/8\" x 5-1/4\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 16,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "31 | 16 | EA | 1\" x 5-3/4\" | B7 w/ 2 heavy hex nuts",
-        "description": "1\" x 5-3/4\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "16 | EA | 1\" x 5-3/4\" | B7 w/ 2 heavy hex nuts",
+        "description": "1\" x 5-3/4\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 16,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
       },
       {
-        "raw": "32 | 8 | EA | 1\" x 6\" | B7 w/ 2 heavy hex nuts",
-        "description": "1\" x 6\" stud bolt, B7, with 2 heavy hex nuts",
+        "raw": "8 | EA | 1\" x 6\" | B7 w/ 2 heavy hex nuts",
+        "description": "1\" x 6\" stud bolt, B7 with 2 heavy hex nuts",
         "qty": 8,
         "uom": "EA",
         "source": "Scan_RFQ_SC-4418.pdf"
@@ -928,7 +928,7 @@
       },
       {
         "raw": "3 | BX | 1/2\" channel spring nuts, galv",
-        "description": "1/2\" channel spring nut, galvanized",
+        "description": "1/2\" channel spring nuts, galvanized",
         "qty": 3,
         "uom": "BX",
         "source": "image002.png"
@@ -942,7 +942,7 @@
       },
       {
         "raw": "12 | EA | 3/4\"-10 all-thread rod, 6 ft",
-        "description": "3/4\"-10 all-thread rod, 6 ft",
+        "description": "3/4\"-10 all-thread rod, 6 ft length",
         "qty": 12,
         "uom": "EA",
         "source": "image002.png"
@@ -1004,7 +1004,7 @@
       },
       {
         "raw": "3 | 16 | EA | 2\" WN flange, 300# RF, A105, SCH 80 bore | 31.75 | 508.00",
-        "description": "2\" weld neck flange, 300# raised face, A105, SCH 80 bore",
+        "description": "2\" weld neck flange, 300# raised face, A105, schedule 80 bore",
         "qty": 16,
         "uom": "EA",
         "source": "PO_TPS-88213.pdf"
@@ -1025,7 +1025,7 @@
       },
       {
         "raw": "6 | 6 | EA | 2\" gate valve, 300# RF, A216 WCB, bolted bonnet | 412.00 | 2,472.00",
-        "description": "2\" gate valve, 300# RF, A216 WCB, bolted bonnet",
+        "description": "2\" gate valve, 300# raised face, A216 WCB, bolted bonnet",
         "qty": 6,
         "uom": "EA",
         "source": "PO_TPS-88213.pdf"
@@ -1041,14 +1041,14 @@
     "line_items": [
       {
         "raw": "60 | FT | 1-1/2\" | Pipe, SCH 80, A106B SMLS, PE",
-        "description": "1-1/2\" pipe, SCH 80, A106B seamless, plain ends",
+        "description": "1-1/2\" pipe, SCH 80, A106B seamless, PE",
         "qty": 60,
         "uom": "FT",
         "source": "HM-7716_material_list.csv"
       },
       {
         "raw": "12 | EA | 1-1/2\" | 90 elbow, SW, 3000#, A105",
-        "description": "1-1/2\" 90° elbow, socket weld, 3000#, A105",
+        "description": "1-1/2\" 90 degree elbow, socket weld, 3000#, A105",
         "qty": 12,
         "uom": "EA",
         "source": "HM-7716_material_list.csv"
@@ -1069,14 +1069,14 @@
       },
       {
         "raw": "4 | EA | 1-1/2\" | Gate valve, 800#, SW, A105",
-        "description": "1-1/2\" gate valve, 800#, socket weld, A105",
+        "description": "1-1/2\" gate valve, socket weld, 800#, A105",
         "qty": 4,
         "uom": "EA",
         "source": "HM-7716_material_list.csv"
       },
       {
         "raw": "2 | EA | 1-1/2\" | Y-strainer, 800#, SW, A105",
-        "description": "1-1/2\" Y-strainer, 800#, socket weld, A105",
+        "description": "1-1/2\" Y-strainer, socket weld, 800#, A105",
         "qty": 2,
         "uom": "EA",
         "source": "HM-7716_material_list.csv"
@@ -1088,7 +1088,7 @@
     "revises": null,
     "duplicate_of": null,
     "needs_review": true,
-    "review_reason": "BOM is referenced but the only attachment is a company logo image, so no requested items can be read.",
+    "review_reason": "BOM is not present; the only attachment is a logo image, so the requested items cannot be read.",
     "line_items": []
   },
   "E018": {
@@ -1099,38 +1099,38 @@
     "review_reason": null,
     "line_items": [
       {
-        "raw": "8 | Weld neck flange, 150# RF, A105, STD bore | 4\"",
-        "description": "4\" weld neck flange, 150# RF, A105, STD bore",
+        "raw": "Weld neck flange, 150# RF, A105, STD bore",
+        "description": "4\" weld neck flange, 150# RF, A105, standard bore",
         "qty": 8,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
-        "raw": "12 | 90 deg elbow, LR, BW, SCH 40, A234 WPB | 4\"",
-        "description": "4\" 90 degree long radius butt weld elbow, SCH 40, A234 WPB",
+        "raw": "90 deg elbow, LR, BW, SCH 40, A234 WPB",
+        "description": "4\" 90° long radius butt weld elbow, SCH 40, A234 WPB",
         "qty": 12,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
-        "raw": "8 | Spiral wound gasket, 304/graphite, 150# | 4\"",
+        "raw": "Spiral wound gasket, 304/graphite, 150#",
         "description": "4\" spiral wound gasket, 304/graphite, 150#",
         "qty": 8,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
-        "raw": "32 | Stud bolt, B7, 4-1/2\" long, w/ 2 heavy hex nuts | 3/4\"",
+        "raw": "Stud bolt, B7, 4-1/2\" long, w/ 2 heavy hex nuts",
         "description": "3/4\" stud bolt, B7, 4-1/2\" long, with 2 heavy hex nuts",
         "qty": 32,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
-        "raw": "6 | Eccentric reducer, BW, SCH 40, A234 WPB | 6\" x 4\"",
-        "description": "6\" x 4\" eccentric reducer, butt weld, SCH 40, A234 WPB",
+        "raw": "Eccentric reducer, BW, SCH 40, A234 WPB",
+        "description": "6\" x 4\" eccentric butt weld reducer, SCH 40, A234 WPB",
         "qty": 6,
-        "uom": null,
+        "uom": "EA",
         "source": "body"
       },
       {
@@ -1179,37 +1179,37 @@
       },
       {
         "raw": "24 | 1\" | 90 elbow",
-        "description": "1\" socket weld 90° elbow, 3000#, A105",
+        "description": "1\" socket weld 3000# A105 90 degree elbow",
         "qty": 24,
-        "uom": "EA",
+        "uom": null,
         "source": "TankFarm_Ph2_Materials.docx"
       },
       {
         "raw": "12 | 1\" | Tee",
-        "description": "1\" socket weld tee, 3000#, A105",
+        "description": "1\" socket weld 3000# A105 tee",
         "qty": 12,
-        "uom": "EA",
+        "uom": null,
         "source": "TankFarm_Ph2_Materials.docx"
       },
       {
         "raw": "30 | 3/4\" | Coupling, full",
-        "description": "3/4\" socket weld full coupling, 3000#, A105",
+        "description": "3/4\" socket weld 3000# A105 full coupling",
         "qty": 30,
-        "uom": "EA",
+        "uom": null,
         "source": "TankFarm_Ph2_Materials.docx"
       },
       {
         "raw": "16 | 1/2\" | Union",
-        "description": "1/2\" socket weld union, 3000#, A105",
+        "description": "1/2\" socket weld 3000# A105 union",
         "qty": 16,
-        "uom": "EA",
+        "uom": null,
         "source": "TankFarm_Ph2_Materials.docx"
       },
       {
         "raw": "20 | 2\" | Half coupling",
-        "description": "2\" socket weld half coupling, 3000#, A105",
+        "description": "2\" socket weld 3000# A105 half coupling",
         "qty": 20,
-        "uom": "EA",
+        "uom": null,
         "source": "TankFarm_Ph2_Materials.docx"
       }
     ]
@@ -1230,14 +1230,14 @@
       },
       {
         "raw": "2. 120 FT - 3\" SCH 40 A53B ERW pipe, PE - $7.95/ft",
-        "description": "3\" SCH 40 A53B ERW pipe, plain ends",
+        "description": "3\" SCH 40 A53B ERW pipe, PE",
         "qty": 120,
         "uom": "FT",
         "source": "body"
       },
       {
         "raw": "4. 16 EA - 3\" 90 deg LR elbow, BW, SCH 40, A234 WPB - $9.35 ea",
-        "description": "3\" 90 degree long radius elbow, butt weld, SCH 40, A234 WPB",
+        "description": "3\" 90° long radius elbow, butt weld, SCH 40, A234 WPB",
         "qty": 16,
         "uom": "EA",
         "source": "body"
@@ -1253,126 +1253,126 @@
     "line_items": [
       {
         "raw": "1 | 420 | FT | 1/2\" | PE",
-        "description": "1/2\" schedule 80 seamless pipe, plain end",
+        "description": "1/2\" seamless pipe, SCH 80, plain end",
         "qty": 420,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "2 | 300 | FT | 3/4\" | PE",
-        "description": "3/4\" schedule 80 seamless pipe, plain end",
+        "description": "3/4\" seamless pipe, SCH 80, plain end",
         "qty": 300,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "3 | 600 | FT | 1\" | PE",
-        "description": "1\" schedule 80 seamless pipe, plain end",
+        "description": "1\" seamless pipe, SCH 80, plain end",
         "qty": 600,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "4 | 240 | FT | 1-1/4\" | PE",
-        "description": "1-1/4\" schedule 80 seamless pipe, plain end",
+        "description": "1-1/4\" seamless pipe, SCH 80, plain end",
         "qty": 240,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "5 | 360 | FT | 1-1/2\" | PE",
-        "description": "1-1/2\" schedule 80 seamless pipe, plain end",
+        "description": "1-1/2\" seamless pipe, SCH 80, plain end",
         "qty": 360,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "6 | 500 | FT | 2\" | PE",
-        "description": "2\" schedule 80 seamless pipe, plain end",
+        "description": "2\" seamless pipe, SCH 80, plain end",
         "qty": 500,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "7 | 180 | FT | 2-1/2\" | PE",
-        "description": "2-1/2\" schedule 80 seamless pipe, plain end",
+        "description": "2-1/2\" seamless pipe, SCH 80, plain end",
         "qty": 180,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "8 | 320 | FT | 3\" | PE",
-        "description": "3\" schedule 80 seamless pipe, plain end",
+        "description": "3\" seamless pipe, SCH 80, plain end",
         "qty": 320,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "9 | 140 | FT | 4\" | PE",
-        "description": "4\" schedule 80 seamless pipe, plain end",
+        "description": "4\" seamless pipe, SCH 80, plain end",
         "qty": 140,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "10 | 80 | FT | 6\" | PE",
-        "description": "6\" schedule 80 seamless pipe, plain end",
+        "description": "6\" seamless pipe, SCH 80, plain end",
         "qty": 80,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "11 | 120 | FT | 1/2\" | TOE",
-        "description": "1/2\" schedule 80 seamless pipe, threaded one end",
+        "description": "1/2\" seamless pipe, SCH 80, threaded one end",
         "qty": 120,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "12 | 160 | FT | 3/4\" | TOE",
-        "description": "3/4\" schedule 80 seamless pipe, threaded one end",
+        "description": "3/4\" seamless pipe, SCH 80, threaded one end",
         "qty": 160,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "13 | 200 | FT | 1\" | TOE",
-        "description": "1\" schedule 80 seamless pipe, threaded one end",
+        "description": "1\" seamless pipe, SCH 80, threaded one end",
         "qty": 200,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "14 | 100 | FT | 1-1/2\" | TOE",
-        "description": "1-1/2\" schedule 80 seamless pipe, threaded one end",
+        "description": "1-1/2\" seamless pipe, SCH 80, threaded one end",
         "qty": 100,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "15 | 140 | FT | 2\" | TOE",
-        "description": "2\" schedule 80 seamless pipe, threaded one end",
+        "description": "2\" seamless pipe, SCH 80, threaded one end",
         "qty": 140,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "16 | 60 | FT | 3\" | BE",
-        "description": "3\" schedule 80 seamless pipe, beveled end",
+        "description": "3\" seamless pipe, SCH 80, beveled end",
         "qty": 60,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "17 | 40 | FT | 4\" | BE",
-        "description": "4\" schedule 80 seamless pipe, beveled end",
+        "description": "4\" seamless pipe, SCH 80, beveled end",
         "qty": 40,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
       },
       {
         "raw": "18 | 20 | FT | 6\" | BE",
-        "description": "6\" schedule 80 seamless pipe, beveled end",
+        "description": "6\" seamless pipe, SCH 80, beveled end",
         "qty": 20,
         "uom": "FT",
         "source": "SR-4-117_Unit4_BOM.xlsx"
@@ -1608,7 +1608,7 @@
     "revises": null,
     "duplicate_of": null,
     "needs_review": true,
-    "review_reason": "Attached RFQ PDF is password-protected and no password was provided, so the item list cannot be read.; attachment AldenMarine_RFQ_AM-26-0412.pdf could not be read (PDF is password-protected and no password is available)",
+    "review_reason": "The RFQ details are in a password-protected PDF and no password was provided, so the requested items cannot be read.; attachment AldenMarine_RFQ_AM-26-0412.pdf could not be read (PDF is password-protected and no password is available)",
     "line_items": []
   },
   "E023": {
@@ -1619,8 +1619,8 @@
     "review_reason": null,
     "line_items": [
       {
-        "raw": "FORGED STEEL GATE VALVE",
-        "description": "forged steel gate valve, model HV-800-FGS, 2 in, class 800 lb, NPT, body A105, trim 13CR",
+        "raw": "MODEL: HV-800-FGS",
+        "description": "2 in forged steel gate valve, 800 lb, NPT ends, A105 body, 13CR trim, Halvorsen Valve Co., model HV-800-FGS",
         "qty": 3,
         "uom": "EA",
         "source": "IMG_4417.jpg"
@@ -1636,44 +1636,44 @@
     "line_items": [
       {
         "raw": "10   90° elbow   1/2″",
-        "description": "316 SS threaded 3000# 1/2\" 90° elbow",
+        "description": "1/2\" 90° elbow, threaded, 3000#, 316 SS",
         "qty": 10,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       },
       {
         "raw": "6   45° elbow   1/2″",
-        "description": "316 SS threaded 3000# 1/2\" 45° elbow",
+        "description": "1/2\" 45° elbow, threaded, 3000#, 316 SS",
         "qty": 6,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       },
       {
         "raw": "8   Tee   3/4″",
-        "description": "316 SS threaded 3000# 3/4\" tee",
+        "description": "3/4\" tee, threaded, 3000#, 316 SS",
         "qty": 8,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       },
       {
         "raw": "12   Coupling, full   1/2″",
-        "description": "316 SS threaded 3000# 1/2\" full coupling",
+        "description": "1/2\" full coupling, threaded, 3000#, 316 SS",
         "qty": 12,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       },
       {
         "raw": "4   Union   1/2″",
-        "description": "316 SS threaded 3000# 1/2\" union",
+        "description": "1/2\" union, threaded, 3000#, 316 SS",
         "qty": 4,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       },
       {
         "raw": "6   Hex head plug   3/4″",
-        "description": "316 SS threaded 3000# 3/4\" hex head plug",
+        "description": "3/4\" hex head plug, threaded, 3000#, 316 SS",
         "qty": 6,
-        "uom": "EA",
+        "uom": null,
         "source": "body"
       }
     ]

@@ -1,0 +1,23 @@
+{
+ "key": "43e88d9134b6f773c27edd1cc7ff9ec52ee6d94cb2f7fc058853e2d3be55d558",
+ "label": "v4:E022",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:28-0600",
+ "response_id": "resp_0c5cce823ec6adf0006af61adb310487d1b303802192b07b0d",
+ "seconds": 1.69,
+ "usage": {
+  "input_tokens": 2201,
+  "cached_input_tokens": 0,
+  "output_tokens": 137,
+  "reasoning_tokens": 58
+ },
+ "cost_usd": 0.002267,
+ "response": {
+  "classification_reason": "Alden Marine is sending a new RFQ and the attached PDF cannot be read because it is password-protected.",
+  "classification": "rfq",
+  "needs_review": true,
+  "review_reason": "The RFQ details are in a password-protected PDF and no password was provided, so the requested items cannot be read.",
+  "line_items": []
+ }
+}

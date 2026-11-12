@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from .ingest import STRIKE_L, Email
 
-PROMPT_VERSION = "v3"
+PROMPT_VERSION = "v4"
 
 CLASSES = ["rfq", "rfq_revision", "purchase_order", "vendor_quote", "status_inquiry", "auto_reply", "other"]
 REQUEST_CLASSES = {"rfq", "rfq_revision", "purchase_order"}
@@ -43,7 +43,8 @@ not the quoted history.
 - rfq_revision: changes a request the same customer made in an EARLIER EMAIL (quantities, \
 additions, removals) -- typically a reply to that request. A first-time request is an rfq even \
 when its document is labelled "Rev B" or it says "also please add" to its own attachment; a \
-resend of the same request is also an rfq.
+resend of the same request is also an rfq. Asking to repeat or modify a PAST order or \
+quote ("same as our PO 1234 but double it", "like last time") is an rfq, not a revision.
 - purchase_order: commits to buy: an attached PO, "please process", "go ahead with items 1-3", \
 "release the order".
 - vendor_quote: a supplier quoting or answering Ridgeline (typically replying to a Ridgeline \

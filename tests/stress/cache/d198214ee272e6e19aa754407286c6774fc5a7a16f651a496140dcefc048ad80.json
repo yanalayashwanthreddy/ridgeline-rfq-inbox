@@ -1,0 +1,52 @@
+{
+ "key": "d198214ee272e6e19aa754407286c6774fc5a7a16f651a496140dcefc048ad80",
+ "label": "v4:S08",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:05-0600",
+ "response_id": "resp_07c9fae9f2cc39e7006af61afa7c8887d1bc2017f0143ce7b0",
+ "seconds": 7.39,
+ "usage": {
+  "input_tokens": 2306,
+  "cached_input_tokens": 0,
+  "output_tokens": 994,
+  "reasoning_tokens": 726
+ },
+ "cost_usd": 0.006202,
+ "response": {
+  "classification_reason": "The customer is asking Ridgeline to quote the attached valve list.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "1 | 6 | 1\" | Gate valve",
+    "description": "1\" gate valve, 800#, A105, socket weld",
+    "qty": 6,
+    "uom": null,
+    "source": "Line3.xlsx"
+   },
+   {
+    "raw": "3 | 9 | 3/4\" | Gate valve (old qty)",
+    "description": "3/4\" gate valve, 800#, A105, socket weld",
+    "qty": 9,
+    "uom": null,
+    "source": "Line3.xlsx"
+   },
+   {
+    "raw": "4 | 4 | 3/4\" | Ball valve, 3-pc, 316 SS, 1000 WOG, threaded",
+    "description": "3/4\" ball valve, 3-pc, 316 SS, 1000 WOG, threaded",
+    "qty": 4,
+    "uom": null,
+    "source": "Line3.xlsx"
+   },
+   {
+    "raw": "5 | 2 | 1\" | Check valve, piston",
+    "description": "1\" piston check valve, 800#, A105, socket weld",
+    "qty": 2,
+    "uom": null,
+    "source": "Line3.xlsx"
+   }
+  ]
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "key": "e40487193be14c4146a45947196a9cea9e02373f42d9da25493e291a13de98b2",
+ "label": "v4:E011",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:17-0600",
+ "response_id": "resp_04893554e763962f006af61acff07487d181569466aedc9448",
+ "seconds": 1.94,
+ "usage": {
+  "input_tokens": 2456,
+  "cached_input_tokens": 0,
+  "output_tokens": 141,
+  "reasoning_tokens": 78
+ },
+ "cost_usd": 0.002476,
+ "response": {
+  "classification_reason": "The sender is a vendor returning pricing and lead times for items Ridgeline requested, so this is a supplier quote rather than a new RFQ.",
+  "classification": "vendor_quote",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

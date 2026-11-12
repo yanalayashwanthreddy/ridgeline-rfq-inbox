@@ -1,0 +1,23 @@
+{
+ "key": "a9fb14e568b280d3fa930cf0b873caf5221514f9598dec63dfdc87de51d3fc17",
+ "label": "v4:E013",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:19-0600",
+ "response_id": "resp_063ba94b348259e5006af61ad2036087d1923dc6a0b1116941",
+ "seconds": 1.61,
+ "usage": {
+  "input_tokens": 2394,
+  "cached_input_tokens": 0,
+  "output_tokens": 95,
+  "reasoning_tokens": 43
+ },
+ "cost_usd": 0.002223,
+ "response": {
+  "classification_reason": "Automated delivery failure notice reporting that the prior quote request could not be delivered to the recipient.",
+  "classification": "auto_reply",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

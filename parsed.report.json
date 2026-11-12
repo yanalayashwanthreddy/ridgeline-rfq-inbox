@@ -1,20 +1,20 @@
 {
   "model": "gpt-5.4-mini-2026-03-17",
   "effort": "medium",
-  "prompt_version": "v3",
+  "prompt_version": "v4",
   "totals": {
     "emails": 24,
     "model_calls": 0,
     "cache_hits": 24,
     "fallbacks": 0,
-    "input_tokens": 63413,
-    "cached_input_tokens": 0,
-    "output_tokens": 26647,
-    "reasoning_tokens": 10554,
+    "input_tokens": 67023,
+    "cached_input_tokens": 2432,
+    "output_tokens": 27473,
+    "reasoning_tokens": 11016,
     "cost_usd_this_run": 0.0,
-    "cost_usd_if_uncached": 0.16747,
-    "avg_cost_usd_per_email": 0.00698,
-    "avg_tokens_per_email": 3752,
+    "cost_usd_if_uncached": 0.17225,
+    "avg_cost_usd_per_email": 0.00718,
+    "avg_tokens_per_email": 3937,
     "wall_seconds": 0.7
   },
   "emails": {
@@ -22,385 +22,459 @@
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2301,
+        "input_tokens": 2338,
         "cached_input_tokens": 0,
-        "output_tokens": 606,
-        "reasoning_tokens": 308
+        "output_tokens": 727,
+        "reasoning_tokens": 429
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "559771a6d491ecd4c82961aedb00933d383db97d6cd1af8b3b3f9da11c0f6d8c",
-      "model_reason": "Customer is requesting pricing and lead time for a list of pipe and fittings to be quoted."
+      "cache_keys": [
+        "16060ce5bfeab5b141f0ba30a99a5792b43e5f6f6a6e86fd5d70ba02b56c0d42"
+      ],
+      "cache_key": "16060ce5bfeab5b141f0ba30a99a5792b43e5f6f6a6e86fd5d70ba02b56c0d42",
+      "model_reason": "The customer is requesting pricing and lead time for several pipe and fitting items to be quoted."
     },
     "E002": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2116,
+        "input_tokens": 2153,
         "cached_input_tokens": 0,
-        "output_tokens": 753,
+        "output_tokens": 725,
+        "reasoning_tokens": 490
+      },
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "fdf205d1146db90a0254f2bd3b727e2093ede967b2f298563fc57f4e633999e1"
+      ],
+      "cache_key": "fdf205d1146db90a0254f2bd3b727e2093ede967b2f298563fc57f4e633999e1",
+      "model_reason": "The customer is requesting pricing and availability for several 316 SS threaded fittings needed by Friday."
+    },
+    "E003": {
+      "model_calls": 0,
+      "cached": true,
+      "usage": {
+        "input_tokens": 2255,
+        "cached_input_tokens": 0,
+        "output_tokens": 850,
+        "reasoning_tokens": 449
+      },
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "1765c12b83ee5944ed2d0471a8eb89e3c516e19fe8e261929414e8b581fdcfc5"
+      ],
+      "cache_key": "1765c12b83ee5944ed2d0471a8eb89e3c516e19fe8e261929414e8b581fdcfc5",
+      "model_reason": "Customer is requesting pricing on a list of pipe, fittings, and valves for a project."
+    },
+    "E004": {
+      "model_calls": 0,
+      "cached": true,
+      "usage": {
+        "input_tokens": 2397,
+        "cached_input_tokens": 0,
+        "output_tokens": 1153,
+        "reasoning_tokens": 726
+      },
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "07408cd485d9f71b0ae10c837a84791b1b7b3d59dda52bcf87a93c880faeebab"
+      ],
+      "cache_key": "07408cd485d9f71b0ae10c837a84791b1b7b3d59dda52bcf87a93c880faeebab",
+      "model_reason": "Customer is revising a previously requested item list by changing one quantity, deleting one line, and adding one new valve."
+    },
+    "E005": {
+      "model_calls": 0,
+      "cached": true,
+      "usage": {
+        "input_tokens": 2672,
+        "cached_input_tokens": 0,
+        "output_tokens": 766,
+        "reasoning_tokens": 239
+      },
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "d8ea5982af7c35307aa193544febda6a63cfe160308ab6ec8a6da1763fb50e65"
+      ],
+      "cache_key": "d8ea5982af7c35307aa193544febda6a63cfe160308ab6ec8a6da1763fb50e65",
+      "model_reason": "The sender asks Ridgeline to quote the attached item list."
+    },
+    "E006": {
+      "model_calls": 0,
+      "cached": true,
+      "usage": {
+        "input_tokens": 3259,
+        "cached_input_tokens": 0,
+        "output_tokens": 4077,
+        "reasoning_tokens": 1252
+      },
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "de8f7bac518e1cc0bd63d26570244f9ad0f8f51341d613f6427c1c1a1c39253f"
+      ],
+      "cache_key": "de8f7bac518e1cc0bd63d26570244f9ad0f8f51341d613f6427c1c1a1c39253f",
+      "model_reason": "The customer asks Ridgeline to quote the attached RFQ and adds two gasket items to the request."
+    },
+    "E007": {
+      "model_calls": 0,
+      "cached": true,
+      "usage": {
+        "input_tokens": 3045,
+        "cached_input_tokens": 0,
+        "output_tokens": 831,
         "reasoning_tokens": 516
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "b19d76ead754fa9aab4fd922cbd46cbbb7325408d500a3ee5453d605974a7ca3",
-      "model_reason": "The customer is requesting prices/availability for several threaded fittings needed for a skid, with quantities listed in the email body."
-    },
-    "E003": {
-      "model_calls": 0,
-      "cached": true,
-      "usage": {
-        "input_tokens": 2218,
-        "cached_input_tokens": 0,
-        "output_tokens": 752,
-        "reasoning_tokens": 334
-      },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
-      "warnings": [],
-      "fallback": null,
-      "cache_key": "33b8efb027ea791fe65609a9234758ceecc4e724f7b003a54f5c3b0f82bda13c",
-      "model_reason": "Customer is requesting pricing for a list of pipe, fittings, and valves for a project tie-in."
-    },
-    "E004": {
-      "model_calls": 0,
-      "cached": true,
-      "usage": {
-        "input_tokens": 2360,
-        "cached_input_tokens": 0,
-        "output_tokens": 1497,
-        "reasoning_tokens": 1072
-      },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
-      "warnings": [],
-      "fallback": null,
-      "cache_key": "39f9403b1d11974c23a902bc04cac4810417f350ba7caedeecbbbe68dcfc479a",
-      "model_reason": "The sender is revising an earlier pricing request by changing one quantity, removing one line, and adding a new valve item."
-    },
-    "E005": {
-      "model_calls": 0,
-      "cached": true,
-      "usage": {
-        "input_tokens": 2635,
-        "cached_input_tokens": 0,
-        "output_tokens": 870,
-        "reasoning_tokens": 337
-      },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
-      "warnings": [],
-      "fallback": null,
-      "cache_key": "4403a82af9d2bd9acae6f4eb2dfd7a6da45fb49b2f7f59b5528d97ca046e9295",
-      "model_reason": "The sender asks Ridgeline to quote the attached item list for Tank 14 piping modifications."
-    },
-    "E006": {
-      "model_calls": 0,
-      "cached": true,
-      "usage": {
-        "input_tokens": 3222,
-        "cached_input_tokens": 0,
-        "output_tokens": 3970,
-        "reasoning_tokens": 1159
-      },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
-      "warnings": [],
-      "fallback": null,
-      "cache_key": "04705b5c4a099240e65b89f9d82354898255a0a0f02aea8b32fc6afe98b89839",
-      "model_reason": "The sender is requesting a quote on the attached RFQ and adds two additional gasket lines in the body."
-    },
-    "E007": {
-      "model_calls": 0,
-      "cached": true,
-      "usage": {
-        "input_tokens": 3008,
-        "cached_input_tokens": 0,
-        "output_tokens": 1077,
-        "reasoning_tokens": 762
-      },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
-      "warnings": [],
-      "fallback": null,
-      "cache_key": "bd2f7a413e4103e8ee37c0bc859480f7130cd8a0ba67f45bc0f6582c2d769b98",
-      "model_reason": "Customer requests pricing today for a list of items shown in the attached photo, with pickup Friday."
+      "cache_keys": [
+        "9ce440297364294fedd9d9f335f70a201c6beaf84c7ef021a237f114588bd055"
+      ],
+      "cache_key": "9ce440297364294fedd9d9f335f70a201c6beaf84c7ef021a237f114588bd055",
+      "model_reason": "The sender is requesting pricing on a list of materials from the yard for pickup Friday."
     },
     "E008": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 3233,
+        "input_tokens": 3270,
         "cached_input_tokens": 0,
-        "output_tokens": 3849,
+        "output_tokens": 3845,
         "reasoning_tokens": 1034
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "668aae988e5237c58e3b176c12e0c5861f6dedca2c0dafcdd3f7685cb6e03ffc",
-      "model_reason": "The customer is resending the same RFQ and adding two gasket items, so this is a revised request for quotation."
+      "cache_keys": [
+        "6bf60dcf245131735ffe4e23f9b1b839cb6ac2844933540c565705e794aa625b"
+      ],
+      "cache_key": "6bf60dcf245131735ffe4e23f9b1b839cb6ac2844933540c565705e794aa625b",
+      "model_reason": "Customer is revising an existing RFQ by resending the same quote and adding two gasket lines."
     },
     "E009": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 6088,
+        "input_tokens": 6125,
         "cached_input_tokens": 0,
-        "output_tokens": 2556,
-        "reasoning_tokens": 473
+        "output_tokens": 2634,
+        "reasoning_tokens": 667
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "7bb6050b2facd6c33f09d3326da28846a02376d76e900c4d4dcbd940ca082f98",
-      "model_reason": "Customer requests pricing on a scanned RFQ form with 32 line items."
+      "cache_keys": [
+        "67f964093aabbce0bed6f6ece9a78773b2d9bbe0e2afd3699680b1eacc283fc5"
+      ],
+      "cache_key": "67f964093aabbce0bed6f6ece9a78773b2d9bbe0e2afd3699680b1eacc283fc5",
+      "model_reason": "The sender is requesting pricing on a scanned RFQ form with a list of items to quote."
     },
     "E010": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2348,
+        "input_tokens": 2385,
         "cached_input_tokens": 0,
-        "output_tokens": 694,
-        "reasoning_tokens": 336
+        "output_tokens": 768,
+        "reasoning_tokens": 405
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "130c3ae73ad4c656aff6e89bb528e38df82bf30f68e415eeb3a28705a3f2c94d",
-      "model_reason": "Customer is asking Ridgeline to price the items shown on the attached sheet."
+      "cache_keys": [
+        "2c97994771ef6ccd589e38896d6c6967d41b3c867ce8d9ea8c5d864b7969af9d"
+      ],
+      "cache_key": "2c97994771ef6ccd589e38896d6c6967d41b3c867ce8d9ea8c5d864b7969af9d",
+      "model_reason": "Customer is asking Ridgeline to price the items shown on the attached sheet for a shutdown project."
     },
     "E011": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2419,
+        "input_tokens": 2456,
         "cached_input_tokens": 0,
-        "output_tokens": 104,
-        "reasoning_tokens": 49
+        "output_tokens": 141,
+        "reasoning_tokens": 78
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "ae6798577074bc5b0779391a5464d4cb5f94e2b0ef9b5c720b928e65fb4f8f40",
-      "model_reason": "Sabine Valve is replying with pricing and lead times for the requested items, so this is a vendor quote."
+      "cache_keys": [
+        "e40487193be14c4146a45947196a9cea9e02373f42d9da25493e291a13de98b2"
+      ],
+      "cache_key": "e40487193be14c4146a45947196a9cea9e02373f42d9da25493e291a13de98b2",
+      "model_reason": "The sender is a vendor returning pricing and lead times for items Ridgeline requested, so this is a supplier quote rather than a new RFQ."
     },
     "E012": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2323,
+        "input_tokens": 2360,
         "cached_input_tokens": 0,
-        "output_tokens": 109,
-        "reasoning_tokens": 48
+        "output_tokens": 110,
+        "reasoning_tokens": 53
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "61bc96ca8cf79a505798aef2f53f857470ff54236b508450ac7bec070db12c3e",
-      "model_reason": "The sender is asking for an update on an existing quote and mentions wanting to issue a PO, but does not request any new items."
+      "cache_keys": [
+        "cf3940346f90d34f55f6ea8e5e9986d74eeafdb9326a7d6a6ab753871d617cf5"
+      ],
+      "cache_key": "cf3940346f90d34f55f6ea8e5e9986d74eeafdb9326a7d6a6ab753871d617cf5",
+      "model_reason": "The sender is asking for an update on an existing quote and timing, not requesting new items or changing the order."
     },
     "E013": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2357,
+        "input_tokens": 2394,
         "cached_input_tokens": 0,
-        "output_tokens": 83,
-        "reasoning_tokens": 34
+        "output_tokens": 95,
+        "reasoning_tokens": 43
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "517ed3e876990dd0fbde74161a45f2b5484fb1e6b7a7f5e0d6cc63e02a166a6f",
-      "model_reason": "A mail delivery failure notice reporting that the original quote request could not be delivered."
+      "cache_keys": [
+        "a9fb14e568b280d3fa930cf0b873caf5221514f9598dec63dfdc87de51d3fc17"
+      ],
+      "cache_key": "a9fb14e568b280d3fa930cf0b873caf5221514f9598dec63dfdc87de51d3fc17",
+      "model_reason": "Automated delivery failure notice reporting that the prior quote request could not be delivered to the recipient."
     },
     "E014": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2303,
+        "input_tokens": 2340,
         "cached_input_tokens": 0,
-        "output_tokens": 82,
-        "reasoning_tokens": 26
+        "output_tokens": 93,
+        "reasoning_tokens": 38
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "31f5f944bb75bb33efc146892d2e04249e5e4d65c652220e45405a2742335bb6",
-      "model_reason": "Bulk promotional sale email advertising discounted flange and gasket stock, not a request for Ridgeline to quote or supply items."
+      "cache_keys": [
+        "3a3cba5662bbb5453dfd478c55fabe5087c9ed077823f516615ed71f60806e7b"
+      ],
+      "cache_key": "3a3cba5662bbb5453dfd478c55fabe5087c9ed077823f516615ed71f60806e7b",
+      "model_reason": "Bulk promotional sale email advertising flange and gasket pricing, not a request for Ridgeline to quote or supply items."
     },
     "E015": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2575,
-        "cached_input_tokens": 0,
-        "output_tokens": 962,
-        "reasoning_tokens": 476
+        "input_tokens": 5334,
+        "cached_input_tokens": 2432,
+        "output_tokens": 1595,
+        "reasoning_tokens": 624
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "690f18a6f448fc5239a75224b350ff11445a1a9e64d4b17d46b427de7d4ab9eb",
-      "model_reason": "The sender is asking Ridgeline to process an attached purchase order and confirms the order against a prior quote."
+      "cache_keys": [
+        "be13b9666a396d26f5099b3995212eabf3bf69a541fbfbc04738635e0f7b7069",
+        "360e9e6f6b2ebc910f057c42abe1d37ab751d5de8bab68c04241b15084f93e87"
+      ],
+      "cache_key": "be13b9666a396d26f5099b3995212eabf3bf69a541fbfbc04738635e0f7b7069",
+      "model_reason": "The customer is instructing Ridgeline to process an attached purchase order against a prior quote and confirms the items to be ordered.",
+      "coverage_retry": "- from PO_TPS-88213.pdf: 2 | 24 | EA | 2\" 90 deg elbow, LR, BW, SCH 80, A234 WPB | 14.20 | 340.80"
     },
     "E016": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2396,
+        "input_tokens": 2433,
         "cached_input_tokens": 0,
-        "output_tokens": 728,
-        "reasoning_tokens": 273
+        "output_tokens": 791,
+        "reasoning_tokens": 343
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "d49f106956246b072b2c101bf0a125a2909f1f82856d0f3db686a4208b56a5f5",
-      "model_reason": "A customer forwarded by a Ridgeline employee is asking for pricing and lead times on the attached condensate return material list."
+      "cache_keys": [
+        "10e3130707b465188f848cb5c3614575d3c401ea054cb79235d1ff4bbf89cd97"
+      ],
+      "cache_key": "10e3130707b465188f848cb5c3614575d3c401ea054cb79235d1ff4bbf89cd97",
+      "model_reason": "Forwarded customer email requests a quote and lead times for the attached condensate return material list."
     },
     "E017": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2185,
+        "input_tokens": 2222,
         "cached_input_tokens": 0,
-        "output_tokens": 145,
-        "reasoning_tokens": 67
+        "output_tokens": 176,
+        "reasoning_tokens": 99
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "4748c52d1e16d514a79fc492f49a71e6041690affb7ab1371798e46054c0b44d",
-      "model_reason": "The customer is requesting pricing for a BOM for Job 2291, but no item list is actually provided in the email."
+      "cache_keys": [
+        "ab7d9f83d3020726afe879d3a9ab79646fa0d49172cadc5ec67f040ba0e9fd0e"
+      ],
+      "cache_key": "ab7d9f83d3020726afe879d3a9ab79646fa0d49172cadc5ec67f040ba0e9fd0e",
+      "model_reason": "Customer is requesting pricing for a job BOM, but the only attachment is a company logo and no item list is readable."
     },
     "E018": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2238,
+        "input_tokens": 2275,
         "cached_input_tokens": 0,
-        "output_tokens": 1221,
-        "reasoning_tokens": 820
+        "output_tokens": 915,
+        "reasoning_tokens": 516
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "bd296bb3c25913c22ebcaa7c15defd2b5f2ef1042d511c48ac351652796f26ef",
-      "model_reason": "The customer is requesting pricing for a list of materials needed for a lift station rebuild."
+      "cache_keys": [
+        "7cb0a6c03f3bbd504816ff1063586f26357a0f1b0813c59a177704cb9b205815"
+      ],
+      "cache_key": "7cb0a6c03f3bbd504816ff1063586f26357a0f1b0813c59a177704cb9b205815",
+      "model_reason": "Customer is requesting pricing for a list of material items for a lift station rebuild."
     },
     "E019": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2297,
+        "input_tokens": 2334,
         "cached_input_tokens": 0,
-        "output_tokens": 965,
-        "reasoning_tokens": 458
+        "output_tokens": 719,
+        "reasoning_tokens": 217
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "8e149ec8eb9abb51e90446e406761d5e1ca3114ca2dc12c21e3f58ac597f25ba",
-      "model_reason": "The sender is requesting a quote for all items listed in the attached material list."
+      "cache_keys": [
+        "c3c3d05664d5bad6db21ee669c1da3818d61f6dce82bfebebb4d2e03ef27a0fd"
+      ],
+      "cache_key": "c3c3d05664d5bad6db21ee669c1da3818d61f6dce82bfebebb4d2e03ef27a0fd",
+      "model_reason": "The customer is requesting a quote for all items listed in the attached material list."
     },
     "E020": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2424,
+        "input_tokens": 2461,
         "cached_input_tokens": 0,
-        "output_tokens": 471,
-        "reasoning_tokens": 218
+        "output_tokens": 612,
+        "reasoning_tokens": 394
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "d90b96e385f8b210bdde04017ae98b8cca827197d7547edef8049623a5d56e74",
-      "model_reason": "The customer is instructing Ridgeline to proceed with selected quote items and says a PO will follow, which is a purchase commitment."
+      "cache_keys": [
+        "6ffc68efbe3e89372ea5607585e0a224a4b87736257abfa644d6f8cceafbc373"
+      ],
+      "cache_key": "6ffc68efbe3e89372ea5607585e0a224a4b87736257abfa644d6f8cceafbc373",
+      "model_reason": "The customer is approving specific quoted items and indicating a purchase order will follow, which constitutes a purchase order."
     },
     "E021": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 3198,
+        "input_tokens": 3235,
         "cached_input_tokens": 0,
-        "output_tokens": 4241,
-        "reasoning_tokens": 1348
+        "output_tokens": 4465,
+        "reasoning_tokens": 1552
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "6584c6893d8d93a3c91bab3a86b7dcaf6b7b82dce1f2d0e2f0a454e891bb9181",
-      "model_reason": "Customer requests pricing for a full BOM attachment and says to quote all lines."
+      "cache_keys": [
+        "36d503a82465ae0d69f87b8c41901dfa17ec75905d8af41f526ef96c164b4c87"
+      ],
+      "cache_key": "36d503a82465ae0d69f87b8c41901dfa17ec75905d8af41f526ef96c164b4c87",
+      "model_reason": "Customer requests pricing for all lines in the attached BOM for Unit 4 piping package."
     },
     "E022": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2164,
+        "input_tokens": 2201,
         "cached_input_tokens": 0,
-        "output_tokens": 130,
-        "reasoning_tokens": 56
+        "output_tokens": 137,
+        "reasoning_tokens": 58
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "8a6c4b879b6b8560afc5dc5b77c610e184a653cf6ebbe4eae00cb94ba3ff699c",
-      "model_reason": "Customer is requesting pricing on an attached RFQ, but the PDF is password-protected and unreadable."
+      "cache_keys": [
+        "43e88d9134b6f773c27edd1cc7ff9ec52ee6d94cb2f7fc058853e2d3be55d558"
+      ],
+      "cache_key": "43e88d9134b6f773c27edd1cc7ff9ec52ee6d94cb2f7fc058853e2d3be55d558",
+      "model_reason": "Alden Marine is sending a new RFQ and the attached PDF cannot be read because it is password-protected."
     },
     "E023": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2832,
+        "input_tokens": 2869,
         "cached_input_tokens": 0,
-        "output_tokens": 264,
-        "reasoning_tokens": 147
+        "output_tokens": 594,
+        "reasoning_tokens": 478
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "8ddd3b83d24a630886c8e53f04e44482e73bb50c315abbdca382576d8f44bab1",
-      "model_reason": "The sender is requesting a quote for three valves matching the attached photo, including the same trim."
+      "cache_keys": [
+        "c8efb1a3a4295e86f0bde562ac0170b1e3fe5f4bc8c844d609ce92c825d8c63f"
+      ],
+      "cache_key": "c8efb1a3a4295e86f0bde562ac0170b1e3fe5f4bc8c844d609ce92c825d8c63f",
+      "model_reason": "The customer is asking Ridgeline to quote three valves matching the attached photo."
     },
     "E024": {
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 2173,
+        "input_tokens": 2210,
         "cached_input_tokens": 0,
-        "output_tokens": 518,
-        "reasoning_tokens": 203
+        "output_tokens": 654,
+        "reasoning_tokens": 316
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
-      "cache_key": "065034e250a7f231927b7dd174554a4a7d12089af5a23268ba949129246c054d",
-      "model_reason": "Customer is requesting pricing for a list of fittings for a new glycol line."
+      "cache_keys": [
+        "42b14b3530c35bda1d1a163b116228703f079cc890a712c4384bd0fbbfbe1d36"
+      ],
+      "cache_key": "42b14b3530c35bda1d1a163b116228703f079cc890a712c4384bd0fbbfbe1d36",
+      "model_reason": "The customer is asking Ridgeline to quote a list of threaded 316 SS 3000# fittings for a glycol line."
     }
   }
 }

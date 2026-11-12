@@ -1,0 +1,29 @@
+From: Mia Chen <mchen@chenhvac.example>
+To: Ridgeline RFQ Desk <rfq@ridgeline-supply.example>
+Subject: RFQ - mech room
+Date: Wed, 04 Nov 2026 08:00:00 -0600
+Message-ID: <s17@stress.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============7480819053714116893=="
+
+--===============7480819053714116893==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Qty Item
+12 1" copper 90 elbow, wrot, CxC
+6 1" copper tee, wrot
+4 1" ball valve, bronze, solder
+
+--===============7480819053714116893==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<p>Please quote:</p><table><tr><th>Qty</th><th>Item</th></tr><tr><td>12</td><=
+td>1" copper 90 elbow, wrot, CxC</td></tr><tr><td><s>6</s></td><td><s>1" copp=
+er tee, wrot</s></td></tr><tr><td>4</td><td>1" ball valve, bronze, solder</td=
+></tr></table><p>Mia</p>
+
+--===============7480819053714116893==--

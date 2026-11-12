@@ -11,7 +11,7 @@ from pathlib import Path
 
 report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
 cache = Path(sys.argv[2] if len(sys.argv) > 2 else "cache")
-keep = {s.get("cache_key") for s in report["emails"].values()} - {None}
+keep = {k for s in report["emails"].values() for k in (s.get("cache_keys") or [s.get("cache_key")])} - {None}
 missing = [e for e, s in report["emails"].items() if not s.get("cache_key")]
 if missing:
     sys.exit(f"refusing to prune: emails without a cache entry in this report: {missing}")

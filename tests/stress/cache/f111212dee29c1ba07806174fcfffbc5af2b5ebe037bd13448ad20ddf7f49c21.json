@@ -1,0 +1,23 @@
+{
+ "key": "f111212dee29c1ba07806174fcfffbc5af2b5ebe037bd13448ad20ddf7f49c21",
+ "label": "v4:S16",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:07-0600",
+ "response_id": "resp_008917255d8e0203006af61b01dba887d1949fb9afc691a776",
+ "seconds": 1.95,
+ "usage": {
+  "input_tokens": 2191,
+  "cached_input_tokens": 1920,
+  "output_tokens": 71,
+  "reasoning_tokens": 15
+ },
+ "cost_usd": 0.000667,
+ "response": {
+  "classification_reason": "This is a marketing newsletter promoting new ball valves, not a request for pricing, order, status, or a quote.",
+  "classification": "other",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

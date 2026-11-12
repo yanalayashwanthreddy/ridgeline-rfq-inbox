@@ -1,0 +1,23 @@
+{
+ "key": "a0abf5e670c258faea9bd06b01df30b1ef9fbb5e0e8c7b70873597c89875d3cb",
+ "label": "v4:S06",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:56-0600",
+ "response_id": "resp_0482bc5ee9830aa0006af61af69f2c87d19fc05355a5a9d54b",
+ "seconds": 2.12,
+ "usage": {
+  "input_tokens": 2177,
+  "cached_input_tokens": 1920,
+  "output_tokens": 99,
+  "reasoning_tokens": 43
+ },
+ "cost_usd": 0.000782,
+ "response": {
+  "classification_reason": "The sender is closing out a prior quote by saying they went with another supplier, with no new pricing or order request.",
+  "classification": "other",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

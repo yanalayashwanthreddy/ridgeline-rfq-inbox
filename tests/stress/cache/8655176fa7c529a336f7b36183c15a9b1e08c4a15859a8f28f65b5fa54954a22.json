@@ -1,0 +1,23 @@
+{
+ "key": "8655176fa7c529a336f7b36183c15a9b1e08c4a15859a8f28f65b5fa54954a22",
+ "label": "v4:S09",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:00-0600",
+ "response_id": "resp_0cab7733a5e760dc006af61afa753487d1ab96099de778344c",
+ "seconds": 1.83,
+ "usage": {
+  "input_tokens": 2146,
+  "cached_input_tokens": 0,
+  "output_tokens": 142,
+  "reasoning_tokens": 71
+ },
+ "cost_usd": 0.002249,
+ "response": {
+  "classification_reason": "The sender is requesting pricing for a BOM, but the attached spreadsheet could not be read.",
+  "classification": "rfq",
+  "needs_review": true,
+  "review_reason": "BOM.xlsx is unreadable, so the requested items cannot be extracted; please reopen or resend the BOM.",
+  "line_items": []
+ }
+}

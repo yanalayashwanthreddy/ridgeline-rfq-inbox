@@ -1,0 +1,374 @@
+{
+ "key": "36d503a82465ae0d69f87b8c41901dfa17ec75905d8af41f526ef96c164b4c87",
+ "label": "v4:E021",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:49-0600",
+ "response_id": "resp_0fbe3e5b2b6d7b7a006af61ad93fd487d1aa56312862e17ddc",
+ "seconds": 24.45,
+ "usage": {
+  "input_tokens": 3235,
+  "cached_input_tokens": 0,
+  "output_tokens": 4465,
+  "reasoning_tokens": 1552
+ },
+ "cost_usd": 0.022519,
+ "response": {
+  "classification_reason": "Customer requests pricing for all lines in the attached BOM for Unit 4 piping package.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "1 | 420 | FT | 1/2\" | PE",
+    "description": "1/2\" seamless pipe, SCH 80, plain end",
+    "qty": 420,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "2 | 300 | FT | 3/4\" | PE",
+    "description": "3/4\" seamless pipe, SCH 80, plain end",
+    "qty": 300,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "3 | 600 | FT | 1\" | PE",
+    "description": "1\" seamless pipe, SCH 80, plain end",
+    "qty": 600,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "4 | 240 | FT | 1-1/4\" | PE",
+    "description": "1-1/4\" seamless pipe, SCH 80, plain end",
+    "qty": 240,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "5 | 360 | FT | 1-1/2\" | PE",
+    "description": "1-1/2\" seamless pipe, SCH 80, plain end",
+    "qty": 360,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "6 | 500 | FT | 2\" | PE",
+    "description": "2\" seamless pipe, SCH 80, plain end",
+    "qty": 500,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "7 | 180 | FT | 2-1/2\" | PE",
+    "description": "2-1/2\" seamless pipe, SCH 80, plain end",
+    "qty": 180,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "8 | 320 | FT | 3\" | PE",
+    "description": "3\" seamless pipe, SCH 80, plain end",
+    "qty": 320,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "9 | 140 | FT | 4\" | PE",
+    "description": "4\" seamless pipe, SCH 80, plain end",
+    "qty": 140,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "10 | 80 | FT | 6\" | PE",
+    "description": "6\" seamless pipe, SCH 80, plain end",
+    "qty": 80,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "11 | 120 | FT | 1/2\" | TOE",
+    "description": "1/2\" seamless pipe, SCH 80, threaded one end",
+    "qty": 120,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "12 | 160 | FT | 3/4\" | TOE",
+    "description": "3/4\" seamless pipe, SCH 80, threaded one end",
+    "qty": 160,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "13 | 200 | FT | 1\" | TOE",
+    "description": "1\" seamless pipe, SCH 80, threaded one end",
+    "qty": 200,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "14 | 100 | FT | 1-1/2\" | TOE",
+    "description": "1-1/2\" seamless pipe, SCH 80, threaded one end",
+    "qty": 100,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "15 | 140 | FT | 2\" | TOE",
+    "description": "2\" seamless pipe, SCH 80, threaded one end",
+    "qty": 140,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "16 | 60 | FT | 3\" | BE",
+    "description": "3\" seamless pipe, SCH 80, beveled end",
+    "qty": 60,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "17 | 40 | FT | 4\" | BE",
+    "description": "4\" seamless pipe, SCH 80, beveled end",
+    "qty": 40,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "18 | 20 | FT | 6\" | BE",
+    "description": "6\" seamless pipe, SCH 80, beveled end",
+    "qty": 20,
+    "uom": "FT",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "1 | 9 | EA | 1/2\" | 90 Elbow",
+    "description": "1/2\" 90° elbow, socket weld, 3000#",
+    "qty": 9,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "2 | 16 | EA | 3/4\" | 90 Elbow",
+    "description": "3/4\" 90° elbow, socket weld, 3000#",
+    "qty": 16,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "3 | 23 | EA | 1\" | 90 Elbow",
+    "description": "1\" 90° elbow, socket weld, 3000#",
+    "qty": 23,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "4 | 30 | EA | 1-1/4\" | 90 Elbow",
+    "description": "1-1/4\" 90° elbow, socket weld, 3000#",
+    "qty": 30,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "5 | 6 | EA | 1-1/2\" | 90 Elbow",
+    "description": "1-1/2\" 90° elbow, socket weld, 3000#",
+    "qty": 6,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "6 | 13 | EA | 2\" | 90 Elbow",
+    "description": "2\" 90° elbow, socket weld, 3000#",
+    "qty": 13,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "7 | 20 | EA | 1/2\" | 45 Elbow",
+    "description": "1/2\" 45° elbow, socket weld, 3000#",
+    "qty": 20,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "8 | 27 | EA | 3/4\" | 45 Elbow",
+    "description": "3/4\" 45° elbow, socket weld, 3000#",
+    "qty": 27,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "9 | 34 | EA | 1\" | 45 Elbow",
+    "description": "1\" 45° elbow, socket weld, 3000#",
+    "qty": 34,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "10 | 10 | EA | 1-1/4\" | 45 Elbow",
+    "description": "1-1/4\" 45° elbow, socket weld, 3000#",
+    "qty": 10,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "11 | 17 | EA | 1-1/2\" | 45 Elbow",
+    "description": "1-1/2\" 45° elbow, socket weld, 3000#",
+    "qty": 17,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "12 | 24 | EA | 2\" | 45 Elbow",
+    "description": "2\" 45° elbow, socket weld, 3000#",
+    "qty": 24,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "13 | 31 | EA | 1/2\" | Tee",
+    "description": "1/2\" tee, socket weld, 3000#",
+    "qty": 31,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "14 | 7 | EA | 3/4\" | Tee",
+    "description": "3/4\" tee, socket weld, 3000#",
+    "qty": 7,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "15 | 14 | EA | 1\" | Tee",
+    "description": "1\" tee, socket weld, 3000#",
+    "qty": 14,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "16 | 21 | EA | 1-1/4\" | Tee",
+    "description": "1-1/4\" tee, socket weld, 3000#",
+    "qty": 21,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "17 | 28 | EA | 1-1/2\" | Tee",
+    "description": "1-1/2\" tee, socket weld, 3000#",
+    "qty": 28,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "18 | 35 | EA | 2\" | Tee",
+    "description": "2\" tee, socket weld, 3000#",
+    "qty": 35,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "19 | 11 | EA | 1/2\" | Coupling",
+    "description": "1/2\" coupling, socket weld, 3000#",
+    "qty": 11,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "20 | 18 | EA | 3/4\" | Coupling",
+    "description": "3/4\" coupling, socket weld, 3000#",
+    "qty": 18,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "21 | 25 | EA | 1\" | Coupling",
+    "description": "1\" coupling, socket weld, 3000#",
+    "qty": 25,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "22 | 32 | EA | 1-1/4\" | Coupling",
+    "description": "1-1/4\" coupling, socket weld, 3000#",
+    "qty": 32,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "23 | 8 | EA | 1-1/2\" | Coupling",
+    "description": "1-1/2\" coupling, socket weld, 3000#",
+    "qty": 8,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "24 | 15 | EA | 2\" | Coupling",
+    "description": "2\" coupling, socket weld, 3000#",
+    "qty": 15,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "25 | 22 | EA | 1/2\" | Cap",
+    "description": "1/2\" cap, socket weld, 3000#",
+    "qty": 22,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "26 | 29 | EA | 3/4\" | Cap",
+    "description": "3/4\" cap, socket weld, 3000#",
+    "qty": 29,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "27 | 36 | EA | 1\" | Cap",
+    "description": "1\" cap, socket weld, 3000#",
+    "qty": 36,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "28 | 12 | EA | 1-1/4\" | Cap",
+    "description": "1-1/4\" cap, socket weld, 3000#",
+    "qty": 12,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "29 | 19 | EA | 1-1/2\" | Cap",
+    "description": "1-1/2\" cap, socket weld, 3000#",
+    "qty": 19,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "30 | 26 | EA | 2\" | Cap",
+    "description": "2\" cap, socket weld, 3000#",
+    "qty": 26,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "31 | 33 | EA | 1/2\" | Union",
+    "description": "1/2\" union, socket weld, 3000#",
+    "qty": 33,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   },
+   {
+    "raw": "32 | 9 | EA | 3/4\" | Union",
+    "description": "3/4\" union, socket weld, 3000#",
+    "qty": 9,
+    "uom": "EA",
+    "source": "SR-4-117_Unit4_BOM.xlsx"
+   }
+  ]
+ }
+}

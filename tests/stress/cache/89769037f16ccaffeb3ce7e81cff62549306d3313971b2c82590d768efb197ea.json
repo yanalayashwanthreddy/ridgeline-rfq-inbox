@@ -1,0 +1,23 @@
+{
+ "key": "89769037f16ccaffeb3ce7e81cff62549306d3313971b2c82590d768efb197ea",
+ "label": "v4:S14",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:05-0600",
+ "response_id": "resp_03a16adda45b24ff006af61aff6ed887d18652f88d5f9a4f2d",
+ "seconds": 2.01,
+ "usage": {
+  "input_tokens": 2235,
+  "cached_input_tokens": 0,
+  "output_tokens": 111,
+  "reasoning_tokens": 63
+ },
+ "cost_usd": 0.002176,
+ "response": {
+  "classification_reason": "A supplier is responding with pricing for items previously requested by Ridgeline.",
+  "classification": "vendor_quote",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": []
+ }
+}

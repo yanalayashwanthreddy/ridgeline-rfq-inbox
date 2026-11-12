@@ -1,0 +1,45 @@
+{
+ "key": "80d94aa5a3b312e4e778651788d3e34c71b1c923a60ce9f62aa7ff2e4359998b",
+ "label": "v4:S10",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:01:02-0600",
+ "response_id": "resp_009156fe9020d7b9006af61afb190087d184ebcc8ad571591d",
+ "seconds": 3.23,
+ "usage": {
+  "input_tokens": 2178,
+  "cached_input_tokens": 1920,
+  "output_tokens": 290,
+  "reasoning_tokens": 73
+ },
+ "cost_usd": 0.001643,
+ "response": {
+  "classification_reason": "Customer is requesting pricing for three pipe fittings in the body.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "20 codos de 90 grados de 2\" cedula 40, soldables a tope (BW), A234 WPB",
+    "description": "2\" 90-degree elbow, schedule 40, butt weld (BW), A234 WPB",
+    "qty": 20,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "10 tes rectas de 2\" cedula 40 BW, A234 WPB",
+    "description": "2\" straight tee, schedule 40, butt weld (BW), A234 WPB",
+    "qty": 10,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "4 bridas cuello soldable de 2\" 150# RF, A105",
+    "description": "2\" weld neck flange, 150# RF, A105",
+    "qty": 4,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

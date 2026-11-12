@@ -1,0 +1,87 @@
+{
+ "key": "c3c3d05664d5bad6db21ee669c1da3818d61f6dce82bfebebb4d2e03ef27a0fd",
+ "label": "v4:E019",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:27-0600",
+ "response_id": "resp_09940239d7eb057f006af61ad7e49487d19d717c206381107e",
+ "seconds": 3.28,
+ "usage": {
+  "input_tokens": 2334,
+  "cached_input_tokens": 0,
+  "output_tokens": 719,
+  "reasoning_tokens": 217
+ },
+ "cost_usd": 0.004986,
+ "response": {
+  "classification_reason": "The customer is requesting a quote for all items listed in the attached material list.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "10 jts | 2\" | PE",
+    "description": "2\" carbon steel pipe, SCH 80, seamless, A106B, plain end",
+    "qty": 10,
+    "uom": "EA",
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "6 jts | 3\" | PE",
+    "description": "3\" carbon steel pipe, SCH 80, seamless, A106B, plain end",
+    "qty": 6,
+    "uom": "EA",
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "4 jts | 4\" | BE",
+    "description": "4\" carbon steel pipe, SCH 80, seamless, A106B, beveled end",
+    "qty": 4,
+    "uom": "EA",
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "8 jts | 1\" | PE",
+    "description": "1\" carbon steel pipe, SCH 80, seamless, A106B, plain end",
+    "qty": 8,
+    "uom": "EA",
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "24 | 1\" | 90 elbow",
+    "description": "1\" socket weld 3000# A105 90 degree elbow",
+    "qty": 24,
+    "uom": null,
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "12 | 1\" | Tee",
+    "description": "1\" socket weld 3000# A105 tee",
+    "qty": 12,
+    "uom": null,
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "30 | 3/4\" | Coupling, full",
+    "description": "3/4\" socket weld 3000# A105 full coupling",
+    "qty": 30,
+    "uom": null,
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "16 | 1/2\" | Union",
+    "description": "1/2\" socket weld 3000# A105 union",
+    "qty": 16,
+    "uom": null,
+    "source": "TankFarm_Ph2_Materials.docx"
+   },
+   {
+    "raw": "20 | 2\" | Half coupling",
+    "description": "2\" socket weld 3000# A105 half coupling",
+    "qty": 20,
+    "uom": null,
+    "source": "TankFarm_Ph2_Materials.docx"
+   }
+  ]
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "key": "be13b9666a396d26f5099b3995212eabf3bf69a541fbfbc04738635e0f7b7069",
+ "label": "v4:E015",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T14:00:24-0600",
+ "response_id": "resp_029b144938249d87006af61ad39e0487d19a60598aaf0687f4",
+ "seconds": 5.0,
+ "usage": {
+  "input_tokens": 2612,
+  "cached_input_tokens": 0,
+  "output_tokens": 752,
+  "reasoning_tokens": 334
+ },
+ "cost_usd": 0.005343,
+ "response": {
+  "classification_reason": "The customer is instructing Ridgeline to process an attached purchase order against a prior quote and confirms the items to be ordered.",
+  "classification": "purchase_order",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "2 | 210 | FT | 2\" SCH 80 SMLS A106B pipe, PE, random lengths",
+    "description": "2\" SCH 80 seamless A106B pipe, plain ends, random lengths",
+    "qty": 210,
+    "uom": "FT",
+    "source": "PO_TPS-88213.pdf"
+   },
+   {
+    "raw": "3 | 16 | EA | 2\" WN flange, 300# RF, A105, SCH 80 bore",
+    "description": "2\" weld neck flange, 300# RF, A105, SCH 80 bore",
+    "qty": 16,
+    "uom": "EA",
+    "source": "PO_TPS-88213.pdf"
+   },
+   {
+    "raw": "4 | 16 | EA | 2\" spiral wound gasket, 316/graphite, 300#, w/ inner ring",
+    "description": "2\" spiral wound gasket, 316/graphite, 300#, with inner ring",
+    "qty": 16,
+    "uom": "EA",
+    "source": "PO_TPS-88213.pdf"
+   },
+   {
+    "raw": "5 | 64 | EA | Stud bolt B7, 5/8\"-11 x 3-3/4\", w/ 2 heavy hex nuts",
+    "description": "B7 stud bolt, 5/8\"-11 x 3-3/4\", with 2 heavy hex nuts",
+    "qty": 64,
+    "uom": "EA",
+    "source": "PO_TPS-88213.pdf"
+   },
+   {
+    "raw": "6 | 6 | EA | 2\" gate valve, 300# RF, A216 WCB, bolted bonnet",
+    "description": "2\" gate valve, 300# RF, A216 WCB, bolted bonnet",
+    "qty": 6,
+    "uom": "EA",
+    "source": "PO_TPS-88213.pdf"
+   }
+  ]
+ }
+}

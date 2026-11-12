@@ -1,0 +1,1770 @@
+{
+ "version": "stress-1",
+ "emails": {
+  "S01": {
+   "classification": "auto_reply",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": []
+  },
+  "S02": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": true,
+   "line_items": [
+    {
+     "id": "S02-1",
+     "raw": "10 ea 2\" 150# RF blind flange, A105",
+     "qty": 10,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "blind",
+      "a105"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S03": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S03-1",
+     "raw": "12 | 1\" | Gate valve",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "Line3_Valves.docx",
+     "must_mention": [
+      "gate",
+      "800",
+      "a105",
+      "socket weld|sw"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S03-2",
+     "raw": "6 | 1\" | Check valve, swing",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "Line3_Valves.docx",
+     "must_mention": [
+      "check",
+      "800",
+      "a105",
+      "socket weld|sw"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S04": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S04-1",
+     "raw": "- 6 ea 4\" 300# RF weld neck flange, A105, SCH 80 bore",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "weld neck",
+      "300#"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S04-2",
+     "raw": "- 2 ea 4\" 300# RF blind flange, A105",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "blind",
+      "300#"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S04-3",
+     "raw": "8 sets of 4\" 300# spiral wound gaskets, 316/graphite",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "SET",
+     "source": "body",
+     "must_mention": [
+      "spiral wound",
+      "300#"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S05": {
+   "classification": "other",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": []
+  },
+  "S06": {
+   "classification": "other",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": []
+  },
+  "S07": {
+   "classification": "status_inquiry",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": []
+  },
+  "S08": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S08-1",
+     "raw": "1 | 6 | 1\" | Gate valve",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "Line3.xlsx",
+     "must_mention": [
+      "gate",
+      "800",
+      "a105",
+      "socket weld|sw"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S08-2",
+     "raw": "4 | 4 | 3/4\" | Ball valve, 3-pc, 316 SS, 1000 WOG, threaded",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "Line3.xlsx",
+     "must_mention": [
+      "ball",
+      "316",
+      "1000"
+     ],
+     "must_not_mention": [
+      "a105",
+      "800"
+     ]
+    },
+    {
+     "id": "S08-3",
+     "raw": "5 | 2 | 1\" | Check valve, piston",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "Line3.xlsx",
+     "must_mention": [
+      "check",
+      "800",
+      "a105"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S09": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": true,
+   "line_items": []
+  },
+  "S10": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S10-1",
+     "raw": "- 20 codos de 90 grados de 2\" cedula 40, soldables a tope (BW), A234 WPB",
+     "qty": 20,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "bw|butt weld",
+      "a234|wpb"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S10-2",
+     "raw": "- 10 tes rectas de 2\" cedula 40 BW, A234 WPB",
+     "qty": 10,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "bw|butt weld"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S10-3",
+     "raw": "- 4 bridas cuello soldable de 2\" 150# RF, A105",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "150#",
+      "a105"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S11": {
+   "classification": "purchase_order",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S11-1",
+     "raw": "1) 24 ea 2\" SCH 80 A106B SMLS pipe nipple x 6\" long, TBE",
+     "qty": 24,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "nipple",
+      "sch 80"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S11-2",
+     "raw": "2) 12 ea 2\" 3000# forged threaded union, A105",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "union",
+      "3000"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S13": {
+   "classification": "purchase_order",
+   "revises": null,
+   "duplicate_of": "S11",
+   "needs_review": false,
+   "line_items": []
+  },
+  "S12A": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S12A-1",
+     "raw": "1) 8 ea 6\" 150# RF slip-on flange, A105",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12A-2",
+     "raw": "2) 8 ea 6\" 150# spiral wound gasket, 304/graphite",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "spiral wound"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12A-3",
+     "raw": "3) 4 ea 6\" butterfly valve, lug, lever",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "butterfly"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12A-4",
+     "raw": "4) 64 ea 3/4\" x 4-1/2\" B7 stud bolt w/ 2 hvy hex nuts",
+     "qty": 64,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "stud"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12A-5",
+     "raw": "5) 2 ea 6\" Y-strainer, 150# flanged",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "strainer"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S12B": {
+   "classification": "rfq_revision",
+   "revises": "S12A",
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S12B-1",
+     "raw": "1) 8 ea 6\" 150# RF slip-on flange, A105",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12B-2",
+     "raw": "2) 8 ea 6\" 150# spiral wound gasket, 304/graphite",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "spiral wound"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12B-3",
+     "raw": "3) 4 ea 6\" butterfly valve, lug, lever",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "butterfly"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S12B-4",
+     "raw": "4) 64 ea 3/4\" x 4-1/2\" B7 stud bolt w/ 2 hvy hex nuts",
+     "qty": 64,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "stud"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S14": {
+   "classification": "vendor_quote",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": []
+  },
+  "S15": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S15-1",
+     "raw": "10   3/4\" 150# RF slip-on flange, A105",
+     "qty": 10,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_0091.jpg",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S15-2",
+     "raw": "10   3/4\" 150# spiral wound gasket",
+     "qty": 10,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_0091.jpg",
+     "must_mention": [
+      "spiral wound"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S15-3",
+     "raw": "40   1/2\" x 3\" B7 stud w/ 2 nuts",
+     "qty": 40,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_0091.jpg",
+     "must_mention": [
+      "stud"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S16": {
+   "classification": "other",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": []
+  },
+  "S17": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S17-1",
+     "raw": "12 | 1\" copper 90 elbow, wrot, CxC",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "copper"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S17-2",
+     "raw": "4 | 1\" ball valve, bronze, solder",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "ball",
+      "bronze"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S18": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": true,
+   "line_items": [
+    {
+     "id": "S18-1",
+     "raw": "1 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 1",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-2",
+     "raw": "2 | 3 | EA | 1\" | 150# RF slip-on flange, A105, item 2",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-3",
+     "raw": "3 | 4 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 3",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-4",
+     "raw": "4 | 5 | EA | 2\" | 150# RF slip-on flange, A105, item 4",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-5",
+     "raw": "5 | 6 | EA | 1/2\" | 150# RF slip-on flange, A105, item 5",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-6",
+     "raw": "6 | 7 | EA | 3/4\" | 150# RF slip-on flange, A105, item 6",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-7",
+     "raw": "7 | 8 | EA | 1\" | 150# RF slip-on flange, A105, item 7",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-8",
+     "raw": "8 | 9 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 8",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-9",
+     "raw": "9 | 1 | EA | 2\" | 150# RF slip-on flange, A105, item 9",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-10",
+     "raw": "10 | 2 | EA | 1/2\" | 150# RF slip-on flange, A105, item 10",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-11",
+     "raw": "11 | 3 | EA | 3/4\" | 150# RF slip-on flange, A105, item 11",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-12",
+     "raw": "12 | 4 | EA | 1\" | 150# RF slip-on flange, A105, item 12",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-13",
+     "raw": "13 | 5 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 13",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-14",
+     "raw": "14 | 6 | EA | 2\" | 150# RF slip-on flange, A105, item 14",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-15",
+     "raw": "15 | 7 | EA | 1/2\" | 150# RF slip-on flange, A105, item 15",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-16",
+     "raw": "16 | 8 | EA | 3/4\" | 150# RF slip-on flange, A105, item 16",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-17",
+     "raw": "17 | 9 | EA | 1\" | 150# RF slip-on flange, A105, item 17",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-18",
+     "raw": "18 | 1 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 18",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-19",
+     "raw": "19 | 2 | EA | 2\" | 150# RF slip-on flange, A105, item 19",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-20",
+     "raw": "20 | 3 | EA | 1/2\" | 150# RF slip-on flange, A105, item 20",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-21",
+     "raw": "21 | 4 | EA | 3/4\" | 150# RF slip-on flange, A105, item 21",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-22",
+     "raw": "22 | 5 | EA | 1\" | 150# RF slip-on flange, A105, item 22",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-23",
+     "raw": "23 | 6 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 23",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-24",
+     "raw": "24 | 7 | EA | 2\" | 150# RF slip-on flange, A105, item 24",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-25",
+     "raw": "25 | 8 | EA | 1/2\" | 150# RF slip-on flange, A105, item 25",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-26",
+     "raw": "26 | 9 | EA | 3/4\" | 150# RF slip-on flange, A105, item 26",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-27",
+     "raw": "27 | 1 | EA | 1\" | 150# RF slip-on flange, A105, item 27",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-28",
+     "raw": "28 | 2 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 28",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-29",
+     "raw": "29 | 3 | EA | 2\" | 150# RF slip-on flange, A105, item 29",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-30",
+     "raw": "30 | 4 | EA | 1/2\" | 150# RF slip-on flange, A105, item 30",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-31",
+     "raw": "31 | 5 | EA | 3/4\" | 150# RF slip-on flange, A105, item 31",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-32",
+     "raw": "32 | 6 | EA | 1\" | 150# RF slip-on flange, A105, item 32",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-33",
+     "raw": "33 | 7 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 33",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-34",
+     "raw": "34 | 8 | EA | 2\" | 150# RF slip-on flange, A105, item 34",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-35",
+     "raw": "35 | 9 | EA | 1/2\" | 150# RF slip-on flange, A105, item 35",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-36",
+     "raw": "36 | 1 | EA | 3/4\" | 150# RF slip-on flange, A105, item 36",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-37",
+     "raw": "37 | 2 | EA | 1\" | 150# RF slip-on flange, A105, item 37",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-38",
+     "raw": "38 | 3 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 38",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-39",
+     "raw": "39 | 4 | EA | 2\" | 150# RF slip-on flange, A105, item 39",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-40",
+     "raw": "40 | 5 | EA | 1/2\" | 150# RF slip-on flange, A105, item 40",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-41",
+     "raw": "41 | 6 | EA | 3/4\" | 150# RF slip-on flange, A105, item 41",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-42",
+     "raw": "42 | 7 | EA | 1\" | 150# RF slip-on flange, A105, item 42",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-43",
+     "raw": "43 | 8 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 43",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-44",
+     "raw": "44 | 9 | EA | 2\" | 150# RF slip-on flange, A105, item 44",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-45",
+     "raw": "45 | 1 | EA | 1/2\" | 150# RF slip-on flange, A105, item 45",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-46",
+     "raw": "46 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 46",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-47",
+     "raw": "47 | 3 | EA | 1\" | 150# RF slip-on flange, A105, item 47",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-48",
+     "raw": "48 | 4 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 48",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-49",
+     "raw": "49 | 5 | EA | 2\" | 150# RF slip-on flange, A105, item 49",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-50",
+     "raw": "50 | 6 | EA | 1/2\" | 150# RF slip-on flange, A105, item 50",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-51",
+     "raw": "51 | 7 | EA | 3/4\" | 150# RF slip-on flange, A105, item 51",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-52",
+     "raw": "52 | 8 | EA | 1\" | 150# RF slip-on flange, A105, item 52",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-53",
+     "raw": "53 | 9 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 53",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-54",
+     "raw": "54 | 1 | EA | 2\" | 150# RF slip-on flange, A105, item 54",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-55",
+     "raw": "55 | 2 | EA | 1/2\" | 150# RF slip-on flange, A105, item 55",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-56",
+     "raw": "56 | 3 | EA | 3/4\" | 150# RF slip-on flange, A105, item 56",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-57",
+     "raw": "57 | 4 | EA | 1\" | 150# RF slip-on flange, A105, item 57",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-58",
+     "raw": "58 | 5 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 58",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-59",
+     "raw": "59 | 6 | EA | 2\" | 150# RF slip-on flange, A105, item 59",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-60",
+     "raw": "60 | 7 | EA | 1/2\" | 150# RF slip-on flange, A105, item 60",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-61",
+     "raw": "61 | 8 | EA | 3/4\" | 150# RF slip-on flange, A105, item 61",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-62",
+     "raw": "62 | 9 | EA | 1\" | 150# RF slip-on flange, A105, item 62",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-63",
+     "raw": "63 | 1 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 63",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-64",
+     "raw": "64 | 2 | EA | 2\" | 150# RF slip-on flange, A105, item 64",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-65",
+     "raw": "65 | 3 | EA | 1/2\" | 150# RF slip-on flange, A105, item 65",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-66",
+     "raw": "66 | 4 | EA | 3/4\" | 150# RF slip-on flange, A105, item 66",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-67",
+     "raw": "67 | 5 | EA | 1\" | 150# RF slip-on flange, A105, item 67",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-68",
+     "raw": "68 | 6 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 68",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-69",
+     "raw": "69 | 7 | EA | 2\" | 150# RF slip-on flange, A105, item 69",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-70",
+     "raw": "70 | 8 | EA | 1/2\" | 150# RF slip-on flange, A105, item 70",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-71",
+     "raw": "71 | 9 | EA | 3/4\" | 150# RF slip-on flange, A105, item 71",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-72",
+     "raw": "72 | 1 | EA | 1\" | 150# RF slip-on flange, A105, item 72",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-73",
+     "raw": "73 | 2 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 73",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-74",
+     "raw": "74 | 3 | EA | 2\" | 150# RF slip-on flange, A105, item 74",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-75",
+     "raw": "75 | 4 | EA | 1/2\" | 150# RF slip-on flange, A105, item 75",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-76",
+     "raw": "76 | 5 | EA | 3/4\" | 150# RF slip-on flange, A105, item 76",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-77",
+     "raw": "77 | 6 | EA | 1\" | 150# RF slip-on flange, A105, item 77",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-78",
+     "raw": "78 | 7 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 78",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-79",
+     "raw": "79 | 8 | EA | 2\" | 150# RF slip-on flange, A105, item 79",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-80",
+     "raw": "80 | 9 | EA | 1/2\" | 150# RF slip-on flange, A105, item 80",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-81",
+     "raw": "81 | 1 | EA | 3/4\" | 150# RF slip-on flange, A105, item 81",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-82",
+     "raw": "82 | 2 | EA | 1\" | 150# RF slip-on flange, A105, item 82",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-83",
+     "raw": "83 | 3 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 83",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-84",
+     "raw": "84 | 4 | EA | 2\" | 150# RF slip-on flange, A105, item 84",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-85",
+     "raw": "85 | 5 | EA | 1/2\" | 150# RF slip-on flange, A105, item 85",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-86",
+     "raw": "86 | 6 | EA | 3/4\" | 150# RF slip-on flange, A105, item 86",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-87",
+     "raw": "87 | 7 | EA | 1\" | 150# RF slip-on flange, A105, item 87",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-88",
+     "raw": "88 | 8 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 88",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-89",
+     "raw": "89 | 9 | EA | 2\" | 150# RF slip-on flange, A105, item 89",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-90",
+     "raw": "90 | 1 | EA | 1/2\" | 150# RF slip-on flange, A105, item 90",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-91",
+     "raw": "91 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 91",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-92",
+     "raw": "92 | 3 | EA | 1\" | 150# RF slip-on flange, A105, item 92",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-93",
+     "raw": "93 | 4 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 93",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-94",
+     "raw": "94 | 5 | EA | 2\" | 150# RF slip-on flange, A105, item 94",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-95",
+     "raw": "95 | 6 | EA | 1/2\" | 150# RF slip-on flange, A105, item 95",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-96",
+     "raw": "96 | 7 | EA | 3/4\" | 150# RF slip-on flange, A105, item 96",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-97",
+     "raw": "97 | 8 | EA | 1\" | 150# RF slip-on flange, A105, item 97",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-98",
+     "raw": "98 | 9 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 98",
+     "qty": 9,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-99",
+     "raw": "99 | 1 | EA | 2\" | 150# RF slip-on flange, A105, item 99",
+     "qty": 1,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-100",
+     "raw": "100 | 2 | EA | 1/2\" | 150# RF slip-on flange, A105, item 100",
+     "qty": 2,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-101",
+     "raw": "101 | 3 | EA | 3/4\" | 150# RF slip-on flange, A105, item 101",
+     "qty": 3,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-102",
+     "raw": "102 | 4 | EA | 1\" | 150# RF slip-on flange, A105, item 102",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-103",
+     "raw": "103 | 5 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 103",
+     "qty": 5,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-104",
+     "raw": "104 | 6 | EA | 2\" | 150# RF slip-on flange, A105, item 104",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S18-105",
+     "raw": "105 | 7 | EA | 1/2\" | 150# RF slip-on flange, A105, item 105",
+     "qty": 7,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "BP-900.pdf",
+     "must_mention": [
+      "slip"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  }
+ }
+}
