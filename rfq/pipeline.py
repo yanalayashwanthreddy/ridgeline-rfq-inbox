@@ -28,7 +28,7 @@ def process_one(path: Path, llm: LLM) -> tuple[Email, dict, dict]:
         content, schema, truncated = build_input(em)
         req = llm.request(INSTRUCTIONS, content, schema)
         res = llm.call(req, label=f"{PROMPT_VERSION}:{em.id}")
-        stats.update(cached=res.cached, usage=res.usage, seconds=round(res.seconds, 2))
+        stats.update(cached=res.cached, usage=res.usage, seconds=round(res.seconds, 2), cache_key=res.key)
         if not res.cached:
             stats["model_calls"] = 1
             stats["cost_usd"] = res.cost_usd

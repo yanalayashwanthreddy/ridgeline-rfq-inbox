@@ -1,0 +1,45 @@
+{
+ "key": "d90b96e385f8b210bdde04017ae98b8cca827197d7547edef8049623a5d56e74",
+ "label": "v3:E020",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:52:12-0600",
+ "response_id": "resp_0f9cece23c64df79006af618e980dc87d19baac20e77d1d9b1",
+ "seconds": 3.39,
+ "usage": {
+  "input_tokens": 2424,
+  "cached_input_tokens": 0,
+  "output_tokens": 471,
+  "reasoning_tokens": 218
+ },
+ "cost_usd": 0.003938,
+ "response": {
+  "classification_reason": "The customer is instructing Ridgeline to proceed with selected quote items and says a PO will follow, which is a purchase commitment.",
+  "classification": "purchase_order",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "1. 8 EA - 3\" 150# RF weld neck flange, A105, STD bore - $38.60 ea",
+    "description": "3\" 150# RF weld neck flange, A105, standard bore",
+    "qty": 8,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "2. 120 FT - 3\" SCH 40 A53B ERW pipe, PE - $7.95/ft",
+    "description": "3\" SCH 40 A53B ERW pipe, plain ends",
+    "qty": 120,
+    "uom": "FT",
+    "source": "body"
+   },
+   {
+    "raw": "4. 16 EA - 3\" 90 deg LR elbow, BW, SCH 40, A234 WPB - $9.35 ea",
+    "description": "3\" 90 degree long radius elbow, butt weld, SCH 40, A234 WPB",
+    "qty": 16,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

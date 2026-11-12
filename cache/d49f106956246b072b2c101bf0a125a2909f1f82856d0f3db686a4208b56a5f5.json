@@ -1,0 +1,66 @@
+{
+ "key": "d49f106956246b072b2c101bf0a125a2909f1f82856d0f3db686a4208b56a5f5",
+ "label": "v3:E016",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:52:09-0600",
+ "response_id": "resp_0d5ea50f0c4ce3c3006af618e4c05887d1a1d7780ad6cc78f4",
+ "seconds": 4.73,
+ "usage": {
+  "input_tokens": 2396,
+  "cached_input_tokens": 0,
+  "output_tokens": 728,
+  "reasoning_tokens": 273
+ },
+ "cost_usd": 0.005073,
+ "response": {
+  "classification_reason": "A customer forwarded by a Ridgeline employee is asking for pricing and lead times on the attached condensate return material list.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "60 | FT | 1-1/2\" | Pipe, SCH 80, A106B SMLS, PE",
+    "description": "1-1/2\" pipe, SCH 80, A106B seamless, plain ends",
+    "qty": 60,
+    "uom": "FT",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "12 | EA | 1-1/2\" | 90 elbow, SW, 3000#, A105",
+    "description": "1-1/2\" 90° elbow, socket weld, 3000#, A105",
+    "qty": 12,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "6 | EA | 1-1/2\" | Tee, SW, 3000#, A105",
+    "description": "1-1/2\" tee, socket weld, 3000#, A105",
+    "qty": 6,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "8 | EA | 1-1/2\" | Union, SW, 3000#, A105",
+    "description": "1-1/2\" union, socket weld, 3000#, A105",
+    "qty": 8,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "4 | EA | 1-1/2\" | Gate valve, 800#, SW, A105",
+    "description": "1-1/2\" gate valve, 800#, socket weld, A105",
+    "qty": 4,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   },
+   {
+    "raw": "2 | EA | 1-1/2\" | Y-strainer, 800#, SW, A105",
+    "description": "1-1/2\" Y-strainer, 800#, socket weld, A105",
+    "qty": 2,
+    "uom": "EA",
+    "source": "HM-7716_material_list.csv"
+   }
+  ]
+ }
+}

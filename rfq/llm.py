@@ -45,6 +45,7 @@ class CallResult:
     cost_usd: float | None
     cached: bool
     seconds: float
+    key: str = ""
 
 
 class LLM:
@@ -81,7 +82,7 @@ class LLM:
         if path.exists():
             try:
                 rec = json.loads(path.read_text(encoding="utf-8"))
-                return CallResult(rec["response"], rec["usage"], rec.get("cost_usd"), True, 0.0)
+                return CallResult(rec["response"], rec["usage"], rec.get("cost_usd"), True, 0.0, key)
             except (OSError, ValueError, KeyError):
                 pass  # corrupt cache entry: fall through and re-ask
         if self.client is None:
@@ -130,7 +131,7 @@ class LLM:
         tmp = path.with_suffix(f".{os.getpid()}.{threading.get_ident()}.tmp")
         tmp.write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf-8")
         os.replace(tmp, path)  # atomic: a crash mid-write never leaves a half-written cache entry
-        return CallResult(data, usage, cost, False, secs)
+        return CallResult(data, usage, cost, False, secs, key)
 
     def _fail(self) -> None:
         with self._lock:

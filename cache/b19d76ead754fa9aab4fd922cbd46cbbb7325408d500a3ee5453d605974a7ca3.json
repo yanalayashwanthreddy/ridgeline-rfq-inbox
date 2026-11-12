@@ -1,0 +1,59 @@
+{
+ "key": "b19d76ead754fa9aab4fd922cbd46cbbb7325408d500a3ee5453d605974a7ca3",
+ "label": "v3:E002",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:51:49-0600",
+ "response_id": "resp_0ceb9226a4c0a0e6006af618ce1b3887d1b121c71c6f074a0a",
+ "seconds": 7.55,
+ "usage": {
+  "input_tokens": 2116,
+  "cached_input_tokens": 0,
+  "output_tokens": 753,
+  "reasoning_tokens": 516
+ },
+ "cost_usd": 0.004975,
+ "response": {
+  "classification_reason": "The customer is requesting prices/availability for several threaded fittings needed for a skid, with quantities listed in the email body.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "10 of the 1/2 90s",
+    "description": "1/2 in. 316 SS threaded 90-degree elbow",
+    "qty": 10,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "6 tees same size",
+    "description": "1/2 in. 316 SS threaded tee",
+    "qty": 6,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "a couple caps",
+    "description": "316 SS threaded cap",
+    "qty": null,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "12 of the 3/4 couplings",
+    "description": "3/4 in. 316 SS threaded coupling",
+    "qty": 12,
+    "uom": null,
+    "source": "body"
+   },
+   {
+    "raw": "20 of the 3/4 close nipples",
+    "description": "3/4 in. 316 SS close nipple, threaded",
+    "qty": 20,
+    "uom": null,
+    "source": "body"
+   }
+  ]
+ }
+}

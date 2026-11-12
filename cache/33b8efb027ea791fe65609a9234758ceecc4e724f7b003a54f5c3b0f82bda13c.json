@@ -1,0 +1,80 @@
+{
+ "key": "33b8efb027ea791fe65609a9234758ceecc4e724f7b003a54f5c3b0f82bda13c",
+ "label": "v3:E003",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:51:47-0600",
+ "response_id": "resp_0346072dd35966e1006af618cdf1fc87d19f8fa846695bf205",
+ "seconds": 6.19,
+ "usage": {
+  "input_tokens": 2218,
+  "cached_input_tokens": 0,
+  "output_tokens": 752,
+  "reasoning_tokens": 334
+ },
+ "cost_usd": 0.005047,
+ "response": {
+  "classification_reason": "Customer is requesting pricing for a list of pipe, fittings, and valves for a project tie-in.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "1) 20 jts - 2\"",
+    "description": "2\" pipe, SCH 40, A53B, ERW, threaded and coupled",
+    "qty": 20,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "2) 10 jts - 3\"",
+    "description": "3\" pipe, SCH 40, A53B, ERW, threaded and coupled",
+    "qty": 10,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "3) 6 jts - 4\"",
+    "description": "4\" pipe, SCH 40, A53B, ERW, threaded and coupled",
+    "qty": 6,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "4) 12 ea - 2\" 90 ell",
+    "description": "2\" 90 elbow, 150# malleable iron, black",
+    "qty": 12,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "5) 8 ea - 2\" tee",
+    "description": "2\" tee, 150# malleable iron, black",
+    "qty": 8,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "6) 6 ea - 2\" union",
+    "description": "2\" union, 150# malleable iron, black",
+    "qty": 6,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "7) 4 ea - 2\" gate, bronze, 125#",
+    "description": "2\" gate valve, bronze, 125#",
+    "qty": 4,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "8) 2 ea - 2\" check, swing, bronze, 125#",
+    "description": "2\" swing check valve, bronze, 125#",
+    "qty": 2,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

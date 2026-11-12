@@ -1,0 +1,23 @@
+{
+ "key": "8a6c4b879b6b8560afc5dc5b77c610e184a653cf6ebbe4eae00cb94ba3ff699c",
+ "label": "v3:E022",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:52:13-0600",
+ "response_id": "resp_01943d8a1dc85902006af618ebe8b087d1b7e9e359cf04730b",
+ "seconds": 1.83,
+ "usage": {
+  "input_tokens": 2164,
+  "cached_input_tokens": 0,
+  "output_tokens": 130,
+  "reasoning_tokens": 56
+ },
+ "cost_usd": 0.002208,
+ "response": {
+  "classification_reason": "Customer is requesting pricing on an attached RFQ, but the PDF is password-protected and unreadable.",
+  "classification": "rfq",
+  "needs_review": true,
+  "review_reason": "Attached RFQ PDF is password-protected and no password was provided, so the item list cannot be read.",
+  "line_items": []
+ }
+}

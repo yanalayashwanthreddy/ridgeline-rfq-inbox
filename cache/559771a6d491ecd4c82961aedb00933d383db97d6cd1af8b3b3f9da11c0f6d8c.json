@@ -1,0 +1,59 @@
+{
+ "key": "559771a6d491ecd4c82961aedb00933d383db97d6cd1af8b3b3f9da11c0f6d8c",
+ "label": "v3:E001",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:51:46-0600",
+ "response_id": "resp_0b5339cc7907f2a0006af618ce16c087d1a07a714e13c04c9d",
+ "seconds": 4.58,
+ "usage": {
+  "input_tokens": 2301,
+  "cached_input_tokens": 0,
+  "output_tokens": 606,
+  "reasoning_tokens": 308
+ },
+ "cost_usd": 0.004453,
+ "response": {
+  "classification_reason": "Customer is requesting pricing and lead time for a list of pipe and fittings to be quoted.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "12 jts - 2\" SCH 40 A53B ERW black pipe, PE",
+    "description": "2\" SCH 40 A53B ERW black pipe, plain end",
+    "qty": 12,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "(30) 2\" 3000# forged threaded 90 elbow, A105",
+    "description": "2\" 3000# forged threaded 90° elbow, A105",
+    "qty": 30,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "(30) 2\" 3000# forged threaded coupling, A105",
+    "description": "2\" 3000# forged threaded coupling, A105",
+    "qty": 30,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "200 ft - 3/4\" SCH 40 galvanized pipe, TBE",
+    "description": "3/4\" SCH 40 galvanized pipe, threaded both ends",
+    "qty": 200,
+    "uom": "FT",
+    "source": "body"
+   },
+   {
+    "raw": "4\" 150# RF slip-on flange, A105 x 6",
+    "description": "4\" 150# RF slip-on flange, A105",
+    "qty": 6,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

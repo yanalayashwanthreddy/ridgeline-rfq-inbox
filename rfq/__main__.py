@@ -12,7 +12,7 @@ from .llm import LLM
 from .pipeline import run
 
 DEFAULT_MODEL = "gpt-5.4-mini-2026-03-17"
-DEFAULT_EFFORT = "low"
+DEFAULT_EFFORT = "medium"  # bake-off on dev: low skimmed rules (ditto marks), gpt-5.5 cost 4.6x for no gain
 
 
 def main(argv=None) -> int:

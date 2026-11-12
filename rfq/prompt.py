@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from .ingest import STRIKE_L, Email
 
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3"
 
 CLASSES = ["rfq", "rfq_revision", "purchase_order", "vendor_quote", "status_inquiry", "auto_reply", "other"]
 REQUEST_CLASSES = {"rfq", "rfq_revision", "purchase_order"}
@@ -101,6 +101,8 @@ fields unless the body says so.
 bolt; "WN 150# RF" in a flange list is a weld neck flange).
   * For a photo of a nameplate or an existing part, describe the part from what the picture \
 shows (type, size, rating/class, body material, trim, ends, maker and model).
+  * Keep the customer's own spelling of specs, grades and ratings (A53B stays A53B, not \
+"A53 Grade B"; 150# stays 150#): reps search the catalog with what the customer wrote.
   * Never invent a spec the email does not give.
 - qty: the quantity the customer asked for, as stated. Spelled-out numbers count ("twelve" = \
 12). Vague amounts ("a couple", "some", "enough for the job") -> null. A size, length, \

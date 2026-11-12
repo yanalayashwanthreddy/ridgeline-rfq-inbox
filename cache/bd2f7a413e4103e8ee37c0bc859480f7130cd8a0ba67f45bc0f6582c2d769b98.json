@@ -1,0 +1,73 @@
+{
+ "key": "bd2f7a413e4103e8ee37c0bc859480f7130cd8a0ba67f45bc0f6582c2d769b98",
+ "label": "v3:E007",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-12T13:51:55-0600",
+ "response_id": "resp_0a6b77627e218981006af618d5691887d1987cb7fb6c2b0cba",
+ "seconds": 6.3,
+ "usage": {
+  "input_tokens": 3008,
+  "cached_input_tokens": 0,
+  "output_tokens": 1077,
+  "reasoning_tokens": 762
+ },
+ "cost_usd": 0.007103,
+ "response": {
+  "classification_reason": "Customer requests pricing today for a list of items shown in the attached photo, with pickup Friday.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "8 - 2\" galv 90 elbow",
+    "description": "2\" galvanized 90 degree elbow",
+    "qty": 8,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   },
+   {
+    "raw": "4 - ,, tee",
+    "description": "2\" galvanized tee",
+    "qty": 4,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   },
+   {
+    "raw": "6 - 1\" x 3\" galv nipple",
+    "description": "1\" x 3\" galvanized nipple",
+    "qty": 6,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   },
+   {
+    "raw": "6 - 1\" x 4\" ,,",
+    "description": "1\" x 4\" galvanized nipple",
+    "qty": 6,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   },
+   {
+    "raw": "12 - 2\" galv coupling",
+    "description": "2\" galvanized coupling",
+    "qty": 12,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   },
+   {
+    "raw": "2 - 2\" galv union",
+    "description": "2\" galvanized union",
+    "qty": 2,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   },
+   {
+    "raw": "5 jts - 2\" galv pipe",
+    "description": "2\" galvanized pipe",
+    "qty": 5,
+    "uom": "EA",
+    "source": "IMG_4172.jpeg"
+   }
+  ]
+ }
+}
