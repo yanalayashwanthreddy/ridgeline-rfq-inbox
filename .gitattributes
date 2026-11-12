@@ -1,9 +1,11 @@
-# Input data must stay byte-for-byte as delivered: CRLF conversion would change
-# the .eml bytes (MIME parsing, content hashes for duplicate detection, cache keys).
-data/** -text
-*.eml -text
-*.json -text
-cache/** -text
 # Source code: normalize to LF in the repo.
 *.py text eol=lf
 *.md text eol=lf
+
+# Input data must stay byte-for-byte as delivered: CRLF conversion would change
+# the .eml bytes (MIME parsing, content hashes for duplicate detection, cache keys).
+# Listed last so it overrides the source rules above (later lines win).
+*.eml -text
+*.json -text
+cache/** -text
+data/** -text
