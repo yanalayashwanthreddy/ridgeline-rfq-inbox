@@ -60,6 +60,10 @@ class Part:
     text: str = ""
     images: list[Image] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
+    # spreadsheet rows as "a | b | c", split by whether the sender could see them; lets code
+    # (not the model) enforce "never take a line from a hidden sheet or row"
+    hidden_rows: list[str] = field(default_factory=list)
+    visible_rows: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -74,6 +78,8 @@ class Email:
     message_id: str | None = None
     in_reply_to: str | None = None
     references: list[str] = field(default_factory=list)
+    auto_submitted: str = ""          # RFC 3834: anything but "no" means machine-generated
+    precedence: str = ""              # "bulk" / "list" / "junk": mass mailings
     body: str = ""
     body_source: str = "text/plain"   # or text/html when we had to read the HTML
     parts: list[Part] = field(default_factory=list)
@@ -101,6 +107,8 @@ def load_email(path: Path) -> Email:
     em.message_id = _hdr(msg, "message-id") or None
     em.in_reply_to = _hdr(msg, "in-reply-to") or None
     em.references = _hdr(msg, "references").split()
+    em.auto_submitted = _hdr(msg, "auto-submitted").lower()
+    em.precedence = _hdr(msg, "precedence").lower()
     try:
         em.timestamp = parsedate_to_datetime(em.date).timestamp() if em.date else None
     except Exception:
@@ -309,9 +317,14 @@ def _xlsx(p: Part, data: bytes) -> None:
             if not cells:
                 continue
             r = row[0].row
-            line = f"R{r}: " + " | ".join(cells)
+            row_text = " | ".join(cells)
+            line = f"R{r}: {row_text}"
             if ws.row_dimensions[r].hidden:
                 line += "   [HIDDEN ROW]"
+            if ws.sheet_state != "visible" or ws.row_dimensions[r].hidden:
+                p.hidden_rows.append(row_text)
+            else:
+                p.visible_rows.append(row_text)
             out.append(line)
             rows += 1
             if rows >= MAX_SHEET_ROWS:
@@ -648,6 +661,8 @@ def render(em: Email) -> str:
         f"Date: {em.date}",
         f"Subject: {em.subject}",
         f"Message-ID: {em.message_id}   In-Reply-To: {em.in_reply_to}",
+        *([f"Auto-Submitted: {em.auto_submitted}"] if em.auto_submitted else []),
+        *([f"Precedence: {em.precedence}"] if em.precedence else []),
         f"(body read from {em.body_source})",
         "",
         em.body.strip(),
