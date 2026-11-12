@@ -1,0 +1,52 @@
+From: Mail Delivery System <MAILER-DAEMON@mx1.ridgeline-supply.example>
+To: Ridgeline RFQ Desk <rfq@ridgeline-supply.example>
+Date: Thu, 15 Oct 2026 13:12:00 -0500
+Subject: Delivery Status Notification (Failure)
+Message-ID: <20261015131200.8121dd@mx1.ridgeline-supply.example>
+Auto-Submitted: auto-replied
+X-Failed-Recipients: sales@ironbridgevalve.example
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_mix_cba6a69232"
+
+------=_mix_cba6a69232
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Delivery to the following recipient failed permanently:
+
+     sales@ironbridgevalve.example
+
+Technical details of permanent failure:
+The recipient server did not accept our requests to connect.
+Remote server returned '550 5.1.1 The email account that you tried to reach=
+ does not exist. Please try double-checking the recipient's email address f=
+or typos.'
+
+----- Original message attached as original_message.eml -----
+
+------=_mix_cba6a69232
+Content-Type: message/rfc822
+Content-Disposition: attachment; filename="original_message.eml"
+
+From: Ridgeline RFQ Desk <rfq@ridgeline-supply.example>
+To: sales@ironbridgevalve.example
+Date: Thu, 15 Oct 2026 13:11:00 -0500
+Subject: Quote request - 2in forged valves and flanges, need by 10/22
+Message-ID: <20261015131100.17d60a@ridgeline-supply.example>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+Please quote the following, delivered to our Houston branch:
+
+1. 12 ea  2" 800# forged gate valve, A105, NPT
+2. 8 ea  2" 800# forged globe valve, A105, NPT
+3. 6 ea  2" 800# swing check valve, A105, NPT
+4. 20 ea  2" 150# slip-on flange, RF, A105
+
+Thanks,
+Ridgeline RFQ Desk
+Ridgeline Industrial Supply
+
+------=_mix_cba6a69232--

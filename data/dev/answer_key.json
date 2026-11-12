@@ -1,0 +1,3651 @@
+{
+  "version": 4,
+  "emails": {
+    "E001": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E001-1",
+          "raw": "12 jts - 2\" SCH 40 A53B ERW black pipe, PE",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-31510",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E001-2",
+          "raw": "(30) 2\" 3000# forged threaded 90 elbow, A105",
+          "qty": 30,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-35913",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E001-3",
+          "raw": "(30) 2\" 3000# forged threaded coupling, A105",
+          "qty": 30,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-19633",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E001-4",
+          "raw": "200 ft - 3/4\" SCH 40 galvanized pipe, TBE",
+          "qty": 200,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-40242",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E001-5",
+          "raw": "4\" 150# RF slip-on flange, A105 x 6",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-12566",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E002": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E002-1",
+          "raw": "10 of the 1/2 90s",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thd|npt"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-14860",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E002-2",
+          "raw": "6 tees same size",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thd|npt",
+            "1/2"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-21150",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E002-3",
+          "raw": "a couple caps",
+          "qty": null,
+          "qty_tol": 0,
+          "uom": null,
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thd|npt"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-17820",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E002-4",
+          "raw": "12 of the 3/4 couplings",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thd|npt"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-21705",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E002-5",
+          "raw": "20 of the 3/4 close nipples",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thd|npt"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-13676",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E003": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E003-1",
+          "raw": "1) 20 jts - 2\"",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "pipe",
+            "sch 40|schedule 40",
+            "a53b",
+            "erw",
+            "t&c|threaded and coupled|thd and cpld|t/c"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-41907",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-2",
+          "raw": "2) 10 jts - 3\"",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "pipe",
+            "sch 40|schedule 40",
+            "a53b",
+            "erw",
+            "t&c|threaded and coupled|thd and cpld|t/c"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-14934",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-3",
+          "raw": "3) 6 jts - 4\"",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "pipe",
+            "sch 40|schedule 40",
+            "a53b",
+            "erw",
+            "t&c|threaded and coupled|thd and cpld|t/c"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-16229",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-4",
+          "raw": "4) 12 ea - 2\" 90 ell",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "malleable",
+            "150#|150 lb|class 150",
+            "black"
+          ],
+          "must_not_mention": [
+            "sch 40",
+            "a53b"
+          ],
+          "sku": "RL-39317",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-5",
+          "raw": "5) 8 ea - 2\" tee",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "malleable",
+            "150#|150 lb|class 150",
+            "black"
+          ],
+          "must_not_mention": [
+            "sch 40",
+            "a53b"
+          ],
+          "sku": "RL-14564",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-6",
+          "raw": "6) 6 ea - 2\" union",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "malleable",
+            "150#|150 lb|class 150",
+            "black"
+          ],
+          "must_not_mention": [
+            "sch 40",
+            "a53b"
+          ],
+          "sku": "RL-25701",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-7",
+          "raw": "7) 4 ea - 2\" gate, bronze, 125#",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "valve"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-18338",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E003-8",
+          "raw": "8) 2 ea - 2\" check, swing, bronze, 125#",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "valve"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-12529",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E004": {
+      "classification": "rfq_revision",
+      "revises": "E003",
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E004-1",
+          "raw": "1) 20 jts - 2\"",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "pipe",
+            "sch 40|schedule 40",
+            "a53b",
+            "erw",
+            "t&c|threaded and coupled|thd and cpld|t/c"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-41907",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-2",
+          "raw": "2) 14 jts - 3\"",
+          "qty": 14,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "pipe",
+            "sch 40|schedule 40",
+            "a53b",
+            "erw",
+            "t&c|threaded and coupled|thd and cpld|t/c"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-14934",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-3",
+          "raw": "3) 6 jts - 4\"",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "pipe",
+            "sch 40|schedule 40",
+            "a53b",
+            "erw",
+            "t&c|threaded and coupled|thd and cpld|t/c"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-16229",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-4",
+          "raw": "4) 12 ea - 2\" 90 ell",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "malleable",
+            "150#|150 lb|class 150",
+            "black"
+          ],
+          "must_not_mention": [
+            "sch 40",
+            "a53b"
+          ],
+          "sku": "RL-39317",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-5",
+          "raw": "5) 8 ea - 2\" tee",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "malleable",
+            "150#|150 lb|class 150",
+            "black"
+          ],
+          "must_not_mention": [
+            "sch 40",
+            "a53b"
+          ],
+          "sku": "RL-14564",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-6",
+          "raw": "7) 4 ea - 2\" gate, bronze, 125#",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "valve"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-18338",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-7",
+          "raw": "8) 2 ea - 2\" check, swing, bronze, 125#",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "valve"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": "RL-12529",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E004-8",
+          "raw": "9) 4 ea - 2\" ball, bronze, 125#",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "valve"
+          ],
+          "must_not_mention": [
+            "malleable",
+            "150#"
+          ],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        }
+      ]
+    },
+    "E005": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E005-1",
+          "raw": "1 | 12 | EA | 6\" | 90 LR elbow",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-31140",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E005-2",
+          "raw": "2 | 6 | EA | 6\" | 45 elbow",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-18116",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E005-3",
+          "raw": "3 | 4 | EA | 8\" | 90 LR elbow",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-22075",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E005-4",
+          "raw": "4 | 4 | EA | 6\" | Tee, straight",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-20003",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E005-5",
+          "raw": "5 | 3 | EA | 8\" x 6\" | Reducer, concentric",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E005-6",
+          "raw": "6 | 2 | EA | 6\" x 4\" | Reducer, concentric, SCH 80",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "a234|wpb"
+          ],
+          "must_not_mention": [
+            "sch 40"
+          ],
+          "sku": "RL-23222",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E005-7",
+          "raw": "7 | 2 | EA | 8\" | Cap",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-13824",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E005-8",
+          "raw": "8 | 2 | EA | 6\" | Cap",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Tank14_Piping_RevB.xlsx",
+          "must_mention": [
+            "bw|butt weld",
+            "sch 40",
+            "a234|wpb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-11456",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E006": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E006-1",
+          "raw": "2 sets of 4\" 150# spiral wound gaskets, 304 SS/graphite",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "SET",
+          "source": "body",
+          "must_mention": [
+            "spiral wound"
+          ],
+          "must_not_mention": [
+            "a105"
+          ],
+          "sku": "RL-38947",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-2",
+          "raw": "6 sets of 6\" 150# spiral wound gaskets, 304 SS/graphite",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "SET",
+          "source": "body",
+          "must_mention": [
+            "spiral wound"
+          ],
+          "must_not_mention": [
+            "a105"
+          ],
+          "sku": "RL-42869",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-3",
+          "raw": "1 | 7 | EA | 1/2\" | WELD NECK FLANGE, STD BORE",
+          "qty": 7,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-35876",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-4",
+          "raw": "2 | 3 | EA | 3/4\" | WELD NECK FLANGE, STD BORE",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-23814",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-5",
+          "raw": "3 | 8 | EA | 1\" | WELD NECK FLANGE, STD BORE",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-26367",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-6",
+          "raw": "4 | 4 | EA | 1-1/4\" | WELD NECK FLANGE, STD BORE",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-15119",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-7",
+          "raw": "5 | 9 | EA | 1-1/2\" | WELD NECK FLANGE, STD BORE",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12307",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-8",
+          "raw": "6 | 5 | EA | 2\" | WELD NECK FLANGE, STD BORE",
+          "qty": 5,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-11086",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-9",
+          "raw": "7 | 10 | EA | 2-1/2\" | WELD NECK FLANGE, STD BORE",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-39243",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-10",
+          "raw": "8 | 6 | EA | 3\" | WELD NECK FLANGE, STD BORE",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-27477",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-11",
+          "raw": "9 | 2 | EA | 4\" | WELD NECK FLANGE, STD BORE",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-21113",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-12",
+          "raw": "10 | 7 | EA | 6\" | WELD NECK FLANGE, STD BORE",
+          "qty": 7,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-22260",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-13",
+          "raw": "11 | 3 | EA | 8\" | WELD NECK FLANGE, STD BORE",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-19004",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-14",
+          "raw": "12 | 8 | EA | 10\" | WELD NECK FLANGE, STD BORE",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-11974",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-15",
+          "raw": "13 | 4 | EA | 12\" | WELD NECK FLANGE, STD BORE",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-19374",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-16",
+          "raw": "14 | 9 | EA | 14\" | WELD NECK FLANGE, STD BORE",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E006-17",
+          "raw": "15 | 5 | EA | 1/2\" | SLIP-ON FLANGE",
+          "qty": 5,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-30289",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-18",
+          "raw": "16 | 10 | EA | 3/4\" | SLIP-ON FLANGE",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-27995",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-19",
+          "raw": "17 | 6 | EA | 1\" | SLIP-ON FLANGE",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-26737",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-20",
+          "raw": "18 | 2 | EA | 1-1/4\" | SLIP-ON FLANGE",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-35284",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-21",
+          "raw": "19 | 7 | EA | 1-1/2\" | SLIP-ON FLANGE",
+          "qty": 7,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-33915",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-22",
+          "raw": "20 | 3 | EA | 2\" | SLIP-ON FLANGE",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-40501",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-23",
+          "raw": "21 | 8 | EA | 2-1/2\" | SLIP-ON FLANGE",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-22630",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-24",
+          "raw": "22 | 4 | EA | 3\" | SLIP-ON FLANGE",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-11641",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-25",
+          "raw": "23 | 9 | EA | 4\" | SLIP-ON FLANGE",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12566",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-26",
+          "raw": "24 | 5 | EA | 6\" | SLIP-ON FLANGE",
+          "qty": 5,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-42610",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-27",
+          "raw": "25 | 10 | EA | 8\" | SLIP-ON FLANGE",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-24702",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-28",
+          "raw": "26 | 6 | EA | 10\" | SLIP-ON FLANGE",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-44978",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-29",
+          "raw": "27 | 2 | EA | 12\" | SLIP-ON FLANGE",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-37800",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-30",
+          "raw": "28 | 7 | EA | 14\" | SLIP-ON FLANGE",
+          "qty": 7,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-38540",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-31",
+          "raw": "29 | 3 | EA | 1/2\" | BLIND FLANGE",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-37245",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-32",
+          "raw": "30 | 8 | EA | 3/4\" | BLIND FLANGE",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12825",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-33",
+          "raw": "31 | 4 | EA | 1\" | BLIND FLANGE",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-15415",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-34",
+          "raw": "32 | 9 | EA | 1-1/4\" | BLIND FLANGE",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12159",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-35",
+          "raw": "33 | 5 | EA | 1-1/2\" | BLIND FLANGE",
+          "qty": 5,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-31362",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-36",
+          "raw": "34 | 10 | EA | 2\" | BLIND FLANGE",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12492",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-37",
+          "raw": "35 | 6 | EA | 2-1/2\" | BLIND FLANGE",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-15008",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-38",
+          "raw": "36 | 2 | EA | 3\" | BLIND FLANGE",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-15600",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-39",
+          "raw": "37 | 7 | EA | 4\" | BLIND FLANGE",
+          "qty": 7,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-43757",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-40",
+          "raw": "38 | 3 | EA | 6\" | BLIND FLANGE",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-20595",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-41",
+          "raw": "39 | 8 | EA | 8\" | BLIND FLANGE",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-28254",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-42",
+          "raw": "40 | 4 | EA | 10\" | BLIND FLANGE",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-34729",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-43",
+          "raw": "41 | 9 | EA | 12\" | BLIND FLANGE",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-16118",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E006-44",
+          "raw": "42 | 5 | EA | 14\" | BLIND FLANGE",
+          "qty": 5,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "RFQ_PF-26-3091.pdf",
+          "must_mention": [
+            "a105",
+            "150#|150 lb|class 150",
+            "rf|raised face"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        }
+      ]
+    },
+    "E007": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E007-1",
+          "raw": "8 - 2\" galv 90 elbow",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-42018",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E007-2",
+          "raw": "4 - ,, tee",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [
+            "2\"|2 in|2-inch|2 inch",
+            "galv"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-29882",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E007-3",
+          "raw": "6 - 1\" x 3\" galv nipple",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-14749",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E007-4",
+          "raw": "6 - 1\" x 4\" ,,",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [
+            "galv",
+            "nipple"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-26404",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E007-5",
+          "raw": "12 - 2\" galv coupling",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-31806",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E007-6",
+          "raw": "2 - 2\" galv union",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-22408",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E007-7",
+          "raw": "5 jts - 2\" galv pipe",
+          "qty": 5,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4172.jpeg",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-22445",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E008": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": "E006",
+      "needs_review": false,
+      "line_items": []
+    },
+    "E009": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E009-1",
+          "raw": "1 | 6 | EA | 1\" | WN 150# RF",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-26367",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-2",
+          "raw": "2 | 4 | EA | 1-1/2\" | WN 150# RF",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12307",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-3",
+          "raw": "3 | 10 | EA | 2\" | WN 150# RF",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-11086",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-4",
+          "raw": "4 | 8 | EA | 3\" | WN 150# RF",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-27477",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-5",
+          "raw": "5 | 12 | EA | 4\" | WN 150# RF",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-21113",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-6",
+          "raw": "6 | 6 | EA | 6\" | WN 150# RF",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-22260",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-7",
+          "raw": "7 | 4 | EA | 8\" | WN 150# RF",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-19004",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-8",
+          "raw": "8 | 4 | EA | 2\" | SO 150# RF",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-40501",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-9",
+          "raw": "9 | 4 | EA | 3\" | SO 150# RF",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-11641",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-10",
+          "raw": "10 | 6 | EA | 4\" | SO 150# RF",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12566",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-11",
+          "raw": "11 | 4 | EA | 6\" | SO 150# RF",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-42610",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-12",
+          "raw": "12 | 2 | EA | 2\" | BL 150# RF",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12492",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-13",
+          "raw": "13 | 2 | EA | 4\" | BL 150# RF",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-43757",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-14",
+          "raw": "14 | 2 | EA | 6\" | BL 150# RF",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "flange"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-20595",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-15",
+          "raw": "15 | 10 | EA | 1\" | Spiral wound, 304/graphite, 150#",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-22038",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-16",
+          "raw": "16 | 6 | EA | 1-1/2\" | Spiral wound, 304/graphite, 150#",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-13010",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-17",
+          "raw": "17 | 20 | EA | 2\" | Spiral wound, 304/graphite, 150#",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-27699",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-18",
+          "raw": "18 | 12 | EA | 3\" | Spiral wound, 304/graphite, 150#",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-21372",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-19",
+          "raw": "19 | 16 | EA | 4\" | Spiral wound, 304/graphite, 150#",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-38947",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-20",
+          "raw": "20 | 8 | EA | 6\" | Spiral wound, 304/graphite, 150#",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-42869",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-21",
+          "raw": "21 | 4 | EA | 8\" | Spiral wound, 304/graphite, 150#",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-40094",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-22",
+          "raw": "22 | 2 | EA | 10\" | Spiral wound, 304/graphite, 150#",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "gasket"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E009-23",
+          "raw": "23 | 32 | EA | 1/2\" x 3\" | B7 w/ 2 heavy hex nuts",
+          "qty": 32,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-15674",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-24",
+          "raw": "24 | 24 | EA | 5/8\" x 3-1/4\" | B7 w/ 2 heavy hex nuts",
+          "qty": 24,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E009-25",
+          "raw": "25 | 16 | EA | 5/8\" x 3-1/2\" | B7 w/ 2 heavy hex nuts",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-16377",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-26",
+          "raw": "26 | 48 | EA | 3/4\" x 4\" | B7 w/ 2 heavy hex nuts",
+          "qty": 48,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-10457",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-27",
+          "raw": "27 | 24 | EA | 3/4\" x 4-1/4\" | B7 w/ 2 heavy hex nuts",
+          "qty": 24,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-40390",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-28",
+          "raw": "28 | 32 | EA | 3/4\" x 4-1/2\" | B7 w/ 2 heavy hex nuts",
+          "qty": 32,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-41796",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-29",
+          "raw": "29 | 16 | EA | 7/8\" x 5\" | B7 w/ 2 heavy hex nuts",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-23703",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-30",
+          "raw": "30 | 16 | EA | 7/8\" x 5-1/4\" | B7 w/ 2 heavy hex nuts",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E009-31",
+          "raw": "31 | 16 | EA | 1\" x 5-3/4\" | B7 w/ 2 heavy hex nuts",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-19559",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E009-32",
+          "raw": "32 | 8 | EA | 1\" x 6\" | B7 w/ 2 heavy hex nuts",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "Scan_RFQ_SC-4418.pdf",
+          "must_mention": [
+            "stud"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-24184",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E010": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E010-1",
+          "raw": "40 | EA | 1/2\"-13 x 2\" hex cap screw, Gr 5 zinc",
+          "qty": 40,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "image002.png",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-19263",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E010-2",
+          "raw": "40 | EA | 1/2\"-13 hex nut, zinc",
+          "qty": 40,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "image002.png",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-17931",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E010-3",
+          "raw": "200 | FT | 1-5/8\" strut channel, 12 ga, pre-galv",
+          "qty": 200,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "image002.png",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-18597",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E010-4",
+          "raw": "3 | BX | 1/2\" channel spring nuts, galv",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "BX",
+          "source": "image002.png",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-19300",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E010-5",
+          "raw": "24 | EA | 2\" pipe clamp, galv",
+          "qty": 24,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "image002.png",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-44016",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E010-6",
+          "raw": "12 | EA | 3/4\"-10 all-thread rod, 6 ft",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "image002.png",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-20225",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E011": {
+      "classification": "vendor_quote",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": []
+    },
+    "E012": {
+      "classification": "status_inquiry",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": []
+    },
+    "E013": {
+      "classification": "auto_reply",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": []
+    },
+    "E014": {
+      "classification": "other",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": []
+    },
+    "E015": {
+      "classification": "purchase_order",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E015-1",
+          "raw": "1 | 210 | FT | 2\" SCH 80 SMLS A106B pipe, PE, random lengths | 11.85 | 2,488.50",
+          "qty": 210,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "PO_TPS-88213.pdf",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-35543",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E015-2",
+          "raw": "2 | 24 | EA | 2\" 90 deg elbow, LR, BW, SCH 80, A234 WPB | 14.20 | 340.80",
+          "qty": 24,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "PO_TPS-88213.pdf",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-40649",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E015-3",
+          "raw": "3 | 16 | EA | 2\" WN flange, 300# RF, A105, SCH 80 bore | 31.75 | 508.00",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "PO_TPS-88213.pdf",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-28550",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E015-4",
+          "raw": "4 | 16 | EA | 2\" spiral wound gasket, 316/graphite, 300#, w/ inner ring | 6.40 | 102.40",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "PO_TPS-88213.pdf",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E015-5",
+          "raw": "5 | 64 | EA | Stud bolt B7, 5/8\"-11 x 3-3/4\", w/ 2 heavy hex nuts | 1.85 | 118.40",
+          "qty": 64,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "PO_TPS-88213.pdf",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-15859",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E015-6",
+          "raw": "6 | 6 | EA | 2\" gate valve, 300# RF, A216 WCB, bolted bonnet | 412.00 | 2,472.00",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "PO_TPS-88213.pdf",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        }
+      ]
+    },
+    "E016": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E016-1",
+          "raw": "60 | FT | 1-1/2\" | Pipe, SCH 80, A106B SMLS, PE",
+          "qty": 60,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "HM-7716_material_list.csv",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-33397",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E016-2",
+          "raw": "12 | EA | 1-1/2\" | 90 elbow, SW, 3000#, A105",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "HM-7716_material_list.csv",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-19189",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E016-3",
+          "raw": "6 | EA | 1-1/2\" | Tee, SW, 3000#, A105",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "HM-7716_material_list.csv",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-23888",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E016-4",
+          "raw": "8 | EA | 1-1/2\" | Union, SW, 3000#, A105",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "HM-7716_material_list.csv",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-35839",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E016-5",
+          "raw": "4 | EA | 1-1/2\" | Gate valve, 800#, SW, A105",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "HM-7716_material_list.csv",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-25257",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E016-6",
+          "raw": "2 | EA | 1-1/2\" | Y-strainer, 800#, SW, A105",
+          "qty": 2,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "HM-7716_material_list.csv",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        }
+      ]
+    },
+    "E017": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": true,
+      "line_items": []
+    },
+    "E018": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E018-1",
+          "raw": "8 Weld neck flange, 150# RF, A105, STD bore 4\"",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-21113",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E018-2",
+          "raw": "12 90 deg elbow, LR, BW, SCH 40, A234 WPB 4\"",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-36135",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E018-3",
+          "raw": "8 Spiral wound gasket, 304/graphite, 150# 4\"",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-38947",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E018-4",
+          "raw": "32 Stud bolt, B7, 4-1/2\" long, w/ 2 heavy hex nuts 3/4\"",
+          "qty": 32,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-41796",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E018-5",
+          "raw": "6 Eccentric reducer, BW, SCH 40, A234 WPB 6\" x 4\"",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E018-6",
+          "raw": "12 rolls PTFE thread tape, white, heavy duty N/A",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "RL",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-17191",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E019": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E019-1",
+          "raw": "10 jts | 2\" | PE",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "carbon steel",
+            "pipe",
+            "sch 80",
+            "a106b",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-35543",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-2",
+          "raw": "6 jts | 3\" | PE",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "carbon steel",
+            "pipe",
+            "sch 80",
+            "a106b",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-36838",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-3",
+          "raw": "4 jts | 4\" | BE",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "carbon steel",
+            "pipe",
+            "sch 80",
+            "a106b",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-19707",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-4",
+          "raw": "8 jts | 1\" | PE",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "carbon steel",
+            "pipe",
+            "sch 80",
+            "a106b",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-39909",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-5",
+          "raw": "24 | 1\" | 90 elbow",
+          "qty": 24,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb",
+            "a105"
+          ],
+          "must_not_mention": [
+            "sch 80",
+            "a106"
+          ],
+          "sku": "RL-24443",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-6",
+          "raw": "12 | 1\" | Tee",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb",
+            "a105"
+          ],
+          "must_not_mention": [
+            "sch 80",
+            "a106"
+          ],
+          "sku": "RL-33138",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-7",
+          "raw": "30 | 3/4\" | Coupling, full",
+          "qty": 30,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb",
+            "a105"
+          ],
+          "must_not_mention": [
+            "sch 80",
+            "a106"
+          ],
+          "sku": "RL-36690",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-8",
+          "raw": "16 | 1/2\" | Union",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb",
+            "a105"
+          ],
+          "must_not_mention": [
+            "sch 80",
+            "a106"
+          ],
+          "sku": "RL-26145",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E019-9",
+          "raw": "20 | 2\" | Half coupling",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "TankFarm_Ph2_Materials.docx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb",
+            "a105"
+          ],
+          "must_not_mention": [
+            "sch 80",
+            "a106"
+          ],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        }
+      ]
+    },
+    "E020": {
+      "classification": "purchase_order",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E020-1",
+          "raw": "1. 8 EA - 3\" 150# RF weld neck flange, A105, STD bore - $38.60 ea",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-27477",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E020-2",
+          "raw": "2. 120 FT - 3\" SCH 40 A53B ERW pipe, PE - $7.95/ft",
+          "qty": 120,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-12011",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E020-3",
+          "raw": "4. 16 EA - 3\" 90 deg LR elbow, BW, SCH 40, A234 WPB - $9.35 ea",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [],
+          "must_not_mention": [],
+          "sku": "RL-36727",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E021": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E021-1",
+          "raw": "1 | 420 | FT | 1/2\" | PE",
+          "qty": 420,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-24517",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-2",
+          "raw": "2 | 300 | FT | 3/4\" | PE",
+          "qty": 300,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-40797",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-3",
+          "raw": "3 | 600 | FT | 1\" | PE",
+          "qty": 600,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-39909",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-4",
+          "raw": "4 | 240 | FT | 1-1/4\" | PE",
+          "qty": 240,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-18634",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-5",
+          "raw": "5 | 360 | FT | 1-1/2\" | PE",
+          "qty": 360,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-33397",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-6",
+          "raw": "6 | 500 | FT | 2\" | PE",
+          "qty": 500,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-35543",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-7",
+          "raw": "7 | 180 | FT | 2-1/2\" | PE",
+          "qty": 180,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-16081",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-8",
+          "raw": "8 | 320 | FT | 3\" | PE",
+          "qty": 320,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-36838",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-9",
+          "raw": "9 | 140 | FT | 4\" | PE",
+          "qty": 140,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-13380",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-10",
+          "raw": "10 | 80 | FT | 6\" | PE",
+          "qty": 80,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-18301",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-11",
+          "raw": "11 | 120 | FT | 1/2\" | TOE",
+          "qty": 120,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-30437",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-12",
+          "raw": "12 | 160 | FT | 3/4\" | TOE",
+          "qty": 160,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-12122",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-13",
+          "raw": "13 | 200 | FT | 1\" | TOE",
+          "qty": 200,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E021-14",
+          "raw": "14 | 100 | FT | 1-1/2\" | TOE",
+          "qty": 100,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-36024",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-15",
+          "raw": "15 | 140 | FT | 2\" | TOE",
+          "qty": 140,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E021-16",
+          "raw": "16 | 60 | FT | 3\" | BE",
+          "qty": 60,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-44164",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-17",
+          "raw": "17 | 40 | FT | 4\" | BE",
+          "qty": 40,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-19707",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-18",
+          "raw": "18 | 20 | FT | 6\" | BE",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "FT",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "pipe",
+            "sch 80",
+            "smls|seamless"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        },
+        {
+          "id": "E021-19",
+          "raw": "1 | 9 | EA | 1/2\" | 90 Elbow",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-41204",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-20",
+          "raw": "2 | 16 | EA | 3/4\" | 90 Elbow",
+          "qty": 16,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-37060",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-21",
+          "raw": "3 | 23 | EA | 1\" | 90 Elbow",
+          "qty": 23,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-24443",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-22",
+          "raw": "4 | 30 | EA | 1-1/4\" | 90 Elbow",
+          "qty": 30,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-36579",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-23",
+          "raw": "5 | 6 | EA | 1-1/2\" | 90 Elbow",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-19189",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-24",
+          "raw": "6 | 13 | EA | 2\" | 90 Elbow",
+          "qty": 13,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-33545",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-25",
+          "raw": "7 | 20 | EA | 1/2\" | 45 Elbow",
+          "qty": 20,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-27551",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-26",
+          "raw": "8 | 27 | EA | 3/4\" | 45 Elbow",
+          "qty": 27,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-10568",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-27",
+          "raw": "9 | 34 | EA | 1\" | 45 Elbow",
+          "qty": 34,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-36875",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-28",
+          "raw": "10 | 10 | EA | 1-1/4\" | 45 Elbow",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-15637",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-29",
+          "raw": "11 | 17 | EA | 1-1/2\" | 45 Elbow",
+          "qty": 17,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-24813",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-30",
+          "raw": "12 | 24 | EA | 2\" | 45 Elbow",
+          "qty": 24,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-25516",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-31",
+          "raw": "13 | 31 | EA | 1/2\" | Tee",
+          "qty": 31,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-35617",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-32",
+          "raw": "14 | 7 | EA | 3/4\" | Tee",
+          "qty": 7,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-17524",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-33",
+          "raw": "15 | 14 | EA | 1\" | Tee",
+          "qty": 14,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-33138",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-34",
+          "raw": "16 | 21 | EA | 1-1/4\" | Tee",
+          "qty": 21,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-21557",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-35",
+          "raw": "17 | 28 | EA | 1-1/2\" | Tee",
+          "qty": 28,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-23888",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-36",
+          "raw": "18 | 35 | EA | 2\" | Tee",
+          "qty": 35,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-18486",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-37",
+          "raw": "19 | 11 | EA | 1/2\" | Coupling",
+          "qty": 11,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-40908",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-38",
+          "raw": "20 | 18 | EA | 3/4\" | Coupling",
+          "qty": 18,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-36690",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-39",
+          "raw": "21 | 25 | EA | 1\" | Coupling",
+          "qty": 25,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-27218",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-40",
+          "raw": "22 | 32 | EA | 1-1/4\" | Coupling",
+          "qty": 32,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-17228",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-41",
+          "raw": "23 | 8 | EA | 1-1/2\" | Coupling",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-21520",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-42",
+          "raw": "24 | 15 | EA | 2\" | Coupling",
+          "qty": 15,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-35062",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-43",
+          "raw": "25 | 22 | EA | 1/2\" | Cap",
+          "qty": 22,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-27921",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-44",
+          "raw": "26 | 29 | EA | 3/4\" | Cap",
+          "qty": 29,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-34359",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-45",
+          "raw": "27 | 36 | EA | 1\" | Cap",
+          "qty": 36,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-17857",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-46",
+          "raw": "28 | 12 | EA | 1-1/4\" | Cap",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-32213",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-47",
+          "raw": "29 | 19 | EA | 1-1/2\" | Cap",
+          "qty": 19,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-18375",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-48",
+          "raw": "30 | 26 | EA | 2\" | Cap",
+          "qty": 26,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-38318",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-49",
+          "raw": "31 | 33 | EA | 1/2\" | Union",
+          "qty": 33,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-26145",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E021-50",
+          "raw": "32 | 9 | EA | 3/4\" | Union",
+          "qty": 9,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "SR-4-117_Unit4_BOM.xlsx",
+          "must_mention": [
+            "socket weld|sw",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [
+            "sch 80"
+          ],
+          "sku": "RL-17709",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E022": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": true,
+      "line_items": []
+    },
+    "E023": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E023-1",
+          "raw": "MODEL: HV-800-FGS",
+          "qty": 3,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "IMG_4417.jpg",
+          "must_mention": [
+            "gate",
+            "2in|2\"|2 inch",
+            "800",
+            "a105",
+            "13cr",
+            "npt"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-45015",
+          "match": "matched",
+          "candidates": []
+        }
+      ]
+    },
+    "E024": {
+      "classification": "rfq",
+      "revises": null,
+      "duplicate_of": null,
+      "needs_review": false,
+      "line_items": [
+        {
+          "id": "E024-1",
+          "raw": "10 | 90° elbow | 1/2″",
+          "qty": 10,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thrd|npt",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-14860",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E024-2",
+          "raw": "6 | 45° elbow | 1/2″",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thrd|npt",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-31436",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E024-3",
+          "raw": "8 | Tee | 3/4″",
+          "qty": 8,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thrd|npt",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-25368",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E024-4",
+          "raw": "12 | Coupling, full | 1/2″",
+          "qty": 12,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thrd|npt",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-34100",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E024-5",
+          "raw": "4 | Union | 1/2″",
+          "qty": 4,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thrd|npt",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [],
+          "sku": "RL-35506",
+          "match": "matched",
+          "candidates": []
+        },
+        {
+          "id": "E024-6",
+          "raw": "6 | Hex head plug | 3/4″",
+          "qty": 6,
+          "qty_tol": 0,
+          "uom": "EA",
+          "source": "body",
+          "must_mention": [
+            "316",
+            "threaded|thrd|npt",
+            "3000#|3000 lb"
+          ],
+          "must_not_mention": [],
+          "sku": null,
+          "match": "not_in_catalog",
+          "candidates": []
+        }
+      ]
+    }
+  }
+}
