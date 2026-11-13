@@ -1,0 +1,40 @@
+{
+ "key": "9be0de0b006187062d822c7291afbf1bf30f76aa93a750c837097e73443de844",
+ "label": "v4:S24:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:06:10-0600",
+ "response_id": "resp_0aa5fb1b0a72394f006af75fa0482087d1af01fa6d8ece9d4b",
+ "seconds": 3.06,
+ "usage": {
+  "input_tokens": 1467,
+  "cached_input_tokens": 0,
+  "output_tokens": 352,
+  "reasoning_tokens": 241
+ },
+ "cost_usd": 0.002684,
+ "response": {
+  "lines": [
+   {
+    "source": "list.jpg",
+    "raw": "8 - 2\" 90 ells SW 3000#",
+    "qty": 8
+   },
+   {
+    "source": "list.jpg",
+    "raw": "4 - 2\" tees SW 3000#",
+    "qty": 4
+   },
+   {
+    "source": "list.jpg",
+    "raw": "12 - 2\" couplings SW 3000#",
+    "qty": 12
+   },
+   {
+    "source": "list.jpg",
+    "raw": "20 ft - 2\" sch 80 pipe PE",
+    "qty": 20
+   }
+  ]
+ }
+}

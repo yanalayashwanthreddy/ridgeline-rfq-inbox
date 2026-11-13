@@ -49,7 +49,9 @@ Exit code 0 means everything passed. Add `--linux` (needs Docker) to repeat it o
 
 `gpt-5.4-mini-2026-03-17` (a pinned snapshot, so a re-run can't drift), reasoning effort
 `medium`, OpenAI Responses API with a strict JSON schema. One call per email, plus at most one
-retry when code finds a numbered table row that no extracted line covers (1 of 24 dev emails).
+retry when code finds a numbered table row that no extracted line covers (1 of 24 dev emails),
+plus an independent second reading of any picture that lines came from (4 of 24), and one call
+per extra 30-page window of a long PDF.
 Override with `--model` / `--effort` or `RFQ_MODEL` / `RFQ_EFFORT`. Other options: `--offline`
 (never call the model), `--workers N` (default 4), `--cache DIR`.
 
@@ -62,10 +64,10 @@ no model calls, $0, and the keyless replay includes it. `--catalog FILE` to poin
 
 | | |
 |---|---|
-| model calls | 25 (24 + 1 coverage retry) |
-| tokens per email | ~3,940 on average (input + output, incl. reasoning) |
-| cost per email | **$0.0072** average |
-| full inbox, uncached | **$0.17** |
+| model calls | 29 (24 + 1 coverage retry + 4 second readings of pictures) |
+| tokens per email | ~4,430 on average (input + output, incl. reasoning) |
+| cost per email | **$0.0083** average |
+| full inbox, uncached | **$0.20** |
 | re-run / replay | $0.00 |
 | latency per call | median 4.9 s, worst 24 s |
 

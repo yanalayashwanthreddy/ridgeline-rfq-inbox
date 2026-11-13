@@ -18,7 +18,9 @@ from .guards import fallback, finalize, missing_rows
 from .ingest import Email, load_email
 from .llm import LLM, ModelUnavailable
 from .matcher import load_catalog, match_all
-from .prompt import INSTRUCTIONS, PROMPT_VERSION, REQUEST_CLASSES, build_input, build_window_input, schema
+from .prompt import (INSTRUCTIONS, PROMPT_VERSION, REQUEST_CLASSES, REREAD_INSTRUCTIONS, build_input, build_reread,
+                     build_window_input, schema)
+from .score import pair
 from .threads import link
 
 
@@ -60,6 +62,7 @@ def process_one(path: Path, llm: LLM) -> tuple[Email, dict, dict]:
                 warns.append(f"model left out numbered rows after a second look (judged not requested): {missed}")
         if record["classification"] in REQUEST_CLASSES:
             _read_windows(em, record, llm, stats, warns, truncated)
+            _second_read(em, record, llm, stats, warns)
         stats["warnings"] += warns
     except ModelUnavailable as e:
         stats["fallback"] = str(e)
@@ -103,6 +106,47 @@ def _read_windows(em: Email, record: dict, llm: LLM, stats: dict, warns: list[st
         record["needs_review"] = True
         reasons = [r for r in (record.get("review_reason") or "").split("; ") if r]
         record["review_reason"] = "; ".join(dict.fromkeys(reasons + failed))
+
+
+def _second_read(em: Email, record: dict, llm: LLM, stats: dict, warns: list[str]) -> None:
+    """Code can't check a picture against itself, but it can check two readings against each other.
+    Lines read from pictures get an independent second reading; where the two disagree (how many
+    lines, a quantity, a line only one of them saw), a person must look. The lines stay as read."""
+    pic_sources = {p.filename for p in em.parts if p.images}
+    first = [ln for ln in record["line_items"] if ln["source"] in pic_sources]
+    if not first:
+        return
+    built = build_reread(em)
+    if built is None:
+        return
+    content, sch = built
+    try:
+        res = llm.call(llm.request(REREAD_INSTRUCTIONS, content, sch), label=f"{PROMPT_VERSION}:{em.id}:reread")
+    except ModelUnavailable as e:
+        warns.append(f"second reading of pictures failed ({e}); lines kept as first read")
+        return
+    _account(stats, res)
+    second = [ln for ln in res.data.get("lines") or [] if ln.get("source") in pic_sources]
+    issues = []
+    for src in sorted(pic_sources):
+        a = [ln for ln in first if ln["source"] == src]
+        b = [ln for ln in second if ln["source"] == src]
+        if not a and not b:
+            continue
+        if len(a) != len(b):
+            issues.append(f"{src}: read as {len(a)} line(s) once and {len(b)} the second time")
+        pairs, only_a, _ = pair(a, b, thresh=0.4)
+        for i, j in pairs:
+            qa, qb = a[i]["qty"], b[j]["qty"]
+            if qb is not None and qa is not None and float(qa) != float(qb):
+                issues.append(f"{src}: '{a[i]['raw']}' quantity read as {qa:g} and as {qb:g}")
+        if len(a) == len(b):
+            issues += [f"{src}: '{a[i]['raw']}' was not found on a second reading" for i in only_a]
+    stats["second_read"] = issues or "agrees"
+    if issues:
+        record["needs_review"] = True
+        why = "pictures read twice and the readings disagree: " + "; ".join(issues[:4])
+        record["review_reason"] = "; ".join(x for x in (record.get("review_reason"), why) if x)
 
 
 def _account(stats: dict, res) -> None:

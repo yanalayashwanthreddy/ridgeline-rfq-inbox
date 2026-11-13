@@ -1,0 +1,55 @@
+{
+ "key": "c2a9d9945222aaea1617907730e86a040c1ae0f8defc8e96c859396b425089d0",
+ "label": "v4:E007:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:06:04-0600",
+ "response_id": "resp_0f48cf5b943fdb39006af75f93a20487d18db8e8371c356441",
+ "seconds": 10.06,
+ "usage": {
+  "input_tokens": 1250,
+  "cached_input_tokens": 0,
+  "output_tokens": 1689,
+  "reasoning_tokens": 1505
+ },
+ "cost_usd": 0.008538,
+ "response": {
+  "lines": [
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "8 - 2\" galv 90 elbow",
+    "qty": 8
+   },
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "4 - \"\" tee",
+    "qty": 4
+   },
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "6 - 1\" x 3\" galv nipple",
+    "qty": 6
+   },
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "6 - 1\" x 4\" \"\"",
+    "qty": 6
+   },
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "12 - 2\" galv coupling",
+    "qty": 12
+   },
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "2 - 2\" galv union",
+    "qty": 2
+   },
+   {
+    "source": "IMG_4172.jpeg",
+    "raw": "5 jts - 2\" galv pipe",
+    "qty": 5
+   }
+  ]
+ }
+}

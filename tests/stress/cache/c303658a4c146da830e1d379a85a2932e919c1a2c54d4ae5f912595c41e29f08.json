@@ -1,0 +1,35 @@
+{
+ "key": "c303658a4c146da830e1d379a85a2932e919c1a2c54d4ae5f912595c41e29f08",
+ "label": "v4:S15:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:06:10-0600",
+ "response_id": "resp_0c03cba01a66b42f006af75fa0245887d1aa0dc017a9213517",
+ "seconds": 2.92,
+ "usage": {
+  "input_tokens": 830,
+  "cached_input_tokens": 0,
+  "output_tokens": 287,
+  "reasoning_tokens": 181
+ },
+ "cost_usd": 0.001914,
+ "response": {
+  "lines": [
+   {
+    "source": "IMG_0091.jpg",
+    "raw": "10 3/4\" 150# RF slip-on flange, A105",
+    "qty": 10
+   },
+   {
+    "source": "IMG_0091.jpg",
+    "raw": "10 3/4\" 150# spiral wound gasket",
+    "qty": 10
+   },
+   {
+    "source": "IMG_0091.jpg",
+    "raw": "40 1/2\" x 3\" B7 stud w/ 2 nuts",
+    "qty": 40
+   }
+  ]
+ }
+}

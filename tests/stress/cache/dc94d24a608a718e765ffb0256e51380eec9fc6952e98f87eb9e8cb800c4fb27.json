@@ -1,0 +1,35 @@
+{
+ "key": "dc94d24a608a718e765ffb0256e51380eec9fc6952e98f87eb9e8cb800c4fb27",
+ "label": "v4:S20:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:06:09-0600",
+ "response_id": "resp_0a29852ec355dd72006af75fa03d3087d1b188f99bbceac917",
+ "seconds": 1.94,
+ "usage": {
+  "input_tokens": 918,
+  "cached_input_tokens": 0,
+  "output_tokens": 159,
+  "reasoning_tokens": 58
+ },
+ "cost_usd": 0.001404,
+ "response": {
+  "lines": [
+   {
+    "source": "IMG_5521.jpg",
+    "raw": "6  2\" 3000# A105 threaded union",
+    "qty": 6
+   },
+   {
+    "source": "IMG_5521.jpg",
+    "raw": "12  2\" 3000# A105 threaded 90 elbow",
+    "qty": 12
+   },
+   {
+    "source": "IMG_5521.jpg",
+    "raw": "4  2\" 800# A105 threaded gate valve",
+    "qty": 4
+   }
+  ]
+ }
+}

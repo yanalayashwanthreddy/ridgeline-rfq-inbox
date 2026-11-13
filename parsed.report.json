@@ -4,18 +4,18 @@
   "prompt_version": "v4",
   "totals": {
     "emails": 24,
-    "model_calls": 0,
-    "cache_hits": 24,
+    "model_calls": 4,
+    "cache_hits": 20,
     "fallbacks": 0,
-    "input_tokens": 67023,
+    "input_tokens": 74184,
     "cached_input_tokens": 2432,
-    "output_tokens": 27473,
-    "reasoning_tokens": 11016,
-    "cost_usd_this_run": 0.0,
-    "cost_usd_if_uncached": 0.17225,
-    "avg_cost_usd_per_email": 0.00718,
-    "avg_tokens_per_email": 3937,
-    "wall_seconds": 0.6,
+    "output_tokens": 32044,
+    "reasoning_tokens": 14013,
+    "cost_usd_this_run": 0.02594,
+    "cost_usd_if_uncached": 0.19819,
+    "avg_cost_usd_per_email": 0.00826,
+    "avg_tokens_per_email": 4426,
+    "wall_seconds": 11.7,
     "catalog_matching": {
       "matched": 194,
       "not_in_catalog": 16
@@ -138,23 +138,25 @@
       "model_reason": "The customer asks Ridgeline to quote the attached RFQ and adds two gasket items to the request."
     },
     "E007": {
-      "model_calls": 0,
-      "cached": true,
+      "model_calls": 1,
+      "cached": false,
       "usage": {
-        "input_tokens": 3045,
+        "input_tokens": 4295,
         "cached_input_tokens": 0,
-        "output_tokens": 831,
-        "reasoning_tokens": 516
+        "output_tokens": 2520,
+        "reasoning_tokens": 2021
       },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
+      "cost_usd": 0.008538,
+      "seconds": 10.06,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
-        "9ce440297364294fedd9d9f335f70a201c6beaf84c7ef021a237f114588bd055"
+        "9ce440297364294fedd9d9f335f70a201c6beaf84c7ef021a237f114588bd055",
+        "c2a9d9945222aaea1617907730e86a040c1ae0f8defc8e96c859396b425089d0"
       ],
       "cache_key": "9ce440297364294fedd9d9f335f70a201c6beaf84c7ef021a237f114588bd055",
-      "model_reason": "The sender is requesting pricing on a list of materials from the yard for pickup Friday."
+      "model_reason": "The sender is requesting pricing on a list of materials from the yard for pickup Friday.",
+      "second_read": "agrees"
     },
     "E008": {
       "model_calls": 0,
@@ -176,42 +178,46 @@
       "model_reason": "Customer is revising an existing RFQ by resending the same quote and adding two gasket lines."
     },
     "E009": {
-      "model_calls": 0,
-      "cached": true,
+      "model_calls": 1,
+      "cached": false,
       "usage": {
-        "input_tokens": 6125,
+        "input_tokens": 10409,
         "cached_input_tokens": 0,
-        "output_tokens": 2634,
-        "reasoning_tokens": 667
+        "output_tokens": 4732,
+        "reasoning_tokens": 1599
       },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
+      "cost_usd": 0.012654,
+      "seconds": 11.39,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
-        "67f964093aabbce0bed6f6ece9a78773b2d9bbe0e2afd3699680b1eacc283fc5"
+        "67f964093aabbce0bed6f6ece9a78773b2d9bbe0e2afd3699680b1eacc283fc5",
+        "7c22b39ed11b245d1f518f869ac03c594855718c5160d7279e70ea4887080fbf"
       ],
       "cache_key": "67f964093aabbce0bed6f6ece9a78773b2d9bbe0e2afd3699680b1eacc283fc5",
-      "model_reason": "The sender is requesting pricing on a scanned RFQ form with a list of items to quote."
+      "model_reason": "The sender is requesting pricing on a scanned RFQ form with a list of items to quote.",
+      "second_read": "agrees"
     },
     "E010": {
-      "model_calls": 0,
-      "cached": true,
+      "model_calls": 1,
+      "cached": false,
       "usage": {
-        "input_tokens": 2385,
+        "input_tokens": 2940,
         "cached_input_tokens": 0,
-        "output_tokens": 768,
-        "reasoning_tokens": 405
+        "output_tokens": 1266,
+        "reasoning_tokens": 716
       },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
+      "cost_usd": 0.002657,
+      "seconds": 3.8,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
-        "2c97994771ef6ccd589e38896d6c6967d41b3c867ce8d9ea8c5d864b7969af9d"
+        "2c97994771ef6ccd589e38896d6c6967d41b3c867ce8d9ea8c5d864b7969af9d",
+        "b246d4d6ec5e41bd34291fc8317b638db3bc0d24dd8af96556efa85daf1b52b6"
       ],
       "cache_key": "2c97994771ef6ccd589e38896d6c6967d41b3c867ce8d9ea8c5d864b7969af9d",
-      "model_reason": "Customer is asking Ridgeline to price the items shown on the attached sheet for a shutdown project."
+      "model_reason": "Customer is asking Ridgeline to price the items shown on the attached sheet for a shutdown project.",
+      "second_read": "agrees"
     },
     "E011": {
       "model_calls": 0,
@@ -444,23 +450,25 @@
       "model_reason": "Alden Marine is sending a new RFQ and the attached PDF cannot be read because it is password-protected."
     },
     "E023": {
-      "model_calls": 0,
-      "cached": true,
+      "model_calls": 1,
+      "cached": false,
       "usage": {
-        "input_tokens": 2869,
+        "input_tokens": 3941,
         "cached_input_tokens": 0,
-        "output_tokens": 594,
-        "reasoning_tokens": 478
+        "output_tokens": 880,
+        "reasoning_tokens": 727
       },
-      "cost_usd": 0.0,
-      "seconds": 0.0,
+      "cost_usd": 0.002091,
+      "seconds": 2.41,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
-        "c8efb1a3a4295e86f0bde562ac0170b1e3fe5f4bc8c844d609ce92c825d8c63f"
+        "c8efb1a3a4295e86f0bde562ac0170b1e3fe5f4bc8c844d609ce92c825d8c63f",
+        "956e487b0795766de144006cf0d031e8f412187ad45cbc14ddace8c70331aa08"
       ],
       "cache_key": "c8efb1a3a4295e86f0bde562ac0170b1e3fe5f4bc8c844d609ce92c825d8c63f",
-      "model_reason": "The customer is asking Ridgeline to quote three valves matching the attached photo."
+      "model_reason": "The customer is asking Ridgeline to quote three valves matching the attached photo.",
+      "second_read": "agrees"
     },
     "E024": {
       "model_calls": 0,

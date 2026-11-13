@@ -170,6 +170,52 @@ def build_input(em: Email) -> tuple[list[dict], dict, list[str]]:
     return content, schema(names), sorted(set(truncated))
 
 
+REREAD_INSTRUCTIONS = """\
+You are double-checking how pictures in a customer email were read. Pictures are photos, \
+scans and screenshots: handwritten lists, phone photos of printed lists, scanned forms, \
+nameplates. Read ONLY the pictures; the email text is there for context.
+
+For every item the customer is asking for that appears in a picture, return:
+- source: the picture's attachment filename
+- raw: the line as written in the picture (a table row's cells on one line), unchanged
+- qty: the quantity written in the picture for that item, as a number; null if the picture \
+shows no quantity for it (for example a nameplate, where the quantity is in the email text)
+
+A picture of ONE part (a nameplate, a tag, the part itself) is ONE item: return a single line \
+for it (its model / part-number line as raw), not one line per text line on the plate. A list \
+gives one line per row.
+
+Leave out headings, column headers, totals, prices, signatures and crossed-out lines. If a \
+character is hard to read, give your best reading; do not guess items that are not there.
+"""
+
+
+def build_reread(em: Email) -> tuple[list[dict], dict] | None:
+    """The email's text and only its pictures, for an independent second reading."""
+    pics = [p for p in em.parts if p.images]
+    if not pics:
+        return None
+    content: list[dict] = [{"type": "input_text", "text": f"Subject: {em.subject}\n\n=== EMAIL TEXT ===\n"
+                                                          f"{(em.body or '')[:20000]}"}]
+    n = 0
+    for p in pics:
+        for im in p.images:
+            if n >= MAX_IMAGES:
+                break
+            n += 1
+            content.append({"type": "input_text", "text": f"[picture from attachment {p.filename!r}: {im.label}]"})
+            content.append({"type": "input_image", "image_url": _data_url(im.mime, im.data), "detail": "high"})
+    schema = {
+        "type": "object", "additionalProperties": False, "required": ["lines"],
+        "properties": {"lines": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["source", "raw", "qty"],
+            "properties": {"source": {"type": "string", "enum": [p.filename for p in pics]},
+                           "raw": {"type": "string"},
+                           "qty": {"type": ["number", "null"]}}}}},
+    }
+    return content, schema
+
+
 def build_window_input(em: Email, part, k: int, classification: str) -> list[dict]:
     """A later window of a long PDF, for its own call. The email is already classified; this call
     only reads lines. It also gets the document's first page and the end of the previous window

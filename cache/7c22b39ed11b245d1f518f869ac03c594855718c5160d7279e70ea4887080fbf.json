@@ -1,0 +1,180 @@
+{
+ "key": "7c22b39ed11b245d1f518f869ac03c594855718c5160d7279e70ea4887080fbf",
+ "label": "v4:E009:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:06:06-0600",
+ "response_id": "resp_0ab1114388c5fc0d006af75f939e0487d18fef3af3eccfdd29",
+ "seconds": 11.39,
+ "usage": {
+  "input_tokens": 4284,
+  "cached_input_tokens": 0,
+  "output_tokens": 2098,
+  "reasoning_tokens": 932
+ },
+ "cost_usd": 0.012654,
+ "response": {
+  "lines": [
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "1 6 EA 1\" WN 150# RF",
+    "qty": 6
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "2 4 EA 1-1/2\" WN 150# RF",
+    "qty": 4
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "3 10 EA 2\" WN 150# RF",
+    "qty": 10
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "4 8 EA 3\" WN 150# RF",
+    "qty": 8
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "5 12 EA 4\" WN 150# RF",
+    "qty": 12
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "6 6 EA 6\" WN 150# RF",
+    "qty": 6
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "7 4 EA 8\" WN 150# RF",
+    "qty": 4
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "8 4 EA 2\" SO 150# RF",
+    "qty": 4
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "9 4 EA 3\" SO 150# RF",
+    "qty": 4
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "10 6 EA 4\" SO 150# RF",
+    "qty": 6
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "11 4 EA 6\" SO 150# RF",
+    "qty": 4
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "12 2 EA 2\" BL 150# RF",
+    "qty": 2
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "13 2 EA 4\" BL 150# RF",
+    "qty": 2
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "14 2 EA 6\" BL 150# RF",
+    "qty": 2
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "15 10 EA 1\" Spiral wound, 304/graphite, 150#",
+    "qty": 10
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "16 6 EA 1-1/2\" Spiral wound, 304/graphite, 150#",
+    "qty": 6
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "17 20 EA 2\" Spiral wound, 304/graphite, 150#",
+    "qty": 20
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "18 12 EA 3\" Spiral wound, 304/graphite, 150#",
+    "qty": 12
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "19 16 EA 4\" Spiral wound, 304/graphite, 150#",
+    "qty": 16
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "20 8 EA 6\" Spiral wound, 304/graphite, 150#",
+    "qty": 8
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "21 4 EA 8\" Spiral wound, 304/graphite, 150#",
+    "qty": 4
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "22 2 EA 10\" Spiral wound, 304/graphite, 150#",
+    "qty": 2
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "23 32 EA 1/2\" x 3\" B7 w/ 2 heavy hex nuts",
+    "qty": 32
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "24 24 EA 5/8\" x 3-1/4\" B7 w/ 2 heavy hex nuts",
+    "qty": 24
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "25 16 EA 5/8\" x 3-1/2\" B7 w/ 2 heavy hex nuts",
+    "qty": 16
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "26 48 EA 3/4\" x 4\" B7 w/ 2 heavy hex nuts",
+    "qty": 48
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "27 24 EA 3/4\" x 4-1/4\" B7 w/ 2 heavy hex nuts",
+    "qty": 24
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "28 32 EA 3/4\" x 4-1/2\" B7 w/ 2 heavy hex nuts",
+    "qty": 32
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "29 16 EA 7/8\" x 5\" B7 w/ 2 heavy hex nuts",
+    "qty": 16
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "30 16 EA 7/8\" x 5-1/4\" B7 w/ 2 heavy hex nuts",
+    "qty": 16
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "31 16 EA 1\" x 5-3/4\" B7 w/ 2 heavy hex nuts",
+    "qty": 16
+   },
+   {
+    "source": "Scan_RFQ_SC-4418.pdf",
+    "raw": "32 8 EA 1\" x 6\" B7 w/ 2 heavy hex nuts",
+    "qty": 8
+   }
+  ]
+ }
+}

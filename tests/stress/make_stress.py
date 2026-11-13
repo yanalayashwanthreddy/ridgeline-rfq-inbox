@@ -425,6 +425,47 @@ expect("S23", "rfq_revision", [
 ])
 
 
+# --- S24 a handwritten list (Windows' "Ink Free" handwriting font), tilted, uneven, one line
+#     crossed out by pen. The spec default ("all A105") is in the email text.
+def handwritten() -> bytes:
+    import random
+
+    from PIL import Image, ImageDraw, ImageFont
+
+    rnd = random.Random(24)
+    try:
+        f = ImageFont.truetype("C:/Windows/Fonts/Inkfree.ttf", 44)
+    except OSError:
+        f = ImageFont.load_default(size=40)
+    im = Image.new("RGB", (1100, 760), (250, 248, 240))
+    dr = ImageDraw.Draw(im)
+    rows = ['8 - 2" 90 ells  SW 3000#', '4 - 2" tees  SW 3000#', '12 - 2" couplings SW 3000#',
+            '3 - 1" caps', '20 ft - 2" sch 80 pipe  PE']
+    y = 70
+    for i, r in enumerate(rows):
+        x = 60 + rnd.randint(-10, 25)
+        dr.text((x, y), r, fill=(30, 40, 90), font=f)
+        if i == 3:  # struck out by pen
+            w = dr.textlength(r, font=f)
+            dr.line((x - 10, y + 30, x + w + 10, y + 22), fill=(30, 40, 90), width=5)
+        y += 115 + rnd.randint(-12, 12)
+    im = im.rotate(-3, expand=True, fillcolor=(250, 248, 240))
+    b = io.BytesIO()
+    im.save(b, "JPEG", quality=78)
+    return b.getvalue()
+
+
+msg("S24", "Jimmy Vance <jvance@vancewelding.example>", "list from the yard", "Fri, 06 Nov 2026 13:15:00 -0600",
+    "Here's the list from the yard, need by Thursday. All fittings A105.\n\nJimmy",
+    atts=[("list.jpg", "image/jpeg", handwritten())])
+expect("S24", "rfq", [
+    L('8 - 2" 90 ells  SW 3000#', 8, src="list.jpg", must=["90", "A105"]),
+    L('4 - 2" tees  SW 3000#', 4, src="list.jpg", must=["tee", "A105"]),
+    L('12 - 2" couplings SW 3000#', 12, src="list.jpg", must=["coupling", "A105"]),
+    L('20 ft - 2" sch 80 pipe  PE', 20, uom="FT", src="list.jpg", must=["SCH 80"], mustnt=["A105"]),
+])
+
+
 if __name__ == "__main__":
     import sys
 

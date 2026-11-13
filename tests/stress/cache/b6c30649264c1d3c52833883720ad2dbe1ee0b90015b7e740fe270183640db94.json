@@ -1,0 +1,30 @@
+{
+ "key": "b6c30649264c1d3c52833883720ad2dbe1ee0b90015b7e740fe270183640db94",
+ "label": "v4:S21:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:06:09-0600",
+ "response_id": "resp_088354bda860cc75006af75fa0337087d1b7fd6b1ed08d6b7a",
+ "seconds": 1.47,
+ "usage": {
+  "input_tokens": 924,
+  "cached_input_tokens": 0,
+  "output_tokens": 166,
+  "reasoning_tokens": 85
+ },
+ "cost_usd": 0.00144,
+ "response": {
+  "lines": [
+   {
+    "source": "IMG_7730.HEIC",
+    "raw": "20 1\" SCH 80 A106B seamless pipe, PE, 21 ft",
+    "qty": 20
+   },
+   {
+    "source": "IMG_7730.HEIC",
+    "raw": "10 1\" 3000# A105 SW 90 elbow",
+    "qty": 10
+   }
+  ]
+ }
+}

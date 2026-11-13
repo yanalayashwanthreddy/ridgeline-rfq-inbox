@@ -1,0 +1,25 @@
+{
+ "key": "956e487b0795766de144006cf0d031e8f412187ad45cbc14ddace8c70331aa08",
+ "label": "v4:E023:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:05:57-0600",
+ "response_id": "resp_0fc928e1f0e4fcd7006af75f93ba0087d1997f59c3fe9272b9",
+ "seconds": 2.41,
+ "usage": {
+  "input_tokens": 1072,
+  "cached_input_tokens": 0,
+  "output_tokens": 286,
+  "reasoning_tokens": 249
+ },
+ "cost_usd": 0.002091,
+ "response": {
+  "lines": [
+   {
+    "source": "IMG_4417.jpg",
+    "raw": "MODEL: HV-800-FGS",
+    "qty": null
+   }
+  ]
+ }
+}

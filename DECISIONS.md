@@ -89,9 +89,11 @@ Dev is 100% partly because I looked at it; stress is the fairer guide. For ~40 h
 Silent is 0 because code flags any request that comes back with no lines; review recall beats
 precision because I flag on doubt.
 
-1. **Photos and scans of handwritten lists.** The model's reading is all there is. A misread
-   `6`/`8`, a missed line or a `raw` that pairs badly costs qty and recall. Code can't check a
-   picture, and the model flags too rarely.
+1. **Photos and scans of handwritten lists.** Code can't check a picture, but it can check two
+   readings against each other. Lines from pictures get an independent second reading, and a
+   different count or quantity flags the email, naming the line ("quantity read as 6 and as 8").
+   On dev and stress all 8 picture emails, a handwritten list included, read the same twice. What
+   remains: a misreading both reads share, and a `raw` that pairs badly with the key's own reading.
 2. **Revisions, at the rfq/revision boundary.** "Kill #5" with the original neither in the inbox
    nor quoted is now flagged by code (it can't be rebuilt), and a quoted original is rebuilt (stress
    S22/S23). What remains is the judgement: is Rev B / a resend / "also add" a new rfq or a revision?
@@ -109,7 +111,7 @@ precision because I flag on doubt.
 
 **Not built:** the webhook, a queue, a database.
 
-- **3,000 emails a day.** $0.0072 per email measured (about 3,940 tokens), so about **$22/day**.
+- **3,000 emails a day.** $0.0083 per email measured (about 4,430 tokens, incl. second readings of pictures), so about **$25/day**.
   Median latency is 4.9 s and the worst 24 s; 3,000/day is ~2 a minute, so one worker keeps up.
   Design: the webhook stores the raw `.eml` and enqueues its hash; workers run `process_one`;
   thread linking becomes a lookup in a store of past emails by Message-ID, subject and domain.

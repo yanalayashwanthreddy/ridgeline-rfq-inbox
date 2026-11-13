@@ -1673,5 +1673,61 @@
       }
     ],
     "attention": null
+  },
+  "S24": {
+    "classification": "rfq",
+    "revises": null,
+    "duplicate_of": null,
+    "needs_review": false,
+    "review_reason": null,
+    "line_items": [
+      {
+        "raw": "8 - 2\" 90 ells SW 3000#",
+        "description": "2\" 90° elbow, socket weld, 3000#, A105",
+        "qty": 8,
+        "uom": "EA",
+        "source": "list.jpg",
+        "sku": "RL-33545",
+        "match": "matched",
+        "match_reason": "90 ELL 2\" 3000# A105 SW: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "4 - 2\" tees SW 3000#",
+        "description": "2\" tee, socket weld, 3000#, A105",
+        "qty": 4,
+        "uom": "EA",
+        "source": "list.jpg",
+        "sku": "RL-18486",
+        "match": "matched",
+        "match_reason": "TEE 2\" 3000# A105 SW: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "12 - 2\" couplings SW 3000#",
+        "description": "2\" coupling, socket weld, 3000#, A105",
+        "qty": 12,
+        "uom": "EA",
+        "source": "list.jpg",
+        "sku": "RL-35062",
+        "match": "matched",
+        "match_reason": "CPLG 2\" 3000# A105 SW: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "20 ft - 2\" sch 80 pipe PE",
+        "description": "2\" schedule 80 pipe, plain end",
+        "qty": 20,
+        "uom": "FT",
+        "source": "list.jpg",
+        "sku": null,
+        "match": "ambiguous",
+        "match_reason": "4 stocked parts fit; customer did not state spec, material",
+        "candidates": [
+          "RL-17450",
+          "RL-29068",
+          "RL-30992",
+          "RL-35543"
+        ]
+      }
+    ],
+    "attention": null
   }
 }

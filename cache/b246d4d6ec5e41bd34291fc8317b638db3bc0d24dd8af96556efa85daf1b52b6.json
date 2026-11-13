@@ -1,0 +1,50 @@
+{
+ "key": "b246d4d6ec5e41bd34291fc8317b638db3bc0d24dd8af96556efa85daf1b52b6",
+ "label": "v4:E010:reread",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:05:58-0600",
+ "response_id": "resp_0fca632f42a8c5cd006af75f938e3087d1aa896b524cbb4302",
+ "seconds": 3.8,
+ "usage": {
+  "input_tokens": 555,
+  "cached_input_tokens": 0,
+  "output_tokens": 498,
+  "reasoning_tokens": 311
+ },
+ "cost_usd": 0.002657,
+ "response": {
+  "lines": [
+   {
+    "source": "image002.png",
+    "raw": "40 EA 1/2\"-13 x 2\" hex cap screw, Gr 5 zinc",
+    "qty": 40
+   },
+   {
+    "source": "image002.png",
+    "raw": "40 EA 1/2\"-13 hex nut, zinc",
+    "qty": 40
+   },
+   {
+    "source": "image002.png",
+    "raw": "200 FT 1-5/8\" strut channel, 12 ga, pre-galv",
+    "qty": 200
+   },
+   {
+    "source": "image002.png",
+    "raw": "3 BX 1/2\" channel spring nuts, galv",
+    "qty": 3
+   },
+   {
+    "source": "image002.png",
+    "raw": "24 EA 2\" pipe clamp, galv",
+    "qty": 24
+   },
+   {
+    "source": "image002.png",
+    "raw": "12 EA 3/4\"-10 all-thread rod, 6 ft",
+    "qty": 12
+   }
+  ]
+ }
+}

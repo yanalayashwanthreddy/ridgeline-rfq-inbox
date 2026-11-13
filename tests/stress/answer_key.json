@@ -1949,6 +1949,67 @@
      "must_not_mention": []
     }
    ]
+  },
+  "S24": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S24-1",
+     "raw": "8 - 2\" 90 ells  SW 3000#",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "list.jpg",
+     "must_mention": [
+      "90",
+      "A105"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S24-2",
+     "raw": "4 - 2\" tees  SW 3000#",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "list.jpg",
+     "must_mention": [
+      "tee",
+      "A105"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S24-3",
+     "raw": "12 - 2\" couplings SW 3000#",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "list.jpg",
+     "must_mention": [
+      "coupling",
+      "A105"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S24-4",
+     "raw": "20 ft - 2\" sch 80 pipe  PE",
+     "qty": 20,
+     "qty_tol": 0,
+     "uom": "FT",
+     "source": "list.jpg",
+     "must_mention": [
+      "SCH 80"
+     ],
+     "must_not_mention": [
+      "A105"
+     ]
+    }
+   ]
   }
  }
 }
