@@ -1,0 +1,23 @@
+{
+ "key": "b7523ad4229f5ab69632369e9452e1a4ef8ecafc8cf34b5bdb93a144ed137645",
+ "label": "v4:S22",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:02:13-0600",
+ "response_id": "resp_00fd9791bf2de153006af75eb2053087d19ea5ec681de53dff",
+ "seconds": 5.05,
+ "usage": {
+  "input_tokens": 2113,
+  "cached_input_tokens": 0,
+  "output_tokens": 448,
+  "reasoning_tokens": 346
+ },
+ "cost_usd": 0.003601,
+ "response": {
+  "classification_reason": "Customer is revising a previous RFQ by changing item #2 quantity and removing item #4 while keeping the rest unchanged.",
+  "classification": "rfq_revision",
+  "needs_review": true,
+  "review_reason": "The email references earlier line items (#2 and #4) and says the rest stays the same, but the original RFQ lines are not present here, so the complete revised item list cannot be reconstructed from this message alone.",
+  "line_items": []
+ }
+}

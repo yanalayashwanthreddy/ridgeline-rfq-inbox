@@ -1,0 +1,45 @@
+{
+ "key": "6d55606e70b49e7092d74058ad4338a874fcd124ee18dfda3bd99f4b48fe8e68",
+ "label": "v4:S23",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T13:02:14-0600",
+ "response_id": "resp_08a185204c3c88ff006af75eb20be887d1869f5b2284ea213e",
+ "seconds": 5.17,
+ "usage": {
+  "input_tokens": 2233,
+  "cached_input_tokens": 0,
+  "output_tokens": 683,
+  "reasoning_tokens": 462
+ },
+ "cost_usd": 0.004748,
+ "response": {
+  "classification_reason": "The sender is revising a previous RFQ by changing the quantity for item #3 and removing item #4.",
+  "classification": "rfq_revision",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "1. 6 ea 3\" 300# RF weld neck flange, A105",
+    "description": "3\" 300# RF weld neck flange, A105",
+    "qty": 6,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "2. 6 ea 3\" 300# spiral wound gasket, 316/graphite",
+    "description": "3\" 300# spiral wound gasket, 316/graphite",
+    "qty": 6,
+    "uom": "EA",
+    "source": "body"
+   },
+   {
+    "raw": "3. 10 ea 3\" SCH 80 A234 WPB 90 LR elbow, BW",
+    "description": "3\" SCH 80 A234 WPB 90 long radius elbow, BW, A234 WPB",
+    "qty": 12,
+    "uom": "EA",
+    "source": "body"
+   }
+  ]
+ }
+}

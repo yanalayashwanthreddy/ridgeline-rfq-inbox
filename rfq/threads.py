@@ -38,6 +38,36 @@ def link(emails: dict[str, Email], out: dict[str, dict]) -> None:
     order = sorted(emails, key=lambda i: (emails[i].timestamp or 0, i))
     _revisions(emails, out, order)
     _duplicates(emails, out, order)
+    unanchored_revisions(emails, out)
+
+
+# What a reply carries of its history: quoted lines, "On ... wrote:", an Outlook header block,
+# or the earlier message attached whole.
+QUOTED = re.compile(
+    r"(?:^>.*\n){2,}|^-{2,}\s*original message|^on\b.{3,200}\bwrote:\s*$|^_{8,}\s*\n\s*from:|^from:\s.+\n\s*(?:sent|date):",
+    re.I | re.M)
+# A change written against positions in a list it doesn't contain: "#3", "item 5", "rest stays".
+BY_POSITION = re.compile(
+    r"#\s*\d+\b|\b(?:item|line|row|no\.?)\s*#?\s*\d+\b|"
+    r"\b(?:rest|everything else|all else|the others|remaining)\b.{0,25}\b(?:same|fine|ok|as is|unchanged|stays?)\b|"
+    r"\bsame as (?:before|previous|last|my (?:last|previous|earlier))", re.I)
+
+
+def unanchored_revisions(emails: dict[str, Email], out: dict[str, dict]) -> None:
+    """A revision of a request we can't see, written as changes to positions we can't see, can't
+    be turned into "the complete order as now intended". Flag it for a person instead of
+    returning a partial order that looks complete. (Run after `revises` is linked.)"""
+    for eid, rec in out.items():
+        if rec.get("classification") != "rfq_revision" or rec.get("revises"):
+            continue
+        em = emails[eid]
+        carries_history = bool(QUOTED.search(em.body or "")) or any(p.mime == "message/rfc822" for p in em.parts)
+        if carries_history or not BY_POSITION.search(em.body or ""):
+            continue
+        rec["needs_review"] = True
+        why = ("changes an earlier request by item position, but that request is not in this inbox and "
+               "is not quoted: the complete order can't be rebuilt; find the original before quoting")
+        rec["review_reason"] = "; ".join(x for x in (rec.get("review_reason"), why) if x)
 
 
 def _revisions(emails, out, order) -> None:

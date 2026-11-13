@@ -3,22 +3,22 @@
   "effort": "medium",
   "prompt_version": "v4",
   "totals": {
-    "emails": 22,
-    "model_calls": 0,
+    "emails": 24,
+    "model_calls": 2,
     "cache_hits": 22,
     "fallbacks": 0,
-    "input_tokens": 55698,
+    "input_tokens": 60044,
     "cached_input_tokens": 21120,
-    "output_tokens": 15392,
-    "reasoning_tokens": 5619,
-    "cost_usd_this_run": 0.0,
-    "cost_usd_if_uncached": 0.09678,
-    "avg_cost_usd_per_email": 0.0044,
-    "avg_tokens_per_email": 3231,
-    "wall_seconds": 0.5,
+    "output_tokens": 16523,
+    "reasoning_tokens": 6427,
+    "cost_usd_this_run": 0.00835,
+    "cost_usd_if_uncached": 0.10513,
+    "avg_cost_usd_per_email": 0.00438,
+    "avg_tokens_per_email": 3190,
+    "wall_seconds": 5.8,
     "catalog_matching": {
-      "matched": 130,
-      "not_in_catalog": 10,
+      "matched": 132,
+      "not_in_catalog": 11,
       "ambiguous": 1
     },
     "attention": 4
@@ -447,6 +447,44 @@
       ],
       "cache_key": "6c064c9994785b709c3fde83f31f0f1f4af184c1e6dce0d252aec5ff719718be",
       "model_reason": "The customer is asking Ridgeline to price two items shown in the attached image."
+    },
+    "S22": {
+      "model_calls": 1,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2113,
+        "cached_input_tokens": 0,
+        "output_tokens": 448,
+        "reasoning_tokens": 346
+      },
+      "cost_usd": 0.003601,
+      "seconds": 5.05,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "b7523ad4229f5ab69632369e9452e1a4ef8ecafc8cf34b5bdb93a144ed137645"
+      ],
+      "cache_key": "b7523ad4229f5ab69632369e9452e1a4ef8ecafc8cf34b5bdb93a144ed137645",
+      "model_reason": "Customer is revising a previous RFQ by changing item #2 quantity and removing item #4 while keeping the rest unchanged."
+    },
+    "S23": {
+      "model_calls": 1,
+      "cached": false,
+      "usage": {
+        "input_tokens": 2233,
+        "cached_input_tokens": 0,
+        "output_tokens": 683,
+        "reasoning_tokens": 462
+      },
+      "cost_usd": 0.004748,
+      "seconds": 5.17,
+      "warnings": [],
+      "fallback": null,
+      "cache_keys": [
+        "6d55606e70b49e7092d74058ad4338a874fcd124ee18dfda3bd99f4b48fe8e68"
+      ],
+      "cache_key": "6d55606e70b49e7092d74058ad4338a874fcd124ee18dfda3bd99f4b48fe8e68",
+      "model_reason": "The sender is revising a previous RFQ by changing the quantity for item #3 and removing item #4."
     }
   }
 }

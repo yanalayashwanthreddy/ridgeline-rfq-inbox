@@ -405,6 +405,26 @@ expect("S21", "rfq", [
 ])
 
 
+# --- S22 a terse revision of a request that is NOT in this inbox and NOT quoted: positions only.
+#     Nothing in it is identifiable, so: revision, no lines, a person must find the original.
+msg("S22", "Dale Pruitt <dpruitt@pruittind.example>", "Re: RFQ pump skid 7", "Fri, 06 Nov 2026 08:00:00 -0600",
+    "Make #2 eight instead of six and kill #4. Rest stays the same.\n\nDale")
+expect("S22", "rfq_revision", [], review=True)
+
+# --- S23 the same kind of terse revision, original not in the inbox, but quoted below the reply:
+#     the complete order can be rebuilt from the quote (#3 -> 12, #4 removed).
+s23_orig = ("Please quote:\n1. 6 ea 3\" 300# RF weld neck flange, A105\n2. 6 ea 3\" 300# spiral wound gasket, 316/graphite\n"
+            "3. 10 ea 3\" SCH 80 A234 WPB 90 LR elbow, BW\n4. 4 ea 3\" SCH 80 A234 WPB tee, BW\n\nThanks,\nLena")
+msg("S23", "Lena Marsh <lmarsh@marshfab.example>", "RE: RFQ heat exchanger tie-in", "Fri, 06 Nov 2026 09:30:00 -0600",
+    "make #3 twelve and kill #4 please\n\nLena\n\nOn Mon, Nov 2, 2026 at 7:10 AM Lena Marsh <lmarsh@marshfab.example> wrote:\n"
+    + "\n".join("> " + x for x in s23_orig.splitlines()))
+expect("S23", "rfq_revision", [
+    L('1. 6 ea 3" 300# RF weld neck flange, A105', 6, must=["weld neck", "300#"]),
+    L('2. 6 ea 3" 300# spiral wound gasket, 316/graphite', 6, must=["spiral wound"]),
+    L('3. 10 ea 3" SCH 80 A234 WPB 90 LR elbow, BW', 12, must=["90", "SCH 80"]),
+])
+
+
 if __name__ == "__main__":
     import sys
 

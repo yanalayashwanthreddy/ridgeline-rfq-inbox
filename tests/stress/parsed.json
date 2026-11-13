@@ -1624,5 +1624,54 @@
       }
     ],
     "attention": null
+  },
+  "S22": {
+    "classification": "rfq_revision",
+    "revises": null,
+    "duplicate_of": null,
+    "needs_review": true,
+    "review_reason": "The email references earlier line items (#2 and #4) and says the rest stays the same, but the original RFQ lines are not present here, so the complete revised item list cannot be reconstructed from this message alone.; changes an earlier request by item position, but that request is not in this inbox and is not quoted: the complete order can't be rebuilt; find the original before quoting",
+    "line_items": [],
+    "attention": null
+  },
+  "S23": {
+    "classification": "rfq_revision",
+    "revises": null,
+    "duplicate_of": null,
+    "needs_review": false,
+    "review_reason": null,
+    "line_items": [
+      {
+        "raw": "1. 6 ea 3\" 300# RF weld neck flange, A105",
+        "description": "3\" 300# RF weld neck flange, A105",
+        "qty": 6,
+        "uom": "EA",
+        "source": "body",
+        "sku": "RL-32065",
+        "match": "matched",
+        "match_reason": "FLG WN 3\" 300# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "2. 6 ea 3\" 300# spiral wound gasket, 316/graphite",
+        "description": "3\" 300# spiral wound gasket, 316/graphite",
+        "qty": 6,
+        "uom": "EA",
+        "source": "body",
+        "sku": null,
+        "match": "not_in_catalog",
+        "match_reason": "nearest stocked part RL-18412 GSKT SPW 3\" 150# 316/GRAPHITE is off: 150# not 300#"
+      },
+      {
+        "raw": "3. 10 ea 3\" SCH 80 A234 WPB 90 LR elbow, BW",
+        "description": "3\" SCH 80 A234 WPB 90 long radius elbow, BW, A234 WPB",
+        "qty": 12,
+        "uom": "EA",
+        "source": "body",
+        "sku": "RL-36912",
+        "match": "matched",
+        "match_reason": "90 ELL 3\" SCH 80 A234 WPB BW LR: the only stocked part with every stated attribute"
+      }
+    ],
+    "attention": null
   }
 }

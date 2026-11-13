@@ -1896,6 +1896,59 @@
      "must_not_mention": []
     }
    ]
+  },
+  "S22": {
+   "classification": "rfq_revision",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": true,
+   "line_items": []
+  },
+  "S23": {
+   "classification": "rfq_revision",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S23-1",
+     "raw": "1. 6 ea 3\" 300# RF weld neck flange, A105",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "weld neck",
+      "300#"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S23-2",
+     "raw": "2. 6 ea 3\" 300# spiral wound gasket, 316/graphite",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "spiral wound"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S23-3",
+     "raw": "3. 10 ea 3\" SCH 80 A234 WPB 90 LR elbow, BW",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "body",
+     "must_mention": [
+      "90",
+      "SCH 80"
+     ],
+     "must_not_mention": []
+    }
+   ]
   }
  }
 }
