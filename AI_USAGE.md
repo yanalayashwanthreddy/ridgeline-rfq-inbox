@@ -30,7 +30,9 @@ change was judged by its numbers. To avoid fitting dev, I approved a stress inbo
 were written before each run, and later chose a generated test for the matcher. I asked for a
 code review of the helper scripts. It found real problems, and they were fixed (`1d06114`): the
 session-log export was rewriting the word "task-notification" and could delete `ai-sessions/`.
-`scripts/verify.py` re-checks the submission from a fresh clone. I reviewed results in a local
+`scripts/verify.py` re-checks the submission from a fresh clone, and with `--linux` on Python 3.11
+in Docker. That run found code that would not start on 3.11 and a cache miss that only happened
+on Linux; both were fixed (`d50b9ec`). I reviewed results in a local
 viewer that walks one email through the system.
 
 ## Three moments
