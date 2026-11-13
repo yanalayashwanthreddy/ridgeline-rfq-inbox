@@ -1341,5 +1341,116 @@
         "match_reason": "FLG SO 1/2\" 150# A105 RF: the only stocked part with every stated attribute"
       }
     ]
+  },
+  "S19": {
+    "classification": "rfq",
+    "revises": null,
+    "duplicate_of": null,
+    "needs_review": false,
+    "review_reason": null,
+    "line_items": [
+      {
+        "raw": "1 | 8 | 4\" | weld neck flange",
+        "description": "4\" weld neck flange, 300# RF, A105",
+        "qty": 8,
+        "uom": "EA",
+        "source": "P3_BOM.xlsx",
+        "sku": "RL-17043",
+        "match": "matched",
+        "match_reason": "FLG WN 4\" 300# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "2 | 8 | 4\" | blind flange",
+        "description": "4\" blind flange, 300# RF, A105",
+        "qty": 8,
+        "uom": "EA",
+        "source": "P3_BOM.xlsx",
+        "sku": null,
+        "match": "not_in_catalog",
+        "match_reason": "nearest stocked part RL-43757 FLG BLIND 4\" 150# A105 RF is off: 150# not 300#"
+      },
+      {
+        "raw": "3 | 16 | 4\" | spiral wound gasket, 316/graphite",
+        "description": "4\" spiral wound gasket, 316/graphite",
+        "qty": 16,
+        "uom": "EA",
+        "source": "P3_BOM.xlsx",
+        "sku": null,
+        "match": "ambiguous",
+        "match_reason": "2 stocked parts fit; customer did not state spec",
+        "candidates": [
+          "RL-30807",
+          "RL-31103"
+        ]
+      }
+    ]
+  },
+  "S20": {
+    "classification": "rfq",
+    "revises": null,
+    "duplicate_of": null,
+    "needs_review": false,
+    "review_reason": null,
+    "line_items": [
+      {
+        "raw": "6 2\" 3000# A105 threaded union",
+        "description": "2\" 3000# A105 threaded union",
+        "qty": 6,
+        "uom": "EA",
+        "source": "IMG_5521.jpg",
+        "sku": "RL-35580",
+        "match": "matched",
+        "match_reason": "UNION 2\" 3000# A105 THD: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "12 2\" 3000# A105 threaded 90 elbow",
+        "description": "2\" 3000# A105 threaded 90° elbow",
+        "qty": 12,
+        "uom": "EA",
+        "source": "IMG_5521.jpg",
+        "sku": "RL-35913",
+        "match": "matched",
+        "match_reason": "90 ELL 2\" 3000# A105 THD: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "4 2\" 800# A105 threaded gate valve",
+        "description": "2\" 800# A105 threaded gate valve",
+        "qty": 4,
+        "uom": "EA",
+        "source": "IMG_5521.jpg",
+        "sku": "RL-45015",
+        "match": "matched",
+        "match_reason": "VLV GATE 2\" 800# A105 THD 13CR: the only stocked part with every stated attribute"
+      }
+    ]
+  },
+  "S21": {
+    "classification": "rfq",
+    "revises": null,
+    "duplicate_of": null,
+    "needs_review": false,
+    "review_reason": null,
+    "line_items": [
+      {
+        "raw": "20 1\" SCH 80 A106B seamless pipe, PE, 21 ft",
+        "description": "1\" SCH 80 A106B seamless pipe, plain ends, 21 ft",
+        "qty": 20,
+        "uom": null,
+        "source": "IMG_7730.HEIC",
+        "sku": "RL-39909",
+        "match": "matched",
+        "match_reason": "PIPE 1\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "10 1\" 3000# A105 SW 90 elbow",
+        "description": "1\" 3000# A105 socket weld 90° elbow",
+        "qty": 10,
+        "uom": null,
+        "source": "IMG_7730.HEIC",
+        "sku": "RL-24443",
+        "match": "matched",
+        "match_reason": "90 ELL 1\" 3000# A105 SW: the only stocked part with every stated attribute"
+      }
+    ]
   }
 }

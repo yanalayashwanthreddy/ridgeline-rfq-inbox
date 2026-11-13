@@ -1,0 +1,38 @@
+{
+ "key": "6c064c9994785b709c3fde83f31f0f1f4af184c1e6dce0d252aec5ff719718be",
+ "label": "v4:S21",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T11:38:41-0600",
+ "response_id": "resp_06c29d22c4cdf295006af74b1b5eb887d1a8b20b0da598bcd8",
+ "seconds": 7.41,
+ "usage": {
+  "input_tokens": 2726,
+  "cached_input_tokens": 0,
+  "output_tokens": 495,
+  "reasoning_tokens": 331
+ },
+ "cost_usd": 0.004272,
+ "response": {
+  "classification_reason": "The customer is asking Ridgeline to price two items shown in the attached image.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "20 1\" SCH 80 A106B seamless pipe, PE, 21 ft",
+    "description": "1\" SCH 80 A106B seamless pipe, plain ends, 21 ft",
+    "qty": 20,
+    "uom": null,
+    "source": "IMG_7730.HEIC"
+   },
+   {
+    "raw": "10 1\" 3000# A105 SW 90 elbow",
+    "description": "1\" 3000# A105 socket weld 90° elbow",
+    "qty": 10,
+    "uom": null,
+    "source": "IMG_7730.HEIC"
+   }
+  ]
+ }
+}

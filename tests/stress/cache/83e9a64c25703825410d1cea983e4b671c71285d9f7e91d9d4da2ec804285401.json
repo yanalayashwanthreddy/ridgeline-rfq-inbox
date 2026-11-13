@@ -1,0 +1,45 @@
+{
+ "key": "83e9a64c25703825410d1cea983e4b671c71285d9f7e91d9d4da2ec804285401",
+ "label": "v4:S20",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T11:38:38-0600",
+ "response_id": "resp_092016826318c23c006af74b1b337087d19702edd979849d1c",
+ "seconds": 5.3,
+ "usage": {
+  "input_tokens": 2727,
+  "cached_input_tokens": 0,
+  "output_tokens": 308,
+  "reasoning_tokens": 117
+ },
+ "cost_usd": 0.003431,
+ "response": {
+  "classification_reason": "Customer is asking Ridgeline to quote three listed items shown in the attached image.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "6 2\" 3000# A105 threaded union",
+    "description": "2\" 3000# A105 threaded union",
+    "qty": 6,
+    "uom": "EA",
+    "source": "IMG_5521.jpg"
+   },
+   {
+    "raw": "12 2\" 3000# A105 threaded 90 elbow",
+    "description": "2\" 3000# A105 threaded 90° elbow",
+    "qty": 12,
+    "uom": "EA",
+    "source": "IMG_5521.jpg"
+   },
+   {
+    "raw": "4 2\" 800# A105 threaded gate valve",
+    "description": "2\" 800# A105 threaded gate valve",
+    "qty": 4,
+    "uom": "EA",
+    "source": "IMG_5521.jpg"
+   }
+  ]
+ }
+}

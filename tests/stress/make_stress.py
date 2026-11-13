@@ -319,11 +319,102 @@ msg("S18", "Doc Control <doccontrol@bigproject.example>", "RFQ BP-900 full packa
 expect("S18", "rfq", [L(r, int(r.split(" | ")[1]), src="BP-900.pdf", must=["slip"]) for r in rows], review=True)
 
 
+# --- S19 a zip holding the BOM spreadsheet (the sheet's heading carries the spec)
+def zipped_bom() -> bytes:
+    import zipfile
+
+    import openpyxl
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "BOM"
+    ws.append(["ALL FLANGES 300# RF A105 UNLESS NOTED"])
+    ws.append(["ITEM", "QTY", "SIZE", "DESCRIPTION"])
+    ws.append([1, 8, '4"', "weld neck flange"])
+    ws.append([2, 8, '4"', "blind flange"])
+    ws.append([3, 16, '4"', "spiral wound gasket, 316/graphite"])
+    x = io.BytesIO()
+    wb.save(x)
+    z = io.BytesIO()
+    with zipfile.ZipFile(z, "w", zipfile.ZIP_DEFLATED) as f:
+        f.writestr("Pump 3 tie-in/P3_BOM.xlsx", x.getvalue())
+        f.writestr("Pump 3 tie-in/readme.txt", "BOM for pump 3 tie-in. Drawings to follow.")
+    return z.getvalue()
+
+
+msg("S19", "Ana Ruiz <aruiz@deltaprocess.example>", "RFQ pump 3 tie-in", "Thu, 05 Nov 2026 08:10:00 -0600",
+    "Hi, BOM is in the zip. Please quote.\n\nAna", atts=[("P3_tiein.zip", "application/zip", zipped_bom())])
+expect("S19", "rfq", [
+    L('1 | 8 | 4" | weld neck flange', 8, src="P3_BOM.xlsx", must=["weld neck", "300#", "rf|raised face", "A105"]),
+    L('2 | 8 | 4" | blind flange', 8, src="P3_BOM.xlsx", must=["blind", "300#", "A105"]),
+    L('3 | 16 | 4" | spiral wound gasket, 316/graphite', 16, src="P3_BOM.xlsx", must=["spiral wound", "300#"],
+      mustnt=["A105"]),
+])
+
+
+def phone_list(lines, size=(1000, 460)):
+    from PIL import Image, ImageDraw, ImageFont
+
+    im = Image.new("RGB", size, (246, 244, 238))
+    dr = ImageDraw.Draw(im)
+    f = ImageFont.load_default(size=32)
+    for i, ln in enumerate(lines):
+        dr.text((40, 40 + i * 85), ln, fill=(25, 25, 25), font=f)
+    return im
+
+
+# --- S20 a phone photo stored sideways with an EXIF rotation tag (pixels rotated, tag says "turn 90")
+def exif_sideways() -> bytes:
+    from PIL import Image
+
+    im = phone_list(["QTY  ITEM", "6   2\" 3000# A105 threaded union", "12  2\" 3000# A105 threaded 90 elbow",
+                     "4   2\" 800# A105 threaded gate valve"]).transpose(Image.Transpose.ROTATE_90)
+    exif = Image.Exif()
+    exif[0x0112] = 6  # "rotate 90 CW to display": undoes the ROTATE_90 (CCW) above
+    b = io.BytesIO()
+    im.save(b, "JPEG", quality=82, exif=exif.tobytes())
+    return b.getvalue()
+
+
+msg("S20", "Rob Kline <rkline@klinemech.example>", "need these", "Thu, 05 Nov 2026 09:20:00 -0600",
+    "quote pls\n\nSent from my iPhone", atts=[("IMG_5521.jpg", "image/jpeg", exif_sideways())])
+expect("S20", "rfq", [
+    L('6   2" 3000# A105 threaded union', 6, src="IMG_5521.jpg", must=["union"]),
+    L('12  2" 3000# A105 threaded 90 elbow', 12, src="IMG_5521.jpg", must=["90", "elbow|ell"]),
+    L('4   2" 800# A105 threaded gate valve', 4, src="IMG_5521.jpg", must=["gate"]),
+])
+
+
+# --- S21 an iPhone HEIC photo of a list
+def heic_photo() -> bytes:
+    from pillow_heif import register_heif_opener
+
+    register_heif_opener()
+    im = phone_list(["QTY  ITEM", "20  1\" SCH 80 A106B seamless pipe, PE, 21 ft", "10  1\" 3000# A105 SW 90 elbow"])
+    b = io.BytesIO()
+    im.save(b, "HEIF", quality=80)
+    return b.getvalue()
+
+
+msg("S21", "Jen Ortiz <jortiz@ortizfab.example>", "pipe + ells", "Thu, 05 Nov 2026 10:05:00 -0600",
+    "Can you price this?\n\nJen", atts=[("IMG_7730.HEIC", "image/heic", heic_photo())])
+expect("S21", "rfq", [
+    L('20  1" SCH 80 A106B seamless pipe, PE, 21 ft', 20, src="IMG_7730.HEIC", must=["seamless|smls", "SCH 80"]),
+    L('10  1" 3000# A105 SW 90 elbow', 10, src="IMG_7730.HEIC", must=["90", "socket weld|sw"]),
+])
+
+
 if __name__ == "__main__":
-    if OUT.exists():
+    import sys
+
+    # Existing emails are never rewritten: MIME boundaries are random, so a rewrite would change
+    # every attachment email's bytes and invalidate its cached model answer. --fresh rebuilds all.
+    fresh = "--fresh" in sys.argv
+    if fresh and OUT.exists():
         shutil.rmtree(OUT)
-    OUT.mkdir(parents=True)
-    for eid, data in emails.items():
-        (OUT / f"{eid}.eml").write_bytes(data)
+    OUT.mkdir(parents=True, exist_ok=True)
+    new = [eid for eid in emails if fresh or not (OUT / f"{eid}.eml").exists()]
+    for eid in new:
+        (OUT / f"{eid}.eml").write_bytes(emails[eid])
     (HERE / "answer_key.json").write_text(json.dumps({"version": "stress-1", "emails": key}, indent=1), encoding="utf-8")
-    print(f"wrote {len(emails)} emails to {OUT}")
+    print(f"wrote {len(new)} new email(s) to {OUT}: {', '.join(new) or 'none'}")

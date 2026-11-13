@@ -1765,6 +1765,137 @@
      "must_not_mention": []
     }
    ]
+  },
+  "S19": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S19-1",
+     "raw": "1 | 8 | 4\" | weld neck flange",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "P3_BOM.xlsx",
+     "must_mention": [
+      "weld neck",
+      "300#",
+      "rf|raised face",
+      "A105"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S19-2",
+     "raw": "2 | 8 | 4\" | blind flange",
+     "qty": 8,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "P3_BOM.xlsx",
+     "must_mention": [
+      "blind",
+      "300#",
+      "A105"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S19-3",
+     "raw": "3 | 16 | 4\" | spiral wound gasket, 316/graphite",
+     "qty": 16,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "P3_BOM.xlsx",
+     "must_mention": [
+      "spiral wound",
+      "300#"
+     ],
+     "must_not_mention": [
+      "A105"
+     ]
+    }
+   ]
+  },
+  "S20": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S20-1",
+     "raw": "6   2\" 3000# A105 threaded union",
+     "qty": 6,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_5521.jpg",
+     "must_mention": [
+      "union"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S20-2",
+     "raw": "12  2\" 3000# A105 threaded 90 elbow",
+     "qty": 12,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_5521.jpg",
+     "must_mention": [
+      "90",
+      "elbow|ell"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S20-3",
+     "raw": "4   2\" 800# A105 threaded gate valve",
+     "qty": 4,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_5521.jpg",
+     "must_mention": [
+      "gate"
+     ],
+     "must_not_mention": []
+    }
+   ]
+  },
+  "S21": {
+   "classification": "rfq",
+   "revises": null,
+   "duplicate_of": null,
+   "needs_review": false,
+   "line_items": [
+    {
+     "id": "S21-1",
+     "raw": "20  1\" SCH 80 A106B seamless pipe, PE, 21 ft",
+     "qty": 20,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_7730.HEIC",
+     "must_mention": [
+      "seamless|smls",
+      "SCH 80"
+     ],
+     "must_not_mention": []
+    },
+    {
+     "id": "S21-2",
+     "raw": "10  1\" 3000# A105 SW 90 elbow",
+     "qty": 10,
+     "qty_tol": 0,
+     "uom": "EA",
+     "source": "IMG_7730.HEIC",
+     "must_mention": [
+      "90",
+      "socket weld|sw"
+     ],
+     "must_not_mention": []
+    }
+   ]
   }
  }
 }

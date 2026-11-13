@@ -151,7 +151,7 @@ def _walk(msg: EmailMessage) -> tuple[str, str, list[Part]]:
             part.get_filename() or ct.split("/")[0] != "text"
         )
         if is_attachment:
-            parts.append(_attachment(part, len(parts)))
+            parts.extend(_attachment(part, len(parts)))
         elif ct == "text/plain" and plain is None:
             plain = _text(part)
         elif ct == "text/html" and html is None:
@@ -213,26 +213,41 @@ def _unreadable(name: str, mime: str, data: bytes, why: str, part=None) -> Part:
 # --------------------------------------------------------------------------- attachments
 
 
-def _attachment(part, n: int) -> Part:
+def _attachment(part, n: int) -> list[Part]:
+    """One MIME attachment -> its Part, plus a Part per file inside it if it is an archive."""
     ct = part.get_content_type()
     name = part.get_filename() or f"attachment-{n + 1}{_guess_ext(ct)}"
     try:
         data = part.get_payload(decode=True) or b""
     except Exception as e:
-        return _unreadable(name, ct, b"", f"attachment payload could not be decoded: {e}", part)
+        return [_unreadable(name, ct, b"", f"attachment payload could not be decoded: {e}", part)]
+    return _from_bytes(name, ct, data, part)
+
+
+# a zip is a stack of attachments; these bound what one attachment can unpack into ("zip bomb")
+MAX_ARCHIVE_FILES = 50
+MAX_ARCHIVE_BYTES = 50 * 1024 * 1024
+MAX_ARCHIVE_DEPTH = 2
+
+
+def _from_bytes(name: str, ct: str, data: bytes, part=None, depth: int = 0, inside: str | None = None) -> list[Part]:
     p = _new_part(name, ct, data, part)
+    if inside:
+        p.notes.append(f"found inside {inside}")
     if not data:
         p.kind = "unreadable"
         p.notes.append("attachment is empty (0 bytes)")
-        return p
+        return [p]
     try:
+        if _is_archive(name, ct, data):
+            return [p, *_zip(p, data, depth)]
         _read_into(p, name, ct, data)
     except Exception as e:  # any library blowing up on a malformed file lands here
         p.kind = "unreadable"
         p.text = ""
         p.images = []
         p.notes.append(f"could not open {name}: {type(e).__name__}: {e}")
-    return p
+    return [p]
 
 
 def _read_into(p: Part, name: str, ct: str, data: bytes) -> None:
@@ -242,10 +257,21 @@ def _read_into(p: Part, name: str, ct: str, data: bytes) -> None:
         return _pdf(p, data)
     if magic == "image" or ct.startswith("image/"):
         return _image(p, name, data)
-    if magic == "zip" and ext in (".xlsx", ".xlsm") or "spreadsheetml" in ct:
-        return _xlsx(p, data)
-    if magic == "zip" and ext == ".docx" or "wordprocessingml" in ct:
-        return _docx(p, data)
+    if magic == "zip":
+        # Office files are zips: decide by what's inside, not by a name that may be wrong or missing
+        office = _ooxml_kind(data)
+        if office == "xlsx" or (office is None and (ext in (".xlsx", ".xlsm") or "spreadsheetml" in ct)):
+            return _xlsx(p, data)
+        if office == "docx" or (office is None and (ext == ".docx" or "wordprocessingml" in ct)):
+            return _docx(p, data)
+    if magic == "ole" and ext not in (".doc", ".msg"):
+        # legacy .xls (also when misnamed); xlrd raises if this compound file is not a workbook
+        try:
+            return _xls(p, data)
+        except Exception as e:
+            if ext == ".xls" or "ms-excel" in ct:
+                raise
+            raise ValueError(f"legacy binary Office file ({ext or ct}) is not a workbook and is not read: {e}")
     if ext in (".csv", ".tsv") or ct in ("text/csv", "text/tab-separated-values"):
         return _csv(p, data, "\t" if ext == ".tsv" else ",")
     if ext in (".htm", ".html") or ct == "text/html":
@@ -254,8 +280,9 @@ def _read_into(p: Part, name: str, ct: str, data: bytes) -> None:
     if ext in (".txt", ".eml") or ct.startswith("text/"):
         p.text = _decode(data)
         return
-    if ext in (".xls", ".doc"):
-        raise ValueError(f"legacy binary Office format {ext} is not supported")
+    if magic == "ole" or ext in (".doc", ".msg"):
+        # legacy Word and Outlook files: not read (no way to test a reader here); flagged instead
+        raise ValueError(f"legacy binary Office/Outlook file ({ext or ct}) is not read automatically")
     raise ValueError(f"unsupported attachment type {ct} ({ext or 'no extension'})")
 
 
@@ -264,9 +291,77 @@ def _sniff(data: bytes) -> str | None:
         return "pdf"
     if data[:4] == b"PK\x03\x04":
         return "zip"
+    if data[:8] == b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1":
+        return "ole"  # legacy Office / Outlook compound file
     if data[:8] == b"\x89PNG\r\n\x1a\n" or data[:3] == b"\xff\xd8\xff" or data[:4] in (b"GIF8", b"II*\x00", b"MM\x00*") or data[:2] == b"BM" or (data[:4] == b"RIFF" and data[8:12] == b"WEBP"):
         return "image"
+    if data[4:8] == b"ftyp" and data[8:12] in (b"heic", b"heix", b"hevc", b"heim", b"heis", b"mif1", b"msf1", b"avif"):
+        return "image"  # iPhone HEIC / HEIF / AVIF
     return None
+
+
+def _ooxml_kind(data: bytes) -> str | None:
+    import zipfile
+
+    try:
+        names = set(zipfile.ZipFile(io.BytesIO(data)).namelist())
+    except zipfile.BadZipFile:
+        return None
+    if "xl/workbook.xml" in names:
+        return "xlsx"
+    if "word/document.xml" in names:
+        return "docx"
+    return None
+
+
+def _is_archive(name: str, ct: str, data: bytes) -> bool:
+    if _sniff(data) != "zip":
+        return False
+    return _ooxml_kind(data) is None and (
+        Path(name).suffix.lower() in (".zip", "") or "zip" in ct or ct == "application/octet-stream")
+
+
+def _zip(p: Part, data: bytes, depth: int) -> list[Part]:
+    """Unpack a zip into one Part per file. The archive's own Part just lists what it held."""
+    import zipfile
+
+    p.kind = "skipped"
+    zf = zipfile.ZipFile(io.BytesIO(data))
+    infos = [i for i in zf.infolist() if not i.is_dir()
+             and not i.filename.startswith("__MACOSX/") and Path(i.filename).name not in (".DS_Store", "Thumbs.db")]
+    p.notes.append(f"zip archive with {len(infos)} file(s); each follows as its own attachment")
+    if depth >= MAX_ARCHIVE_DEPTH:
+        p.kind = "unreadable"
+        p.notes.append(f"archive nested more than {MAX_ARCHIVE_DEPTH} deep; not unpacked")
+        return []
+    if len(infos) > MAX_ARCHIVE_FILES or sum(i.file_size for i in infos) > MAX_ARCHIVE_BYTES:
+        p.kind = "unreadable"
+        p.notes.append(f"archive too large to unpack safely ({len(infos)} files, "
+                       f"{sum(i.file_size for i in infos):,} bytes uncompressed)")
+        return []
+    names = [Path(i.filename).name for i in infos]
+    out = []
+    for info, base in zip(infos, names):
+        member = base if names.count(base) == 1 else info.filename  # keep paths only to disambiguate
+        if info.flag_bits & 0x1:
+            out.append(_unreadable(member, "application/octet-stream", b"",
+                                   f"inside {p.filename}: password-protected, cannot be opened"))
+            continue
+        try:
+            body = zf.read(info)
+        except Exception as e:
+            out.append(_unreadable(member, "application/octet-stream", b"", f"inside {p.filename}: could not extract: {e}"))
+            continue
+        out.extend(_from_bytes(member, _mime_for(member), body, depth=depth + 1, inside=p.filename))
+    return out
+
+
+def _mime_for(name: str) -> str:
+    import mimetypes
+
+    return mimetypes.guess_type(name)[0] or "application/octet-stream"
+
+
 
 
 def _guess_ext(ct: str) -> str:
@@ -333,6 +428,66 @@ def _xlsx(p: Part, data: bytes) -> None:
                 break
         if hidden_cols:
             p.notes.append(f"sheet {ws.title!r} has hidden columns {sorted(hidden_cols)}")
+        out.append("")
+    p.text = "\n".join(out).strip()
+
+
+def _xls(p: Part, data: bytes) -> None:
+    """Legacy Excel 97-2003, rendered exactly like _xlsx: sheet state, merges, strike, hidden rows."""
+    import xlrd
+
+    try:
+        book = xlrd.open_workbook(file_contents=data, formatting_info=True)
+        fmt = True
+    except Exception:  # some writers produce files whose formatting records xlrd rejects
+        book = xlrd.open_workbook(file_contents=data)
+        fmt = False
+        p.notes.append("formatting (strikethrough, hidden rows) could not be read from this .xls")
+    out = []
+    for sh in book.sheets():
+        state = {0: "visible", 1: "hidden", 2: "veryHidden"}.get(sh.visibility, "visible")
+        head = f"=== Sheet: {sh.name!r}"
+        if state != "visible":
+            head += f"  [{state.upper()} SHEET]"
+            p.notes.append(f"sheet {sh.name!r} is {state}")
+        out.append(head)
+        if fmt and sh.merged_cells:
+            out.append("(merged cells: " + ", ".join(
+                f"{xlrd.formula.cellnameabs(r0, c0).replace('$', '')}:{xlrd.formula.cellnameabs(r1 - 1, c1 - 1).replace('$', '')}"
+                for r0, r1, c0, c1 in sh.merged_cells) + ")")
+        hidden_cols = {c for c, info in (sh.colinfo_map.items() if fmt else []) if info.hidden}
+        rows = 0
+        for r in range(sh.nrows):
+            cells = []
+            for c in range(sh.ncols):
+                cell = sh.cell(r, c)
+                if cell.ctype in (xlrd.XL_CELL_EMPTY, xlrd.XL_CELL_BLANK):
+                    continue
+                v = cell.value
+                if cell.ctype == xlrd.XL_CELL_DATE:
+                    v = xlrd.xldate.xldate_as_datetime(v, book.datemode)
+                v = _cell(v)
+                if not v:
+                    continue
+                if fmt and book.font_list[book.xf_list[sh.cell_xf_index(r, c)].font_index].struck_out:
+                    v = f"{STRIKE_L}{v}{STRIKE_R}"
+                if c in hidden_cols:
+                    v = f"[hidden column] {v}"
+                cells.append(v)
+            if not cells:
+                continue
+            row_text = " | ".join(cells)
+            hidden_row = fmt and r in sh.rowinfo_map and sh.rowinfo_map[r].hidden
+            line = f"R{r + 1}: {row_text}" + ("   [HIDDEN ROW]" if hidden_row else "")
+            (p.hidden_rows if state != "visible" or hidden_row else p.visible_rows).append(row_text)
+            out.append(line)
+            rows += 1
+            if rows >= MAX_SHEET_ROWS:
+                p.notes.append(f"sheet {sh.name!r} truncated at {MAX_SHEET_ROWS} rows")
+                out.append(f"[... truncated at {MAX_SHEET_ROWS} rows]")
+                break
+        if hidden_cols:
+            p.notes.append(f"sheet {sh.name!r} has hidden columns {sorted(hidden_cols)}")
         out.append("")
     p.text = "\n".join(out).strip()
 
@@ -538,6 +693,14 @@ def _strikes(box, w) -> bool:
 
 def _image(p: Part, name: str, data: bytes) -> None:
     from PIL import Image as PILImage
+    from PIL import ImageOps
+
+    try:  # iPhone photos arrive as HEIC; the opener is optional so a missing wheel never breaks ingest
+        from pillow_heif import register_heif_opener
+
+        register_heif_opener()
+    except Exception:
+        pass
 
     im = PILImage.open(io.BytesIO(data))
     im.load()  # forces a full decode: truncated/corrupt files fail here, not at the model
@@ -548,12 +711,35 @@ def _image(p: Part, name: str, data: bytes) -> None:
         return
     p.kind = "image"
     fmt = (im.format or "").upper()
-    if frames == 1 and fmt in ("JPEG", "PNG") and max(im.size) <= MAX_IMAGE_SIDE:
-        # already a format the model accepts and small enough: send the original bytes
-        # (re-encoding a phone JPEG as PNG makes it ~6x bigger for no gain)
+    if fmt == "MPO":  # iPhone "JPEG" with a second (depth) frame: one photo, not two pages
+        frames = 1
+    orientation = im.getexif().get(0x0112, 1) if frames == 1 else 1
+    rotated = orientation not in (1, None)
+
+    # 1. a JPEG/PNG the model accepts, upright and small enough: send the original bytes
+    #    (re-encoding a phone JPEG as PNG makes it ~6x bigger for no gain)
+    if frames == 1 and not rotated and fmt in ("JPEG", "PNG") and max(im.size) <= MAX_IMAGE_SIDE:
         p.images.append(Image(name, data, "image/jpeg" if fmt == "JPEG" else "image/png"))
         p.notes.append(f"image {im.size[0]}x{im.size[1]} px")
         return
+
+    # 2. a single photo that needs work: sideways (a phone stores it with a rotation tag, which
+    #    we apply so the model reads it upright), too big, or a format the model may not take
+    #    (iPhone HEIC). Photos stay JPEG; drawings and screenshots stay PNG.
+    if frames == 1:
+        if rotated:
+            im = ImageOps.exif_transpose(im)
+            p.notes.append(f"rotated upright from the camera's orientation tag ({orientation})")
+        photo = fmt in ("JPEG", "MPO", "HEIF", "HEIC", "AVIF", "WEBP")
+        im = im.convert("RGB") if im.mode not in ("RGB", "L") else im
+        im.thumbnail((MAX_IMAGE_SIDE, MAX_IMAGE_SIDE))
+        buf = io.BytesIO()
+        im.save(buf, "JPEG" if photo else "PNG", **({"quality": 88} if photo else {}))
+        p.images.append(Image(name, buf.getvalue(), "image/jpeg" if photo else "image/png"))
+        p.notes.append(f"{fmt} image {im.size[0]}x{im.size[1]} px" + (", converted to JPEG" if photo and fmt != "JPEG" else ""))
+        return
+
+    # 3. several frames: a multi-page TIFF fax, one image per page
     for f in range(min(frames, 10)):  # multi-page TIFF (faxes)
         if frames > 1:
             im.seek(f)
