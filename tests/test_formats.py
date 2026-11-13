@@ -157,11 +157,11 @@ def test_oversized_photo_is_downscaled_and_stays_jpeg(tmp_path):
     assert max(im.size) <= MAX_IMAGE_SIDE and p.images[0].mime == "image/jpeg"
 
 
-# ---- types deliberately not read: flagged, with a reason
+# ---- damaged legacy files: flagged with a reason, never raised (real ones: tests/test_legacy.py)
 
 
 @pytest.mark.parametrize("name, mime", [("spec.doc", "application/msword"), ("fwd.msg", "application/vnd.ms-outlook")])
-def test_legacy_word_and_outlook_files_are_flagged(tmp_path, name, mime):
+def test_damaged_legacy_word_and_outlook_files_are_flagged(tmp_path, name, mime):
     ole = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" + b"\x00" * 600
     (p,) = _parts(tmp_path, [(name, mime, ole)]).values()
-    assert p.kind == "unreadable" and "not read automatically" in " ".join(p.notes)
+    assert p.kind == "unreadable" and p.notes

@@ -13,6 +13,7 @@ from __future__ import annotations
 import re
 
 from .ingest import STRIKE_L, Email
+from .legacy import DOC_NO_FORMATTING
 from .prompt import REQUEST_CLASSES
 
 ROW_LABEL = re.compile(r"^\s*R\d+:\s*")
@@ -78,7 +79,8 @@ def finalize(em: Email, data: dict, truncated: list[str]) -> tuple[dict, list[st
             reasons.append(t)
         for p in em.parts:
             for n in p.notes:
-                if "only the first" in n or "truncated" in n:
+                # a .doc read without its formatting can't show crossed-out or deleted lines
+                if "only the first" in n or "truncated" in n or n == DOC_NO_FORMATTING:
                     review = True
                     reasons.append(f"{p.filename}: {n}")
         if not lines and not review:

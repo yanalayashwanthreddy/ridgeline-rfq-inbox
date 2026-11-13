@@ -251,6 +251,11 @@ def _from_bytes(name: str, ct: str, data: bytes, part=None, depth: int = 0, insi
     try:
         if _is_archive(name, ct, data):
             return [p, *_zip(p, data, depth)]
+        if _sniff(data) == "ole" and Path(name).suffix.lower() != ".doc":
+            from .legacy import is_msg
+
+            if Path(name).suffix.lower() == ".msg" or "outlook" in ct or is_msg(data):
+                return [p, *_msg(p, data, depth)]
         _read_into(p, name, ct, data)
     except Exception as e:  # any library blowing up on a malformed file lands here
         p.kind = "unreadable"
@@ -274,7 +279,19 @@ def _read_into(p: Part, name: str, ct: str, data: bytes) -> None:
             return _xlsx(p, data)
         if office == "docx" or (office is None and (ext == ".docx" or "wordprocessingml" in ct)):
             return _docx(p, data)
-    if magic == "ole" and ext not in (".doc", ".msg"):
+    if magic == "ole" and (ext == ".doc" or "msword" in ct):
+        from .legacy import DOC_NO_FORMATTING, read_doc
+
+        p.text = read_doc(data)
+        p.notes.append(DOC_NO_FORMATTING)
+        return
+    if magic == "ole" and ext != ".msg":
+        from .legacy import DOC_NO_FORMATTING, is_doc, read_doc
+
+        if is_doc(data):  # a Word file with a wrong or missing extension
+            p.text = read_doc(data)
+            p.notes.append(DOC_NO_FORMATTING)
+            return
         # legacy .xls (also when misnamed); xlrd raises if this compound file is not a workbook
         try:
             return _xls(p, data)
@@ -291,8 +308,8 @@ def _read_into(p: Part, name: str, ct: str, data: bytes) -> None:
         p.text = _decode(data)
         return
     if magic == "ole" or ext in (".doc", ".msg"):
-        # legacy Word and Outlook files: not read (no way to test a reader here); flagged instead
-        raise ValueError(f"legacy binary Office/Outlook file ({ext or ct}) is not read automatically")
+        # reached only when the file isn't a readable .doc / .msg / .xls (damaged or another OLE type)
+        raise ValueError(f"legacy Office/Outlook file ({ext or ct}) could not be read")
     raise ValueError(f"unsupported attachment type {ct} ({ext or 'no extension'})")
 
 
@@ -384,6 +401,28 @@ MIME_BY_EXT = {
     ".heic": "image/heic", ".heif": "image/heif",
     ".zip": "application/zip",
 }
+
+
+def _msg(p: Part, data: bytes, depth: int) -> list[Part]:
+    """An Outlook .msg: its own text (headers + body) on this Part; each attachment its own Part."""
+    from .legacy import read_msg
+
+    text, atts = read_msg(data, html_to_text)
+    p.kind, p.text = "text", text
+    p.notes.append(f"Outlook message with {len(atts)} attachment(s); each follows as its own attachment")
+    if depth >= MAX_ARCHIVE_DEPTH or len(atts) > MAX_ARCHIVE_FILES:
+        p.notes.append("attachments not unpacked (too deep or too many)")
+        return []
+    out = []
+    for name, mime, blob, inner_text in atts:
+        if blob is None:  # an Outlook message attached inside this one, already read as text
+            q = _new_part(name, "application/vnd.ms-outlook", inner_text.encode("utf-8"))
+            q.text = inner_text
+            q.notes.append(f"found inside {p.filename}")
+            out.append(q)
+        else:
+            out.extend(_from_bytes(name, mime if "/" in mime else _mime_for(name), blob, depth=depth + 1, inside=p.filename))
+    return out
 
 
 def _mime_for(name: str) -> str:
