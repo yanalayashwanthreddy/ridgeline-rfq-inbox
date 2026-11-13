@@ -9,7 +9,8 @@ JSON schema) → `guards` (code) → `threads` (code) → `matcher` (code; see [
 
 - **Code reads the files**, keeping the structure that carries meaning: hidden sheets and rows,
   merged headings and struck cells (xlsx/xls); tracked deletions (docx); PDF rows rebuilt from
-  word positions, scans sent as images; zips unpacked; photos turned upright. A broken part
+  word positions, scans sent as images; zips and Outlook `.msg` unpacked; legacy `.doc`/`.xls`;
+photos turned upright, read twice when lines come from them. A broken part
   becomes `unreadable` with a reason. It never raises.
 - **The model judges.** It decides the class, which lines are requests, and the self-contained
   description (heading scope, overrides beat defaults, quoted history is not a request). The prompt
@@ -37,8 +38,10 @@ redelivery, a 35-page PDF, a BOM in a zip, an iPhone HEIC photo.
 clone in about 15 s.
 
 **Rejected:** gpt-5.5 (4.6× the cost, *worse* context: it "corrected" `A53B` to `A53 Grade B`);
-two calls per email (double cost, same reading); `.doc`/`.msg` readers (untestable here, so
-flagged instead).
+two calls per email (double cost, same reading). `.doc`/`.msg` readers were first rejected as
+untestable, then built once real Apache POI test files gave fixtures; expected values come from
+antiword and extract-msg. A `.doc`'s formatting isn't read, so a struck line can't be told
+apart from a live one: those emails are still flagged, now with their lines.
 
 ## Something in the data that surprised you
 

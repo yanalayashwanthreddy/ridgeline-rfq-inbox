@@ -4,18 +4,18 @@
   "prompt_version": "v4",
   "totals": {
     "emails": 24,
-    "model_calls": 4,
-    "cache_hits": 20,
+    "model_calls": 0,
+    "cache_hits": 24,
     "fallbacks": 0,
     "input_tokens": 74184,
     "cached_input_tokens": 2432,
     "output_tokens": 32044,
     "reasoning_tokens": 14013,
-    "cost_usd_this_run": 0.02594,
+    "cost_usd_this_run": 0.0,
     "cost_usd_if_uncached": 0.19819,
     "avg_cost_usd_per_email": 0.00826,
     "avg_tokens_per_email": 4426,
-    "wall_seconds": 11.7,
+    "wall_seconds": 0.6,
     "catalog_matching": {
       "matched": 194,
       "not_in_catalog": 16
@@ -138,16 +138,16 @@
       "model_reason": "The customer asks Ridgeline to quote the attached RFQ and adds two gasket items to the request."
     },
     "E007": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 4295,
         "cached_input_tokens": 0,
         "output_tokens": 2520,
         "reasoning_tokens": 2021
       },
-      "cost_usd": 0.008538,
-      "seconds": 10.06,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -178,16 +178,16 @@
       "model_reason": "Customer is revising an existing RFQ by resending the same quote and adding two gasket lines."
     },
     "E009": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 10409,
         "cached_input_tokens": 0,
         "output_tokens": 4732,
         "reasoning_tokens": 1599
       },
-      "cost_usd": 0.012654,
-      "seconds": 11.39,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -199,16 +199,16 @@
       "second_read": "agrees"
     },
     "E010": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 2940,
         "cached_input_tokens": 0,
         "output_tokens": 1266,
         "reasoning_tokens": 716
       },
-      "cost_usd": 0.002657,
-      "seconds": 3.8,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -450,16 +450,16 @@
       "model_reason": "Alden Marine is sending a new RFQ and the attached PDF cannot be read because it is password-protected."
     },
     "E023": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 3941,
         "cached_input_tokens": 0,
         "output_tokens": 880,
         "reasoning_tokens": 727
       },
-      "cost_usd": 0.002091,
-      "seconds": 2.41,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [

@@ -4,18 +4,18 @@
   "prompt_version": "v4",
   "totals": {
     "emails": 25,
-    "model_calls": 4,
-    "cache_hits": 21,
+    "model_calls": 0,
+    "cache_hits": 25,
     "fallbacks": 0,
     "input_tokens": 67447,
     "cached_input_tokens": 21120,
     "output_tokens": 18237,
     "reasoning_tokens": 7508,
-    "cost_usd_this_run": 0.00744,
+    "cost_usd_this_run": 0.0,
     "cost_usd_if_uncached": 0.1184,
     "avg_cost_usd_per_email": 0.00474,
     "avg_tokens_per_email": 3427,
-    "wall_seconds": 3.7,
+    "wall_seconds": 0.5,
     "catalog_matching": {
       "matched": 135,
       "not_in_catalog": 11,
@@ -312,16 +312,16 @@
       "model_reason": "A supplier is responding with pricing for items previously requested by Ridgeline."
     },
     "S15": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 3454,
         "cached_input_tokens": 0,
         "output_tokens": 1005,
         "reasoning_tokens": 697
       },
-      "cost_usd": 0.001914,
-      "seconds": 2.92,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -413,16 +413,16 @@
       "model_reason": "The sender is requesting a quote for the BOM in the attached zip."
     },
     "S20": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 3645,
         "cached_input_tokens": 0,
         "output_tokens": 467,
         "reasoning_tokens": 175
       },
-      "cost_usd": 0.001404,
-      "seconds": 1.94,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -434,16 +434,16 @@
       "second_read": "agrees"
     },
     "S21": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 3650,
         "cached_input_tokens": 0,
         "output_tokens": 661,
         "reasoning_tokens": 416
       },
-      "cost_usd": 0.00144,
-      "seconds": 1.47,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -493,16 +493,16 @@
       "model_reason": "The sender is revising a previous RFQ by changing the quantity for item #3 and removing item #4."
     },
     "S24": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 4731,
         "cached_input_tokens": 0,
         "output_tokens": 1102,
         "reasoning_tokens": 757
       },
-      "cost_usd": 0.002684,
-      "seconds": 3.06,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
