@@ -26,6 +26,9 @@ def m(desc):
     ('3/4"-10 x 4-1/2" stud B7 w/ 2H nuts', "RL-41796"),                # thread pitch dropped
     ('1" sch 80 A312 TP316L pipe, PE', "RL-12899"),                     # SCH 80 == 80S up to 8"
     ('2" ball valve, 316 SS, threaded, full port, 600 WOG', "RL-28513"),
+    ('2" ball valve, CF8M, threaded, full port, 600 WOG', "RL-28513"),  # CF8M is cast 316
+    ('a 90 elbow 2" 3000# A105 SW', "RL-33545"),                         # "a 90" is not ASTM A90
+    ('B7 stud, A193, 3/4" x 4-1/2" w/ A194 2H nuts', "RL-41796"),        # bolting standards known
 ])
 def test_unique_part_is_matched(desc, sku):
     r = m(desc)
@@ -35,6 +38,7 @@ def test_unique_part_is_matched(desc, sku):
 @pytest.mark.parametrize("desc", [
     '4" 300# RF blind flange, A105',          # stocked only in 150#: one attribute off
     '2" 150# RF weld neck flange, A350 LF2',  # low-temp grade, not A105
+    '2" 150# RF weld neck flange, A694 F52',  # a standard on no list: unknown ASTM = not stocked
     '2" 3000# 321 SS threaded coupling',      # a stainless grade the catalog lacks
     '1" copper 90 elbow, sweat',              # material not stocked at all
     '2" tee, sch 40, A234 WPB, grooved',      # end type not stocked

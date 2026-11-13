@@ -5,7 +5,8 @@
 ## Shape of the system — who decides what
 
 `ingest` (code) → **one model call per email** (`gpt-5.4-mini-2026-03-17`, reasoning effort medium,
-strict JSON schema) → `guards` (code) → `threads` (code).
+strict JSON schema) → `guards` (code) → `threads` (code) → `matcher` (code, optional part; see
+[MATCHER.md](MATCHER.md): dev confident-wrong 0, not-in-catalog 16/16).
 
 - **Code reads the files.** Every part becomes text or images before the model sees it: xlsx with
   sheet state, merged cells, hidden rows and struck cells marked; docx in document order with
@@ -105,6 +106,7 @@ cost/token report. **Not built:** the webhook, a queue, a database.
 - `raw` for pictures varies between runs (E023's nameplate); the cache makes it stable for
   replay, not right.
 - Thread linking only sees the current inbox; there's no memory of last week.
-- The optional matcher is not built.
-- Next: page-window chunking, an `attention` field, and the matcher design (`size`/`spec`/
-  `material`/`ends` must agree exactly; the model may propose, never decide).
+- The matcher reads only our `description`, so a context miss in extraction becomes a matching
+  miss (MATCHER.md lists its own weaknesses).
+- Next: page-window chunking, an `attention` field, and using the viewer's rep overturns of
+  matches as the matcher's running error rate.

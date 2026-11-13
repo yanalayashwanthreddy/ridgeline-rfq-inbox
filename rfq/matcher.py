@@ -71,8 +71,8 @@ PIPE_LIKE = {"pipe", "nipple"}
 # ---- materials: (pattern, predicate on the catalog material). Stainless grades are read
 # first; carbon-steel words only apply when no stainless grade is named.
 STAINLESS = [
-    (r"316", lambda m: "316" in m),
-    (r"304", lambda m: "304" in m),
+    (r"316|\bcf8m\b|\bcf3m\b", lambda m: "316" in m),  # CF8M / CF3M: cast 316 (valve bodies)
+    (r"304|\bcf8\b|\bcf3\b", lambda m: "304" in m),
     (r"stainless|\bss\b", lambda m: "SS" in m or "304" in m or "316" in m),
 ]
 OTHER_MATERIALS = [
@@ -99,8 +99,12 @@ OTHER_MATERIALS = [
     # would quote the nearest steel part (an A350 LF2 flange as A105): a confident wrong match.
     (NOT_STOCKED_MATERIAL := r"copper|\bcu\b|\bpvc\b|\bcpvc\b|\bhdpe\b|\bpe100\b|duplex|super\s*duplex|\b2205\b|\b321\b|\b347\b"
      r"|\b317l?\b|alloy\s*20|monel|inconel|hastelloy|titanium|alumin(?:um|ium)|ductile|chrome[\s-]*moly"
-     r"|\b(?:a|astm\s*a)\s*-?(?:333|335|350|352|420|694|860|790|815)\b|\blf[1-3]\b|\bwpl[36]\b"
-     r"|\b[fpw]p?(?:5|9|11|22|51|53|91)\b|\bcf8m?\b", lambda m: False),
+     r"|\blf[1-3]\b|\bwpl[36]\b|\b[fpw]p?(?:5|9|11|22|51|53|91)\b", lambda m: False),
+    # any ASTM standard the catalog's materials don't come from (A350, A694, A333...): a list of
+    # bad grades can never be complete, so the rule is "known standards only"
+    # ("A350", "A-350", "ASTM A 350"; not the article in "a 90 elbow")
+    (r"(?:\bastm\s*a\s*-?|\ba-?)(?!(?:53|105|106|126|182|193|194|197|216|234|312|351|403)\b)\d{2,3}\b(?![\"'#/-])",
+     lambda m: False),
 ]
 
 # ---- ends. Pipe and nipples use pipe-end codes; everything else uses connection codes.

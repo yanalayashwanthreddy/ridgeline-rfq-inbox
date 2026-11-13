@@ -38,6 +38,11 @@ retry when code finds a numbered table row that no extracted line covers (1 of 2
 Override with `--model` / `--effort` or `RFQ_MODEL` / `RFQ_EFFORT`. Other options: `--offline`
 (never call the model), `--workers N` (default 4), `--cache DIR`.
 
+**Catalog matching** (the optional matcher, [MATCHER.md](MATCHER.md)) runs inside `parse` against
+`data\catalog.csv` and adds `sku` / `match` / `match_reason` to every line. It is code only:
+no model calls, $0, and the keyless replay includes it. `--catalog FILE` to point elsewhere,
+`--no-match` to skip.
+
 ## Cost (dev inbox, 24 emails, from `parsed.report.json`)
 
 | | |
@@ -57,12 +62,14 @@ Prices used ($ per 1M tokens, `rfq/llm.py`): input 0.75, cached input 0.075, out
 .venv\Scripts\python scripts\score.py parsed.json data\dev\answer_key.json      # score vs the key
 .venv\Scripts\python -m rfq.viewer --emails data\dev\emails --parsed parsed.json --key data\dev\answer_key.json
                                                                    # local web view, one email end to end
-.venv\Scripts\python -m pip install -r requirements-dev.txt; .venv\Scripts\python -m pytest -q   # 18 tests
+.venv\Scripts\python -m pip install -r requirements-dev.txt; .venv\Scripts\python -m pytest -q   # 43 tests
 .venv\Scripts\python -m rfq parse --emails tests\stress\emails --cache tests\stress\cache --out tests\stress\parsed.json
 .venv\Scripts\python scripts\score.py tests\stress\parsed.json tests\stress\answer_key.json   # stress inbox (19 emails)
 ```
 
-The viewer only reads local files and listens on `localhost:8765`.
+The viewer listens on `localhost:8765` and makes no outbound calls. Its only write is a rep's
+accept/overturn of a catalog match, saved to `parsed.rep_decisions.json` (git-ignored), never
+into `parsed.json`.
 
 ## Screen recording
 
