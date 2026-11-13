@@ -28,6 +28,9 @@ def main(argv=None) -> int:
     p.add_argument("--cache", type=Path, default=ROOT / "cache")
     p.add_argument("--workers", type=int, default=4)
     p.add_argument("--offline", action="store_true", help="never call the model; cache only")
+    p.add_argument("--catalog", type=Path, default=ROOT / "data" / "catalog.csv",
+                   help="catalog for sku/match fields (code only, no model calls)")
+    p.add_argument("--no-match", action="store_true", help="skip catalog matching")
     a = ap.parse_args(argv)
 
     if not a.emails.is_dir():
@@ -37,8 +40,10 @@ def main(argv=None) -> int:
     if key is None:
         print("no OPENAI_API_KEY: replaying from cache; uncached emails will be flagged for review", file=sys.stderr)
     llm = LLM(a.model, a.effort, a.cache, key)
-    rep = run(a.emails, a.out, llm, a.workers)
+    rep = run(a.emails, a.out, llm, a.workers, None if a.no_match else a.catalog)
     t = rep["totals"]
+    if t.get("catalog_matching"):
+        print(f"catalog matching: {t['catalog_matching']}", file=sys.stderr)
     print(
         f"{t['emails']} emails -> {a.out} | model {rep['model']} ({rep['effort']}) | "
         f"new calls {t['model_calls']}, cache hits {t['cache_hits']}, fallbacks {t['fallbacks']} | "

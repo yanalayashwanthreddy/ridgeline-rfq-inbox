@@ -9,12 +9,14 @@ from __future__ import annotations
 import json
 import time
 import traceback
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from .guards import fallback, finalize, missing_rows
 from .ingest import Email, load_email
 from .llm import LLM, ModelUnavailable
+from .matcher import load_catalog, match_all
 from .prompt import INSTRUCTIONS, PROMPT_VERSION, REQUEST_CLASSES, build_input
 from .threads import link
 
@@ -83,7 +85,7 @@ def _account(stats: dict, res) -> None:
         stats["cost_usd"] = (stats["cost_usd"] or 0) + (res.cost_usd or 0)
 
 
-def run(email_dir: Path, out_path: Path, llm: LLM, workers: int = 4) -> dict:
+def run(email_dir: Path, out_path: Path, llm: LLM, workers: int = 4, catalog: Path | None = None) -> dict:
     paths = sorted(email_dir.glob("*.eml"))
     t0 = time.monotonic()
     with ThreadPoolExecutor(max_workers=max(1, workers)) as ex:
@@ -98,9 +100,19 @@ def run(email_dir: Path, out_path: Path, llm: LLM, workers: int = 4) -> dict:
         for st in stats.values():
             st["warnings"].append(f"thread linking failed: {e}")
 
+    # catalog matching is code only (no model calls), so it runs on every replay as well
+    matching = None
+    if catalog is not None and catalog.is_file():
+        try:
+            match_all(out, load_catalog(catalog))
+            matching = dict(Counter(ln["match"] for rec in out.values() for ln in rec["line_items"]))
+        except Exception as e:  # optional; never lose the parse over it
+            matching = {"error": f"{type(e).__name__}: {e}"}
+
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     report = _report(stats, llm, time.monotonic() - t0)
+    report["totals"]["catalog_matching"] = matching
     out_path.with_name(out_path.stem + ".report.json").write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )

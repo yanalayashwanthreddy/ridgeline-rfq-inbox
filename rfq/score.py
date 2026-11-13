@@ -82,7 +82,7 @@ def main(argv) -> int:
 
     c = dict(emails=0, cls_ok=0, silent=0, lost=0, phantom=0, key_lines=0, our_lines=0, paired=0,
              halluc=0, qty_ok=0, qty_n=0, uom_ok=0, src_ok=0, ctx_ok=0, ctx_n=0,
-             link_ok=0, link_n=0, rv_tp=0, rv_fp=0, rv_fn=0)
+             link_ok=0, link_n=0, rv_tp=0, rv_fp=0, rv_fn=0, m_n=0, m_ok=0, m_wrong=0, nic_n=0, nic_ok=0)
     problems: list[str] = []
     for eid, k in sorted(key.items()):
         o = parsed.get(eid)
@@ -149,6 +149,17 @@ def main(argv) -> int:
                 c["ctx_ok"] += not miss and not bad
                 if miss or bad:
                     problems.append(f"{eid}: context {kk['raw']!r} -> {ln['description']!r} missing={miss} forbidden={bad}")
+            # optional matcher (README): confident wrong = we named a part and the answer differs
+            if "match" in ln and kk.get("match"):
+                c["m_n"] += 1
+                m_ok = ln["match"] == kk["match"] and ln.get("sku") == kk.get("sku")
+                c["m_ok"] += m_ok
+                c["m_wrong"] += ln["match"] == "matched" and not m_ok
+                c["nic_n"] += kk["match"] == "not_in_catalog"
+                c["nic_ok"] += kk["match"] == "not_in_catalog" and ln["match"] == "not_in_catalog"
+                if not m_ok:
+                    problems.append(f"{eid}: match {ln['match']}/{ln.get('sku')} (key {kk['match']}/{kk.get('sku')}) "
+                                    f"on {ln['description']!r}: {ln.get('match_reason')}")
 
     pct = lambda a, b: f"{100 * a / b:.1f}%" if b else "n/a"  # noqa: E731
     print(f"silent losses        {c['silent']}")
@@ -161,6 +172,9 @@ def main(argv) -> int:
     print(f"context carried      {c['ctx_ok']}/{c['ctx_n']} {pct(c['ctx_ok'], c['ctx_n'])}")
     print(f"revises/duplicate_of {c['link_ok']}/{c['link_n']}")
     print(f"needs_review P / R   {pct(c['rv_tp'], c['rv_tp'] + c['rv_fp'])} / {pct(c['rv_tp'], c['rv_tp'] + c['rv_fn'])}")
+    if c["m_n"]:
+        print(f"matcher: confident wrong {c['m_wrong']} | not-in-catalog recall {c['nic_ok']}/{c['nic_n']} "
+              f"{pct(c['nic_ok'], c['nic_n'])} | match accuracy {c['m_ok']}/{c['m_n']} {pct(c['m_ok'], c['m_n'])}")
     if problems:
         print(f"\n{len(problems)} problem(s)" + ("" if verbose else " (-v to list)"))
         if verbose:
