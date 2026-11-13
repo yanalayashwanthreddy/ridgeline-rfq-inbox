@@ -345,6 +345,9 @@ def zipped_bom() -> bytes:
 
 msg("S19", "Ana Ruiz <aruiz@deltaprocess.example>", "RFQ pump 3 tie-in", "Thu, 05 Nov 2026 08:10:00 -0600",
     "Hi, BOM is in the zip. Please quote.\n\nAna", atts=[("P3_tiein.zip", "application/zip", zipped_bom())])
+# Changed after the first run: S19 and S21 expected the literal "RF" / "SW". The dev answer key
+# accepts either spelling ("rf|raised face", "socket weld|sw"), so these now use that convention.
+# The system was not changed for it. (The other post-run change is S18, explained above it.)
 expect("S19", "rfq", [
     L('1 | 8 | 4" | weld neck flange', 8, src="P3_BOM.xlsx", must=["weld neck", "300#", "rf|raised face", "A105"]),
     L('2 | 8 | 4" | blind flange', 8, src="P3_BOM.xlsx", must=["blind", "300#", "A105"]),

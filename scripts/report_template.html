@@ -35,6 +35,7 @@ nav button{font:inherit;font-size:14px;background:none;border:0;border-bottom:3p
 nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
 main{padding:22px 0 60px}
 section[hidden]{display:none}
+section{scroll-margin-top:120px}
 h2{font-size:21px;margin:0 0 6px;font-weight:650}
 h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .lede{color:var(--ink2);max-width:780px;margin:0 0 20px}
@@ -229,7 +230,7 @@ function overview() {
             h("div", {class: "num"}, n)]))),
       h("div", {class: "card"},
         h("h3", {}, `Also tested on ${ST.emails} situations the practice inbox doesn't have`),
-        h("p", {class: "muted small", style: "margin:-4px 0 10px"}, "Written with their correct answers before the system ever saw them: handwriting, a 35-page PDF, a zip file, \"kill #4\" with no original…"),
+        h("p", {class: "muted small", style: "margin:-4px 0 10px"}, "Handwriting, a 35-page PDF, a zip file, \"kill #4\" with no original…"),
         h("div", {class: "tiles"},
           tile(`${ST.class_ok}/${ST.emails}`, "sorted correctly"),
           tile(`${ST.paired}/${ST.key_lines}`, "items found"),
@@ -373,9 +374,9 @@ function proof() {
           h("li", {}, `${DATA.tests} automated tests.`),
           h("li", {}, "Tested on Windows and on Linux with Python 3.11: identical output, byte for byte."),
           h("li", {}, "One broken file never stops the run: it's marked unreadable, with the reason.")),
-        h("p", {class: "small muted"}, "Check it yourself: python scripts/verify.py --linux"))),
+        )),
     h("div", {class: "card"}, h("h3", {}, "What we expect on emails we haven't seen"),
-      h("p", {class: "small muted", style: "margin-top:-4px"}, "Predicted before the graders' run (from DECISIONS.md):"),
+      h("p", {class: "small muted", style: "margin-top:-4px"}, "Our prediction, made in advance, for new emails the system hasn't seen:"),
       h("div", {class: "tiles"}, tile("0", "customers missed"), tile("~90%", "emails sorted correctly"), tile("~90%", "items found"), tile("2–5", "items invented"), tile("0–2", "wrong catalog parts"))),
     h("div", {class: "card"}, h("h3", {}, "Where it can still go wrong"),
       h("ul", {class: "tight"},
@@ -409,7 +410,7 @@ document.getElementById("inbox").append(h("h2", {}, "The practice inbox"),
   h("p", {class: "lede"}, "The 24 emails that came with the assignment. Click any row to see the email, what the system made of it, and how that compares with the answer key."),
   ...emailTable(D.emails, {}));
 document.getElementById("stress").append(h("h2", {}, "Unseen situations"),
-  h("p", {class: "lede"}, "Situations the practice inbox doesn't have, each written with its correct answer before the system saw it. This is the fairer test: nothing here was tuned on."),
+  h("p", {class: "lede"}, "Situations the practice inbox doesn't have. Each was written together with its correct answer before the system first ran on it. When a result here led to an improvement, the change was a general rule, never one written for a particular email. Two expected answers were adjusted afterwards, and both changes are recorded in the test file."),
   ...emailTable(S.emails, {scenario: true}));
 document.getElementById("proof").append(...proof());
 document.getElementById("words").append(...words());
@@ -419,7 +420,8 @@ function route() {
   const id = decodeURIComponent(location.hash.slice(1));
   if (!id) return;
   const tab = document.querySelector(`nav [data-tab="${CSS.escape(id)}"]`);
-  if (tab) { tab.click(); return; }
+  // the browser also jumps to the section with this id; start at the top instead
+  if (tab) { tab.click(); requestAnimationFrame(() => window.scrollTo(0, 0)); return; }
   const e = D.emails.find(x => x.id === id) || S.emails.find(x => x.id === id);
   if (e) {
     document.querySelector(`nav [data-tab="${D.emails.includes(e) ? "inbox" : "stress"}"]`).click();
