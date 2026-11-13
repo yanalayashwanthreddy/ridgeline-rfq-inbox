@@ -27,7 +27,7 @@ chose the order.
 
 Work went in small commits. A scorer implementing the README's grading came early, and every
 change was judged by its numbers. To avoid fitting dev, I approved a stress inbox whose answers
-were written before each run, and later chose a generated test for the matcher. I asked for a
+were written before their first run (two adjusted later, both recorded), and later chose a generated test for the matcher. I asked for a
 code review of the helper scripts. It found real problems, and they were fixed (`1d06114`): the
 session-log export was rewriting the word "task-notification" and could delete `ai-sessions/`.
 `scripts/verify.py` re-checks the submission from a fresh clone, and with `--linux` on Python 3.11

@@ -28,9 +28,9 @@ JSON schema) → `guards` (code) → `threads` (code) → `matcher` (code, [MATC
   - Lines read from a picture get a second, independent reading, and a disagreement is flagged.
 
 **Measured, not guessed.** A scorer implements the README's grading. The 25-email **stress
-inbox** holds situations dev lacks, with answers written **before** each run: tracked changes,
-Spanish, "make #3 twelve and kill #5", a redelivery, a 35-page PDF, a BOM in a zip, an iPhone
-HEIC photo, a handwritten list.
+inbox** holds situations dev lacks, each written with its answer **before** its first run: tracked
+changes, Spanish, "make #3 twelve and kill #5", a redelivery, a 35-page PDF, a BOM in a zip, an
+iPhone HEIC photo, a handwritten list. Two answers were adjusted later, both recorded with them.
 
 | | classes | lines recall · precision | silent | hallucinated | context | review P/R |
 |---|---|---|---|---|---|---|
