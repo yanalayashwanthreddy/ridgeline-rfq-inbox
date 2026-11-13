@@ -52,6 +52,13 @@ def sim(a: str, b: str) -> float:
     return len(ta & tb) / len(ta | tb) if ta | tb else 0.0
 
 
+def qty_ok(ln: dict, kk: dict) -> bool:
+    """README: qty_tol is a relative tolerance (0 = exact); both null counts as agreeing."""
+    if ln["qty"] is None or kk["qty"] is None:
+        return ln["qty"] is None and kk["qty"] is None
+    return abs(ln["qty"] - kk["qty"]) <= (kk.get("qty_tol") or 0) * abs(kk["qty"])
+
+
 def pair(ours: list[dict], keys: list[dict], thresh: float = 0.5):
     cand = sorted(((sim(o["raw"], k["raw"]), i, j) for i, o in enumerate(ours) for j, k in enumerate(keys)), reverse=True)
     used_o, used_k, pairs = set(), set(), []
@@ -122,9 +129,7 @@ def main(argv) -> int:
             ln, kk = ol[i], kl[j]
             if kk.get("qty_tol") is not None:
                 c["qty_n"] += 1
-                q_ok = (ln["qty"] is None and kk["qty"] is None) or (
-                    ln["qty"] is not None and kk["qty"] is not None
-                    and abs(ln["qty"] - kk["qty"]) <= kk["qty_tol"] * abs(kk["qty"]))
+                q_ok = qty_ok(ln, kk)
                 c["qty_ok"] += q_ok
                 if not q_ok:
                     problems.append(f"{eid}: qty {ln['qty']} (key {kk['qty']}) on {kk['raw']!r}")

@@ -19,9 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from rfq.ingest import load_email  # noqa: E402
 from rfq.llm import cost_usd  # noqa: E402
-from rfq.score import mentions, pair  # noqa: E402
-
-REQ = {"rfq", "rfq_revision", "purchase_order"}
+from rfq.score import mentions, pair, qty_ok  # noqa: E402
 
 
 def name(sender: str) -> str:
@@ -44,15 +42,15 @@ def main() -> int:
     for eid in sorted(parsed):
         o, em, st = parsed[eid], load_email(a.emails / f"{eid}.eml"), report["emails"].get(eid, {})
         k = key.get(eid)
-        checks = {}
+        checks, missed = {}, []
         if k:
             pairs, extra, missed = pair(o["line_items"], k.get("line_items") or [])
             for i, j in pairs:
                 kk, ln, probs = k["line_items"][j], o["line_items"][i], []
-                if kk.get("qty_tol") is not None and ln["qty"] != kk["qty"]:
+                if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
                     probs.append(f"qty should be {kk['qty']}")
                 if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
-                    probs.append(f"unit should be {kk['uom']}")
+                    probs.append(f"unit should be {kk['uom'] or 'EA'}")
                 probs += [f"missing {m}" for m in kk.get("must_mention") or [] if not mentions(ln["description"], m)]
                 probs += [f"should not say {m}" for m in kk.get("must_not_mention") or [] if mentions(ln["description"], m)]
                 checks[i] = "; ".join(probs) or "matches"
@@ -76,9 +74,13 @@ def main() -> int:
             "needs_review": "yes" if o["needs_review"] else "no", "review_reason": o.get("review_reason") or "",
             "revises": o.get("revises") or "", "duplicate_of": o.get("duplicate_of") or "",
             "model_reason": st.get("model_reason") or "",
-            "cost_usd": round(cost_usd(report.get("model", ""), st["usage"]) or 0, 5) if st.get("usage") else None,
+            # None (unknown price), not 0: a model missing from PRICES must not look free
+            "cost_usd": (round(c, 5) if (c := cost_usd(report.get("model", ""), st["usage"])) is not None else None)
+            if st.get("usage") else None,
             "key_classification": k["classification"] if k else "",
             "key_lines": len(k.get("line_items") or []) if k else None,
+            # key lines no extracted line pairs with: the silent part of a recall miss
+            "missed_lines": [k["line_items"][j]["raw"] for j in missed] if k else [],
         })
     a.out.mkdir(parents=True, exist_ok=True)
     (a.out / "lines.json").write_text(json.dumps(lines, indent=1, ensure_ascii=False), encoding="utf-8")
