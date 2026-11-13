@@ -29,7 +29,7 @@ quote-desk page that shows every extracted line.
 ## Three moments
 
 1. **The agent was wrong, and a check caught it.** To stop Windows from rewriting the data
-   files' line endings, the agent wrote a `.gitattributes` (`80f0d99`) in which the `*.json` /
+   files' line endings, the agent wrote a `.gitattributes` (`80f0d99`) in which the `*.md` /
    `*.py` text rules came *after* `data/**` and won, so the package's README and helper scripts
    would still have been converted. A byte-for-byte comparison of the committed data against the original
    package flagged the mismatches, and the rules were reordered (`22d7885`). This was verified

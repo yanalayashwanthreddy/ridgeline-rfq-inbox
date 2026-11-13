@@ -9,3 +9,4 @@
 *.json -text
 cache/** -text
 data/** -text
+ai-sessions/** -text
