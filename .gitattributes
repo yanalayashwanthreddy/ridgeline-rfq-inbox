@@ -11,3 +11,4 @@ cache/** -text
 data/** -text
 ai-sessions/** -text
 tests/fixtures/** -text
+report.html -text
