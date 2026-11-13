@@ -8,41 +8,82 @@ notes), the lines extracted and where each came from (click a line to find it in
 the model's stated reason, what the code guards changed, tokens and cost, and -- with --key --
 how the result compares to the answer key.
 
+Catalog matches: each line's part (or not-in-catalog / ambiguous) with its reason, and a rep can
+accept it or overturn it. Decisions go to <parsed>.rep_decisions.json, never into parsed.json:
+the system's answer and the person's correction stay separate, so disagreements can be counted.
+
 Email content is untrusted (anyone can mail the inbox): everything is rendered as escaped text,
-never as the email's own HTML.
+never as the email's own HTML. The one write (POST /decide) needs a per-run token that only
+pages served by this process carry, so another site open in the browser cannot post to it.
 """
 
 from __future__ import annotations
 
 import argparse
+import hmac
 import html
 import json
+import os
 import re
+import secrets
 import sys
 import threading
 import webbrowser
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote
+from urllib.parse import parse_qs, unquote
 
+from .config import ROOT
 from .guards import _clean_line
 from .ingest import STRIKE_L, STRIKE_R, Email, load_email
 from .llm import cost_usd
+from .matcher import alternatives, load_catalog
 from .prompt import REQUEST_CLASSES
-from .score import mentions, pair
+from .score import mentions, pair, qty_ok
 
 E = html.escape
 
 
 class State:
-    def __init__(self, emails: Path, parsed: Path, key: Path | None):
+    def __init__(self, emails: Path, parsed: Path, key: Path | None, catalog: Path | None = None):
         self.dir = emails
         self.parsed = json.loads(parsed.read_text(encoding="utf-8"))
         rp = parsed.with_name(parsed.stem + ".report.json")
         self.report = json.loads(rp.read_text(encoding="utf-8")) if rp.exists() else {"emails": {}}
         self.key = json.loads(key.read_text(encoding="utf-8"))["emails"] if key else None
+        self.catalog = load_catalog(catalog) if catalog and catalog.is_file() else []
+        self.parts = {p.sku: p for p in self.catalog}
+        self.decisions_path = parsed.with_name(parsed.stem + ".rep_decisions.json")
+        self.decisions: dict = (json.loads(self.decisions_path.read_text(encoding="utf-8"))
+                                if self.decisions_path.exists() else {})
+        self.token = secrets.token_urlsafe(24)
         self._emails: dict[str, Email] = {}
         self._lock = threading.Lock()
+
+    def decide(self, eid: str, idx: int, action: str, sku: str, note: str) -> None:
+        ln = self.parsed[eid]["line_items"][idx]
+        if action == "accept":
+            rec = {"action": "accept", "match": ln.get("match"), "sku": ln.get("sku")}
+        elif action == "not_in_catalog":
+            rec = {"action": "overturn", "match": "not_in_catalog", "sku": None}
+        elif action == "sku" and sku in self.parts:
+            rec = {"action": "overturn" if sku != ln.get("sku") else "accept", "match": "matched", "sku": sku}
+        elif action == "clear":
+            rec = None
+        else:
+            raise ValueError("unknown SKU" if action == "sku" else "unknown action")
+        with self._lock:
+            lines = self.decisions.setdefault(eid, {})
+            if rec is None:
+                lines.pop(str(idx), None)
+            else:
+                rec.update(system={"match": ln.get("match"), "sku": ln.get("sku")}, note=note[:300],
+                           at=datetime.now(timezone.utc).isoformat(timespec="seconds"))
+                lines[str(idx)] = rec
+            tmp = self.decisions_path.with_suffix(".tmp")
+            tmp.write_text(json.dumps(self.decisions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            os.replace(tmp, self.decisions_path)
 
     def email(self, eid: str) -> Email:
         with self._lock:
@@ -82,6 +123,13 @@ tr.ln{cursor:pointer}tr.ln.on{background:color-mix(in srgb,var(--hl) 40%,transpa
 img.att{max-width:100%;border:1px solid var(--line);border-radius:6px;margin-top:6px}
 dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;margin:0}dt{color:var(--mut)}dd{margin:0}
 ul{margin:4px 0;padding-left:18px}s{color:var(--bad)}
+.m{border-top:1px solid var(--line);padding:8px 0}.m:first-of-type{border-top:0}
+.matched{background:#dcefe2;color:#14361f}.not_in_catalog{background:#f6dcda;color:#4a120e}.ambiguous{background:#f5e9c8;color:#3d2c00}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .matched{background:#1f3b2a;color:#c9ecd5}
+:root:not([data-theme=light]) .not_in_catalog{background:#45211e;color:#f6d3cf}:root:not([data-theme=light]) .ambiguous{background:#3d3218;color:#f3e2b3}}
+form.dec{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
+form.dec select,form.dec input,form.dec button{font:inherit;font-size:12.5px;padding:3px 6px;border:1px solid var(--line);border-radius:5px;background:var(--card);color:var(--fg);max-width:100%}
+form.dec button{cursor:pointer}form.dec button.pri{background:var(--acc);color:var(--card);border-color:var(--acc)}
 """
 
 JS = """
@@ -234,7 +282,7 @@ def detail(st: State, eid: str) -> bytes:
         pairs, extra, missed = pair(lines, k.get("line_items") or [])
         for i, j in pairs:
             kk, ln, probs = k["line_items"][j], lines[i], []
-            if kk.get("qty_tol") is not None and ln["qty"] != kk["qty"]:
+            if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
                 probs.append(f"qty key {kk['qty']}")
             if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
                 probs.append(f"uom key {kk['uom']}")
@@ -280,6 +328,8 @@ def detail(st: State, eid: str) -> bytes:
     right.append(f"<div class=card><h3>Line items ({len(lines)}) <span class=mut>— click a line to find it in the source</span></h3>"
                  + (f"<table><tr>{th}</tr>{rows}</table>" if lines else "<p class=mut>none</p>") + "</div>")
     right.append(missed_html)
+    if any("match" in ln for ln in lines):
+        right.append(catalog_card(st, eid, lines, k))
     if s.get("coverage_retry"):
         right.append(f"<div class=card><h3>Coverage check fired</h3><p class=mut>Code found numbered rows no line accounted "
                      f"for and asked the model once more:</p><pre>{E(s['coverage_retry'])}</pre></div>")
@@ -293,6 +343,52 @@ def detail(st: State, eid: str) -> bytes:
     body = (f"<header><h1>{E(eid)} · {E(em.subject)}</h1>{nav}</header><main><div class=grid>"
             f"<section>{''.join(left)}</section><section>{''.join(right)}</section></div></main>")
     return page(f"{eid} · RFQ results", body)
+
+
+def catalog_card(st: State, eid: str, lines: list[dict], k: dict | None) -> str:
+    """Each line's catalog decision, its reason, the key's answer, and accept / overturn."""
+    key_by_line = {}
+    if k:
+        pairs, _, _ = pair(lines, k.get("line_items") or [])
+        key_by_line = {i: k["line_items"][j] for i, j in pairs}
+    out = []
+    for i, ln in enumerate(lines):
+        if "match" not in ln:
+            continue
+        part = st.parts.get(ln.get("sku") or "")
+        what = f"<b>{E(ln['sku'])}</b> {E(part.description) if part else ''}" if ln.get("sku") else ""
+        kk = key_by_line.get(i)
+        vs = ""
+        if kk and kk.get("match"):
+            same = kk["match"] == ln["match"] and kk.get("sku") == ln.get("sku")
+            vs = (" <span class=ok>✓ key agrees</span>" if same else
+                  f" <span class=bad>✗ key: {E(kk['match'])} {E(kk.get('sku') or '')}</span>")
+        d = st.decisions.get(eid, {}).get(str(i))
+        dec = ""
+        if d:
+            verb = "accepted" if d["action"] == "accept" else "overturned to"
+            dec = (f"<div class={'ok' if d['action'] == 'accept' else 'warn'}>Rep {verb} "
+                   f"{E(d['match'])} {E(d.get('sku') or '')}{' — ' + E(d['note']) if d.get('note') else ''} "
+                   f"<span class=mut>{E(d['at'])}</span></div>")
+        opts = "".join(
+            f"<option value='{E(p.sku)}'{' selected' if p.sku == ln.get('sku') else ''}>{E(p.sku)} · {E(p.description)}</option>"
+            for p in alternatives(ln["description"], st.catalog))
+        hidden = f"<input type=hidden name=t value='{E(st.token)}'><input type=hidden name=e value='{E(eid)}'><input type=hidden name=i value='{i}'>"
+        form = (f"<form class=dec method=post action=/decide>{hidden}"
+                f"<button class=pri name=a value=accept>Accept</button>"
+                f"<span class=mut>or</span><select name=s aria-label='pick a stocked part'><option value=''>pick a stocked part…</option>{opts}</select>"
+                f"<input name=sku placeholder='or type a SKU' size=10 aria-label='SKU'>"
+                f"<button name=a value=sku>Use this part</button>"
+                f"<button name=a value=not_in_catalog>Not in catalog</button>"
+                f"<input name=note placeholder='note (optional)' size=14 aria-label='note'>"
+                + ("<button name=a value=clear>Undo</button>" if d else "") + "</form>")
+        out.append(
+            f"<div class=m><div><span class=mut>{i + 1}.</span> {E(ln['description'])}</div>"
+            f"<div><span class='chip {E(ln['match'])}'>{E(ln['match'].replace('_', ' '))}</span> {what}{vs}</div>"
+            f"<div class=mut>{E(ln.get('match_reason') or '')}</div>{dec}{form}</div>")
+    n_dec = len(st.decisions.get(eid, {}))
+    return (f"<div class=card><h3>Catalog matches <span class=mut>— code decides; a rep accepts or overturns "
+            f"({n_dec} decided)</span></h3>{''.join(out)}</div>")
 
 
 # ----------------------------------------------------------------------------- server
@@ -316,6 +412,28 @@ def make_handler(st: State):
             except Exception as e:  # show the error, keep serving
                 return self._send(500, page("error", f"<main><pre>{E(type(e).__name__)}: {E(str(e))}</pre></main>"))
 
+        def do_POST(self):
+            if unquote(self.path) != "/decide":
+                return self._send(404, page("not found", "<main>not found</main>"))
+            try:
+                n = int(self.headers.get("Content-Length") or 0)
+                if n > 10_000:
+                    return self._send(413, page("too large", "<main>request too large</main>"))
+                f = {k: v[0] for k, v in parse_qs(self.rfile.read(n).decode("utf-8")).items()}
+                if not hmac.compare_digest(f.get("t", ""), st.token):
+                    return self._send(403, page("forbidden", "<main>stale or foreign page: reload and try again</main>"))
+                eid, idx = f.get("e", ""), int(f.get("i", "-1"))
+                if eid not in st.parsed or not 0 <= idx < len(st.parsed[eid]["line_items"]):
+                    return self._send(400, page("bad request", "<main>unknown email or line</main>"))
+                sku = (f.get("sku") or f.get("s") or "").strip().upper()
+                st.decide(eid, idx, f.get("a", ""), sku, f.get("note", "").strip())
+                self.send_response(303)
+                self.send_header("Location", f"/e/{eid}")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+            except ValueError as e:
+                return self._send(400, page("bad request", f"<main>{E(str(e))} — <a href='/'>back to the inbox</a></main>"))
+
         def _send(self, code, data: bytes, ctype="text/html; charset=utf-8"):
             self.send_response(code)
             self.send_header("Content-Type", ctype)
@@ -336,10 +454,11 @@ def main(argv=None) -> int:
     ap.add_argument("--emails", type=Path, required=True)
     ap.add_argument("--parsed", type=Path, required=True)
     ap.add_argument("--key", type=Path)
+    ap.add_argument("--catalog", type=Path, default=ROOT / "data" / "catalog.csv")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--no-browser", action="store_true")
     a = ap.parse_args(argv)
-    st = State(a.emails, a.parsed, a.key)
+    st = State(a.emails, a.parsed, a.key, a.catalog)
     srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(st))
     url = f"http://127.0.0.1:{a.port}/"
     print(f"viewer at {url}  (Ctrl+C to stop)")

@@ -337,6 +337,14 @@ def match_line(description: str, catalog: list[Part]) -> Match:
                  [p.sku for p in fits])
 
 
+def alternatives(description: str, catalog: list[Part], limit: int = 25) -> list[Part]:
+    """Stocked parts a rep might pick instead: same product and size, whatever else differs."""
+    w = read_line(description)
+    if not w.products:
+        return []
+    return [p for p in catalog if p.product in w.products and p.size == (w.size or "")][:limit]
+
+
 def match_all(parsed: dict, catalog: list[Part]) -> None:
     """Add sku / match / match_reason (and candidates) to every line, in place."""
     for rec in parsed.values():
