@@ -30,6 +30,21 @@ python -m venv .venv; .venv\Scripts\python -m pip install -r requirements.txt
 Format check: `.venv\Scripts\python data\check_format.py parsed.json --emails data\dev\emails`
 (24 emails, 0 problems).
 
+**Check everything at once** (about 15 s, offline, no key needed):
+
+```powershell
+.venv\Scripts\python scripts\verify.py
+```
+
+It clones the last commit into a temp folder and checks it the way a grader would:
+- the keyless replay is byte-identical to `parsed.json`, and a second run makes 0 calls;
+- format check;
+- dev and stress scores: 0 silent losses, 0 hallucinated lines, 0 confident wrong matches;
+- the tests and a generated matcher test;
+- no API key in any tracked file, and the repo is under 50 MB.
+
+Exit code 0 means everything passed.
+
 ## Model
 
 `gpt-5.4-mini-2026-03-17` (a pinned snapshot, so a re-run can't drift), reasoning effort
