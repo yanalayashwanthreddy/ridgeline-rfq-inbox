@@ -5,136 +5,127 @@
 ## Who decides what
 
 `ingest` (code) → **one model call per email** (`gpt-5.4-mini-2026-03-17`, effort medium, strict
-JSON schema) → `guards` (code) → `threads` (code) → `matcher` (code; see [MATCHER.md](MATCHER.md)).
+JSON schema) → `guards` (code) → `threads` (code) → `matcher` (code, [MATCHER.md](MATCHER.md)).
 
-- **Code reads the files**, keeping the structure that carries meaning: hidden sheets and rows,
-  merged headings and struck cells (xlsx/xls); tracked deletions (docx); PDF rows rebuilt from
-  word positions, scans sent as images; zips and Outlook `.msg` unpacked; legacy `.doc`/`.xls`;
-photos turned upright, read twice when lines come from them. A broken part
-  becomes `unreadable` with a reason. It never raises.
-- **The model judges.** It decides the class, which lines are requests, and the self-contained
-  description (heading scope, overrides beat defaults, quoted history is not a request). The prompt
-  states principles; its one example is invented, not a dev row.
+- **Code reads the files**, keeping the structure that carries meaning:
+  - hidden sheets and rows, merged headings and struck cells (xlsx/xls);
+  - tracked deletions (docx);
+  - PDF rows rebuilt from word positions, with scans sent as images;
+  - zips and Outlook `.msg` unpacked;
+  - photos turned upright.
+
+  A broken part becomes `unreadable` with a reason. It never raises.
+- **The model judges.** It decides the class, which lines are requests, and each line's
+  self-contained description (heading scope, overrides beat defaults, quoted history is not a
+  request). The prompt states principles; its one example is invented, not a dev row.
 - **Code checks every fact it can.**
-  - Struck and hidden-only lines are dropped, whatever the model said.
+  - Struck and hidden lines are dropped, whatever the model said.
   - Non-requests carry no lines.
-  - A request with no lines, or an unreadable part, is always `needs_review`.
-  - `source` must be a real part.
-  - `raw` is snapped to its unique source row, because the model's copy varies run to run.
-  - A numbered row that no line covers gets one more call naming it. That caught a dropped PO line
-    in E015 ($0.004).
+  - A request with no lines, or an unreadable part, is `needs_review`.
+  - `raw` is snapped to its source row, because the model's copy varies run to run.
+  - A numbered row no line covers gets one more call naming it; that caught a dropped PO line
+    in E015.
+  - Lines read from a picture get a second, independent reading, and a disagreement is flagged.
 
-**Measured, not guessed.** I wrote a scorer implementing the README's grading, and a 22-email
-**stress inbox** of situations dev lacks, with answers written **before** each run: tracked
-changes, Spanish, an invoice with item lines, "make #3 twelve and kill #5", a byte-identical
-redelivery, a 35-page PDF, a BOM in a zip, an iPhone HEIC photo.
+**Measured, not guessed.** A scorer implements the README's grading. The 25-email **stress
+inbox** holds situations dev lacks, with answers written **before** each run: tracked changes,
+Spanish, "make #3 twelve and kill #5", a redelivery, a 35-page PDF, a BOM in a zip, an iPhone
+HEIC photo, a handwritten list.
 
-| | classes | lines (recall/precision) | silent | hallucinated | context |
-|---|---|---|---|---|---|
-| dev | 24/24 | 210/210 · 210/210 | 0 | 0 | 172/173 |
-| stress | 22/22 | 141/141 · 141/141 | 0 | 0 | 140/141 |
+| | classes | lines recall · precision | silent | hallucinated | context | review P/R |
+|---|---|---|---|---|---|---|
+| dev | 24/24 | 210/210 · 210/210 | 0 | 0 | 172/173 | 100 / 100% |
+| stress | 25/25 | 148/148 · 148/148 | 0 | 0 | 147/148 | 100 / 100% |
 
-`scripts/verify.py` re-checks all of this, the keyless replay and the hygiene rules from a fresh
-clone in about 15 s.
+`scripts/verify.py --linux` re-checks this from a fresh clone, on Windows and on Python 3.11 /
+Linux. That run caught 3.12-only syntax that wouldn't start on 3.11, and an OS-dependent MIME type
+that broke one cache key on Linux.
 
-**Rejected:** gpt-5.5 (4.6× the cost, *worse* context: it "corrected" `A53B` to `A53 Grade B`);
-two calls per email (double cost, same reading). `.doc`/`.msg` readers were first rejected as
-untestable, then built once real Apache POI test files gave fixtures; expected values come from
-antiword and extract-msg. A `.doc`'s formatting isn't read, so a struck line can't be told
-apart from a live one: those emails are still flagged, now with their lines.
+**Rejected:**
+- gpt-5.5: 4.6× the cost, and *worse* on context (it "corrected" `A53B` to `A53 Grade B`).
+- Two calls per email: double the cost for the same reading.
+- `.doc`/`.msg` readers, at first, as untestable. They were built once real Apache POI files
+  gave fixtures, checked against antiword and extract-msg. A `.doc`'s strikethrough isn't
+  visible, so those emails are still flagged.
 
 ## Something in the data that surprised you
 
 The most request-shaped text in the inbox is usually not a request.
 - E013's bounce carries a perfect numbered list of valves: it is *our own* RFQ to a supplier.
 - E011 is a supplier's price list.
-- E005's workbook is named `RevB` and hides a sheet `Rev A (old)`. A reader that loads every sheet
-  quotes both revisions, and a model that sees the filename calls it a revision with no earlier
-  email.
+- E005's `RevB` workbook hides a sheet `Rev A (old)`. Load every sheet and you quote both
+  revisions; trust the filename and you call it a revision with no earlier email.
 
-Meanwhile the real requests hide: in a merged cell two rows up (`ALL FITTINGS BW SCH 40 A234 WPB
-UNLESS NOTED`, with one row overriding it to SCH 80), or on a photo of a nameplate. Most of the
-accuracy came from *ingest* faithfully marking hidden, struck and merged structure, not from the
-prompt.
+The real requests hide: in a merged cell two rows up (`ALL FITTINGS BW SCH 40 A234 WPB UNLESS
+NOTED`, one row overriding to SCH 80), or on a nameplate photo. Most accuracy came from *ingest*
+marking that structure, not from the prompt.
 
-A second surprise: **dev agrees with you too easily.** The matcher scored 210/210 on dev. A test
-generated from the catalog, whose expected answers come from the catalog table and not from my
-logic, then found **113 confident wrong matches**: grades matched too loosely, `A-105 class 150`
-read as class 105.
+And **dev agrees with you too easily.** The matcher scored 210/210 on dev. A test generated from
+the catalog, with answers from the catalog table rather than my logic, found **113 confident wrong
+matches** (grades matched too loosely, `A-105 class 150` read as class 105).
 
 ## Something in the brief or README you disagree with
 
-The README allows `needs_review` only on `rfq`, `rfq_revision` and `purchase_order`. But the
-brief's costliest failure is "a customer who never hears back", and some non-requests need a
-person: a bounce of *our quote to a customer*, a "we went with someone else" that should close a
-quote, a buyer's out-of-office on a deadline job. Under the contract these come back `auto_reply`
-/ `other` with nothing to act on.
+The README allows `needs_review` only on requests. But the brief's costliest failure is "a
+customer who never hears back", and some non-requests need a person: our quote bouncing, a
+customer asking where their quote is, a lost deal to close.
 
-**What I did:** kept the contract exactly (guards enforce it, because it is scored), and added a
-separate field instead of bending it.
-- `attention` is a one-line action, or null, for non-requests a person must act on. It's decided
-  by code from the class plus evidence: "our email to sales@… ('Quote request…') was not
-  delivered: fix the address and resend"; "customer is waiting for an answer about Q-26-04417";
-  "close Q-26-04512 as lost"; "invoice INV-88412: route to accounting".
-- Marketing and out-of-office get null, because an action list that cries wolf stops being read.
+**What I did:** kept the contract exactly (it is scored) and added a separate field, `attention`.
+It's a one-line action decided by code from the class plus evidence:
+- "our email to sales@… ('Quote request…') was not delivered: fix the address and resend";
+- "customer is waiting for an answer about Q-26-04417";
+- "close Q-26-04512 as lost".
 
-On dev and stress it matches what I wrote down before building it, on all 10 non-requests.
-`check_format.py` accepts the extra field.
+Marketing and out-of-office get null, because an action list that cries wolf stops being read. It
+matched what I wrote down beforehand on all 10 non-requests, and `check_format.py` accepts it.
 
 ## Predicted held-out numbers, and two kinds of email I expect to get wrong
 
-Dev is 100% partly because I looked at it; stress is the fairer guide. For ~40 held-out emails:
+Stress, not dev, is the guide. For ~40 held-out emails:
 
-| silent | hallucinated | lost/phantom | classes | recall / precision | qty · uom · source | context | review P / R | matcher wrong · NIC recall |
+| silent | halluc. | lost/phantom | classes | recall / precision | qty · uom · source | context | review P/R | matcher wrong · NIC |
 |---|---|---|---|---|---|---|---|---|
-| **0** | **2–5** | **1–2** | **~90%** | **~90% / ~95%** | **~95 · 97 · 97%** | **~85%** | **~80 / 90%** | **0–2 · ~85%** |
+| **0** | **2–5** | **1–2** | **~90%** | **~90 / 95%** | **~95 · 97 · 97%** | **~85%** | **~80 / 90%** | **0–2 · ~85%** |
 
-Silent is 0 because code flags any request that comes back with no lines; review recall beats
-precision because I flag on doubt.
+Silent is 0 because code flags any request with no lines. Review recall beats precision because I
+flag on doubt.
 
-1. **Photos and scans of handwritten lists.** Code can't check a picture, but it can check two
-   readings against each other. Lines from pictures get an independent second reading, and a
-   different count or quantity flags the email, naming the line ("quantity read as 6 and as 8").
-   On dev and stress all 8 picture emails, a handwritten list included, read the same twice. What
-   remains: a misreading both reads share, and a `raw` that pairs badly with the key's own reading.
-2. **Revisions, at the rfq/revision boundary.** "Kill #5" with the original neither in the inbox
-   nor quoted is now flagged by code (it can't be rebuilt), and a quoted original is rebuilt (stress
-   S22/S23). What remains is the judgement: is Rev B / a resend / "also add" a new rfq or a revision?
-   I chose "a revision only changes an *earlier email*"; held-out may draw it differently.
+1. **Photos and scans.** Two readings are compared, and a different count or quantity flags the
+   line ("read as 6 and as 8"). What remains is a misreading both readings share, and a picture
+   `raw` that pairs badly with the key's own reading.
+2. **The rfq/revision boundary.** A "kill #5" whose original is neither in the inbox nor quoted
+   is flagged; a quoted original is rebuilt (stress S22/S23). The judgement remains: is Rev B /
+   a resend / "also add" a new rfq or a revision? I chose "a revision changes an *earlier email*".
 
 ## How this runs for real
 
 **Built:**
-- a content-addressed cache (sha256 of model, effort, prompt and full content incl. image bytes;
-  atomic writes);
-- 3 retries with timeouts and a circuit breaker after 3 consecutive failures;
+- a content-addressed cache (sha256 of model, effort, prompt and content incl. image bytes);
+- retries, and a circuit breaker after 3 consecutive failures;
 - a header-based fallback per email, and per-email isolation;
 - windowed long PDFs;
-- a per-email cost and token report.
+- a per-email cost report.
 
 **Not built:** the webhook, a queue, a database.
 
-- **3,000 emails a day.** $0.0083 per email measured (about 4,430 tokens, incl. second readings of pictures), so about **$25/day**.
-  Median latency is 4.9 s and the worst 24 s; 3,000/day is ~2 a minute, so one worker keeps up.
-  Design: the webhook stores the raw `.eml` and enqueues its hash; workers run `process_one`;
-  thread linking becomes a lookup in a store of past emails by Message-ID, subject and domain.
-- **Provider down for two hours.** After the retries, the breaker trips and the rest get the
-  fallback: auto_reply/bulk by header, everything else `rfq` + `needs_review`. Fallbacks aren't
-  cached, so the next run re-calls exactly those. For real: hold them in the queue with backoff
-  and an alert. 250 emails on a person's desk is worse than a 2-hour delay.
-- **A 300-page PDF.** Built. It's read in windows of 30 pages (16 if scanned), one cached call
-  each: ~10 calls, ~$0.30. Each window also gets page 1 and the previous window's end as
-  context-only, because a heading on page 2 can govern page 40. A failed window flags review
-  and keeps what was read; past 300 pages the rest is flagged. Stress S18: 105/105 rows (the
-  old 30-page cap lost 15). Not done: a relevance pass to skip spec-book pages that hold no
-  items.
-- **The same email delivered twice.** Built two ways. The redelivery hashes to the same cache
-  key, so it's free, and `threads` marks the later one `duplicate_of` (stress S13 is a byte copy).
-  For real, dedupe on Message-ID plus body hash at the webhook.
+- **3,000 emails a day.** $0.0083 per email measured (about 4,430 tokens), so about **$25/day**.
+  Median latency is 4.9 s, so ~2 emails a minute needs one worker. The webhook stores the raw
+  `.eml` and enqueues its hash; workers run `process_one`; thread linking becomes a lookup in a
+  store of past emails.
+- **Provider down for two hours.** The breaker trips. Headers settle auto_reply and bulk;
+  everything else becomes `rfq` + `needs_review`. Fallbacks aren't cached, so the next run re-calls
+  exactly those. For real: hold them in the queue with an alert, because 250 emails on a desk is
+  worse than a 2-hour delay.
+- **A 300-page PDF.** Built: windows of 30 pages (16 if scanned), one cached call each, ~$0.30.
+  Every window also gets page 1 and the previous window's end as context. A failed window flags
+  review. Stress S18: 105/105 rows, where the old 30-page cap lost 15. Not done: skipping
+  spec-book pages that hold no items.
+- **The same email delivered twice.** Built. The redelivery hits the same cache key, so it's free,
+  and `threads` marks it `duplicate_of` (stress S13). For real, dedupe at the webhook.
 
 ## Known broken / next
 
-- `raw` read from pictures varies between runs (E023). The cache makes it stable, not right.
-- Thread linking only sees the current inbox; there's no memory of last week.
-- The matcher reads only our `description`, so a context miss upstream becomes a match miss.
-- Next: the viewer's rep overturns as the matcher's live error rate; `attention` as a queue for the desk.
+- Picture `raw` varies between runs (E023). The cache makes it stable, not right.
+- Thread linking sees only the current inbox.
+- The matcher reads only our `description`, so an upstream context miss becomes a match miss.
+- Next: rep overturns as the matcher's live error rate; `attention` as the desk's queue.
