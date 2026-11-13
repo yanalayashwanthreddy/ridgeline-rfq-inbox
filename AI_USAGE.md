@@ -21,7 +21,7 @@ before building it, and I made the calls: the git identity, keeping the key in `
 extracts, code checks" with one call per email, and choosing the model by measurement
 (I picked `gpt-5.4-mini` at medium after a three-way bake-off on cost against accuracy). Work went in small commits: ingest, then
 the pipeline, then prompt versions. A scorer that implements the README's grading was written
-early, and every change was judged by its numbers, not by eye. To avoid fitting dev, I asked for a
+early, and every change was judged by its numbers, not by eye. To avoid fitting dev, the agent proposed and I approved a
 stress inbox of situations dev doesn't show, with its answers written *before* the system ran on
 it. I reviewed results in a local viewer that shows one email end to end, and a hosted
 quote-desk page that shows every extracted line.
