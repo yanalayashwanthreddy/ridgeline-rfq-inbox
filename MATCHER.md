@@ -37,6 +37,18 @@ stocked part agrees with everything the customer wrote, and it says why in one c
    an A350 LF2 low-temperature flange would "match" the A105 flange: right size, right class,
    wrong metal. A line whose product can't be read is `ambiguous`, never matched.
 
+## Advice for the rep (never changes `qty` or the match)
+
+- **Unit.** The customer's unit is compared with the unit we sell in. Dev has 12 pipe lines
+  asked in joints ("12 jts") but sold per foot. Quoting 12 against a per-foot price is a wrong
+  quote by a factor of 20. With a stated length the reason does the arithmetic
+  ("20 × 21 ft lengths = 420 FT"); without one it says "ask the footage". Gaskets asked in SETs
+  but sold each get "check the quantity". `qty` stays as stated, as the README requires.
+- **Ambiguous, but the request decides it.** A 4" 316/graphite gasket is stocked in 150# and
+  300#. When the same request's matched flanges are 300#, the 300# gasket is listed first and
+  named as likely. It stays `ambiguous` with no SKU, so a person confirms; the viewer
+  pre-selects it, so that's one click. Only a single survivor is ever suggested.
+
 ## Where a model helps, and what it must never decide
 
 **Helps:**

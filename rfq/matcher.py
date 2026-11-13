@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import csv
 import re
+from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -177,6 +178,7 @@ class Part:
     material: str
     ends: str
     extra: str
+    uom: str = "EA"  # the unit we sell it in (pipe: FT)
 
 
 @dataclass
@@ -390,11 +392,75 @@ def alternatives(description: str, catalog: list[Part], limit: int = 25) -> list
     return [p for p in catalog if p.product in w.products and p.size == (w.size or "")][:limit]
 
 
+LENGTH = re.compile(r"\b(\d{1,2}(?:\.\d)?)\s*(?:'|’|ft\b|foot\b|feet\b)(?!\s*x)", re.I)
+RANDOM_LENGTH = re.compile(r"\b(?:s|d)rl\b|random\s*lengths?", re.I)
+
+
+def unit_note(ln: dict, part: Part) -> str | None:
+    """The customer's unit vs the unit we sell in. Advice only: qty stays as stated (README).
+    Pipe asked for in joints/lengths but sold per foot is the common case."""
+    asked = (ln.get("uom") or "EA").upper()
+    sold = (part.uom or "EA").upper()
+    if asked == sold:
+        return None
+    qty = ln.get("qty")
+    if asked == "EA" and sold == "FT":
+        text = f"{ln.get('description') or ''} {ln.get('raw') or ''}"
+        m = LENGTH.search(text)
+        if m and qty:
+            feet = qty * float(m[1])
+            feet = int(feet) if float(feet).is_integer() else round(feet, 1)
+            return f"sold per FT: {qty} × {m[1]} ft lengths = {feet} FT"
+        if RANDOM_LENGTH.search(text):
+            return "sold per FT; asked for in random lengths (single ~20 ft, double ~40 ft): confirm footage"
+        return f"sold per FT; asked for {qty if qty is not None else 'a number of'} lengths/pieces and no length is stated: ask the footage"
+    return f"asked in {asked}, sold per {sold}: check the quantity"
+
+
+def suggest(cands: list[Part], context: list[Part]) -> tuple[Part, str] | None:
+    """For an ambiguous line: does the rest of this request decide it? For each attribute the
+    candidates differ in, keep the ones whose value the email's matched lines use. Only a single
+    survivor is suggested, and it stays a suggestion: the line remains ambiguous."""
+    left, why = list(cands), []
+    for attr in ("spec", "material", "ends", "extra"):
+        values = {getattr(p, attr) for p in left}
+        if len(values) < 2:
+            continue
+        used = Counter(getattr(p, attr) for p in context if getattr(p, attr) in values)
+        if not used:
+            continue
+        left = [p for p in left if getattr(p, attr) in used]
+        why.append(f"{attr} {'/'.join(sorted(used))}")
+    if len(left) == 1 and why:
+        return left[0], ", ".join(why)
+    return None
+
+
 def match_all(parsed: dict, catalog: list[Part]) -> None:
     """Add sku / match / match_reason (and candidates) to every line, in place."""
+    by_sku = {p.sku: p for p in catalog}
     for rec in parsed.values():
-        for ln in rec.get("line_items") or []:
+        lines = rec.get("line_items") or []
+        results = []
+        for ln in lines:
             try:
-                ln.update(match_line(ln.get("description") or "", catalog).fields())
+                results.append(match_line(ln.get("description") or "", catalog))
             except Exception as e:  # a matcher bug must never cost the parse
-                ln.update({"sku": None, "match": "ambiguous", "match_reason": f"matcher error: {type(e).__name__}"})
+                results.append(Match("ambiguous", None, f"matcher error: {type(e).__name__}"))
+        context = [by_sku[m.sku] for m in results if m.match == "matched"]
+        for ln, m in zip(lines, results):
+            try:
+                if m.match == "ambiguous" and m.candidates and context:
+                    s = suggest([by_sku[c] for c in m.candidates], context)
+                    if s:
+                        part, why = s
+                        m.candidates = [part.sku] + [c for c in m.candidates if c != part.sku]
+                        m.reason += (f"; likely {part.sku} {part.description}: the other matched lines on this "
+                                     f"request use {why} (a suggestion; confirm)")
+                part = by_sku.get(m.sku) if m.sku else None
+                note = unit_note(ln, part) if part else None
+                if note:
+                    m.reason += f"; {note}"
+            except Exception as e:
+                m.reason += f"; (advice skipped: {type(e).__name__})"
+            ln.update(m.fields())

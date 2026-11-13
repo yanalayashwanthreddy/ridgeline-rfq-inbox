@@ -116,3 +116,41 @@ def test_generated_lines_have_no_confident_wrong():
     out = subprocess.run([sys.executable, str(root / "scripts" / "matcher_fuzz.py"), "--per-part", "1", "--seed", "11"],
                          capture_output=True, text=True, encoding="utf-8", check=True).stdout
     assert "confident wrong matches: 0" in out, out
+
+
+# ---- advice: never changes qty or the match, only tells the rep
+
+
+def _run(lines):
+    parsed = {"E1": {"line_items": [dict(ln) for ln in lines]}}
+    match_all(parsed, CAT)
+    return parsed["E1"]["line_items"]
+
+
+def test_joints_of_pipe_sold_per_foot_are_converted_when_length_is_stated():
+    (ln,) = _run([{"description": '1" SCH 80 A106B seamless pipe, plain ends, 21 ft', "raw": "20 jts", "qty": 20, "uom": None}])
+    assert ln["match"] == "matched" and "20 × 21 ft lengths = 420 FT" in ln["match_reason"]
+    assert ln["qty"] == 20, "qty stays as the customer stated it (README)"
+
+
+def test_joints_without_a_length_say_ask():
+    (ln,) = _run([{"description": '2" SCH 40 A53B ERW pipe, plain ends', "raw": "12 jts", "qty": 12, "uom": "EA"}])
+    assert "no length is stated" in ln["match_reason"]
+
+
+def test_same_unit_gets_no_advice():
+    (ln,) = _run([{"description": '2" SCH 40 A53B ERW pipe, plain ends', "raw": "200 ft", "qty": 200, "uom": "FT"}])
+    assert "sold per" not in ln["match_reason"]
+
+
+def test_ambiguous_line_gets_a_suggestion_from_the_rest_of_the_request():
+    lines = _run([{"description": '4" 300# RF weld neck flange, A105', "qty": 8, "uom": "EA"},
+                  {"description": '4" spiral wound gasket, 316/graphite', "qty": 16, "uom": "EA"}])
+    gasket = lines[1]
+    assert gasket["match"] == "ambiguous" and gasket["sku"] is None, "a suggestion is not a match"
+    assert gasket["candidates"][0] == "RL-31103" and "likely RL-31103" in gasket["match_reason"]
+
+
+def test_no_suggestion_without_evidence():
+    (ln,) = _run([{"description": '4" spiral wound gasket, 316/graphite', "qty": 16, "uom": "EA"}])
+    assert ln["match"] == "ambiguous" and "likely" not in ln["match_reason"]

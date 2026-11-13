@@ -90,7 +90,7 @@
         "source": "body",
         "sku": "RL-31103",
         "match": "matched",
-        "match_reason": "GSKT SPW 4\" 300# 316/GRAPHITE: the only stocked part with every stated attribute"
+        "match_reason": "GSKT SPW 4\" 300# 316/GRAPHITE: the only stocked part with every stated attribute; asked in SET, sold per EA: check the quantity"
       }
     ]
   },
@@ -1527,10 +1527,10 @@
         "source": "P3_BOM.xlsx",
         "sku": null,
         "match": "ambiguous",
-        "match_reason": "2 stocked parts fit; customer did not state spec",
+        "match_reason": "2 stocked parts fit; customer did not state spec; likely RL-31103 GSKT SPW 4\" 300# 316/GRAPHITE: the other matched lines on this request use spec 300# (a suggestion; confirm)",
         "candidates": [
-          "RL-30807",
-          "RL-31103"
+          "RL-31103",
+          "RL-30807"
         ]
       }
     ]
@@ -1589,7 +1589,7 @@
         "source": "IMG_7730.HEIC",
         "sku": "RL-39909",
         "match": "matched",
-        "match_reason": "PIPE 1\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 1\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute; sold per FT: 20 × 21 ft lengths = 420 FT"
       },
       {
         "raw": "10 1\" 3000# A105 SW 90 elbow",

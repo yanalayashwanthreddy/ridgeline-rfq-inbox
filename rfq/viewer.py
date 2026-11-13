@@ -370,8 +370,10 @@ def catalog_card(st: State, eid: str, lines: list[dict], k: dict | None) -> str:
             dec = (f"<div class={'ok' if d['action'] == 'accept' else 'warn'}>Rep {verb} "
                    f"{E(d['match'])} {E(d.get('sku') or '')}{' — ' + E(d['note']) if d.get('note') else ''} "
                    f"<span class=mut>{E(d['at'])}</span></div>")
+        # an ambiguous line with a suggestion: pre-select it, so confirming is one click
+        pick = ln.get("sku") or ((ln.get("candidates") or [None])[0] if "likely" in (ln.get("match_reason") or "") else None)
         opts = "".join(
-            f"<option value='{E(p.sku)}'{' selected' if p.sku == ln.get('sku') else ''}>{E(p.sku)} · {E(p.description)}</option>"
+            f"<option value='{E(p.sku)}'{' selected' if p.sku == pick else ''}>{E(p.sku)} · {E(p.description)}</option>"
             for p in alternatives(ln["description"], st.catalog))
         hidden = f"<input type=hidden name=t value='{E(st.token)}'><input type=hidden name=e value='{E(eid)}'><input type=hidden name=i value='{i}'>"
         form = (f"<form class=dec method=post action=/decide>{hidden}"

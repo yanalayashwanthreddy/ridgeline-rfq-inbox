@@ -14,7 +14,7 @@
         "source": "body",
         "sku": "RL-31510",
         "match": "matched",
-        "match_reason": "PIPE 2\" SCH 40 A53B ERW PE: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 2\" SCH 40 A53B ERW PE: the only stocked part with every stated attribute; sold per FT; asked for 12 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "(30) 2\" 3000# forged threaded 90 elbow, A105",
@@ -132,7 +132,7 @@
         "source": "body",
         "sku": "RL-41907",
         "match": "matched",
-        "match_reason": "PIPE 2\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 2\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute; sold per FT; asked for 20 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "2) 10 jts - 3\"",
@@ -142,7 +142,7 @@
         "source": "body",
         "sku": "RL-14934",
         "match": "matched",
-        "match_reason": "PIPE 3\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 3\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute; sold per FT; asked for 10 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "3) 6 jts - 4\"",
@@ -152,7 +152,7 @@
         "source": "body",
         "sku": "RL-16229",
         "match": "matched",
-        "match_reason": "PIPE 4\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 4\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute; sold per FT; asked for 6 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "4) 12 ea - 2\" 90 ell",
@@ -221,7 +221,7 @@
         "source": "body",
         "sku": "RL-41907",
         "match": "matched",
-        "match_reason": "PIPE 2\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 2\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute; sold per FT; asked for 20 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "2) 14 jts - 3\"",
@@ -231,7 +231,7 @@
         "source": "body",
         "sku": "RL-14934",
         "match": "matched",
-        "match_reason": "PIPE 3\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 3\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute; sold per FT; asked for 14 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "3) 6 jts - 4\"",
@@ -241,7 +241,7 @@
         "source": "body",
         "sku": "RL-16229",
         "match": "matched",
-        "match_reason": "PIPE 4\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 4\" SCH 40 A53B ERW T&C: the only stocked part with every stated attribute; sold per FT; asked for 6 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "4) 12 ea - 2\" 90 ell",
@@ -819,7 +819,7 @@
         "source": "body",
         "sku": "RL-38947",
         "match": "matched",
-        "match_reason": "GSKT SPW 4\" 150# 304/GRAPHITE: the only stocked part with every stated attribute"
+        "match_reason": "GSKT SPW 4\" 150# 304/GRAPHITE: the only stocked part with every stated attribute; asked in SET, sold per EA: check the quantity"
       },
       {
         "raw": "- 6 sets of 6\" 150# spiral wound gaskets, 304 SS/graphite",
@@ -829,7 +829,7 @@
         "source": "body",
         "sku": "RL-42869",
         "match": "matched",
-        "match_reason": "GSKT SPW 6\" 150# 304/GRAPHITE: the only stocked part with every stated attribute"
+        "match_reason": "GSKT SPW 6\" 150# 304/GRAPHITE: the only stocked part with every stated attribute; asked in SET, sold per EA: check the quantity"
       }
     ]
   },
@@ -908,7 +908,7 @@
         "source": "IMG_4172.jpeg",
         "sku": "RL-22445",
         "match": "matched",
-        "match_reason": "PIPE 2\" SCH 40 A53 GALV T&C: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 2\" SCH 40 A53 GALV T&C: the only stocked part with every stated attribute; sold per FT; asked for 5 lengths/pieces and no length is stated: ask the footage"
       }
     ]
   },
@@ -1580,7 +1580,7 @@
         "source": "TankFarm_Ph2_Materials.docx",
         "sku": "RL-35543",
         "match": "matched",
-        "match_reason": "PIPE 2\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 2\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute; sold per FT; asked for 10 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "6 jts | 3\" | PE",
@@ -1590,7 +1590,7 @@
         "source": "TankFarm_Ph2_Materials.docx",
         "sku": "RL-36838",
         "match": "matched",
-        "match_reason": "PIPE 3\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 3\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute; sold per FT; asked for 6 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "4 jts | 4\" | BE",
@@ -1600,7 +1600,7 @@
         "source": "TankFarm_Ph2_Materials.docx",
         "sku": "RL-19707",
         "match": "matched",
-        "match_reason": "PIPE 4\" SCH 80 A106B SMLS BE: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 4\" SCH 80 A106B SMLS BE: the only stocked part with every stated attribute; sold per FT; asked for 4 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "8 jts | 1\" | PE",
@@ -1610,7 +1610,7 @@
         "source": "TankFarm_Ph2_Materials.docx",
         "sku": "RL-39909",
         "match": "matched",
-        "match_reason": "PIPE 1\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute"
+        "match_reason": "PIPE 1\" SCH 80 A106B SMLS PE: the only stocked part with every stated attribute; sold per FT; asked for 8 lengths/pieces and no length is stated: ask the footage"
       },
       {
         "raw": "24 | 1\" | 90 elbow",
