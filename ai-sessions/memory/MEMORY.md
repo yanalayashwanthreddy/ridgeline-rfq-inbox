@@ -1,0 +1,1 @@
+- [RFQ take-home](rfq-takehome.md) — Ridgeline RFQ inbox parser assignment, due 2026-11-15 23:59 CST; user wants to learn the why

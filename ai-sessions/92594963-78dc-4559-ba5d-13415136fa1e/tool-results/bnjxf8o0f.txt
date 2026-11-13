@@ -1,0 +1,696 @@
+version 4 dict
+
+### E001: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='12 jts - 2" SCH 40 A53B ERW black pipe, PE' | qty=12 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-31510 matched
+  - [body] raw='(30) 2" 3000# forged threaded 90 elbow, A105' | qty=30 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-35913 matched
+  - [body] raw='(30) 2" 3000# forged threaded coupling, A105' | qty=30 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-19633 matched
+  - [body] raw='200 ft - 3/4" SCH 40 galvanized pipe, TBE' | qty=200 FT tol=0
+      desc=None
+      must=[] not=[] sku=RL-40242 matched
+  - [body] raw='4" 150# RF slip-on flange, A105 x 6' | qty=6 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-12566 matched
+
+### E002: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='10 of the 1/2 90s' | qty=10 EA tol=0
+      desc=None
+      must=['316', 'threaded|thd|npt'] not=[] sku=RL-14860 matched
+  - [body] raw='6 tees same size' | qty=6 EA tol=0
+      desc=None
+      must=['316', 'threaded|thd|npt', '1/2'] not=[] sku=RL-21150 matched
+  - [body] raw='a couple caps' | qty=None None tol=0
+      desc=None
+      must=['316', 'threaded|thd|npt'] not=[] sku=RL-17820 matched
+  - [body] raw='12 of the 3/4 couplings' | qty=12 EA tol=0
+      desc=None
+      must=['316', 'threaded|thd|npt'] not=[] sku=RL-21705 matched
+  - [body] raw='20 of the 3/4 close nipples' | qty=20 EA tol=0
+      desc=None
+      must=['316', 'threaded|thd|npt'] not=[] sku=RL-13676 matched
+
+### E003: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='1) 20 jts - 2"' | qty=20 EA tol=0
+      desc=None
+      must=['pipe', 'sch 40|schedule 40', 'a53b', 'erw', 't&c|threaded and coupled|thd and cpld|t/c'] not=['malleable', '150#'] sku=RL-41907 matched
+  - [body] raw='2) 10 jts - 3"' | qty=10 EA tol=0
+      desc=None
+      must=['pipe', 'sch 40|schedule 40', 'a53b', 'erw', 't&c|threaded and coupled|thd and cpld|t/c'] not=['malleable', '150#'] sku=RL-14934 matched
+  - [body] raw='3) 6 jts - 4"' | qty=6 EA tol=0
+      desc=None
+      must=['pipe', 'sch 40|schedule 40', 'a53b', 'erw', 't&c|threaded and coupled|thd and cpld|t/c'] not=['malleable', '150#'] sku=RL-16229 matched
+  - [body] raw='4) 12 ea - 2" 90 ell' | qty=12 EA tol=0
+      desc=None
+      must=['malleable', '150#|150 lb|class 150', 'black'] not=['sch 40', 'a53b'] sku=RL-39317 matched
+  - [body] raw='5) 8 ea - 2" tee' | qty=8 EA tol=0
+      desc=None
+      must=['malleable', '150#|150 lb|class 150', 'black'] not=['sch 40', 'a53b'] sku=RL-14564 matched
+  - [body] raw='6) 6 ea - 2" union' | qty=6 EA tol=0
+      desc=None
+      must=['malleable', '150#|150 lb|class 150', 'black'] not=['sch 40', 'a53b'] sku=RL-25701 matched
+  - [body] raw='7) 4 ea - 2" gate, bronze, 125#' | qty=4 EA tol=0
+      desc=None
+      must=['valve'] not=['malleable', '150#'] sku=RL-18338 matched
+  - [body] raw='8) 2 ea - 2" check, swing, bronze, 125#' | qty=2 EA tol=0
+      desc=None
+      must=['valve'] not=['malleable', '150#'] sku=RL-12529 matched
+
+### E004: rfq_revision rev=E003 dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='1) 20 jts - 2"' | qty=20 EA tol=0
+      desc=None
+      must=['pipe', 'sch 40|schedule 40', 'a53b', 'erw', 't&c|threaded and coupled|thd and cpld|t/c'] not=['malleable', '150#'] sku=RL-41907 matched
+  - [body] raw='2) 14 jts - 3"' | qty=14 EA tol=0
+      desc=None
+      must=['pipe', 'sch 40|schedule 40', 'a53b', 'erw', 't&c|threaded and coupled|thd and cpld|t/c'] not=['malleable', '150#'] sku=RL-14934 matched
+  - [body] raw='3) 6 jts - 4"' | qty=6 EA tol=0
+      desc=None
+      must=['pipe', 'sch 40|schedule 40', 'a53b', 'erw', 't&c|threaded and coupled|thd and cpld|t/c'] not=['malleable', '150#'] sku=RL-16229 matched
+  - [body] raw='4) 12 ea - 2" 90 ell' | qty=12 EA tol=0
+      desc=None
+      must=['malleable', '150#|150 lb|class 150', 'black'] not=['sch 40', 'a53b'] sku=RL-39317 matched
+  - [body] raw='5) 8 ea - 2" tee' | qty=8 EA tol=0
+      desc=None
+      must=['malleable', '150#|150 lb|class 150', 'black'] not=['sch 40', 'a53b'] sku=RL-14564 matched
+  - [body] raw='7) 4 ea - 2" gate, bronze, 125#' | qty=4 EA tol=0
+      desc=None
+      must=['valve'] not=['malleable', '150#'] sku=RL-18338 matched
+  - [body] raw='8) 2 ea - 2" check, swing, bronze, 125#' | qty=2 EA tol=0
+      desc=None
+      must=['valve'] not=['malleable', '150#'] sku=RL-12529 matched
+  - [body] raw='9) 4 ea - 2" ball, bronze, 125#' | qty=4 EA tol=0
+      desc=None
+      must=['valve'] not=['malleable', '150#'] sku=None not_in_catalog
+
+### E005: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [Tank14_Piping_RevB.xlsx] raw='1 | 12 | EA | 6" | 90 LR elbow' | qty=12 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=RL-31140 matched
+  - [Tank14_Piping_RevB.xlsx] raw='2 | 6 | EA | 6" | 45 elbow' | qty=6 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=RL-18116 matched
+  - [Tank14_Piping_RevB.xlsx] raw='3 | 4 | EA | 8" | 90 LR elbow' | qty=4 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=RL-22075 matched
+  - [Tank14_Piping_RevB.xlsx] raw='4 | 4 | EA | 6" | Tee, straight' | qty=4 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=RL-20003 matched
+  - [Tank14_Piping_RevB.xlsx] raw='5 | 3 | EA | 8" x 6" | Reducer, concentric' | qty=3 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=None not_in_catalog
+  - [Tank14_Piping_RevB.xlsx] raw='6 | 2 | EA | 6" x 4" | Reducer, concentric, SCH 80' | qty=2 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'a234|wpb'] not=['sch 40'] sku=RL-23222 matched
+  - [Tank14_Piping_RevB.xlsx] raw='7 | 2 | EA | 8" | Cap' | qty=2 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=RL-13824 matched
+  - [Tank14_Piping_RevB.xlsx] raw='8 | 2 | EA | 6" | Cap' | qty=2 EA tol=0
+      desc=None
+      must=['bw|butt weld', 'sch 40', 'a234|wpb'] not=[] sku=RL-11456 matched
+
+### E006: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='2 sets of 4" 150# spiral wound gaskets, 304 SS/graphite' | qty=2 SET tol=0
+      desc=None
+      must=['spiral wound'] not=['a105'] sku=RL-38947 matched
+  - [body] raw='6 sets of 6" 150# spiral wound gaskets, 304 SS/graphite' | qty=6 SET tol=0
+      desc=None
+      must=['spiral wound'] not=['a105'] sku=RL-42869 matched
+  - [RFQ_PF-26-3091.pdf] raw='1 | 7 | EA | 1/2" | WELD NECK FLANGE, STD BORE' | qty=7 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-35876 matched
+  - [RFQ_PF-26-3091.pdf] raw='2 | 3 | EA | 3/4" | WELD NECK FLANGE, STD BORE' | qty=3 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-23814 matched
+  - [RFQ_PF-26-3091.pdf] raw='3 | 8 | EA | 1" | WELD NECK FLANGE, STD BORE' | qty=8 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-26367 matched
+  - [RFQ_PF-26-3091.pdf] raw='4 | 4 | EA | 1-1/4" | WELD NECK FLANGE, STD BORE' | qty=4 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-15119 matched
+  - [RFQ_PF-26-3091.pdf] raw='5 | 9 | EA | 1-1/2" | WELD NECK FLANGE, STD BORE' | qty=9 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-12307 matched
+  - [RFQ_PF-26-3091.pdf] raw='6 | 5 | EA | 2" | WELD NECK FLANGE, STD BORE' | qty=5 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-11086 matched
+  - [RFQ_PF-26-3091.pdf] raw='7 | 10 | EA | 2-1/2" | WELD NECK FLANGE, STD BORE' | qty=10 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-39243 matched
+  - [RFQ_PF-26-3091.pdf] raw='8 | 6 | EA | 3" | WELD NECK FLANGE, STD BORE' | qty=6 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-27477 matched
+  - [RFQ_PF-26-3091.pdf] raw='9 | 2 | EA | 4" | WELD NECK FLANGE, STD BORE' | qty=2 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-21113 matched
+  - [RFQ_PF-26-3091.pdf] raw='10 | 7 | EA | 6" | WELD NECK FLANGE, STD BORE' | qty=7 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-22260 matched
+  - [RFQ_PF-26-3091.pdf] raw='11 | 3 | EA | 8" | WELD NECK FLANGE, STD BORE' | qty=3 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-19004 matched
+  - [RFQ_PF-26-3091.pdf] raw='12 | 8 | EA | 10" | WELD NECK FLANGE, STD BORE' | qty=8 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-11974 matched
+  - [RFQ_PF-26-3091.pdf] raw='13 | 4 | EA | 12" | WELD NECK FLANGE, STD BORE' | qty=4 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-19374 matched
+  - [RFQ_PF-26-3091.pdf] raw='14 | 9 | EA | 14" | WELD NECK FLANGE, STD BORE' | qty=9 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=None not_in_catalog
+  - [RFQ_PF-26-3091.pdf] raw='15 | 5 | EA | 1/2" | SLIP-ON FLANGE' | qty=5 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-30289 matched
+  - [RFQ_PF-26-3091.pdf] raw='16 | 10 | EA | 3/4" | SLIP-ON FLANGE' | qty=10 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-27995 matched
+  - [RFQ_PF-26-3091.pdf] raw='17 | 6 | EA | 1" | SLIP-ON FLANGE' | qty=6 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-26737 matched
+  - [RFQ_PF-26-3091.pdf] raw='18 | 2 | EA | 1-1/4" | SLIP-ON FLANGE' | qty=2 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-35284 matched
+  - [RFQ_PF-26-3091.pdf] raw='19 | 7 | EA | 1-1/2" | SLIP-ON FLANGE' | qty=7 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-33915 matched
+  - [RFQ_PF-26-3091.pdf] raw='20 | 3 | EA | 2" | SLIP-ON FLANGE' | qty=3 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-40501 matched
+  - [RFQ_PF-26-3091.pdf] raw='21 | 8 | EA | 2-1/2" | SLIP-ON FLANGE' | qty=8 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-22630 matched
+  - [RFQ_PF-26-3091.pdf] raw='22 | 4 | EA | 3" | SLIP-ON FLANGE' | qty=4 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-11641 matched
+  - [RFQ_PF-26-3091.pdf] raw='23 | 9 | EA | 4" | SLIP-ON FLANGE' | qty=9 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-12566 matched
+  - [RFQ_PF-26-3091.pdf] raw='24 | 5 | EA | 6" | SLIP-ON FLANGE' | qty=5 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-42610 matched
+  - [RFQ_PF-26-3091.pdf] raw='25 | 10 | EA | 8" | SLIP-ON FLANGE' | qty=10 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-24702 matched
+  - [RFQ_PF-26-3091.pdf] raw='26 | 6 | EA | 10" | SLIP-ON FLANGE' | qty=6 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-44978 matched
+  - [RFQ_PF-26-3091.pdf] raw='27 | 2 | EA | 12" | SLIP-ON FLANGE' | qty=2 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-37800 matched
+  - [RFQ_PF-26-3091.pdf] raw='28 | 7 | EA | 14" | SLIP-ON FLANGE' | qty=7 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-38540 matched
+  - [RFQ_PF-26-3091.pdf] raw='29 | 3 | EA | 1/2" | BLIND FLANGE' | qty=3 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-37245 matched
+  - [RFQ_PF-26-3091.pdf] raw='30 | 8 | EA | 3/4" | BLIND FLANGE' | qty=8 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-12825 matched
+  - [RFQ_PF-26-3091.pdf] raw='31 | 4 | EA | 1" | BLIND FLANGE' | qty=4 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-15415 matched
+  - [RFQ_PF-26-3091.pdf] raw='32 | 9 | EA | 1-1/4" | BLIND FLANGE' | qty=9 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-12159 matched
+  - [RFQ_PF-26-3091.pdf] raw='33 | 5 | EA | 1-1/2" | BLIND FLANGE' | qty=5 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-31362 matched
+  - [RFQ_PF-26-3091.pdf] raw='34 | 10 | EA | 2" | BLIND FLANGE' | qty=10 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-12492 matched
+  - [RFQ_PF-26-3091.pdf] raw='35 | 6 | EA | 2-1/2" | BLIND FLANGE' | qty=6 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-15008 matched
+  - [RFQ_PF-26-3091.pdf] raw='36 | 2 | EA | 3" | BLIND FLANGE' | qty=2 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-15600 matched
+  - [RFQ_PF-26-3091.pdf] raw='37 | 7 | EA | 4" | BLIND FLANGE' | qty=7 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-43757 matched
+  - [RFQ_PF-26-3091.pdf] raw='38 | 3 | EA | 6" | BLIND FLANGE' | qty=3 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-20595 matched
+  - [RFQ_PF-26-3091.pdf] raw='39 | 8 | EA | 8" | BLIND FLANGE' | qty=8 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-28254 matched
+  - [RFQ_PF-26-3091.pdf] raw='40 | 4 | EA | 10" | BLIND FLANGE' | qty=4 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-34729 matched
+  - [RFQ_PF-26-3091.pdf] raw='41 | 9 | EA | 12" | BLIND FLANGE' | qty=9 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=RL-16118 matched
+  - [RFQ_PF-26-3091.pdf] raw='42 | 5 | EA | 14" | BLIND FLANGE' | qty=5 EA tol=0
+      desc=None
+      must=['a105', '150#|150 lb|class 150', 'rf|raised face'] not=[] sku=None not_in_catalog
+
+### E007: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [IMG_4172.jpeg] raw='8 - 2" galv 90 elbow' | qty=8 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-42018 matched
+  - [IMG_4172.jpeg] raw='4 - ,, tee' | qty=4 EA tol=0
+      desc=None
+      must=['2"|2 in|2-inch|2 inch', 'galv'] not=[] sku=RL-29882 matched
+  - [IMG_4172.jpeg] raw='6 - 1" x 3" galv nipple' | qty=6 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-14749 matched
+  - [IMG_4172.jpeg] raw='6 - 1" x 4" ,,' | qty=6 EA tol=0
+      desc=None
+      must=['galv', 'nipple'] not=[] sku=RL-26404 matched
+  - [IMG_4172.jpeg] raw='12 - 2" galv coupling' | qty=12 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-31806 matched
+  - [IMG_4172.jpeg] raw='2 - 2" galv union' | qty=2 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-22408 matched
+  - [IMG_4172.jpeg] raw='5 jts - 2" galv pipe' | qty=5 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-22445 matched
+
+### E008: rfq rev=None dup=E006 review=False 
+
+### E009: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [Scan_RFQ_SC-4418.pdf] raw='1 | 6 | EA | 1" | WN 150# RF' | qty=6 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-26367 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='2 | 4 | EA | 1-1/2" | WN 150# RF' | qty=4 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-12307 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='3 | 10 | EA | 2" | WN 150# RF' | qty=10 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-11086 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='4 | 8 | EA | 3" | WN 150# RF' | qty=8 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-27477 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='5 | 12 | EA | 4" | WN 150# RF' | qty=12 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-21113 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='6 | 6 | EA | 6" | WN 150# RF' | qty=6 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-22260 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='7 | 4 | EA | 8" | WN 150# RF' | qty=4 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-19004 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='8 | 4 | EA | 2" | SO 150# RF' | qty=4 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-40501 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='9 | 4 | EA | 3" | SO 150# RF' | qty=4 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-11641 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='10 | 6 | EA | 4" | SO 150# RF' | qty=6 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-12566 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='11 | 4 | EA | 6" | SO 150# RF' | qty=4 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-42610 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='12 | 2 | EA | 2" | BL 150# RF' | qty=2 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-12492 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='13 | 2 | EA | 4" | BL 150# RF' | qty=2 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-43757 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='14 | 2 | EA | 6" | BL 150# RF' | qty=2 EA tol=0
+      desc=None
+      must=['flange'] not=[] sku=RL-20595 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='15 | 10 | EA | 1" | Spiral wound, 304/graphite, 150#' | qty=10 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-22038 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='16 | 6 | EA | 1-1/2" | Spiral wound, 304/graphite, 150#' | qty=6 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-13010 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='17 | 20 | EA | 2" | Spiral wound, 304/graphite, 150#' | qty=20 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-27699 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='18 | 12 | EA | 3" | Spiral wound, 304/graphite, 150#' | qty=12 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-21372 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='19 | 16 | EA | 4" | Spiral wound, 304/graphite, 150#' | qty=16 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-38947 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='20 | 8 | EA | 6" | Spiral wound, 304/graphite, 150#' | qty=8 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-42869 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='21 | 4 | EA | 8" | Spiral wound, 304/graphite, 150#' | qty=4 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=RL-40094 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='22 | 2 | EA | 10" | Spiral wound, 304/graphite, 150#' | qty=2 EA tol=0
+      desc=None
+      must=['gasket'] not=[] sku=None not_in_catalog
+  - [Scan_RFQ_SC-4418.pdf] raw='23 | 32 | EA | 1/2" x 3" | B7 w/ 2 heavy hex nuts' | qty=32 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-15674 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='24 | 24 | EA | 5/8" x 3-1/4" | B7 w/ 2 heavy hex nuts' | qty=24 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=None not_in_catalog
+  - [Scan_RFQ_SC-4418.pdf] raw='25 | 16 | EA | 5/8" x 3-1/2" | B7 w/ 2 heavy hex nuts' | qty=16 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-16377 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='26 | 48 | EA | 3/4" x 4" | B7 w/ 2 heavy hex nuts' | qty=48 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-10457 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='27 | 24 | EA | 3/4" x 4-1/4" | B7 w/ 2 heavy hex nuts' | qty=24 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-40390 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='28 | 32 | EA | 3/4" x 4-1/2" | B7 w/ 2 heavy hex nuts' | qty=32 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-41796 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='29 | 16 | EA | 7/8" x 5" | B7 w/ 2 heavy hex nuts' | qty=16 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-23703 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='30 | 16 | EA | 7/8" x 5-1/4" | B7 w/ 2 heavy hex nuts' | qty=16 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=None not_in_catalog
+  - [Scan_RFQ_SC-4418.pdf] raw='31 | 16 | EA | 1" x 5-3/4" | B7 w/ 2 heavy hex nuts' | qty=16 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-19559 matched
+  - [Scan_RFQ_SC-4418.pdf] raw='32 | 8 | EA | 1" x 6" | B7 w/ 2 heavy hex nuts' | qty=8 EA tol=0
+      desc=None
+      must=['stud'] not=[] sku=RL-24184 matched
+
+### E010: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [image002.png] raw='40 | EA | 1/2"-13 x 2" hex cap screw, Gr 5 zinc' | qty=40 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-19263 matched
+  - [image002.png] raw='40 | EA | 1/2"-13 hex nut, zinc' | qty=40 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-17931 matched
+  - [image002.png] raw='200 | FT | 1-5/8" strut channel, 12 ga, pre-galv' | qty=200 FT tol=0
+      desc=None
+      must=[] not=[] sku=RL-18597 matched
+  - [image002.png] raw='3 | BX | 1/2" channel spring nuts, galv' | qty=3 BX tol=0
+      desc=None
+      must=[] not=[] sku=RL-19300 matched
+  - [image002.png] raw='24 | EA | 2" pipe clamp, galv' | qty=24 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-44016 matched
+  - [image002.png] raw='12 | EA | 3/4"-10 all-thread rod, 6 ft' | qty=12 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-20225 matched
+
+### E011: vendor_quote rev=None dup=None review=False 
+
+### E012: status_inquiry rev=None dup=None review=False 
+
+### E013: auto_reply rev=None dup=None review=False 
+
+### E014: other rev=None dup=None review=False 
+
+### E015: purchase_order rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [PO_TPS-88213.pdf] raw='1 | 210 | FT | 2" SCH 80 SMLS A106B pipe, PE, random lengths | 11.85 | 2,488.50' | qty=210 FT tol=0
+      desc=None
+      must=[] not=[] sku=RL-35543 matched
+  - [PO_TPS-88213.pdf] raw='2 | 24 | EA | 2" 90 deg elbow, LR, BW, SCH 80, A234 WPB | 14.20 | 340.80' | qty=24 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-40649 matched
+  - [PO_TPS-88213.pdf] raw='3 | 16 | EA | 2" WN flange, 300# RF, A105, SCH 80 bore | 31.75 | 508.00' | qty=16 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-28550 matched
+  - [PO_TPS-88213.pdf] raw='4 | 16 | EA | 2" spiral wound gasket, 316/graphite, 300#, w/ inner ring | 6.40 | 102.40' | qty=16 EA tol=0
+      desc=None
+      must=[] not=[] sku=None not_in_catalog
+  - [PO_TPS-88213.pdf] raw='5 | 64 | EA | Stud bolt B7, 5/8"-11 x 3-3/4", w/ 2 heavy hex nuts | 1.85 | 118.40' | qty=64 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-15859 matched
+  - [PO_TPS-88213.pdf] raw='6 | 6 | EA | 2" gate valve, 300# RF, A216 WCB, bolted bonnet | 412.00 | 2,472.00' | qty=6 EA tol=0
+      desc=None
+      must=[] not=[] sku=None not_in_catalog
+
+### E016: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [HM-7716_material_list.csv] raw='60 | FT | 1-1/2" | Pipe, SCH 80, A106B SMLS, PE' | qty=60 FT tol=0
+      desc=None
+      must=[] not=[] sku=RL-33397 matched
+  - [HM-7716_material_list.csv] raw='12 | EA | 1-1/2" | 90 elbow, SW, 3000#, A105' | qty=12 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-19189 matched
+  - [HM-7716_material_list.csv] raw='6 | EA | 1-1/2" | Tee, SW, 3000#, A105' | qty=6 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-23888 matched
+  - [HM-7716_material_list.csv] raw='8 | EA | 1-1/2" | Union, SW, 3000#, A105' | qty=8 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-35839 matched
+  - [HM-7716_material_list.csv] raw='4 | EA | 1-1/2" | Gate valve, 800#, SW, A105' | qty=4 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-25257 matched
+  - [HM-7716_material_list.csv] raw='2 | EA | 1-1/2" | Y-strainer, 800#, SW, A105' | qty=2 EA tol=0
+      desc=None
+      must=[] not=[] sku=None not_in_catalog
+
+### E017: rfq rev=None dup=None review=True 
+
+### E018: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='8 Weld neck flange, 150# RF, A105, STD bore 4"' | qty=8 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-21113 matched
+  - [body] raw='12 90 deg elbow, LR, BW, SCH 40, A234 WPB 4"' | qty=12 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-36135 matched
+  - [body] raw='8 Spiral wound gasket, 304/graphite, 150# 4"' | qty=8 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-38947 matched
+  - [body] raw='32 Stud bolt, B7, 4-1/2" long, w/ 2 heavy hex nuts 3/4"' | qty=32 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-41796 matched
+  - [body] raw='6 Eccentric reducer, BW, SCH 40, A234 WPB 6" x 4"' | qty=6 EA tol=0
+      desc=None
+      must=[] not=[] sku=None not_in_catalog
+  - [body] raw='12 rolls PTFE thread tape, white, heavy duty N/A' | qty=12 RL tol=0
+      desc=None
+      must=[] not=[] sku=RL-17191 matched
+
+### E019: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [TankFarm_Ph2_Materials.docx] raw='10 jts | 2" | PE' | qty=10 EA tol=0
+      desc=None
+      must=['carbon steel', 'pipe', 'sch 80', 'a106b', 'smls|seamless'] not=[] sku=RL-35543 matched
+  - [TankFarm_Ph2_Materials.docx] raw='6 jts | 3" | PE' | qty=6 EA tol=0
+      desc=None
+      must=['carbon steel', 'pipe', 'sch 80', 'a106b', 'smls|seamless'] not=[] sku=RL-36838 matched
+  - [TankFarm_Ph2_Materials.docx] raw='4 jts | 4" | BE' | qty=4 EA tol=0
+      desc=None
+      must=['carbon steel', 'pipe', 'sch 80', 'a106b', 'smls|seamless'] not=[] sku=RL-19707 matched
+  - [TankFarm_Ph2_Materials.docx] raw='8 jts | 1" | PE' | qty=8 EA tol=0
+      desc=None
+      must=['carbon steel', 'pipe', 'sch 80', 'a106b', 'smls|seamless'] not=[] sku=RL-39909 matched
+  - [TankFarm_Ph2_Materials.docx] raw='24 | 1" | 90 elbow' | qty=24 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb', 'a105'] not=['sch 80', 'a106'] sku=RL-24443 matched
+  - [TankFarm_Ph2_Materials.docx] raw='12 | 1" | Tee' | qty=12 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb', 'a105'] not=['sch 80', 'a106'] sku=RL-33138 matched
+  - [TankFarm_Ph2_Materials.docx] raw='30 | 3/4" | Coupling, full' | qty=30 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb', 'a105'] not=['sch 80', 'a106'] sku=RL-36690 matched
+  - [TankFarm_Ph2_Materials.docx] raw='16 | 1/2" | Union' | qty=16 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb', 'a105'] not=['sch 80', 'a106'] sku=RL-26145 matched
+  - [TankFarm_Ph2_Materials.docx] raw='20 | 2" | Half coupling' | qty=20 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb', 'a105'] not=['sch 80', 'a106'] sku=None not_in_catalog
+
+### E020: purchase_order rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='1. 8 EA - 3" 150# RF weld neck flange, A105, STD bore - $38.60 ea' | qty=8 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-27477 matched
+  - [body] raw='2. 120 FT - 3" SCH 40 A53B ERW pipe, PE - $7.95/ft' | qty=120 FT tol=0
+      desc=None
+      must=[] not=[] sku=RL-12011 matched
+  - [body] raw='4. 16 EA - 3" 90 deg LR elbow, BW, SCH 40, A234 WPB - $9.35 ea' | qty=16 EA tol=0
+      desc=None
+      must=[] not=[] sku=RL-36727 matched
+
+### E021: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [SR-4-117_Unit4_BOM.xlsx] raw='1 | 420 | FT | 1/2" | PE' | qty=420 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-24517 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='2 | 300 | FT | 3/4" | PE' | qty=300 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-40797 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='3 | 600 | FT | 1" | PE' | qty=600 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-39909 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='4 | 240 | FT | 1-1/4" | PE' | qty=240 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-18634 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='5 | 360 | FT | 1-1/2" | PE' | qty=360 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-33397 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='6 | 500 | FT | 2" | PE' | qty=500 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-35543 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='7 | 180 | FT | 2-1/2" | PE' | qty=180 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-16081 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='8 | 320 | FT | 3" | PE' | qty=320 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-36838 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='9 | 140 | FT | 4" | PE' | qty=140 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-13380 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='10 | 80 | FT | 6" | PE' | qty=80 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-18301 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='11 | 120 | FT | 1/2" | TOE' | qty=120 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-30437 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='12 | 160 | FT | 3/4" | TOE' | qty=160 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-12122 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='13 | 200 | FT | 1" | TOE' | qty=200 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=None not_in_catalog
+  - [SR-4-117_Unit4_BOM.xlsx] raw='14 | 100 | FT | 1-1/2" | TOE' | qty=100 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-36024 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='15 | 140 | FT | 2" | TOE' | qty=140 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=None not_in_catalog
+  - [SR-4-117_Unit4_BOM.xlsx] raw='16 | 60 | FT | 3" | BE' | qty=60 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-44164 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='17 | 40 | FT | 4" | BE' | qty=40 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=RL-19707 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='18 | 20 | FT | 6" | BE' | qty=20 FT tol=0
+      desc=None
+      must=['pipe', 'sch 80', 'smls|seamless'] not=[] sku=None not_in_catalog
+  - [SR-4-117_Unit4_BOM.xlsx] raw='1 | 9 | EA | 1/2" | 90 Elbow' | qty=9 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-41204 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='2 | 16 | EA | 3/4" | 90 Elbow' | qty=16 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-37060 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='3 | 23 | EA | 1" | 90 Elbow' | qty=23 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-24443 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='4 | 30 | EA | 1-1/4" | 90 Elbow' | qty=30 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-36579 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='5 | 6 | EA | 1-1/2" | 90 Elbow' | qty=6 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-19189 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='6 | 13 | EA | 2" | 90 Elbow' | qty=13 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-33545 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='7 | 20 | EA | 1/2" | 45 Elbow' | qty=20 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-27551 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='8 | 27 | EA | 3/4" | 45 Elbow' | qty=27 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-10568 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='9 | 34 | EA | 1" | 45 Elbow' | qty=34 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-36875 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='10 | 10 | EA | 1-1/4" | 45 Elbow' | qty=10 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-15637 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='11 | 17 | EA | 1-1/2" | 45 Elbow' | qty=17 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-24813 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='12 | 24 | EA | 2" | 45 Elbow' | qty=24 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-25516 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='13 | 31 | EA | 1/2" | Tee' | qty=31 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-35617 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='14 | 7 | EA | 3/4" | Tee' | qty=7 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-17524 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='15 | 14 | EA | 1" | Tee' | qty=14 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-33138 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='16 | 21 | EA | 1-1/4" | Tee' | qty=21 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-21557 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='17 | 28 | EA | 1-1/2" | Tee' | qty=28 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-23888 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='18 | 35 | EA | 2" | Tee' | qty=35 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-18486 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='19 | 11 | EA | 1/2" | Coupling' | qty=11 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-40908 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='20 | 18 | EA | 3/4" | Coupling' | qty=18 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-36690 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='21 | 25 | EA | 1" | Coupling' | qty=25 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-27218 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='22 | 32 | EA | 1-1/4" | Coupling' | qty=32 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-17228 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='23 | 8 | EA | 1-1/2" | Coupling' | qty=8 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-21520 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='24 | 15 | EA | 2" | Coupling' | qty=15 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-35062 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='25 | 22 | EA | 1/2" | Cap' | qty=22 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-27921 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='26 | 29 | EA | 3/4" | Cap' | qty=29 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-34359 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='27 | 36 | EA | 1" | Cap' | qty=36 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-17857 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='28 | 12 | EA | 1-1/4" | Cap' | qty=12 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-32213 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='29 | 19 | EA | 1-1/2" | Cap' | qty=19 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-18375 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='30 | 26 | EA | 2" | Cap' | qty=26 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-38318 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='31 | 33 | EA | 1/2" | Union' | qty=33 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-26145 matched
+  - [SR-4-117_Unit4_BOM.xlsx] raw='32 | 9 | EA | 3/4" | Union' | qty=9 EA tol=0
+      desc=None
+      must=['socket weld|sw', '3000#|3000 lb'] not=['sch 80'] sku=RL-17709 matched
+
+### E022: rfq rev=None dup=None review=True 
+
+### E023: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [IMG_4417.jpg] raw='MODEL: HV-800-FGS' | qty=3 EA tol=0
+      desc=None
+      must=['gate', '2in|2"|2 inch', '800', 'a105', '13cr', 'npt'] not=[] sku=RL-45015 matched
+
+### E024: rfq rev=None dup=None review=False 
+  KEYS: ['id', 'raw', 'qty', 'qty_tol', 'uom', 'source', 'must_mention', 'must_not_mention', 'sku', 'match', 'candidates']
+  - [body] raw='10 | 90° elbow | 1/2″' | qty=10 EA tol=0
+      desc=None
+      must=['316', 'threaded|thrd|npt', '3000#|3000 lb'] not=[] sku=RL-14860 matched
+  - [body] raw='6 | 45° elbow | 1/2″' | qty=6 EA tol=0
+      desc=None
+      must=['316', 'threaded|thrd|npt', '3000#|3000 lb'] not=[] sku=RL-31436 matched
+  - [body] raw='8 | Tee | 3/4″' | qty=8 EA tol=0
+      desc=None
+      must=['316', 'threaded|thrd|npt', '3000#|3000 lb'] not=[] sku=RL-25368 matched
+  - [body] raw='12 | Coupling, full | 1/2″' | qty=12 EA tol=0
+      desc=None
+      must=['316', 'threaded|thrd|npt', '3000#|3000 lb'] not=[] sku=RL-34100 matched
+  - [body] raw='4 | Union | 1/2″' | qty=4 EA tol=0
+      desc=None
+      must=['316', 'threaded|thrd|npt', '3000#|3000 lb'] not=[] sku=RL-35506 matched
+  - [body] raw='6 | Hex head plug | 3/4″' | qty=6 EA tol=0
+      desc=None
+      must=['316', 'threaded|thrd|npt', '3000#|3000 lb'] not=[] sku=None not_in_catalog
