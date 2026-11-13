@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT))
 from rfq.ingest import load_email  # noqa: E402
 from rfq.llm import cost_usd  # noqa: E402
 from rfq.matcher import load_catalog  # noqa: E402
-from rfq.score import mentions, pair, qty_ok  # noqa: E402
+from rfq.score import line_problems, pair  # noqa: E402
 
 KIND = {
     "rfq": "Price request", "rfq_revision": "Changed request", "purchase_order": "Purchase order",
@@ -84,31 +84,31 @@ def inbox(emails_dir: Path, parsed_path: Path, key_path: Path | None, cat_by_sku
     key = json.loads(key_path.read_text(encoding="utf-8"))["emails"] if key_path else {}
     model = rep.get("model", "")
     out, tot = [], Counter()
-    for eid in sorted(parsed):
-        o, st, k = parsed[eid], rep["emails"].get(eid, {}), key.get(eid)
+    # every email in the key AND every email parsed: one the parser dropped must show, not vanish
+    for eid in sorted(set(parsed) | set(key)):
+        k = key.get(eid)
+        if eid not in parsed:
+            tot["missing"] += 1
+            tot["keyed"] += 1
+            tot["key_lines"] += len(k.get("line_items") or [])
+            tot["silent"] += bool(k.get("line_items") or k.get("needs_review"))
+            continue
+        o, st = parsed[eid], rep["emails"].get(eid, {})
         em = load_email(emails_dir / f"{eid}.eml")
         lines = [dict(ln, catalog=(cat_by_sku[ln["sku"]].description if ln.get("sku") in cat_by_sku else None))
                  for ln in o["line_items"]]
         verdict, missed = {}, []
         if k:
+            tot["keyed"] += 1
             kl = k.get("line_items") or []
             pairs, extra, miss = pair(o["line_items"], kl)
             for i, j in pairs:
-                kk, ln, probs = kl[j], o["line_items"][i], []
-                if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
-                    probs.append(f"quantity should be {kk['qty']}")
-                if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
-                    probs.append(f"unit should be {kk['uom'] or 'EA'}")
-                if ln["source"] != kk["source"]:
-                    probs.append(f"should come from {kk['source']}")
-                probs += [f"description should mention '{m}'" for m in kk.get("must_mention") or [] if not mentions(ln["description"], m)]
-                probs += [f"description should not say '{m}'" for m in kk.get("must_not_mention") or [] if mentions(ln["description"], m)]
-                if kk.get("match") and "match" in ln and (kk["match"], kk.get("sku")) != (ln["match"], ln.get("sku")):
-                    probs.append(f"catalog: answer key says {kk['match']} {kk.get('sku') or ''}".strip())
-                verdict[i] = probs
-                tot["ok_lines"] += not probs
-                tot["ctx_n"] += bool(kk.get("must_mention") or kk.get("must_not_mention"))
-                tot["ctx_ok"] += not [p for p in probs if p.startswith("description")] and bool(kk.get("must_mention") or kk.get("must_not_mention"))
+                kk, ln = kl[j], o["line_items"][i]
+                found = line_problems(ln, kk)
+                verdict[i] = [text for _, text in found]
+                has_ctx = bool(kk.get("must_mention") or kk.get("must_not_mention"))
+                tot["ctx_n"] += has_ctx
+                tot["ctx_ok"] += has_ctx and not any(kind == "context" for kind, _ in found)
                 if kk.get("match") and "match" in ln:
                     tot["m_n"] += 1
                     tot["m_ok"] += (kk["match"], kk.get("sku")) == (ln["match"], ln.get("sku"))
@@ -132,7 +132,7 @@ def inbox(emails_dir: Path, parsed_path: Path, key_path: Path | None, cat_by_sku
         for p in em.parts:
             imgs = [thumb(im.data) for im in p.images[:4]]
             parts.append({"name": p.filename, "kind": p.kind, "notes": p.notes,
-                          "text": (p.all_text if hasattr(p, "all_text") else p.text)[:6000], "images": imgs,
+                          "text": p.all_text[:6000], "images": imgs,
                           "more_images": max(0, len(p.images) - 4)})
         cost = cost_usd(model, st["usage"]) if st.get("usage") else None
         out.append({
@@ -165,7 +165,6 @@ def fuzz() -> dict:
 
 def main() -> int:
     cat = {p.sku: p for p in load_catalog(ROOT / "data" / "catalog.csv")}
-    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     # the number pytest actually runs (a parametrized test counts once per case)
     col = subprocess.run([sys.executable, "-m", "pytest", "--collect-only", "-q", "-p", "no:cacheprovider"],
                          capture_output=True, text=True, encoding="utf-8", cwd=ROOT).stdout
@@ -175,9 +174,13 @@ def main() -> int:
         "dev": inbox(ROOT / "data" / "dev" / "emails", ROOT / "parsed.json", ROOT / "data" / "dev" / "answer_key.json", cat),
         "stress": inbox(ROOT / "tests" / "stress" / "emails", ROOT / "tests" / "stress" / "parsed.json",
                         ROOT / "tests" / "stress" / "answer_key.json", cat),
-        "fuzz": fuzz(), "commit": commit, "tests": tests, "catalog_parts": len(cat),
+        "fuzz": fuzz(), "tests": tests, "catalog_parts": len(cat),
     }
-    blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+    # Inside <script>, untrusted text must not be able to change how the HTML parser reads the
+    # block: escaping only "</" is not enough ("<!--" then "<script" enters the double-escaped
+    # state). So every <, > and & becomes a JSON \u escape; they only occur inside JSON strings.
+    blob = (json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e")
+            .replace("&", "\\u0026").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
     html = (ROOT / "scripts" / "report_template.html").read_text(encoding="utf-8").replace("/*__DATA__*/null", blob)
     out = ROOT / "report.html"
     out.write_text(html, encoding="utf-8", newline="\n")

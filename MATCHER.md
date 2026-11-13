@@ -65,7 +65,7 @@ matcher's logic:
 
 Its **first run found 113 confident wrong matches** in the version that scored 210/210 on dev
 (loose grades, `A-105 class 150` read as class 105, unknown WNRF/3M, the 40S rule running both
-ways). Now: **0 in ~19,700 lines over four seeds**, and one seed runs in the test suite. The
+ways). Now: **0 in ~21,800 lines over four seeds**, swapped schedules, pressure classes and WOG ratings included (a review found the first version of the test never swapped a class), and one seed runs in the test suite. The
 caveat is that the generator's vocabulary is mine: it tests combinations, not wording neither of
 us thought of.
 

@@ -81,8 +81,18 @@ EXTRA = {"LR": ["LR", "long radius"], "full port": ["full port", "FP"], "std por
 
 
 def fam(m: str) -> str:
-    """Metal family: 316 SS / WP316L / F316L / TP316L are one alloy; all galvanized are one."""
-    return "316" if "316" in m else "304" if "304" in m else "GALV" if "GALV" in m else m
+    """Metal family: 316 SS / WP316L / F316L / TP316L are one alloy (so are B8M studs, which are
+    316 stainless); all galvanized are one."""
+    if "316" in m or m.startswith("B8M"):
+        return "316"
+    return "304" if "304" in m else "GALV" if "GALV" in m else m
+
+
+def spec_kind(s: str) -> str:
+    """SCH (carbon) / SCH-S (stainless schedules) / pressure class / WOG rating."""
+    if s.startswith("SCH"):
+        return "SCH-S" if s.endswith("S") else "SCH"
+    return "WOG" if s.endswith("WOG") else "CLASS" if s.endswith("#") else s
 
 
 def small(size: str) -> bool:
@@ -158,7 +168,10 @@ def main() -> int:
         for _ in range(a.per_part):
             cases.append(("stated", phrase(rng, p), "matched|ambiguous" if twin else "matched", p.sku))
         # one attribute off: a spec of the same family, or another material, not stocked in this combo
-        spec_alts = [s for s in SPEC if s != p.spec and s.split()[0] == p.spec.split()[0] and s[-1] == p.spec[-1]] if p.spec else []
+        # same kind of rating: a schedule for a schedule (keeping the stainless "S"), a pressure
+        # class for a class, a WOG rating for a WOG rating. (Comparing the first word missed every
+        # 150# / 3000# / 600 WOG part: swapped ratings are the commonest wrong quote.)
+        spec_alts = [s for s in SPEC if s != p.spec and spec_kind(s) == spec_kind(p.spec)] if p.spec else []
         spec_alts = [s for s in spec_alts if (p.product, p.size, s, p.material, p.ends) not in combos
                and {s, p.spec} not in ({"SCH 40", "SCH 40S"}, {"SCH 80", "SCH 80S"})]
         if spec_alts:

@@ -46,7 +46,7 @@ viewer that walks one email through the system.
    - `A-105 class 150` was read as class 105;
    - WNRF/SORF/3M weren't known.
 
-   They were fixed (`b1f695d`), and now 0 come back in ~19,700 generated lines. Lesson: a perfect
+   They were fixed (`b1f695d`), and now 0 come back in ~21,800 generated lines (swapped pressure ratings included). Lesson: a perfect
    dev score was measuring how well we had fitted dev. Session `92594963`.
 2. **I overruled it.** The agent's first commit used the git identity already on the machine,
    which was my work email. The brief says nothing belonging to an employer may go in, so I

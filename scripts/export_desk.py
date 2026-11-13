@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from rfq.ingest import load_email  # noqa: E402
 from rfq.llm import cost_usd  # noqa: E402
-from rfq.score import mentions, pair, qty_ok  # noqa: E402
+from rfq.score import line_problems, pair  # noqa: E402
 
 
 def name(sender: str) -> str:
@@ -46,13 +46,7 @@ def main() -> int:
         if k:
             pairs, extra, missed = pair(o["line_items"], k.get("line_items") or [])
             for i, j in pairs:
-                kk, ln, probs = k["line_items"][j], o["line_items"][i], []
-                if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
-                    probs.append(f"qty should be {kk['qty']}")
-                if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
-                    probs.append(f"unit should be {kk['uom'] or 'EA'}")
-                probs += [f"missing {m}" for m in kk.get("must_mention") or [] if not mentions(ln["description"], m)]
-                probs += [f"should not say {m}" for m in kk.get("must_not_mention") or [] if mentions(ln["description"], m)]
+                probs = [text for _, text in line_problems(o["line_items"][i], k["line_items"][j])]
                 checks[i] = "; ".join(probs) or "matches"
             for i in extra:
                 checks[i] = "not in key"

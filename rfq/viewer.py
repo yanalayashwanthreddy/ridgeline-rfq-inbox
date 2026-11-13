@@ -40,7 +40,7 @@ from .ingest import STRIKE_L, STRIKE_R, Email, load_email
 from .llm import cost_usd
 from .matcher import alternatives, load_catalog
 from .prompt import REQUEST_CLASSES
-from .score import mentions, pair, qty_ok
+from .score import line_problems, pair
 
 E = html.escape
 
@@ -288,15 +288,7 @@ def detail(st: State, eid: str) -> bytes:
     if k:
         pairs, extra, missed = pair(lines, k.get("line_items") or [])
         for i, j in pairs:
-            kk, ln, probs = k["line_items"][j], lines[i], []
-            if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
-                probs.append(f"qty key {kk['qty']}")
-            if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
-                probs.append(f"uom key {kk['uom']}")
-            if ln["source"] != kk["source"]:
-                probs.append(f"source key {kk['source']}")
-            probs += [f"missing '{m}'" for m in kk.get("must_mention") or [] if not mentions(ln["description"], m)]
-            probs += [f"must not say '{m}'" for m in kk.get("must_not_mention") or [] if mentions(ln["description"], m)]
+            probs = [text for _, text in line_problems(lines[i], k["line_items"][j])]
             verdict[i] = "<span class=ok>✓</span>" if not probs else f"<span class=bad>{E('; '.join(probs))}</span>"
         for i in extra:
             verdict[i] = "<span class=bad>extra (not in key)</span>"

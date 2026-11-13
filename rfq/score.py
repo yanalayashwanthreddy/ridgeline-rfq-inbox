@@ -59,6 +59,26 @@ def qty_ok(ln: dict, kk: dict) -> bool:
     return abs(ln["qty"] - kk["qty"]) <= (kk.get("qty_tol") or 0) * abs(kk["qty"])
 
 
+def line_problems(ln: dict, kk: dict) -> list[tuple[str, str]]:
+    """Everything wrong with one paired line against its key line, as (kind, plain words).
+    kind: qty | uom | source | context | match. The one definition the scorer, the viewer,
+    the report and the desk export all use."""
+    out = []
+    if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
+        out.append(("qty", f"quantity should be {kk['qty']}"))
+    if (ln.get("uom") or "EA") != (kk.get("uom") or "EA"):
+        out.append(("uom", f"unit should be {kk.get('uom') or 'EA'}"))
+    if ln.get("source") != kk.get("source"):
+        out.append(("source", f"should come from {kk.get('source')}"))
+    out += [("context", f"description should mention '{m}'") for m in kk.get("must_mention") or []
+            if not mentions(ln.get("description") or "", m)]
+    out += [("context", f"description should not say '{m}'") for m in kk.get("must_not_mention") or []
+            if mentions(ln.get("description") or "", m)]
+    if kk.get("match") and "match" in ln and (kk["match"], kk.get("sku")) != (ln["match"], ln.get("sku")):
+        out.append(("match", f"catalog: answer key says {kk['match']} {kk.get('sku') or ''}".strip()))
+    return out
+
+
 def pair(ours: list[dict], keys: list[dict], thresh: float = 0.5):
     cand = sorted(((sim(o["raw"], k["raw"]), i, j) for i, o in enumerate(ours) for j, k in enumerate(keys)), reverse=True)
     used_o, used_k, pairs = set(), set(), []

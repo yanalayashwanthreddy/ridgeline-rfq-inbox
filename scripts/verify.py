@@ -69,7 +69,8 @@ def main() -> int:
             r = run([PY, "-m", "rfq", "parse", "--emails", "data/dev/emails", "--out", f"out{n}.json"], clone, env)
             if not check(f"parse dev without a key (run {n})", r.returncode == 0, r.stderr.strip().splitlines()[-1][:150] if r.stderr.strip() else ""):
                 return 1
-        same = (clone / "out1.json").read_bytes() == (ROOT / "parsed.json").read_bytes()
+        # against the COMMITTED file (the clone's), never this working folder's: that is what a grader gets
+        same = (clone / "out1.json").read_bytes() == (clone / "parsed.json").read_bytes()
         check("keyless output == committed parsed.json (byte for byte)", same)
         rep = json.loads((clone / "out2.report.json").read_text(encoding="utf-8"))["totals"]
         check("second run makes no new model calls", rep["model_calls"] == 0 and rep["fallbacks"] == 0,
@@ -79,26 +80,36 @@ def main() -> int:
 
         # 4. format
         f = run([PY, "data/check_format.py", "out1.json", "--emails", "data/dev/emails"], clone, env)
-        check("check_format.py", f.returncode == 0, (f.stdout + f.stderr).strip().splitlines()[-1][:120])
+        check("check_format.py", f.returncode == 0, ((f.stdout + f.stderr).strip().splitlines() or ["(no output)"])[-1][:120])
 
-        # 5. scores
-        for label, parsed, key, cache in (("dev", "out1.json", "data/dev/answer_key.json", None),
-                                          ("stress", "st.json", "tests/stress/answer_key.json", "tests/stress/cache")):
+        # 5. scores. The stress replay must also equal its committed output; dev must report the
+        # matcher (a missing matcher line fails rather than silently skipping the check).
+        for label, parsed, key, cache, committed in (
+                ("dev", "out1.json", "data/dev/answer_key.json", None, None),
+                ("stress", "st.json", "tests/stress/answer_key.json", "tests/stress/cache", "tests/stress/parsed.json")):
             if cache:
-                run([PY, "-m", "rfq", "parse", "--emails", "tests/stress/emails", "--cache", cache, "--out", parsed], clone, env)
+                r = run([PY, "-m", "rfq", "parse", "--emails", "tests/stress/emails", "--cache", cache, "--out", parsed], clone, env)
+                check("parse stress without a key == committed output", r.returncode == 0 and
+                      (clone / parsed).read_bytes() == (clone / committed).read_bytes(),
+                      (r.stderr.strip().splitlines() or [""])[-1][:120])
             s = run([PY, "scripts/score.py", parsed, key], clone, env).stdout
             silent, halluc = metric(s, "silent losses"), metric(s, "hallucinated lines")
-            wrong = re.search(r"confident wrong (\d+)", s)
             check(f"{label}: 0 silent losses, 0 hallucinated lines", silent == "0" and halluc == "0",
                   f"classes {metric(s, 'classification')}; recall {metric(s, 'line recall')}; "
                   f"precision {metric(s, 'line precision')}; context {metric(s, 'context carried')}")
-            if wrong:
-                check(f"{label}: 0 confident wrong catalog matches", wrong[1] == "0",
-                      re.search(r"matcher: .+", s)[0].replace("matcher: ", ""))
+            if label == "dev":
+                m = re.search(r"matcher: .+", s)
+                check("dev: 0 confident wrong catalog matches", bool(m) and "confident wrong 0 " in m[0] + " ",
+                      m[0].replace("matcher: ", "") if m else "no matcher results in the output")
 
+        # report.html must build, and the committed one must be what the committed outputs give
+        committed_report = (clone / "report.html").read_bytes() if (clone / "report.html").exists() else b""
         r = run([PY, "scripts/build_report.py"], clone, env)
-        check("report.html builds from the committed outputs", r.returncode == 0 and (clone / "report.html").exists(),
-              (r.stdout.strip() or r.stderr.strip()[-150:])[:120])
+        check("report.html builds, and the committed one is up to date",
+              r.returncode == 0 and (clone / "report.html").read_bytes() == committed_report,
+              "rebuilt page differs from the committed report.html: run scripts/build_report.py and commit"
+              if r.returncode == 0 and (clone / "report.html").read_bytes() != committed_report
+              else (r.stdout.strip() or r.stderr.strip()[-150:])[:120])
 
         # 6. tests
         t = run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider"], clone, env)
@@ -129,6 +140,11 @@ def main() -> int:
         files = run(["git", "ls-files", "-z"], clone).stdout.split("\0")
         leaks = [p for p in files if p and (clone / p).is_file() and KEY.search((clone / p).read_bytes())]
         check("no API key in any tracked file", not leaks, ", ".join(leaks[:5]))
+        # ...nor anywhere in the history that ships with the repo (a key removed later is still in git log -p)
+        hist = subprocess.run(["git", "log", "-p", "--all", "--no-color", "--text"], cwd=clone, capture_output=True).stdout
+        found = KEY.findall(hist)
+        check("no API key anywhere in the git history", not found, f"{len(found)} key-shaped string(s)" if found else
+              f"{len(hist) / 1e6:.0f} MB of history scanned")
         size = sum((clone / p).stat().st_size for p in files if p and (clone / p).is_file())
         git_size = sum(f.stat().st_size for f in (clone / ".git").rglob("*") if f.is_file())
         check("repo under 50 MB", size + git_size < 50 * 1024 * 1024,
