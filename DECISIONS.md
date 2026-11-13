@@ -1,6 +1,6 @@
 # DECISIONS
 
-**Time spent:** about 5 hours.
+**Time spent:** about 8 hours.
 
 ## Who decides what
 
