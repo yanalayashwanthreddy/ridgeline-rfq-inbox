@@ -62,9 +62,9 @@ Prices used ($ per 1M tokens, `rfq/llm.py`): input 0.75, cached input 0.075, out
 .venv\Scripts\python scripts\score.py parsed.json data\dev\answer_key.json      # score vs the key
 .venv\Scripts\python -m rfq.viewer --emails data\dev\emails --parsed parsed.json --key data\dev\answer_key.json
                                                                    # local web view, one email end to end
-.venv\Scripts\python -m pip install -r requirements-dev.txt; .venv\Scripts\python -m pytest -q   # 43 tests
+.venv\Scripts\python -m pip install -r requirements-dev.txt; .venv\Scripts\python -m pytest -q   # 68 tests
 .venv\Scripts\python -m rfq parse --emails tests\stress\emails --cache tests\stress\cache --out tests\stress\parsed.json
-.venv\Scripts\python scripts\score.py tests\stress\parsed.json tests\stress\answer_key.json   # stress inbox (19 emails)
+.venv\Scripts\python scripts\score.py tests\stress\parsed.json tests\stress\answer_key.json   # stress inbox (22 emails)
 ```
 
 The viewer listens on `localhost:8765` and makes no outbound calls. Its only write is a rep's

@@ -310,13 +310,14 @@ expect("S17", "rfq", [
     L('4 | 1" ball valve, bronze, solder', 4, must=["ball", "bronze"]),
 ])
 
-# --- S18 a long PDF (35 pages, 3 rows each): reads the first 30 pages and flags the rest
+# --- S18 a long PDF (35 pages, 3 rows each): read in two windows (pages 1-30, 31-35); all 105 lines,
+#     no review needed. (Until the windowed reader this expected review=True: only 30 pages were read.)
 rows = [f"{i} | {(i % 9) + 1} | EA | {['1/2', '3/4', '1', '1-1/2', '2'][i % 5]}\" | 150# RF slip-on flange, A105, item {i}"
         for i in range(1, 106)]
 msg("S18", "Doc Control <doccontrol@bigproject.example>", "RFQ BP-900 full package", "Wed, 04 Nov 2026 09:00:00 -0600",
     "Full RFQ package attached (35 pages). Please quote all items.",
     atts=[("BP-900.pdf", "application/pdf", text_pdf(rows, per_page=3))])
-expect("S18", "rfq", [L(r, int(r.split(" | ")[1]), src="BP-900.pdf", must=["slip"]) for r in rows], review=True)
+expect("S18", "rfq", [L(r, int(r.split(" | ")[1]), src="BP-900.pdf", must=["slip"]) for r in rows])
 
 
 # --- S19 a zip holding the BOM spreadsheet (the sheet's heading carries the spec)

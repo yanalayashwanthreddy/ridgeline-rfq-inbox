@@ -17,7 +17,7 @@ from .guards import fallback, finalize, missing_rows
 from .ingest import Email, load_email
 from .llm import LLM, ModelUnavailable
 from .matcher import load_catalog, match_all
-from .prompt import INSTRUCTIONS, PROMPT_VERSION, REQUEST_CLASSES, build_input
+from .prompt import INSTRUCTIONS, PROMPT_VERSION, REQUEST_CLASSES, build_input, build_window_input, schema
 from .threads import link
 
 
@@ -57,6 +57,8 @@ def process_one(path: Path, llm: LLM) -> tuple[Email, dict, dict]:
                 warns.append(f"coverage retry failed: {e}")
             if missed:
                 warns.append(f"model left out numbered rows after a second look (judged not requested): {missed}")
+        if record["classification"] in REQUEST_CLASSES:
+            _read_windows(em, record, llm, stats, warns, truncated)
         stats["warnings"] += warns
     except ModelUnavailable as e:
         stats["fallback"] = str(e)
@@ -66,6 +68,40 @@ def process_one(path: Path, llm: LLM) -> tuple[Email, dict, dict]:
         stats["traceback"] = traceback.format_exc(limit=5)
         record = fallback(em, f"internal error: {type(e).__name__}")
     return em, record, stats
+
+
+def _read_windows(em: Email, record: dict, llm: LLM, stats: dict, warns: list[str], truncated: list[str]) -> None:
+    """Long PDFs: one more cached call per window of pages; their lines are added to the record.
+    A window that can't be read makes the email need review: lines would be missing."""
+    seen = {(ln["source"], ln["raw"]) for ln in record["line_items"]}
+    failed = []
+    for part in em.parts:
+        for k, w in enumerate(part.windows):
+            content = build_window_input(em, part, k, record["classification"])
+            req = llm.request(INSTRUCTIONS, content, schema(["body"] + [p.filename for p in em.parts]))
+            try:
+                res = llm.call(req, label=f"{PROMPT_VERSION}:{em.id}:{part.filename}:p{w['pages']}")
+            except ModelUnavailable as e:
+                failed.append(f"{part.filename} pages {w['pages']} could not be read ({e})")
+                continue
+            _account(stats, res)
+            data = dict(res.data, classification=record["classification"])
+            got, w_warns = finalize(em, data, truncated)
+            warns += [f"{part.filename} p{w['pages']}: {x}" for x in w_warns]
+            for ln in got["line_items"]:
+                if ln["source"] != part.filename:
+                    warns.append(f"{part.filename} p{w['pages']}: dropped a line credited to {ln['source']} "
+                                 f"(a window may only add lines from its own pages): {ln['raw']!r}")
+                elif (ln["source"], ln["raw"]) in seen:
+                    warns.append(f"{part.filename} p{w['pages']}: dropped a repeat of an earlier line: {ln['raw']!r}")
+                else:
+                    seen.add((ln["source"], ln["raw"]))
+                    record["line_items"].append(ln)
+            stats.setdefault("windows", []).append(f"{part.filename} pages {w['pages']}: {len(got['line_items'])} line(s)")
+    if failed:
+        record["needs_review"] = True
+        reasons = [r for r in (record.get("review_reason") or "").split("; ") if r]
+        record["review_reason"] = "; ".join(dict.fromkeys(reasons + failed))
 
 
 def _account(stats: dict, res) -> None:

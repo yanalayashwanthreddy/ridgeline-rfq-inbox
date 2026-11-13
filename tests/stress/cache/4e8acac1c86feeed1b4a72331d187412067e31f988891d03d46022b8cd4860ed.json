@@ -1,23 +1,23 @@
 {
- "key": "ba63ef5c1cfd8d701833e309658a6c2b6163bb8b0bfbeed57a039acc71b8fee3",
+ "key": "4e8acac1c86feeed1b4a72331d187412067e31f988891d03d46022b8cd4860ed",
  "label": "v4:S18",
  "model": "gpt-5.4-mini-2026-03-17",
  "effort": "medium",
- "created": "2026-11-12T14:01:41-0600",
- "response_id": "resp_0f7063f84463ac4a006af61b03dc9c87d1a930ab8ea3b3f1eb",
- "seconds": 33.98,
+ "created": "2026-11-13T11:52:46-0600",
+ "response_id": "resp_0855920f97abffc6006af74e5122f487d1941ae12e4d875df3",
+ "seconds": 30.33,
  "usage": {
-  "input_tokens": 4774,
+  "input_tokens": 4812,
   "cached_input_tokens": 0,
-  "output_tokens": 7064,
-  "reasoning_tokens": 1386
+  "output_tokens": 6023,
+  "reasoning_tokens": 375
  },
- "cost_usd": 0.035368,
+ "cost_usd": 0.030713,
  "response": {
-  "classification_reason": "A customer RFQ package is attached and the sender asks Ridgeline to quote all listed items.",
+  "classification_reason": "Customer asks Ridgeline to quote all items in the attached RFQ package.",
   "classification": "rfq",
-  "needs_review": true,
-  "review_reason": "The PDF was only read through page 30, so pages 31-35 of the RFQ package are missing from the extracted text.",
+  "needs_review": false,
+  "review_reason": null,
   "line_items": [
    {
     "raw": "1 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 1",

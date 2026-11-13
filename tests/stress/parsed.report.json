@@ -4,20 +4,20 @@
   "prompt_version": "v4",
   "totals": {
     "emails": 22,
-    "model_calls": 3,
-    "cache_hits": 19,
+    "model_calls": 0,
+    "cache_hits": 22,
     "fallbacks": 0,
-    "input_tokens": 52394,
+    "input_tokens": 55698,
     "cached_input_tokens": 21120,
-    "output_tokens": 15334,
-    "reasoning_tokens": 6518,
-    "cost_usd_this_run": 0.01091,
-    "cost_usd_if_uncached": 0.09404,
-    "avg_cost_usd_per_email": 0.00427,
-    "avg_tokens_per_email": 3079,
-    "wall_seconds": 8.5,
+    "output_tokens": 15392,
+    "reasoning_tokens": 5619,
+    "cost_usd_this_run": 0.0,
+    "cost_usd_if_uncached": 0.09678,
+    "avg_cost_usd_per_email": 0.0044,
+    "avg_tokens_per_email": 3231,
+    "wall_seconds": 0.8,
     "catalog_matching": {
-      "matched": 115,
+      "matched": 130,
       "not_in_catalog": 10,
       "ambiguous": 1
     }
@@ -371,32 +371,36 @@
       "model_calls": 0,
       "cached": true,
       "usage": {
-        "input_tokens": 4774,
+        "input_tokens": 8078,
         "cached_input_tokens": 0,
-        "output_tokens": 7064,
-        "reasoning_tokens": 1386
+        "output_tokens": 7122,
+        "reasoning_tokens": 487
       },
       "cost_usd": 0.0,
       "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
-        "ba63ef5c1cfd8d701833e309658a6c2b6163bb8b0bfbeed57a039acc71b8fee3"
+        "4e8acac1c86feeed1b4a72331d187412067e31f988891d03d46022b8cd4860ed",
+        "41b62ae694856017f779e7e1ebec332b5d401241c52a821c7b112f8c987b90e4"
       ],
-      "cache_key": "ba63ef5c1cfd8d701833e309658a6c2b6163bb8b0bfbeed57a039acc71b8fee3",
-      "model_reason": "A customer RFQ package is attached and the sender asks Ridgeline to quote all listed items."
+      "cache_key": "4e8acac1c86feeed1b4a72331d187412067e31f988891d03d46022b8cd4860ed",
+      "model_reason": "Customer asks Ridgeline to quote all items in the attached RFQ package.",
+      "windows": [
+        "BP-900.pdf pages 31-35: 15 line(s)"
+      ]
     },
     "S19": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 2332,
         "cached_input_tokens": 0,
         "output_tokens": 324,
         "reasoning_tokens": 130
       },
-      "cost_usd": 0.003207,
-      "seconds": 4.48,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -406,16 +410,16 @@
       "model_reason": "The sender is requesting a quote for the BOM in the attached zip."
     },
     "S20": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 2727,
         "cached_input_tokens": 0,
         "output_tokens": 308,
         "reasoning_tokens": 117
       },
-      "cost_usd": 0.003431,
-      "seconds": 5.3,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [
@@ -425,16 +429,16 @@
       "model_reason": "Customer is asking Ridgeline to quote three listed items shown in the attached image."
     },
     "S21": {
-      "model_calls": 1,
-      "cached": false,
+      "model_calls": 0,
+      "cached": true,
       "usage": {
         "input_tokens": 2726,
         "cached_input_tokens": 0,
         "output_tokens": 495,
         "reasoning_tokens": 331
       },
-      "cost_usd": 0.004272,
-      "seconds": 7.41,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
       "warnings": [],
       "fallback": null,
       "cache_keys": [

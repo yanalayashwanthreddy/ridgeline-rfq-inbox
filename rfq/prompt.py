@@ -170,6 +170,36 @@ def build_input(em: Email) -> tuple[list[dict], dict, list[str]]:
     return content, schema(names), sorted(set(truncated))
 
 
+def build_window_input(em: Email, part, k: int, classification: str) -> list[dict]:
+    """A later window of a long PDF, for its own call. The email is already classified; this call
+    only reads lines. It also gets the document's first page and the end of the previous window
+    as CONTEXT (a heading on page 2 can govern rows on page 40), marked not to be extracted."""
+    w = part.windows[k]
+    first_page = part.text.split("\n--- page 2", 1)[0]
+    prev = part.text if k == 0 else part.windows[k - 1]["text"]
+    tail = "\n".join(prev.splitlines()[-25:])
+    names = ["body"] + [p.filename for p in em.parts]
+    i = names.index(part.filename)
+    text = (
+        f"From: {em.sender}\nSubject: {em.subject}\n\n"
+        f"This email is already classified as {classification}; its body and the earlier pages "
+        f"were read separately. Attachment {i}: {part.filename!r} is long and is read in parts. "
+        f"Below are pages {w['pages']} of it.\n"
+        f"Return line_items ONLY for items on pages {w['pages']}, with source {part.filename!r}, "
+        f"following all the usual rules. Set classification to {classification}. The CONTEXT "
+        f"sections are for headings, notes and defaults that apply to these pages: never return "
+        f"a line from CONTEXT.\n\n"
+        f"=== CONTEXT: first page of the document ===\n{first_page}\n\n"
+        f"=== CONTEXT: end of the previous part ===\n{tail}\n\n"
+        f"=== PAGES {w['pages']} ===\n{w['text'][:MAX_TEXT_CHARS]}"
+    )
+    content: list[dict] = [{"type": "input_text", "text": text}]
+    for im in w["images"][:MAX_IMAGES]:
+        content.append({"type": "input_text", "text": f"[picture: {im.label}]"})
+        content.append({"type": "input_image", "image_url": _data_url(im.mime, im.data), "detail": "high"})
+    return content
+
+
 def _data_url(mime: str, data: bytes) -> str:
     import base64
 

@@ -502,7 +502,7 @@
    "classification": "rfq",
    "revises": null,
    "duplicate_of": null,
-   "needs_review": true,
+   "needs_review": false,
    "line_items": [
     {
      "id": "S18-1",

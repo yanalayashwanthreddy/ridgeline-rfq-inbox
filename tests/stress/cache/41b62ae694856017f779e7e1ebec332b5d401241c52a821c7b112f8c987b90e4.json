@@ -1,0 +1,129 @@
+{
+ "key": "41b62ae694856017f779e7e1ebec332b5d401241c52a821c7b112f8c987b90e4",
+ "label": "v4:S18:BP-900.pdf:p31-35",
+ "model": "gpt-5.4-mini-2026-03-17",
+ "effort": "medium",
+ "created": "2026-11-13T11:52:01-0600",
+ "response_id": "resp_05cd1e1f5f0de40d006af74e3ae7b487d1973342b63647e0ce",
+ "seconds": 7.19,
+ "usage": {
+  "input_tokens": 3266,
+  "cached_input_tokens": 0,
+  "output_tokens": 1099,
+  "reasoning_tokens": 112
+ },
+ "cost_usd": 0.007395,
+ "response": {
+  "classification_reason": "The message asks to extract and price items from pages 31-35 of the RFQ attachment.",
+  "classification": "rfq",
+  "needs_review": false,
+  "review_reason": null,
+  "line_items": [
+   {
+    "raw": "91 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 91",
+    "description": "3/4\" 150# RF slip-on flange, A105",
+    "qty": 2,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "92 | 3 | EA | 1\" | 150# RF slip-on flange, A105, item 92",
+    "description": "1\" 150# RF slip-on flange, A105",
+    "qty": 3,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "93 | 4 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 93",
+    "description": "1-1/2\" 150# RF slip-on flange, A105",
+    "qty": 4,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "94 | 5 | EA | 2\" | 150# RF slip-on flange, A105, item 94",
+    "description": "2\" 150# RF slip-on flange, A105",
+    "qty": 5,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "95 | 6 | EA | 1/2\" | 150# RF slip-on flange, A105, item 95",
+    "description": "1/2\" 150# RF slip-on flange, A105",
+    "qty": 6,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "96 | 7 | EA | 3/4\" | 150# RF slip-on flange, A105, item 96",
+    "description": "3/4\" 150# RF slip-on flange, A105",
+    "qty": 7,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "97 | 8 | EA | 1\" | 150# RF slip-on flange, A105, item 97",
+    "description": "1\" 150# RF slip-on flange, A105",
+    "qty": 8,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "98 | 9 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 98",
+    "description": "1-1/2\" 150# RF slip-on flange, A105",
+    "qty": 9,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "99 | 1 | EA | 2\" | 150# RF slip-on flange, A105, item 99",
+    "description": "2\" 150# RF slip-on flange, A105",
+    "qty": 1,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "100 | 2 | EA | 1/2\" | 150# RF slip-on flange, A105, item 100",
+    "description": "1/2\" 150# RF slip-on flange, A105",
+    "qty": 2,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "101 | 3 | EA | 3/4\" | 150# RF slip-on flange, A105, item 101",
+    "description": "3/4\" 150# RF slip-on flange, A105",
+    "qty": 3,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "102 | 4 | EA | 1\" | 150# RF slip-on flange, A105, item 102",
+    "description": "1\" 150# RF slip-on flange, A105",
+    "qty": 4,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "103 | 5 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 103",
+    "description": "1-1/2\" 150# RF slip-on flange, A105",
+    "qty": 5,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "104 | 6 | EA | 2\" | 150# RF slip-on flange, A105, item 104",
+    "description": "2\" 150# RF slip-on flange, A105",
+    "qty": 6,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   },
+   {
+    "raw": "105 | 7 | EA | 1/2\" | 150# RF slip-on flange, A105, item 105",
+    "description": "1/2\" 150# RF slip-on flange, A105",
+    "qty": 7,
+    "uom": "EA",
+    "source": "BP-900.pdf"
+   }
+  ]
+ }
+}

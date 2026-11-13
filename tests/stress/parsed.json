@@ -437,8 +437,8 @@
     "classification": "rfq",
     "revises": null,
     "duplicate_of": null,
-    "needs_review": true,
-    "review_reason": "The PDF was only read through page 30, so pages 31-35 of the RFQ package are missing from the extracted text.; BP-900.pdf: PDF has 35 pages; only the first 30 were read",
+    "needs_review": false,
+    "review_reason": null,
     "line_items": [
       {
         "raw": "1 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 1",
@@ -1334,6 +1334,156 @@
         "raw": "90 | 1 | EA | 1/2\" | 150# RF slip-on flange, A105, item 90",
         "description": "1/2\" 150# RF slip-on flange, A105",
         "qty": 1,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-30289",
+        "match": "matched",
+        "match_reason": "FLG SO 1/2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "91 | 2 | EA | 3/4\" | 150# RF slip-on flange, A105, item 91",
+        "description": "3/4\" 150# RF slip-on flange, A105",
+        "qty": 2,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-27995",
+        "match": "matched",
+        "match_reason": "FLG SO 3/4\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "92 | 3 | EA | 1\" | 150# RF slip-on flange, A105, item 92",
+        "description": "1\" 150# RF slip-on flange, A105",
+        "qty": 3,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-26737",
+        "match": "matched",
+        "match_reason": "FLG SO 1\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "93 | 4 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 93",
+        "description": "1-1/2\" 150# RF slip-on flange, A105",
+        "qty": 4,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-33915",
+        "match": "matched",
+        "match_reason": "FLG SO 1-1/2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "94 | 5 | EA | 2\" | 150# RF slip-on flange, A105, item 94",
+        "description": "2\" 150# RF slip-on flange, A105",
+        "qty": 5,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-40501",
+        "match": "matched",
+        "match_reason": "FLG SO 2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "95 | 6 | EA | 1/2\" | 150# RF slip-on flange, A105, item 95",
+        "description": "1/2\" 150# RF slip-on flange, A105",
+        "qty": 6,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-30289",
+        "match": "matched",
+        "match_reason": "FLG SO 1/2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "96 | 7 | EA | 3/4\" | 150# RF slip-on flange, A105, item 96",
+        "description": "3/4\" 150# RF slip-on flange, A105",
+        "qty": 7,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-27995",
+        "match": "matched",
+        "match_reason": "FLG SO 3/4\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "97 | 8 | EA | 1\" | 150# RF slip-on flange, A105, item 97",
+        "description": "1\" 150# RF slip-on flange, A105",
+        "qty": 8,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-26737",
+        "match": "matched",
+        "match_reason": "FLG SO 1\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "98 | 9 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 98",
+        "description": "1-1/2\" 150# RF slip-on flange, A105",
+        "qty": 9,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-33915",
+        "match": "matched",
+        "match_reason": "FLG SO 1-1/2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "99 | 1 | EA | 2\" | 150# RF slip-on flange, A105, item 99",
+        "description": "2\" 150# RF slip-on flange, A105",
+        "qty": 1,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-40501",
+        "match": "matched",
+        "match_reason": "FLG SO 2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "100 | 2 | EA | 1/2\" | 150# RF slip-on flange, A105, item 100",
+        "description": "1/2\" 150# RF slip-on flange, A105",
+        "qty": 2,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-30289",
+        "match": "matched",
+        "match_reason": "FLG SO 1/2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "101 | 3 | EA | 3/4\" | 150# RF slip-on flange, A105, item 101",
+        "description": "3/4\" 150# RF slip-on flange, A105",
+        "qty": 3,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-27995",
+        "match": "matched",
+        "match_reason": "FLG SO 3/4\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "102 | 4 | EA | 1\" | 150# RF slip-on flange, A105, item 102",
+        "description": "1\" 150# RF slip-on flange, A105",
+        "qty": 4,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-26737",
+        "match": "matched",
+        "match_reason": "FLG SO 1\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "103 | 5 | EA | 1-1/2\" | 150# RF slip-on flange, A105, item 103",
+        "description": "1-1/2\" 150# RF slip-on flange, A105",
+        "qty": 5,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-33915",
+        "match": "matched",
+        "match_reason": "FLG SO 1-1/2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "104 | 6 | EA | 2\" | 150# RF slip-on flange, A105, item 104",
+        "description": "2\" 150# RF slip-on flange, A105",
+        "qty": 6,
+        "uom": "EA",
+        "source": "BP-900.pdf",
+        "sku": "RL-40501",
+        "match": "matched",
+        "match_reason": "FLG SO 2\" 150# A105 RF: the only stocked part with every stated attribute"
+      },
+      {
+        "raw": "105 | 7 | EA | 1/2\" | 150# RF slip-on flange, A105, item 105",
+        "description": "1/2\" 150# RF slip-on flange, A105",
+        "qty": 7,
         "uom": "EA",
         "source": "BP-900.pdf",
         "sku": "RL-30289",

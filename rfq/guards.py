@@ -102,7 +102,7 @@ def _source_text(em: Email, src: str) -> str | None:
     if src == "body":
         return em.body
     part = next((p for p in em.parts if p.filename == src), None)
-    return part.text if part is not None and not part.images else None
+    return part.all_text if part is not None and not part.images else None
 
 
 def _snap(em: Email, raw: str, src: str) -> str:

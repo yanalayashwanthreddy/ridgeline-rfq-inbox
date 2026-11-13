@@ -26,11 +26,14 @@ strict JSON schema) → `guards` (code) → `threads` (code) → `matcher` (code
   `duplicate_of` needs the same sender, ≤30 days, identical attachment hashes and matching lines.
 
 **Measured, not guessed.** I wrote a scorer that implements the README's grading, and a
-19-email stress inbox (`tests/stress/`) for situations dev doesn't show — tracked changes, a
+22-email stress inbox (`tests/stress/`) for situations dev doesn't show — tracked changes, a
 Spanish request, a rotated photo, an invoice with item lines, "make #3 twelve and kill #5", a
-byte-identical second delivery, a 35-page PDF. Its answers were written **before** running the
-system. Dev: 24/24 classes, 210/210 lines, 0 silent / 0 hallucinated, context 172/173.
-Stress: 19/19 classes, 118/133 lines (the 15 missing are pages 31–35, flagged), 0 hallucinated.
+byte-identical second delivery, a 35-page PDF, a BOM inside a zip, an iPhone HEIC photo. Its
+answers were written **before** running the system. Dev: 24/24 classes, 210/210 lines,
+0 silent / 0 hallucinated, context 172/173. Stress: 22/22 classes, 141/141 lines,
+0 hallucinated, context 140/141. Format tests generate what neither inbox has: zip bombs,
+password zips, misnamed .xlsx, legacy .xls, sideways phone photos. Legacy .doc/.msg are
+flagged rather than read, because I couldn't test a reader for them.
 **Rejected:** gpt-5.5 — 4.6× the cost and *worse* on context (it "corrected" `A53B` to
 `A53 Grade B`); a two-call classify-then-extract design — twice the cost, and the classifier
 needs the same reading anyway.
@@ -79,7 +82,7 @@ links mostly right, needs_review P/R **~80% / ~90%** (I flag on doubt).
 
 **Built today:** content-addressed cache (sha256 of model + effort + prompt + full content incl.
 image bytes, atomic writes), 3 retries with timeout, a circuit breaker after 3 consecutive
-failures, a per-email header fallback, a 30-page cap, per-email isolation, and a per-email
+failures, a per-email header fallback, windowed reading of long PDFs, per-email isolation, and a per-email
 cost/token report. **Not built:** the webhook, a queue, a database.
 
 - **3,000 emails a day.** Measured cost is $0.0072 per email (3,940 tokens incl. reasoning) →
@@ -93,9 +96,16 @@ cost/token report. **Not built:** the webhook, a queue, a database.
   calls the model for exactly those emails. For real I'd hold them in the queue with backoff
   for a while before handing them to people, with an alert — 250 emails to a person is worse
   than a 2-hour delay.
-- **A 300-page PDF.** Today: the first 30 pages are read and the email is flagged
-  "only the first 30 of 300 pages read" (stress S18). Next: split into page windows, one call each,
-  merge lines, and still flag for review — a 300-page document is usually a spec book, not a list.
+- **A 300-page PDF.** Built: it is read in windows of 30 pages (or 16 scanned pages), one cached
+  call each, about 10 calls and roughly $0.30.
+  - Each window also sees the document's first page and the end of the previous window as
+    context-only, because a heading on page 2 can govern rows on page 40.
+  - A window that fails flags the email for review and keeps the lines that were read.
+  - Above 300 pages the rest is flagged.
+  - Stress S18 (35 pages): all 105 rows, where the 30-page cap lost 15.
+
+  Not done: a 300-page spec book is often not a list at all; a page-relevance pass first
+  would save most of those calls.
 - **The same email delivered twice.** Built two ways: the second delivery hashes to the same
   cache key, so it costs nothing, and `threads` marks the later one `duplicate_of` the first
   (stress S13 is a byte copy). For real, dedupe on Message-ID + body hash at the webhook before

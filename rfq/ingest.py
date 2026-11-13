@@ -29,7 +29,9 @@ from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from pathlib import Path
 
-MAX_PDF_PAGES = 30          # beyond this we read the first pages and flag the rest (the "300-page PDF")
+PDF_WINDOW_PAGES = 30       # pages per model call; a longer PDF is read in several windows
+PDF_WINDOW_IMAGES = 16      # scanned pages per window (a call takes at most 20 pictures)
+MAX_PDF_PAGES = 300         # beyond this we read the first pages and flag the rest
 MAX_SHEET_ROWS = 1500       # per sheet
 MAX_IMAGE_SIDE = 2000       # px; larger images are downscaled before going to the model
 MIN_IMAGE_SIDE = 16         # tracking pixels / spacers are dropped
@@ -64,6 +66,14 @@ class Part:
     # (not the model) enforce "never take a line from a hidden sheet or row"
     hidden_rows: list[str] = field(default_factory=list)
     visible_rows: list[str] = field(default_factory=list)
+    # a long PDF: `text`/`images` hold the first window; each later window is read by its own
+    # model call: {"pages": "31-60", "text": ..., "images": [...]}
+    windows: list[dict] = field(default_factory=list)
+
+    @property
+    def all_text(self) -> str:
+        """Every page, for code checks (snapping raw, grounding, coverage) across all windows."""
+        return "\n".join([self.text, *(w["text"] for w in self.windows)]).strip()
 
 
 @dataclass
@@ -585,11 +595,12 @@ def _pdf(p: Part, data: bytes) -> None:
     n = doc.page_count
     if n > MAX_PDF_PAGES:
         p.notes.append(f"PDF has {n} pages; only the first {MAX_PDF_PAGES} were read")
-    out = []
+    pages = []  # (page no, lines, images)
     for i in range(min(n, MAX_PDF_PAGES)):
         page = doc[i]
         text = _pdf_page_lines(page)
         img_area = _image_area_ratio(page)
+        lines, imgs = [], []
         if len(text.strip()) < SCAN_TEXT_CHARS and img_area > 0 or img_area > 0.4:
             pix = page.get_pixmap(dpi=150)
             label = f"{p.filename} page {i + 1}"
@@ -597,17 +608,38 @@ def _pdf(p: Part, data: bytes) -> None:
                 img, mime = pix.tobytes("jpg", jpg_quality=85), "image/jpeg"
             except Exception:
                 img, mime = pix.tobytes("png"), "image/png"
-            p.images.append(Image(label, img, mime))
-            out.append(f"--- page {i + 1}: scanned / pictured content, see image '{label}'")
+            imgs.append(Image(label, img, mime))
+            lines.append(f"--- page {i + 1}: scanned / pictured content, see image '{label}'")
             if text.strip():
-                out.append(text)
+                lines.append(text)
         else:
-            out.append(f"--- page {i + 1}")
-            out.append(text)
-    if p.images:
-        p.notes.append(f"{len(p.images)} page(s) are scans, sent as images")
-    if any(STRIKE_L in line for line in out):
+            lines += [f"--- page {i + 1}", text]
+        pages.append((i + 1, lines, imgs))
+
+    # windows: up to PDF_WINDOW_PAGES pages and PDF_WINDOW_IMAGES scanned pages each
+    groups: list[list] = [[]]
+    for pg in pages:
+        g = groups[-1]
+        if g and (len(g) >= PDF_WINDOW_PAGES or sum(len(x[2]) for x in g) + len(pg[2]) > PDF_WINDOW_IMAGES):
+            groups.append(g := [])
+        g.append(pg)
+    first, rest = groups[0], groups[1:]
+    out = [ln for _, lines, _ in first for ln in lines]
+    p.images = [im for _, _, imgs in first for im in imgs]
+    for g in rest:
+        p.windows.append({"pages": f"{g[0][0]}-{g[-1][0]}",
+                          "text": "\n".join(ln for _, lines, _ in g for ln in lines).strip(),
+                          "images": [im for _, _, imgs in g for im in imgs]})
+    n_scans = sum(len(imgs) for _, _, imgs in pages)
+    if n_scans:
+        p.notes.append(f"{n_scans} page(s) are scans, sent as images")
+    if any(STRIKE_L in ln for _, lines, _ in pages for ln in lines):
         p.notes.append("PDF contains struck-through text")
+    if rest:
+        p.notes.append(f"PDF has {len(pages)} pages, read in {len(groups)} parts: this part is pages "
+                       f"{first[0][0]}-{first[-1][0]}; " + ", ".join(w["pages"] for w in p.windows)
+                       + " are read by separate calls and merged by the system, so they are not "
+                       "missing: don't flag the email for review because of them")
     p.text = "\n".join(out).strip()
     if not p.text and not p.images:
         p.kind = "unreadable"
