@@ -92,10 +92,10 @@ precision because I flag on doubt.
 1. **Photos and scans of handwritten lists.** The model's reading is all there is. A misread
    `6`/`8`, a missed line or a `raw` that pairs badly costs qty and recall. Code can't check a
    picture, and the model flags too rarely.
-2. **Terse revisions of an email that isn't in the inbox.** "Kill #5" needs the original list,
-   so the "complete order as now intended" will be incomplete. The same boundary, Rev B / resend
-   / "also add", is new rfq or revision? I chose "revision only if it changes an *earlier email*";
-   held-out may draw it differently.
+2. **Revisions, at the rfq/revision boundary.** "Kill #5" with the original neither in the inbox
+   nor quoted is now flagged by code (it can't be rebuilt), and a quoted original is rebuilt (stress
+   S22/S23). What remains is the judgement: is Rev B / a resend / "also add" a new rfq or a revision?
+   I chose "a revision only changes an *earlier email*"; held-out may draw it differently.
 
 ## How this runs for real
 
