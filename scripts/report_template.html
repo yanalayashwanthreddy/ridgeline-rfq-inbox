@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>RFQ Inbox Results</title>
+<style>
+:root{color-scheme:light;
+  --page:#f9f9f7;--surface:#fcfcfb;--card:#ffffff;--ink:#0b0b0b;--ink2:#52514e;--muted:#6f6d68;
+  --line:#e1e0d9;--ring:rgba(11,11,11,.10);--accent:#2a78d6;--accent-ink:#1c5cab;--bar:#2a78d6;
+  --good:#0ca30c;--good-ink:#006300;--good-bg:#e6f4e6;--warn:#fab219;--warn-ink:#7a5200;--warn-bg:#fdf3dc;
+  --bad:#d03b3b;--bad-ink:#a42a2a;--bad-bg:#fbe7e7;--chip:#f0efec;--hl:#fff1a8}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){color-scheme:dark;
+  --page:#0d0d0d;--surface:#1a1a19;--card:#1f1f1d;--ink:#f0efec;--ink2:#c3c2b7;--muted:#9d9a93;
+  --line:#2c2c2a;--ring:rgba(255,255,255,.10);--accent:#3987e5;--accent-ink:#86b6ef;--bar:#3987e5;
+  --good:#0ca30c;--good-ink:#6fcf97;--good-bg:#16301c;--warn:#fab219;--warn-ink:#f3c969;--warn-bg:#3a2e12;
+  --bad:#d03b3b;--bad-ink:#f28b82;--bad-bg:#3d1c1a;--chip:#2a2927;--hl:#5a4b00}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --page:#0d0d0d;--surface:#1a1a19;--card:#1f1f1d;--ink:#f0efec;--ink2:#c3c2b7;--muted:#9d9a93;
+  --line:#2c2c2a;--ring:rgba(255,255,255,.10);--accent:#3987e5;--accent-ink:#86b6ef;--bar:#3987e5;
+  --good:#0ca30c;--good-ink:#6fcf97;--good-bg:#16301c;--warn:#fab219;--warn-ink:#f3c969;--warn-bg:#3a2e12;
+  --bad:#d03b3b;--bad-ink:#f28b82;--bad-bg:#3d1c1a;--chip:#2a2927;--hl:#5a4b00}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent-ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0 6px;flex-wrap:wrap}
+.top h1{font-size:19px;margin:0;font-weight:650}
+.top .sub{color:var(--ink2);font-size:13px}
+.theme{margin-left:auto;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:0}
+nav button{font:inherit;font-size:14px;background:none;border:0;border-bottom:3px solid transparent;color:var(--ink2);padding:8px 12px;cursor:pointer;white-space:nowrap}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+main{padding:22px 0 60px}
+section[hidden]{display:none}
+h2{font-size:21px;margin:0 0 6px;font-weight:650}
+h3{font-size:15px;margin:0 0 10px;font-weight:650}
+.lede{color:var(--ink2);max-width:780px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--ring);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.flow{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+.step{flex:1 1 180px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.step b{display:block;font-size:14px;margin-bottom:3px}
+.step span{color:var(--ink2);font-size:13px}
+.arrow{align-self:center;color:var(--muted);font-size:20px}
+@media (max-width:760px){.arrow{display:none}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile .v{font-size:28px;font-weight:650;line-height:1.15}
+.tile .l{color:var(--ink2);font-size:13px;margin-top:2px}
+.tile .s{font-size:12.5px;margin-top:6px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.bars{display:grid;grid-template-columns:max-content 1fr max-content;gap:8px 10px;align-items:center}
+.bars .lab{font-size:13.5px;color:var(--ink2)}
+.bars .track{height:14px;position:relative}
+.bars .fill{height:14px;background:var(--bar);border-radius:0 4px 4px 0;min-width:3px}
+.bars .num{font-size:13.5px;font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--ink);white-space:nowrap}
+.ok{background:var(--good-bg);color:var(--good-ink)}
+.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.bad{background:var(--bad-bg);color:var(--bad-ink)}
+.req{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent-ink)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.filters input{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 10px;min-width:0;flex:1 1 200px;max-width:320px}
+.count{color:var(--muted);font-size:13px}
+.tablewrap{overflow-x:auto;border:1px solid var(--ring);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;background:var(--surface)}
+tr:last-child td{border-bottom:0}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+td.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+dialog{border:0;border-radius:14px;padding:0;width:min(1000px,calc(100vw - 16px));max-width:calc(100vw - 16px);overflow-x:hidden;max-height:92vh;background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dhead{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;gap:12px;align-items:flex-start;z-index:2}
+.dhead h2{font-size:18px;margin:0}
+.dclose{margin-left:auto;font:inherit;font-size:20px;line-height:1;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:34px;cursor:pointer;flex:none}
+.dbody{padding:16px 18px;min-width:0}
+.dbody .tablewrap table{min-width:720px}
+@media (max-width:600px){.dbody,.dhead{padding:12px}.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
+.box{border-radius:10px;padding:10px 12px;margin:0 0 10px;font-size:14px}
+pre{white-space:pre-wrap;word-break:break-word;font:12.5px/1.5 ui-monospace,Consolas,monospace;margin:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;max-height:340px;overflow:auto}
+details{margin:6px 0}
+summary{cursor:pointer;color:var(--ink2);font-size:13.5px}
+img.att{max-width:100%;border:1px solid var(--line);border-radius:8px;margin:6px 0;display:block}
+.raw{color:var(--muted);font-size:12.5px;margin-top:2px}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:14px;margin:0 0 12px}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+ul.tight{margin:4px 0;padding-left:20px}
+.foot{color:var(--muted);font-size:12.5px;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <h1>Ridgeline RFQ Inbox: Results</h1>
+      <span class="sub" id="sub"></span>
+      <button class="theme" id="theme" type="button">Dark / light</button>
+    </div>
+    <nav role="tablist" aria-label="Sections">
+      <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+      <button role="tab" data-tab="inbox" aria-selected="false">The inbox (24 emails)</button>
+      <button role="tab" data-tab="stress" aria-selected="false">Unseen situations</button>
+      <button role="tab" data-tab="proof" aria-selected="false">How we know it's right</button>
+      <button role="tab" data-tab="words" aria-selected="false">Words used here</button>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section id="overview"></section>
+  <section id="inbox" hidden></section>
+  <section id="stress" hidden></section>
+  <section id="proof" hidden></section>
+  <section id="words" hidden></section>
+</main>
+<dialog id="dlg" aria-labelledby="dtitle"></dialog>
+<script>
+const DATA = /*__DATA__*/null;
+
+/* ---------- tiny DOM helper: every string becomes a text node, never HTML ---------- */
+function h(tag, props, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (k === "style") el.style.cssText = v;
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat(Infinity)) {
+    if (kid == null || kid === false) continue;
+    el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+  }
+  return el;
+}
+const pct = (a, b) => b ? Math.round(100 * a / b) + "%" : "–";
+const money = x => x == null ? "–" : (x < 0.1 ? (x * 100).toFixed(1) + "¢" : "$" + x.toFixed(2));
+const REQ = new Set(["rfq", "rfq_revision", "purchase_order"]);
+const status = (kind, text, icon) => h("span", {class: "chip " + kind}, h("span", {"aria-hidden": "true"}, icon), h("span", {}, text));
+const okChip = t => status("ok", t, "✓");
+const badChip = t => status("bad", t, "✗");
+const warnChip = t => status("warn", t, "⚑");
+
+/* ---------- theme ---------- */
+(function () {
+  let t = null;
+  try { t = localStorage.getItem("rfq-theme"); } catch (e) {}
+  if (t) document.documentElement.dataset.theme = t;
+  document.getElementById("theme").addEventListener("click", () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = dark ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("rfq-theme", next); } catch (e) {}
+  });
+})();
+
+/* ---------- tabs ---------- */
+document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll("main section").forEach(s => s.hidden = s.id !== b.dataset.tab);
+  window.scrollTo({top: 0});
+}));
+
+const D = DATA.dev, S = DATA.stress, T = D.totals, ST = S.totals;
+document.getElementById("sub").textContent =
+  `AI model ${D.model} (${D.effort} effort) · ${DATA.catalog_parts} catalog parts`;
+
+/* ---------- overview ---------- */
+function tile(value, label, sub) {
+  return h("div", {class: "tile"}, h("div", {class: "v"}, value), h("div", {class: "l"}, label), sub ? h("div", {class: "s"}, sub) : null);
+}
+function overview() {
+  const kinds = {};
+  D.emails.forEach(e => kinds[e.kind_label] = (kinds[e.kind_label] || 0) + 1);
+  const order = Object.entries(kinds).sort((a, b) => b[1] - a[1]);
+  const max = Math.max(...order.map(x => x[1]));
+  const people = D.emails.filter(e => e.review || e.attention).length;
+  return [
+    h("h2", {}, "What this is"),
+    h("p", {class: "lede"},
+      "Ridgeline's sales team gets an inbox full of customer emails asking for prices: typed lists, spreadsheets, ",
+      "PDFs, phone photos, replies that say \"make #3 twelve\". This system reads every email, decides what kind of email it is, ",
+      "and lists exactly what the customer wants to buy, ready to quote. When it can't be sure, it says so and hands the email to a person."),
+    h("div", {class: "card"},
+      h("h3", {}, "How it works"),
+      h("div", {class: "flow"},
+        h("div", {class: "step"}, h("b", {}, "1 · Read every file"), h("span", {}, "Spreadsheets, Word, PDFs, scans, photos, zips. Keeps hidden sheets and crossed-out lines marked.")),
+        h("span", {class: "arrow", "aria-hidden": "true"}, "→"),
+        h("div", {class: "step"}, h("b", {}, "2 · AI reads the email"), h("span", {}, "One AI call per email decides what it is and lists the items, each with its full spec.")),
+        h("span", {class: "arrow", "aria-hidden": "true"}, "→"),
+        h("div", {class: "step"}, h("b", {}, "3 · Code checks the facts"), h("span", {}, "Drops crossed-out lines, flags anything unreadable, re-reads photos to double-check numbers.")),
+        h("span", {class: "arrow", "aria-hidden": "true"}, "→"),
+        h("div", {class: "step"}, h("b", {}, "4 · Match to the catalog"), h("span", {}, "Finds the exact stocked part, or says \"we don't stock this\" / \"ask the customer\". Never guesses.")))),
+    h("div", {class: "card"},
+      h("h3", {}, `What it did with the ${T.emails} practice emails`),
+      h("div", {class: "tiles"},
+        tile(T.emails, "emails read"),
+        tile(T.requests, "price requests & orders found"),
+        tile(T.lines, "items to quote, listed"),
+        tile(people, "handed to a person", "with the reason written down"),
+        tile(T.silent, "customers missed", T.silent === 0 ? okChip("none") : badChip("check")),
+        tile(money(T.cost), "AI cost for the whole inbox", `${money(T.cost_each)} per email`))),
+    h("div", {class: "card"},
+      h("h3", {}, "Checked against the answer key"),
+      h("p", {class: "muted small", style: "margin:-4px 0 10px"}, "The assignment came with \"what a careful sales rep made of each email\". The system's answers, compared:"),
+      h("div", {class: "tiles"},
+        tile(`${T.class_ok}/${T.emails}`, "emails sorted correctly", T.class_ok === T.emails ? okChip("all") : null),
+        tile(`${T.paired}/${T.key_lines}`, "items found", T.paired === T.key_lines ? okChip("all") : null),
+        tile(T.extra, "items invented", T.extra === 0 ? okChip("none") : badChip("check")),
+        tile(`${T.ctx_ok}/${T.ctx_n}`, "items with their full spec carried"),
+        tile(`${T.m_ok}/${T.m_n}`, "catalog decisions right", T.m_wrong === 0 ? okChip("0 wrong parts") : badChip(T.m_wrong + " wrong parts")),
+        tile(`${T.review_ok}/${T.emails}`, "\"needs a person\" right"))),
+    h("div", {class: "grid2"},
+      h("div", {class: "card"},
+        h("h3", {}, "What arrived in the inbox"),
+        h("div", {class: "bars", role: "img", "aria-label": order.map(([k, n]) => `${k}: ${n}`).join(", ")},
+          order.map(([k, n]) => [h("div", {class: "lab"}, k),
+            h("div", {class: "track", title: `${k}: ${n} email(s)`}, h("div", {class: "fill", style: `width:${100 * n / max}%`})),
+            h("div", {class: "num"}, n)]))),
+      h("div", {class: "card"},
+        h("h3", {}, `Also tested on ${ST.emails} situations the practice inbox doesn't have`),
+        h("p", {class: "muted small", style: "margin:-4px 0 10px"}, "Written with their correct answers before the system ever saw them: handwriting, a 35-page PDF, a zip file, \"kill #4\" with no original…"),
+        h("div", {class: "tiles"},
+          tile(`${ST.class_ok}/${ST.emails}`, "sorted correctly"),
+          tile(`${ST.paired}/${ST.key_lines}`, "items found"),
+          tile(ST.extra, "items invented")),
+        h("p", {style: "margin:12px 0 0"}, h("a", {href: "#", onclick: e => { e.preventDefault(); document.querySelector('nav [data-tab="stress"]').click(); }}, "See each situation →"))))
+  ];
+}
+
+/* ---------- inbox table ---------- */
+function verdictCell(e) {
+  if (!e.key_kind) return h("span", {class: "muted"}, "–");
+  const probs = [];
+  if (e.key_kind !== e.kind) probs.push(`should be "${e.key_kind_label}"`);
+  const bad = Object.values(e.verdict).filter(v => v.length).length;
+  if (bad) probs.push(`${bad} item(s) differ`);
+  if (e.missed.length) probs.push(`${e.missed.length} item(s) missed`);
+  if (e.key_review !== e.review) probs.push("\"needs a person\" differs");
+  return probs.length ? badChip(probs.join("; ")) : okChip("matches");
+}
+function personCell(e) {
+  if (e.review) return warnChip("needs a person");
+  if (e.attention) return status("warn", "action", "➜");
+  return h("span", {class: "muted"}, "–");
+}
+function emailTable(list, opts) {
+  const tbody = h("tbody");
+  const filters = [["All", () => true], ["Requests & orders", e => REQ.has(e.kind)], ["Needs a person", e => e.review || e.attention], ["Not requests", e => !REQ.has(e.kind)]];
+  let current = filters[0][1], q = "";
+  const count = h("span", {class: "count"});
+  function draw() {
+    tbody.replaceChildren();
+    const rows = list.filter(current).filter(e => !q || (e.id + " " + e.from + " " + e.subject + " " + e.kind_label + " " + (e.scenario || "")).toLowerCase().includes(q));
+    rows.forEach(e => tbody.append(h("tr", {class: "click", tabindex: 0, onclick: () => openEmail(e), onkeydown: ev => { if (ev.key === "Enter") openEmail(e); }},
+      h("td", {}, h("b", {}, e.id)),
+      opts.scenario ? h("td", {}, e.scenario || "") : h("td", {}, e.from),
+      h("td", {}, e.subject),
+      h("td", {}, h("span", {class: "chip" + (REQ.has(e.kind) ? " req" : "")}, e.kind_label)),
+      h("td", {class: "num"}, e.lines.length, e.duplicate_of ? h("div", {class: "small muted"}, "repeat of " + e.duplicate_of) : null),
+      h("td", {}, personCell(e)),
+      h("td", {}, verdictCell(e)))));
+    count.textContent = `Showing ${rows.length} of ${list.length} · click a row to open the email`;
+  }
+  const btns = filters.map(([label, fn], i) => h("button", {type: "button", "aria-pressed": i === 0, onclick: ev => {
+    btns.forEach(b => b.setAttribute("aria-pressed", b === ev.currentTarget)); current = fn; draw(); }}, label));
+  const search = h("input", {type: "search", placeholder: "Search sender, subject…", "aria-label": "Search emails", oninput: ev => { q = ev.target.value.toLowerCase(); draw(); }});
+  draw();
+  return [h("div", {class: "filters"}, btns, search, count),
+    h("div", {class: "tablewrap"}, h("table", {},
+      h("thead", {}, h("tr", {}, h("th", {}, "Email"), h("th", {}, opts.scenario ? "What it tests" : "From"), h("th", {}, "Subject"),
+        h("th", {}, "What it is"), h("th", {}, "Items"), h("th", {}, "Person needed?"), h("th", {}, "vs answer key"))),
+      tbody))];
+}
+
+/* ---------- one email ---------- */
+function catalogCell(ln) {
+  if (!ln.match) return h("span", {class: "muted"}, "–");
+  const head = ln.match === "matched" ? okChip(ln.sku) : ln.match === "not_in_catalog" ? status("bad", "we don't stock this", "✗") : warnChip("ask the customer");
+  return h("div", {}, head, ln.catalog ? h("div", {class: "small"}, ln.catalog) : null, h("div", {class: "raw"}, ln.match_reason || ""));
+}
+function openEmail(e) {
+  const dlg = document.getElementById("dlg");
+  const items = e.lines.map((ln, i) => {
+    const v = e.verdict[String(i)];
+    return h("tr", {},
+      h("td", {class: "num muted"}, i + 1),
+      h("td", {}, ln.description, h("div", {class: "raw"}, "as written: " + ln.raw)),
+      h("td", {class: "num"}, ln.qty == null ? "–" : ln.qty),
+      h("td", {}, ln.uom || "EA"),
+      h("td", {class: "small"}, ln.source === "body" ? "email text" : ln.source),
+      h("td", {}, catalogCell(ln)),
+      h("td", {}, !e.key_kind ? h("span", {class: "muted"}, "–") : v && v.length ? badChip(v.join("; ")) : okChip("matches")));
+  });
+  const checks = [];
+  if (e.second_read) checks.push(e.second_read === "agrees" ? "Photos were read twice, independently: both readings agree." : "Photos were read twice and the readings disagree: " + [].concat(e.second_read).join("; "));
+  if (e.coverage) checks.push("A numbered row looked skipped, so the AI was asked once more about: " + e.coverage);
+  if (e.windows) checks.push("A long PDF was read in parts: " + [].concat(e.windows).join("; "));
+  if (e.fallback) checks.push("The AI could not be reached; decided from the headers instead: " + e.fallback);
+  checks.push(`${e.calls} AI call(s) · cost ${money(e.cost)}`);
+  dlg.replaceChildren(
+    h("div", {class: "dhead"},
+      h("div", {}, h("div", {class: "muted small"}, e.id + (e.scenario ? " · " + e.scenario : "")), h("h2", {id: "dtitle"}, e.subject || "(no subject)"),
+        h("div", {class: "small muted"}, e.from_full, " · ", e.date)),
+      h("button", {class: "dclose", type: "button", "aria-label": "Close", onclick: () => dlg.close()}, "×")),
+    h("div", {class: "dbody"},
+      h("dl", {class: "kv"},
+        h("dt", {}, "What it is"), h("dd", {}, h("span", {class: "chip" + (REQ.has(e.kind) ? " req" : "")}, e.kind_label), " ",
+          e.key_kind ? (e.key_kind === e.kind ? okChip("answer key agrees") : badChip("answer key: " + e.key_kind_label)) : null),
+        h("dt", {}, "Why"), h("dd", {}, e.reason || "–"),
+        e.revises ? [h("dt", {}, "Changes"), h("dd", {}, "an earlier email in this inbox: " + e.revises)] : null,
+        e.duplicate_of ? [h("dt", {}, "Duplicate of"), h("dd", {}, e.duplicate_of + " (the same request sent again; not quoted twice)")] : null),
+      e.review ? h("div", {class: "box warn"}, h("b", {}, "⚑ A person needs to look: "), e.review_reason) : null,
+      e.attention ? h("div", {class: "box warn"}, h("b", {}, "➜ Action: "), e.attention) : null,
+      h("h3", {style: "margin-top:14px"}, e.lines.length ? `What the customer wants (${e.lines.length} item${e.lines.length > 1 ? "s" : ""})` : "Items to quote"),
+      e.lines.length ? h("div", {class: "tablewrap"}, h("table", {},
+        h("thead", {}, h("tr", {}, h("th", {}, "#"), h("th", {}, "Item, with its full spec"), h("th", {}, "Qty"), h("th", {}, "Unit"),
+          h("th", {}, "Found in"), h("th", {}, "In our catalog"), h("th", {}, "vs answer key"))),
+        h("tbody", {}, items)))
+        : h("p", {class: "muted"}, REQ.has(e.kind) ? "None could be read, so the email goes to a person (above)." : "Not a request, so there is nothing to quote."),
+      e.missed.length ? h("div", {class: "box bad"}, h("b", {}, "In the answer key but not found: "), h("ul", {class: "tight"}, e.missed.map(m => h("li", {}, m)))) : null,
+      h("h3", {style: "margin-top:16px"}, "Extra checks the system ran"),
+      h("ul", {class: "tight small"}, checks.map(c => h("li", {}, c))),
+      h("h3", {style: "margin-top:16px"}, "The email, as the system read it"),
+      h("pre", {}, e.body || "(empty)"),
+      e.parts.map(p => h("div", {class: "card", style: "margin-top:10px"},
+        h("b", {}, "📎 " + p.name), " ", h("span", {class: "chip" + (p.kind === "unreadable" ? " bad" : "")}, {text: "read as text", image: "picture", unreadable: "could not be read", skipped: "container / ignored"}[p.kind] || p.kind),
+        p.notes.length ? h("ul", {class: "tight small muted"}, p.notes.map(n => h("li", {}, n))) : null,
+        p.images.map(src => h("img", {class: "att", src, alt: "picture from " + p.name})),
+        p.more_images ? h("div", {class: "small muted"}, `+ ${p.more_images} more page image(s)`) : null,
+        p.text ? h("details", {}, h("summary", {}, "Show the text read from this file"), h("pre", {}, p.text)) : null))));
+  dlg.showModal();
+  dlg.scrollTop = 0;
+}
+document.getElementById("dlg").addEventListener("click", ev => { if (ev.target.id === "dlg") ev.target.close(); });
+
+/* ---------- proof ---------- */
+function row(label, a, b) { return h("tr", {}, h("td", {}, label), h("td", {class: "num"}, a), h("td", {class: "num"}, b)); }
+function proof() {
+  const F = DATA.fuzz;
+  return [
+    h("h2", {}, "How we know it's right"),
+    h("p", {class: "lede"}, "Every number here is recomputed from the system's actual output each time this page is built."),
+    h("div", {class: "card"}, h("h3", {}, "Compared with the correct answers"),
+      h("div", {class: "tablewrap"}, h("table", {},
+        h("thead", {}, h("tr", {}, h("th", {}, ""), h("th", {}, `Practice inbox (${T.emails})`), h("th", {}, `Unseen situations (${ST.emails})`))),
+        h("tbody", {},
+          row("Customers missed (the costliest mistake)", T.silent, ST.silent),
+          row("Items invented", T.extra, ST.extra),
+          row("Emails sorted correctly", `${T.class_ok}/${T.emails}`, `${ST.class_ok}/${ST.emails}`),
+          row("Items found", `${T.paired}/${T.key_lines}`, `${ST.paired}/${ST.key_lines}`),
+          row("Items with their full spec", `${T.ctx_ok}/${T.ctx_n}`, `${ST.ctx_ok}/${ST.ctx_n}`),
+          row("\"Needs a person\" right", `${T.review_ok}/${T.emails}`, `${ST.review_ok}/${ST.emails}`),
+          row("Catalog: wrong part quoted", T.m_wrong, "–"))))),
+    h("div", {class: "grid2"},
+      h("div", {class: "card"}, h("h3", {}, "The catalog matcher, on thousands of new lines"),
+        h("p", {}, `A perfect score on 210 practice items wasn't trusted. We wrote every one of the ${F.parts} catalog parts the way customers write them, ${F.lines} lines in all, with the right answers taken from the catalog itself.`),
+        h("div", {class: "tiles"}, tile(113, "wrong parts in the first version", "found by this test"), tile(F.wrong, "wrong parts now", F.wrong === 0 ? okChip("fixed") : badChip("check")))),
+      h("div", {class: "card"}, h("h3", {}, "Runs the same on your computer"),
+        h("ul", {class: "tight"},
+          h("li", {}, "With no AI key at all, the saved answers replay and give exactly the same results, at no cost."),
+          h("li", {}, "A second run makes no new AI calls."),
+          h("li", {}, `${DATA.tests} automated tests.`),
+          h("li", {}, "Tested on Windows and on Linux with Python 3.11: identical output, byte for byte."),
+          h("li", {}, "One broken file never stops the run: it's marked unreadable, with the reason.")),
+        h("p", {class: "small muted"}, "Check it yourself: python scripts/verify.py --linux"))),
+    h("div", {class: "card"}, h("h3", {}, "What we expect on emails we haven't seen"),
+      h("p", {class: "small muted", style: "margin-top:-4px"}, "Predicted before the graders' run (from DECISIONS.md):"),
+      h("div", {class: "tiles"}, tile("0", "customers missed"), tile("~90%", "emails sorted correctly"), tile("~90%", "items found"), tile("2–5", "items invented"), tile("0–2", "wrong catalog parts"))),
+    h("div", {class: "card"}, h("h3", {}, "Where it can still go wrong"),
+      h("ul", {class: "tight"},
+        h("li", {}, "A photo both readings misread the same way (they're compared, so disagreements are caught, but not shared mistakes)."),
+        h("li", {}, "Whether \"Rev B\" or \"also add\" is a new request or a change to an earlier one is a judgement call."),
+        h("li", {}, "Old Word (.doc) files can't show crossed-out text, so those emails always go to a person.")))
+  ];
+}
+
+/* ---------- glossary ---------- */
+function words() {
+  const W = [
+    ["Price request (RFQ)", "A customer asking us to quote prices for items."],
+    ["Changed request", "A customer changing a request they sent earlier (\"make #3 twelve\"). The system lists the complete order as it now stands."],
+    ["Purchase order", "A customer committing to buy."],
+    ["Needs a person", "The system couldn't fully read or resolve the request (a locked PDF, items described as \"same as last time\"), so a person must look before anyone quotes."],
+    ["Action", "Not a request, but someone should do something: our email bounced, a customer is waiting on a status reply, a lost deal to close."],
+    ["Customer missed", "A request that came back with nothing to quote and no flag. That customer would never hear back. The costliest mistake, so code makes it impossible."],
+    ["Item invented", "Something listed that the customer didn't ask for: a heading, a price, a crossed-out line. The second costliest mistake."],
+    ["Full spec carried", "Each item names everything that applies to it, even when the customer wrote it elsewhere: \"ALL PIPE SCH 40\" in a heading becomes part of each pipe item."],
+    ["Not in catalog", "We don't stock it. The nearest part is often one detail off (right size, wrong pressure rating), and quoting that would be a wrong quote."],
+    ["Ask the customer", "More than one stocked part fits what the customer wrote. The system shows the options instead of guessing."],
+    ["Answer key", "The assignment's own correct answers for the 24 practice emails, \"what a careful sales rep made of each one\"."],
+    ["Unseen situations", "25 extra test emails we wrote, with their correct answers written down before the system ran on them."],
+  ];
+  return [h("h2", {}, "Words used here"), h("div", {class: "card"}, h("dl", {class: "kv", style: "gap:10px 18px"}, W.map(([a, b]) => [h("dt", {}, h("b", {}, a)), h("dd", {}, b)])))];
+}
+
+document.getElementById("overview").append(...overview());
+document.getElementById("inbox").append(h("h2", {}, "The practice inbox"),
+  h("p", {class: "lede"}, "The 24 emails that came with the assignment. Click any row to see the email, what the system made of it, and how that compares with the answer key."),
+  ...emailTable(D.emails, {}));
+document.getElementById("stress").append(h("h2", {}, "Unseen situations"),
+  h("p", {class: "lede"}, "Situations the practice inbox doesn't have, each written with its correct answer before the system saw it. This is the fairer test: nothing here was tuned on."),
+  ...emailTable(S.emails, {scenario: true}));
+document.getElementById("proof").append(...proof());
+document.getElementById("words").append(...words());
+
+/* ---------- links: report.html#inbox, #stress, #proof, or an email id like #E005 / #S24 ---------- */
+function route() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const tab = document.querySelector(`nav [data-tab="${CSS.escape(id)}"]`);
+  if (tab) { tab.click(); return; }
+  const e = D.emails.find(x => x.id === id) || S.emails.find(x => x.id === id);
+  if (e) {
+    document.querySelector(`nav [data-tab="${D.emails.includes(e) ? "inbox" : "stress"}"]`).click();
+    openEmail(e);
+  }
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>

@@ -96,6 +96,10 @@ def main() -> int:
                 check(f"{label}: 0 confident wrong catalog matches", wrong[1] == "0",
                       re.search(r"matcher: .+", s)[0].replace("matcher: ", ""))
 
+        r = run([PY, "scripts/build_report.py"], clone, env)
+        check("report.html builds from the committed outputs", r.returncode == 0 and (clone / "report.html").exists(),
+              (r.stdout.strip() or r.stderr.strip()[-150:])[:120])
+
         # 6. tests
         t = run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider"], clone, env)
         check("test suite", t.returncode == 0, (t.stdout.strip().splitlines() or ["?"])[-1])

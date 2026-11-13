@@ -1,5 +1,10 @@
 # RUNNING
 
+> **Just want to see the results?** Open **`report.html`** in any browser (double-click it).
+> No install needed, works offline. It shows every email, what the system made of it, and how
+> that compares with the answer key, in plain language. Rebuild it with
+> `python scripts/build_report.py` after a new run.
+
 Windows, native Python 3.11+. Developed on 3.12.10 (Windows); also tested on Python 3.11 under Linux (Docker), where the outputs are byte-identical. No Docker needed to run it.
 
 ## Setup (one step, from a fresh clone or unzip)
