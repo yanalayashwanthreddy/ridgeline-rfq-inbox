@@ -40,6 +40,10 @@ PRODUCTS: list[tuple[str, set[str]]] = [
     (r"concentric|\bconc\b", {"concentric reducer"}),
     (r"eccentric|\becc\b", {"eccentric reducer"}),
     (r"\breducer\b|\bred\b", {"concentric reducer", "eccentric reducer"}),
+    # flange type + raised face in one trade word (the RF is read in ENDS)
+    (r"\bwnrf\b", {"weld neck flange"}),
+    (r"\bsorf\b", {"slip-on flange"}),
+    (r"\bblrf\b|\bblfr?\b", {"blind flange"}),
     (r"\bblind\b", {"blind flange"}),
     (r"slip[\s-]*on|\bs/?o\b\s*(?:flange|flg)|(?:flange|flg)\s*s/?o\b", {"slip-on flange"}),
     (r"weld[\s-]*neck|\bw/?n\b\s*(?:flange|flg)?|(?:flange|flg)\s*w/?n\b", {"weld neck flange"}),
@@ -66,14 +70,25 @@ PRODUCTS: list[tuple[str, set[str]]] = [
     (r"thread\s*dope|pipe\s*dope", {"pipe thread dope"}),
 ]
 PIPE = (r"\bpipe\b", {"pipe"})
+ACCESSORIES = {"heavy hex nut", "hex nut"}
 PIPE_LIKE = {"pipe", "nipple"}
 
 # ---- materials: (pattern, predicate on the catalog material). Stainless grades are read
 # first; carbon-steel words only apply when no stainless grade is named.
-STAINLESS = [
+STAINLESS = [  # the grade family: the first that matches
     (r"316|\bcf8m\b|\bcf3m\b", lambda m: "316" in m),  # CF8M / CF3M: cast 316 (valve bodies)
     (r"304|\bcf8\b|\bcf3\b", lambda m: "304" in m),
     (r"stainless|\bss\b", lambda m: "SS" in m or "304" in m or "316" in m),
+]
+# ...and, on top of the family, every product standard the customer names must hold. "WP316L" is
+# a fitting grade, "TP316L" a pipe grade, "F316L" a forging grade: a valve asked for in WP316L is
+# not the F316L valve we stock. Same for the low-carbon "L" and for a graphite-filled gasket.
+STAINLESS_SPECIFIC = [
+    (r"\ba403\b|\bwp3(?:04|16)l?\b", lambda m: m.startswith("A403")),
+    (r"\ba182\b|\bf3(?:04|16)l?\b", lambda m: m.startswith("A182")),
+    (r"\ba312\b|\btp3(?:04|16)l?\b", lambda m: m.startswith("A312")),
+    (r"(?:304|316)l\b", lambda m: bool(re.search(r"(?:304|316)L", m))),
+    (r"graphite", lambda m: "GRAPHITE" in m),
 ]
 OTHER_MATERIALS = [
     (r"\ba105\b|forged\s*steel", lambda m: m == "A105"),
@@ -119,7 +134,7 @@ PIPE_ENDS = [
 ENDS = [
     (r"butt[\s-]*weld|\bbw\b", {"BW"}),
     (r"socket[\s-]*weld|\bsw\b", {"SW"}),
-    (r"raised\s*face|\brf\b", {"RF"}),
+    (r"raised\s*face|\brf\b|\bwnrf\b|\bsorf\b|\bblrf\b", {"RF"}),
     (r"flat\s*face|\bff\b", {"FF"}),
     (r"ring[\s-]*(?:type[\s-]*)?joint|\brtj\b", {"RTJ"}),
     (r"thread|\bthd\b|\b[fm]?npt\b|\bmpt\b|\bfpt\b|screwed", {"THD"}),
@@ -186,6 +201,12 @@ def _norm_text(s: str) -> str:
     s = re.sub(r"(\d+)\s+(\d+/\d+)", r"\1-\2", s)  # 1 1/2 -> 1-1/2
     s = re.sub(r"(\d+)(\.\d+)", lambda m: f"{m[1]}-{FRACTIONS[m[2]]}" if m[2] in FRACTIONS else m[0], s)
     s = re.sub(r"\b0-(\d+/\d+)", r"\1", s)  # 0.75 -> 0-3/4 -> 3/4
+    # standards written with a hyphen or a grade word: A-105, A234-WPB, A106-B, A53 Gr. B
+    s = re.sub(r"\b([Aa])\s*-\s*(\d{2,3})\b", r"\1\2", s)
+    s = re.sub(r"\b([Aa](?:106|53))\s*-?\s*(?:gr\.?|grade)?\s*([Bb])\b", r"\1B", s)
+    s = re.sub(r"\b([Aa]234)\s*-\s*", r"\1 ", s)
+    # 2M / 3M / 6M: trade shorthand for 2000# / 3000# / 6000# forged fittings
+    s = re.sub(r"\b([236])[Mm]\b", r"\g<1>000#", s)
     # bolt thread pitch: 5/8"-11, 3/4-10 UNC -> keep the diameter, drop the pitch
     s = re.sub(r"(\d+/\d+|\b\d)(\"?)-(\d{1,2})(?![\d/])(?:\s*unc)?", r"\1\2", s, flags=re.I)
     return s
@@ -210,6 +231,9 @@ def read_line(description: str) -> Wanted:
         m = re.search(pat, low)
         if m:
             hits.append((m.start(), names))
+    # "B7 stud with 2 heavy hex nuts": the nuts come with the stud, they are not the item
+    if any("stud bolt" in names for _, names in hits):
+        hits = [h for h in hits if not h[1] <= ACCESSORIES]
     if hits:
         w.products = min(hits, key=lambda h: h[0])[1]
     elif re.search(PIPE[0], low):
@@ -241,6 +265,10 @@ def read_line(description: str) -> Wanted:
         w.material.append(pred)
         w.material_words.append(re.search(pat, low)[0])
         break  # the most specific grade named
+    for pat, pred in STAINLESS_SPECIFIC:
+        if (m := re.search(pat, low)):
+            w.material.append(pred)
+            w.material_words.append(m[0])
     for pat, pred in OTHER_MATERIALS:
         if stainless and pat.startswith(("\\ba105", "\\bwpb", "a106", "\\ba53", "carbon")):
             continue
@@ -284,7 +312,9 @@ def _spec_ok(part_spec: str, wanted: set[str], size: str) -> bool:
     if not m:
         return False
     nps = int(m[1]) + int(m[2]) / int(m[3]) if m[1] and m[2] else int(m[1]) if m[1] else int(m[4]) / int(m[5])
-    same_wall = {"SCH 40": "SCH 40S", "SCH 40S": "SCH 40", "SCH 80": "SCH 80S", "SCH 80S": "SCH 80"}
+    # one direction only: "SCH 40" on a stainless line can mean 40S, but a customer who writes
+    # the S is naming stainless; that never reaches a carbon SCH 40 part
+    same_wall = {"SCH 40S": "SCH 40", "SCH 80S": "SCH 80"}
     return nps <= 8 and same_wall.get(part_spec) in wanted
 
 
@@ -334,6 +364,17 @@ def match_line(description: str, catalog: list[Part]) -> Match:
     if len(fits) == 1:
         p = fits[0]
         return Match("matched", p.sku, f"{p.description}: the only stocked part with every stated attribute")
+
+    # Several fit, but only one is exactly what was asked: the others add a feature the customer
+    # didn't ask for (a locking handle). Quote the plain one, and say what was passed over.
+    def added(p: Part) -> set[str]:
+        return {name for pat, name in FEATURES if re.search(pat, p.extra.lower())} - w.features
+    exact = [p for p in fits if not added(p)]
+    if len(exact) == 1 and len({(p.spec, p.material, p.ends) for p in fits}) == 1:
+        p = exact[0]
+        extras = sorted({f for q in fits for f in added(q)})
+        return Match("matched", p.sku, f"{p.description}: exactly what was asked; also stocked with "
+                                       f"{', '.join(extras)}, which the customer did not ask for")
 
     differ = [a for a in ("product", "spec", "material", "ends", "extra") if len({getattr(p, a) for p in fits}) > 1]
     return Match("ambiguous", None,

@@ -78,3 +78,41 @@ def test_matcher_error_never_breaks_the_parse():
     parsed = {"E1": {"line_items": [{"description": None}]}}
     match_all(parsed, CAT)
     assert parsed["E1"]["line_items"][0]["match"] == "ambiguous"
+
+
+@pytest.mark.parametrize("desc, sku", [
+    ('2" A-105 class 150 RF weld neck flange', "RL-11086"),   # A-105 is A105, not "class 105"
+    ('1/2 inch A-105 600# WNRF', "RL-11012"),                 # WNRF = weld neck + raised face
+    ('45 ell, 0.75", SW A-105 3M', "RL-10568"),                # 3M = 3000#
+    ('5/8x3-1/2" B7 with 2 heavy hex nuts stud', "RL-16377"),  # the nuts come with the stud
+])
+def test_trade_shorthand(desc, sku):
+    r = m(desc)
+    assert (r.match, r.sku) == ("matched", sku), r.reason
+
+
+def test_unasked_add_on_is_not_quoted():
+    r = m('1" ball valve, THD, 316 SS, FP, 600 WOG')  # also stocked with a locking handle
+    assert (r.match, r.sku) == ("matched", "RL-32583") and "locking handle" in r.reason
+
+
+@pytest.mark.parametrize("desc", [
+    '0.75" check valve, WP316L, socket weld, 800#',  # fitting grade on a valve: we stock F316L
+    '45 ell, 4", sch 10s BW 316 SS/graphite',         # a gasket material on an elbow
+])
+def test_named_grade_must_hold(desc):
+    assert m(desc).match == "not_in_catalog"
+
+
+def test_40s_names_stainless_never_carbon():
+    r = m('8 inch SCH 40S plain end pipe')  # no material named: only stainless parts may fit
+    assert r.match != "matched" or "A312" in r.reason
+
+
+def test_generated_lines_have_no_confident_wrong():
+    import subprocess
+    import sys
+    root = Path(__file__).resolve().parents[1]
+    out = subprocess.run([sys.executable, str(root / "scripts" / "matcher_fuzz.py"), "--per-part", "1", "--seed", "11"],
+                         capture_output=True, text=True, encoding="utf-8", check=True).stdout
+    assert "confident wrong matches: 0" in out, out

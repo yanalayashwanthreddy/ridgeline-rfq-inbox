@@ -63,6 +63,25 @@ The scorer (`scripts/score.py`) prints the README's three numbers. Confident wro
 | not-in-catalog recall | **16/16** |
 | match accuracy | **210/210** |
 
+**The generated test (`scripts/matcher_fuzz.py`).** This is the check that mattered. Every
+catalog part is written as a customer would write it, in random wording and order (WNRF,
+class 150, SS316, 2 1/2 inch, 3M…). The expected answers come from the catalog *table*, not the
+matcher's logic:
+- **fully stated:** must give that SKU;
+- **one attribute swapped for one not stocked:** must give not-in-catalog;
+- **material left out:** gives whatever the table says is left.
+
+The **first run found 113 confident wrong matches** on the version that scored 210/210 on dev.
+- Named grades were too loose: WP316L on a valve matched the F316L valve.
+- `A-105 class 150` was read as class 105.
+- WNRF/SORF and 3M were unknown.
+- My 40S equivalence ran in both directions.
+
+After the fixes: **0 confident wrong in ~19,700 lines over four seeds**. The 40/40S, metal-family
+and twin-part policies are written into the generator and documented here. A pytest runs one seed
+on every test run. Caveat: the generator's vocabulary is mine, so it tests combinations and order,
+not wording neither of us thought of.
+
 Dev is also what I tuned on, so it overstates. The first unseen check was the stress inbox
 (118 lines, no SKU key). There I read every decision, and it exposed the copper/A350 gap (step 5).
 The tests pin traps that aren't in dev: one attribute off, a stocked-elsewhere grade, an
