@@ -56,7 +56,8 @@
         "match": "matched",
         "match_reason": "FLG SO 4\" 150# A105 RF: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E002": {
     "classification": "rfq",
@@ -115,7 +116,8 @@
         "match": "matched",
         "match_reason": "NIPPLE 3/4\" X CLOSE SCH 40 316 SS TBE: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E003": {
     "classification": "rfq",
@@ -204,7 +206,8 @@
         "match": "matched",
         "match_reason": "VLV SWING CHK 2\" 125# BRONZE THD: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E004": {
     "classification": "rfq_revision",
@@ -293,7 +296,8 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-11234 VLV BALL 2\" 200 WOG 316 SS THD STD PORT is off: 200 WOG not 125#; 316 SS not bronze"
       }
-    ]
+    ],
+    "attention": null
   },
   "E005": {
     "classification": "rfq",
@@ -382,7 +386,8 @@
         "match": "matched",
         "match_reason": "CAP 6\" SCH 40 A234 WPB BW: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E006": {
     "classification": "rfq",
@@ -831,7 +836,8 @@
         "match": "matched",
         "match_reason": "GSKT SPW 6\" 150# 304/GRAPHITE: the only stocked part with every stated attribute; asked in SET, sold per EA: check the quantity"
       }
-    ]
+    ],
+    "attention": null
   },
   "E007": {
     "classification": "rfq",
@@ -910,7 +916,8 @@
         "match": "matched",
         "match_reason": "PIPE 2\" SCH 40 A53 GALV T&C: the only stocked part with every stated attribute; sold per FT; asked for 5 lengths/pieces and no length is stated: ask the footage"
       }
-    ]
+    ],
+    "attention": null
   },
   "E008": {
     "classification": "rfq",
@@ -918,7 +925,8 @@
     "duplicate_of": "E006",
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "E009": {
     "classification": "rfq",
@@ -1247,7 +1255,8 @@
         "match": "matched",
         "match_reason": "STUD 1 X 6\" B7/2H: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E010": {
     "classification": "rfq",
@@ -1316,7 +1325,8 @@
         "match": "matched",
         "match_reason": "THREADED ROD 3/4\" CARBON STEEL 6 FT: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E011": {
     "classification": "vendor_quote",
@@ -1324,7 +1334,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "supplier quote for our request 'Quote request - 316L fittings for Mobile': route to the rep or buyer who asked"
   },
   "E012": {
     "classification": "status_inquiry",
@@ -1332,7 +1343,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "customer is waiting for an answer about Q-26-04417: reply with status / ETA"
   },
   "E013": {
     "classification": "auto_reply",
@@ -1340,7 +1352,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "our email to sales@ironbridgevalve.example ('Quote request - 2in forged valves and flanges, need by 10/22') was not delivered: fix the address and resend"
   },
   "E014": {
     "classification": "other",
@@ -1348,7 +1361,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "E015": {
     "classification": "purchase_order",
@@ -1417,7 +1431,8 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-14009 VLV GATE 2\" 600# WCB RF is off: 600# not 300#"
       }
-    ]
+    ],
+    "attention": null
   },
   "E016": {
     "classification": "rfq",
@@ -1486,7 +1501,8 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-11789 Y-STRAINER 1-1/2\" 1500# A105 SW is off: 1500# not 800#"
       }
-    ]
+    ],
+    "attention": null
   },
   "E017": {
     "classification": "rfq",
@@ -1494,7 +1510,8 @@
     "duplicate_of": null,
     "needs_review": true,
     "review_reason": "BOM is not present; the only attachment is a logo image, so the requested items cannot be read.",
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "E018": {
     "classification": "rfq",
@@ -1563,7 +1580,8 @@
         "match": "matched",
         "match_reason": "PTFE THREAD TAPE: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E019": {
     "classification": "rfq",
@@ -1662,7 +1680,8 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-38910 HALF CPLG 2\" 6000# A105 SW is off: 6000# not 3000#"
       }
-    ]
+    ],
+    "attention": null
   },
   "E020": {
     "classification": "purchase_order",
@@ -1701,7 +1720,8 @@
         "match": "matched",
         "match_reason": "90 ELL 3\" SCH 40 A234 WPB BW LR: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E021": {
     "classification": "rfq",
@@ -2210,7 +2230,8 @@
         "match": "matched",
         "match_reason": "UNION 3/4\" 3000# A105 SW: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E022": {
     "classification": "rfq",
@@ -2218,7 +2239,8 @@
     "duplicate_of": null,
     "needs_review": true,
     "review_reason": "The RFQ details are in a password-protected PDF and no password was provided, so the requested items cannot be read.; attachment AldenMarine_RFQ_AM-26-0412.pdf could not be read (PDF is password-protected and no password is available)",
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "E023": {
     "classification": "rfq",
@@ -2237,7 +2259,8 @@
         "match": "matched",
         "match_reason": "VLV GATE 2\" 800# A105 THD 13CR: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "E024": {
     "classification": "rfq",
@@ -2306,6 +2329,7 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-44053 PLUG 3/4\" 6000# 316 SS THD is off: 6000# not 3000#"
       }
-    ]
+    ],
+    "attention": null
   }
 }

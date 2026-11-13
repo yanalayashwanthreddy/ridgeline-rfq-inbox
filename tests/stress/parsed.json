@@ -5,7 +5,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "S02": {
     "classification": "rfq",
@@ -24,7 +25,8 @@
         "match": "matched",
         "match_reason": "FLG BLIND 2\" 150# A105 RF: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S03": {
     "classification": "rfq",
@@ -53,7 +55,8 @@
         "match": "not_in_catalog",
         "match_reason": "no swing check valve stocked in 1\""
       }
-    ]
+    ],
+    "attention": null
   },
   "S04": {
     "classification": "rfq",
@@ -92,7 +95,8 @@
         "match": "matched",
         "match_reason": "GSKT SPW 4\" 300# 316/GRAPHITE: the only stocked part with every stated attribute; asked in SET, sold per EA: check the quantity"
       }
-    ]
+    ],
+    "attention": null
   },
   "S05": {
     "classification": "other",
@@ -100,7 +104,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "invoice / payment message INV-88412: route to accounting"
   },
   "S06": {
     "classification": "other",
@@ -108,7 +113,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "customer chose not to buy: close Q-26-04512 as lost"
   },
   "S07": {
     "classification": "status_inquiry",
@@ -116,7 +122,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "customer is waiting for an answer about 'boiler room RFQ': reply with status / ETA"
   },
   "S08": {
     "classification": "rfq",
@@ -155,7 +162,8 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-13269 VLV CHECK 1\" 1500# A105 THD 13CR is off: 1500# not 800#; THD not socket weld"
       }
-    ]
+    ],
+    "attention": null
   },
   "S09": {
     "classification": "rfq",
@@ -163,7 +171,8 @@
     "duplicate_of": null,
     "needs_review": true,
     "review_reason": "BOM.xlsx is unreadable, so the requested items cannot be extracted; please reopen or resend the BOM.; attachment BOM.xlsx could not be read (could not open BOM.xlsx: BadZipFile: File is not a zip file)",
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "S10": {
     "classification": "rfq",
@@ -202,7 +211,8 @@
         "match": "matched",
         "match_reason": "FLG WN 2\" 150# A105 RF: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S11": {
     "classification": "purchase_order",
@@ -231,7 +241,8 @@
         "match": "matched",
         "match_reason": "UNION 2\" 3000# A105 THD: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S12A": {
     "classification": "rfq",
@@ -290,7 +301,8 @@
         "match": "not_in_catalog",
         "match_reason": "no y-strainer stocked in 6\""
       }
-    ]
+    ],
+    "attention": null
   },
   "S12B": {
     "classification": "rfq_revision",
@@ -339,7 +351,8 @@
         "match": "matched",
         "match_reason": "STUD 3/4 X 4-1/2\" B7/2H: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S13": {
     "classification": "purchase_order",
@@ -347,7 +360,8 @@
     "duplicate_of": "S11",
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "S14": {
     "classification": "vendor_quote",
@@ -355,7 +369,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": "supplier quote for our request 'Quotation GCV-55120 for Ridgeline': route to the rep or buyer who asked"
   },
   "S15": {
     "classification": "rfq",
@@ -394,7 +409,8 @@
         "match": "matched",
         "match_reason": "STUD 1/2 X 3\" B7/2H: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S16": {
     "classification": "other",
@@ -402,7 +418,8 @@
     "duplicate_of": null,
     "needs_review": false,
     "review_reason": null,
-    "line_items": []
+    "line_items": [],
+    "attention": null
   },
   "S17": {
     "classification": "rfq",
@@ -431,7 +448,8 @@
         "match": "not_in_catalog",
         "match_reason": "nearest stocked part RL-11049 VLV BALL 1\" 600 WOG 304 SS THD FULL PORT, LOCKING HANDLE is off: 304 SS not bronze; THD not solder"
       }
-    ]
+    ],
+    "attention": null
   },
   "S18": {
     "classification": "rfq",
@@ -1490,7 +1508,8 @@
         "match": "matched",
         "match_reason": "FLG SO 1/2\" 150# A105 RF: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S19": {
     "classification": "rfq",
@@ -1533,7 +1552,8 @@
           "RL-30807"
         ]
       }
-    ]
+    ],
+    "attention": null
   },
   "S20": {
     "classification": "rfq",
@@ -1572,7 +1592,8 @@
         "match": "matched",
         "match_reason": "VLV GATE 2\" 800# A105 THD 13CR: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   },
   "S21": {
     "classification": "rfq",
@@ -1601,6 +1622,7 @@
         "match": "matched",
         "match_reason": "90 ELL 1\" 3000# A105 SW: the only stocked part with every stated attribute"
       }
-    ]
+    ],
+    "attention": null
   }
 }

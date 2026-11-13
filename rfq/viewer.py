@@ -82,7 +82,7 @@ class State:
                            at=datetime.now(timezone.utc).isoformat(timespec="seconds"))
                 lines[str(idx)] = rec
             tmp = self.decisions_path.with_suffix(".tmp")
-            tmp.write_text(json.dumps(self.decisions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            tmp.write_text(json.dumps(self.decisions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
             os.replace(tmp, self.decisions_path)
 
     def email(self, eid: str) -> Email:
@@ -181,6 +181,12 @@ def chip(cls: str | None) -> str:
     return f"<span class='chip {E(cls or '')}'>{E(cls or '?')}</span>"
 
 
+def action_chip(o: dict | None) -> str:
+    if not o or not o.get("attention"):
+        return ""
+    return f"<span class=warn title='{E(o['attention'])}'>➜ action</span>"
+
+
 def money(x) -> str:
     return f"${x:.4f}" if isinstance(x, (int, float)) else "–"
 
@@ -217,7 +223,8 @@ def index(st: State) -> bytes:
         rows.append(
             f"<tr><td><a href='/e/{E(eid)}'>{E(eid)}</a></td><td>{E(_name(em.sender))}</td><td>{E(em.subject)}</td>"
             f"<td>{chip(o and o['classification'])}</td><td>{len(o['line_items']) if o else '–'}</td>"
-            f"<td>{'<span class=warn>⚑ review</span>' if o and o['needs_review'] else ''}</td><td class=mut>{links}</td>"
+            f"<td>{'<span class=warn>⚑ review</span>' if o and o['needs_review'] else ''}"
+            f"{action_chip(o)}</td><td class=mut>{links}</td>"
             f"<td class=mut>{money(cost)}{' ↻' if s.get('coverage_retry') else ''}{' ⚠ fallback' if s.get('fallback') else ''}</td>"
             + (f"<td>{verdict}</td>" if st.key else "") + "</tr>"
         )
@@ -318,6 +325,8 @@ def detail(st: State, eid: str) -> bytes:
         facts.append(("needs review", "no"))
     if s.get("fallback"):
         facts.append(("fallback", f"<span class=bad>{E(s['fallback'])}</span>"))
+    if o.get("attention"):
+        facts.append(("needs a person", f"<span class=warn>➜ {E(o['attention'])}</span>"))
     u = s.get("usage")
     if u:
         facts.append(("cost", f"{money(cost_usd(st.report.get('model', ''), u))} · {u['input_tokens']:,} in / {u['output_tokens']:,} out "

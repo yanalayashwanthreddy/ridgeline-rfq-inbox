@@ -15,12 +15,13 @@
     "cost_usd_if_uncached": 0.09678,
     "avg_cost_usd_per_email": 0.0044,
     "avg_tokens_per_email": 3231,
-    "wall_seconds": 0.8,
+    "wall_seconds": 0.5,
     "catalog_matching": {
       "matched": 130,
       "not_in_catalog": 10,
       "ambiguous": 1
-    }
+    },
+    "attention": 4
   },
   "emails": {
     "S01": {

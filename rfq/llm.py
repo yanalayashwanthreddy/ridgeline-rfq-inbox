@@ -129,7 +129,7 @@ class LLM:
             "response": data,
         }
         tmp = path.with_suffix(f".{os.getpid()}.{threading.get_ident()}.tmp")
-        tmp.write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf-8")
+        tmp.write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
         os.replace(tmp, path)  # atomic: a crash mid-write never leaves a half-written cache entry
         return CallResult(data, usage, cost, False, secs, key)
 

@@ -1,6 +1,6 @@
 """Check the submission the way the graders will, from a fresh clone of the last commit.
 
-    python scripts/verify.py [--keep]
+    python scripts/verify.py [--keep] [--linux]
 
 1. clone HEAD into a temp folder (uncommitted changes are not in the submission: warned)
 2. parse dev with OPENAI_API_KEY removed -> must equal the committed parsed.json byte for byte
@@ -9,6 +9,7 @@
 5. score dev and stress: 0 silent losses, 0 hallucinated lines, 0 confident wrong matches
 6. the test suite, and one seed of the generated matcher test
 7. hygiene: nothing key-shaped in any tracked file (ai-sessions/ included), repo under 50 MB
+8. --linux (needs Docker): the same on Python 3.11 / Linux: tests, and byte-identical outputs
 
 Exit code 0 only if every check passes. Uses this interpreter's installed packages.
 """
@@ -101,6 +102,24 @@ def main() -> int:
         z = run([PY, "scripts/matcher_fuzz.py", "--seed", "101"], clone, env).stdout
         check("generated matcher test (seed 101)", "confident wrong matches: 0" in z,
               (z.splitlines() or ["?"])[0])
+
+        # 8 (optional, needs Docker). The graders may run Linux/WSL/Docker and Python 3.11: same
+        # bytes there? (This caught an OS-dependent MIME type that broke a cache key.)
+        if "--linux" in sys.argv:
+            script = (
+                "cp -r /src /w && cd /w && rm -rf .venv .env && "
+                "python -m pip install -q -r requirements.txt -r requirements-dev.txt >/dev/null 2>&1 && "
+                "python -m pytest -q -p no:cacheprovider >/tmp/t.txt 2>&1; tail -1 /tmp/t.txt; "
+                "OPENAI_API_KEY= python -m rfq parse --emails data/dev/emails --out /tmp/d.json >/dev/null 2>&1; "
+                "cmp -s /tmp/d.json parsed.json && echo DEV_SAME; "
+                "OPENAI_API_KEY= python -m rfq parse --emails tests/stress/emails --cache tests/stress/cache "
+                "--out /tmp/s.json >/dev/null 2>&1; cmp -s /tmp/s.json tests/stress/parsed.json && echo STRESS_SAME"
+            )
+            d = run(["docker", "run", "--rm", "-v", f"{clone}:/src:ro", "python:3.11-slim", "sh", "-c", script], clone,
+                    {**os.environ, "MSYS_NO_PATHCONV": "1"})
+            check("Python 3.11 on Linux: tests pass, dev and stress byte-identical",
+                  "passed" in d.stdout and "failed" not in d.stdout and "DEV_SAME" in d.stdout and "STRESS_SAME" in d.stdout,
+                  " ".join(d.stdout.split())[:120] or d.stderr.strip()[-120:])
 
         # 7. hygiene
         files = run(["git", "ls-files", "-z"], clone).stdout.split("\0")

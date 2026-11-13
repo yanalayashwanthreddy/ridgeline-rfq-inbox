@@ -366,10 +366,28 @@ def _zip(p: Part, data: bytes, depth: int) -> list[Part]:
     return out
 
 
-def _mime_for(name: str) -> str:
-    import mimetypes
+# Our own table, not `mimetypes`: that module asks the OS (Windows registry, Linux mime.types),
+# and the answers differ. The type is shown to the model, so it is part of the cache key: an
+# OS-dependent type made a zip's members miss the replay cache on Linux.
+MIME_BY_EXT = {
+    ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ".xlsm": "application/vnd.ms-excel.sheet.macroEnabled.12",
+    ".xls": "application/vnd.ms-excel",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ".doc": "application/msword",
+    ".pdf": "application/pdf",
+    ".csv": "text/csv", ".tsv": "text/tab-separated-values", ".txt": "text/plain",
+    ".htm": "text/html", ".html": "text/html",
+    ".eml": "message/rfc822", ".msg": "application/vnd.ms-outlook",
+    ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".gif": "image/gif",
+    ".tif": "image/tiff", ".tiff": "image/tiff", ".bmp": "image/bmp", ".webp": "image/webp",
+    ".heic": "image/heic", ".heif": "image/heif",
+    ".zip": "application/zip",
+}
 
-    return mimetypes.guess_type(name)[0] or "application/octet-stream"
+
+def _mime_for(name: str) -> str:
+    return MIME_BY_EXT.get(Path(name).suffix.lower(), "application/octet-stream")
 
 
 

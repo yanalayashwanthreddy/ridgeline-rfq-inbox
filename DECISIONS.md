@@ -67,10 +67,16 @@ person: a bounce of *our quote to a customer*, a "we went with someone else" tha
 quote, a buyer's out-of-office on a deadline job. Under the contract these come back `auto_reply`
 / `other` with nothing to act on.
 
-**What I did:** kept the contract in `parsed.json` (guards enforce it, because it is scored). The
-model also states a one-line reason for every classification, shown in `parsed.report.json` and
-the viewer, so a person can see *why* something was set aside. In production I'd add a separate
-`attention` field rather than overload `needs_review`. Not built.
+**What I did:** kept the contract exactly (guards enforce it, because it is scored), and added a
+separate field instead of bending it.
+- `attention` is a one-line action, or null, for non-requests a person must act on. It's decided
+  by code from the class plus evidence: "our email to sales@… ('Quote request…') was not
+  delivered: fix the address and resend"; "customer is waiting for an answer about Q-26-04417";
+  "close Q-26-04512 as lost"; "invoice INV-88412: route to accounting".
+- Marketing and out-of-office get null, because an action list that cries wolf stops being read.
+
+On dev and stress it matches what I wrote down before building it, on all 10 non-requests.
+`check_format.py` accepts the extra field.
 
 ## Predicted held-out numbers, and two kinds of email I expect to get wrong
 
@@ -126,4 +132,4 @@ precision because I flag on doubt.
 - `raw` read from pictures varies between runs (E023). The cache makes it stable, not right.
 - Thread linking only sees the current inbox; there's no memory of last week.
 - The matcher reads only our `description`, so a context miss upstream becomes a match miss.
-- Next: the `attention` field, and the viewer's rep overturns as the matcher's live error rate.
+- Next: the viewer's rep overturns as the matcher's live error rate; `attention` as a queue for the desk.

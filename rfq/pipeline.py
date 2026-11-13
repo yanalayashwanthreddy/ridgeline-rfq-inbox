@@ -13,6 +13,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+from .attention import add_attention
 from .guards import fallback, finalize, missing_rows
 from .ingest import Email, load_email
 from .llm import LLM, ModelUnavailable
@@ -136,6 +137,9 @@ def run(email_dir: Path, out_path: Path, llm: LLM, workers: int = 4, catalog: Pa
         for st in stats.values():
             st["warnings"].append(f"thread linking failed: {e}")
 
+    # attention: non-requests that still need a person (code only; needs_review stays per README)
+    add_attention(emails, out, stats)
+
     # catalog matching is code only (no model calls), so it runs on every replay as well
     matching = None
     if catalog is not None and catalog.is_file():
@@ -146,11 +150,13 @@ def run(email_dir: Path, out_path: Path, llm: LLM, workers: int = 4, catalog: Pa
             matching = {"error": f"{type(e).__name__}: {e}"}
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    # "\n" on every OS: the same inbox gives the same bytes on Windows, Linux, WSL and Docker
+    out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     report = _report(stats, llm, time.monotonic() - t0)
     report["totals"]["catalog_matching"] = matching
+    report["totals"]["attention"] = sum(1 for rec in out.values() if rec.get("attention"))
     out_path.with_name(out_path.stem + ".report.json").write_text(
-        json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
     )
     return report
 

@@ -83,8 +83,8 @@ def main() -> int:
             "missed_lines": [k["line_items"][j]["raw"] for j in missed] if k else [],
         })
     a.out.mkdir(parents=True, exist_ok=True)
-    (a.out / "lines.json").write_text(json.dumps(lines, indent=1, ensure_ascii=False), encoding="utf-8")
-    (a.out / "emails.json").write_text(json.dumps(emails, indent=1, ensure_ascii=False), encoding="utf-8")
+    (a.out / "lines.json").write_text(json.dumps(lines, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
+    (a.out / "emails.json").write_text(json.dumps(emails, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
     print(f"{len(lines)} lines, {len(emails)} emails -> {a.out}")
     return 0
 

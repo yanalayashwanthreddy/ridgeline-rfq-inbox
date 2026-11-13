@@ -1,6 +1,6 @@
 # RUNNING
 
-Windows, native Python 3.11+ (developed and tested on 3.12.10). No Docker needed.
+Windows, native Python 3.11+. Developed on 3.12.10 (Windows); also tested on Python 3.11 under Linux (Docker), where the outputs are byte-identical. No Docker needed to run it.
 
 ## Setup (one step, from a fresh clone or unzip)
 
@@ -43,7 +43,7 @@ It clones the last commit into a temp folder and checks it the way a grader woul
 - the tests and a generated matcher test;
 - no API key in any tracked file, and the repo is under 50 MB.
 
-Exit code 0 means everything passed.
+Exit code 0 means everything passed. Add `--linux` (needs Docker) to repeat it on Python 3.11 / Linux.
 
 ## Model
 
