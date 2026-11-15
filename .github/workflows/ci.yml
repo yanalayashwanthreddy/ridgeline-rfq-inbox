@@ -1,0 +1,47 @@
+# Every push and pull request: the tests, then scripts/verify.py (a fresh clone of the commit,
+# keyless replay byte-identical to the committed outputs, scores, matcher test, report up to date,
+# no key anywhere in the history). A change that drops a score or breaks the replay can't merge.
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # verify.py scans the whole history for keys
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - name: Install
+        run: python -m pip install -r requirements.txt -r requirements-dev.txt
+      - name: Tests
+        run: python -m pytest -q
+      - name: "Verify (no API key: everything replays from the committed cache)"
+        env:
+          OPENAI_API_KEY: ""
+          PYTHONIOENCODING: utf-8
+        run: python scripts/verify.py
