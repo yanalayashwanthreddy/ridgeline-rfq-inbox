@@ -50,6 +50,29 @@ It clones the last commit into a temp folder and checks it the way a grader woul
 
 Exit code 0 means everything passed. Add `--linux` (needs Docker) to repeat it on Python 3.11 / Linux.
 
+## Service mode (the production shape)
+
+`parse` reads one inbox. `serve` runs continuously: anything that writes a `.eml` into
+`<state>/intake/` hands it over (the webhook's stand-in). The service then:
+- stores each email durably and queues it in SQLite (`<state>/rfq.db`);
+- ignores redeliveries (same bytes or the same Message-ID);
+- while the model is down, keeps emails in the queue and retries with backoff (~4 h), then moves
+  them to `<state>/dead/`, flagged for a person;
+- links each new email to the history of earlier ones (revisions and resends across days).
+
+```powershell
+.venv\Scripts\python -m rfq serve  --state work\svc            # keep running; Ctrl+C to stop
+.venv\Scripts\python -m rfq serve  --state work\svc --once     # process what's there, then exit
+.venv\Scripts\python -m rfq status --state work\svc            # queue health, dead letters, cost
+.venv\Scripts\python -m rfq export --state work\svc --out parsed.json
+```
+
+Dropping the 24 dev emails into the intake folder and exporting gives a `parsed.json`
+byte-identical to `parse`'s (a test checks this).
+
+**CI:** `.github/workflows/ci.yml` runs the tests and `scripts/verify.py` on every push and pull
+request (Ubuntu and Windows, Python 3.11 and 3.12).
+
 ## Model
 
 `gpt-5.4-mini-2026-03-17` (a pinned snapshot, so a re-run can't drift), reasoning effort
@@ -84,7 +107,7 @@ Prices used ($ per 1M tokens, `rfq/llm.py`): input 0.75, cached input 0.075, out
 .venv\Scripts\python scripts\score.py parsed.json data\dev\answer_key.json      # score vs the key
 .venv\Scripts\python -m rfq.viewer --emails data\dev\emails --parsed parsed.json --key data\dev\answer_key.json
                                                                    # local web view, one email end to end
-.venv\Scripts\python -m pip install -r requirements-dev.txt; .venv\Scripts\python -m pytest -q   # 68 tests
+.venv\Scripts\python -m pip install -r requirements-dev.txt; .venv\Scripts\python -m pytest -q   # 108 tests
 .venv\Scripts\python -m rfq parse --emails tests\stress\emails --cache tests\stress\cache --out tests\stress\parsed.json
 .venv\Scripts\python scripts\score.py tests\stress\parsed.json tests\stress\answer_key.json   # stress inbox (22 emails)
 ```

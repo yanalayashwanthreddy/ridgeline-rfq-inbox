@@ -99,33 +99,33 @@ flag on doubt.
 
 ## How this runs for real
 
-**Built:**
-- a content-addressed cache (sha256 of model, effort, prompt and content incl. image bytes);
-- retries, and a circuit breaker after 3 consecutive failures;
-- a header-based fallback per email, and per-email isolation;
-- windowed long PDFs;
-- a per-email cost report.
-
-**Not built:** the webhook, a queue, a database.
+**Built:** two ways to drive one pipeline. `parse` takes an inbox at a time (the assignment's
+command). `serve` ([rfq/service.py](rfq/service.py)) is the production shape: the webhook's
+stand-in is an intake folder, and a SQLite queue tracks each email (queued -> done, or retry ->
+dead). History is kept for thread linking. The dev inbox through `serve` gives a `parsed.json`
+byte-identical to `parse`'s. Also built: a content-addressed cache, a circuit breaker, windowed
+long PDFs, a per-email cost report, and CI ([.github/workflows/ci.yml](.github/workflows/ci.yml):
+tests and `verify.py` on Ubuntu and Windows, Python 3.11 and 3.12). **Not built:** the HTTP
+endpoint itself (any webhook that writes a file into the intake folder works), and leases for
+several workers sharing one queue.
 
 - **3,000 emails a day.** $0.0083 per email measured (about 4,430 tokens), so about **$25/day**.
-  Median latency is 4.9 s, so ~2 emails a minute needs one worker. The webhook stores the raw
-  `.eml` and enqueues its hash; workers run `process_one`; thread linking becomes a lookup in a
-  store of past emails.
-- **Provider down for two hours.** The breaker trips. Headers settle auto_reply and bulk;
-  everything else becomes `rfq` + `needs_review`. Fallbacks aren't cached, so the next run re-calls
-  exactly those. For real: hold them in the queue with an alert, because 250 emails on a desk is
-  worse than a 2-hour delay.
+  Median latency is 4.9 s, so ~2 emails a minute needs one worker.
+- **Provider down for two hours.** `serve` holds each email in the queue and retries with backoff
+  (1 min ... 2 h, ~4 h in all). Only then does it go to the dead-letter folder, flagged for a
+  person, because 250 emails dumped on a desk is worse than a 2-hour delay. (`parse`, run once,
+  falls back to headers and flags the rest; the next run re-calls exactly those.)
 - **A 300-page PDF.** Built: windows of 30 pages (16 if scanned), one cached call each, ~$0.30.
-  Every window also gets page 1 and the previous window's end as context. A failed window flags
-  review. Stress S18: 105/105 rows, where the old 30-page cap lost 15. Not done: skipping
+  Every window also gets page 1 and the previous window's end as context, and a failed window
+  flags review. Stress S18: 105/105 rows, where the old 30-page cap lost 15. Not done: skipping
   spec-book pages that hold no items.
-- **The same email delivered twice.** Built. The redelivery hits the same cache key, so it's free,
-  and `threads` marks it `duplicate_of` (stress S13). For real, dedupe at the webhook.
+- **The same email delivered twice.** Built. `serve` recognises a redelivery (same bytes or the
+  same Message-ID) at intake and never processes it twice. A customer who *sends* the request again
+  gets `duplicate_of`, found in history across days.
 
 ## Known broken / next
 
 - Picture `raw` varies between runs (E023). The cache makes it stable, not right.
-- Thread linking sees only the current inbox.
+- `parse` links threads only within one inbox (`serve` uses its history).
 - The matcher reads only our `description`, so an upstream context miss becomes a match miss.
 - Next: rep overturns as the matcher's live error rate; `attention` as the desk's queue.
