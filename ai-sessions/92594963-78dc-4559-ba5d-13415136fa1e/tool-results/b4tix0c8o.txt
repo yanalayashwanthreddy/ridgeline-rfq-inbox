@@ -1,0 +1,594 @@
+=== build_report.py
+     1	"""Build report.html: the results, readable by anyone, in one file that opens in any browser.
+     2	
+     3	    python scripts/build_report.py            -> report.html (repo root)
+     4	
+     5	Everything comes from the committed outputs (parsed.json, *.report.json, the answer keys, the
+     6	catalog), so the page always shows what the code actually produced. No server, no install,
+     7	works offline. Email content is untrusted: the page only ever inserts it as text.
+     8	"""
+     9	
+    10	from __future__ import annotations
+    11	
+    12	import base64
+    13	import io
+    14	import json
+    15	import re
+    16	import subprocess
+    17	import sys
+    18	from collections import Counter
+    19	from pathlib import Path
+    20	
+    21	ROOT = Path(__file__).resolve().parents[1]
+    22	sys.path.insert(0, str(ROOT))
+    23	
+    24	from rfq.ingest import load_email  # noqa: E402
+    25	from rfq.llm import cost_usd  # noqa: E402
+    26	from rfq.matcher import load_catalog  # noqa: E402
+    27	from rfq.score import mentions, pair, qty_ok  # noqa: E402
+    28	
+    29	KIND = {
+    30	    "rfq": "Price request", "rfq_revision": "Changed request", "purchase_order": "Purchase order",
+    31	    "vendor_quote": "Supplier's quote", "status_inquiry": "Status question", "auto_reply": "Automatic reply",
+    32	    "other": "Other",
+    33	}
+    34	REQUESTS = {"rfq", "rfq_revision", "purchase_order"}
+    35	
+    36	# What each stress email tests, in plain words (the generator's comments say the same)
+    37	SCENARIO = {
+    38	    "S01": "An out-of-office reply that has no 'automatic' header",
+    39	    "S02": "Items named only as 'same as our last order': can't be read alone",
+    40	    "S03": "A Word file with tracked changes: a deleted row and a changed quantity",
+    41	    "S04": "One of our reps forwards a customer's email and adds an item",
+    42	    "S05": "A supplier's invoice that lists items (not a request)",
+    43	    "S06": "'We went with someone else', quoting our quote back",
+    44	    "S07": "A customer asking about the status of a quote, with no number",
+    45	    "S08": "A spreadsheet with a default spec, a crossed-out row, a hidden row, an override and a total",
+    46	    "S09": "A broken (cut-off) spreadsheet",
+    47	    "S10": "A request written in Spanish",
+    48	    "S11": "A purchase order written in the email body",
+    49	    "S12A": "A request with 5 numbered items...",
+    50	    "S12B": "...then the reply 'make #3 twelve and kill #5'",
+    51	    "S13": "The same purchase order delivered a second time",
+    52	    "S14": "A supplier's quote as a PDF, answering our request",
+    53	    "S15": "A phone photo of a typed list, turned sideways",
+    54	    "S16": "A newsletter without a 'bulk mail' header",
+    55	    "S17": "An HTML table with a crossed-out row",
+    56	    "S18": "A 35-page PDF (105 items)",
+    57	    "S19": "The item list is a spreadsheet inside a zip file",
+    58	    "S20": "A phone photo stored sideways with a rotation tag",
+    59	    "S21": "An iPhone HEIC photo of a list",
+    60	    "S22": "'Make #2 eight, kill #4' when the original request is nowhere to be seen",
+    61	    "S23": "The same kind of change, with the original quoted below",
+    62	    "S24": "A handwritten list with one line crossed out by pen",
+    63	}
+    64	
+    65	
+    66	def thumb(data: bytes) -> str:
+    67	    from PIL import Image
+    68	
+    69	    im = Image.open(io.BytesIO(data))
+    70	    im = im.convert("RGB")
+    71	    im.thumbnail((1000, 1000))
+    72	    b = io.BytesIO()
+    73	    im.save(b, "JPEG", quality=72)
+    74	    return "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode()
+    75	
+    76	
+    77	def name(sender: str) -> str:
+    78	    return re.sub(r"\s*<.*>", "", sender or "").strip('" ') or sender
+    79	
+    80	
+    81	def inbox(emails_dir: Path, parsed_path: Path, key_path: Path | None, cat_by_sku: dict) -> dict:
+    82	    parsed = json.loads(parsed_path.read_text(encoding="utf-8"))
+    83	    rep = json.loads(parsed_path.with_name(parsed_path.stem + ".report.json").read_text(encoding="utf-8"))
+    84	    key = json.loads(key_path.read_text(encoding="utf-8"))["emails"] if key_path else {}
+    85	    model = rep.get("model", "")
+    86	    out, tot = [], Counter()
+    87	    for eid in sorted(parsed):
+    88	        o, st, k = parsed[eid], rep["emails"].get(eid, {}), key.get(eid)
+    89	        em = load_email(emails_dir / f"{eid}.eml")
+    90	        lines = [dict(ln, catalog=(cat_by_sku[ln["sku"]].description if ln.get("sku") in cat_by_sku else None))
+    91	                 for ln in o["line_items"]]
+    92	        verdict, missed = {}, []
+    93	        if k:
+    94	            kl = k.get("line_items") or []
+    95	            pairs, extra, miss = pair(o["line_items"], kl)
+    96	            for i, j in pairs:
+    97	                kk, ln, probs = kl[j], o["line_items"][i], []
+    98	                if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
+    99	                    probs.append(f"quantity should be {kk['qty']}")
+   100	                if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
+   101	                    probs.append(f"unit should be {kk['uom'] or 'EA'}")
+   102	                if ln["source"] != kk["source"]:
+   103	                    probs.append(f"should come from {kk['source']}")
+   104	                probs += [f"description should mention '{m}'" for m in kk.get("must_mention") or [] if not mentions(ln["description"], m)]
+   105	                probs += [f"description should not say '{m}'" for m in kk.get("must_not_mention") or [] if mentions(ln["description"], m)]
+   106	                if kk.get("match") and "match" in ln and (kk["match"], kk.get("sku")) != (ln["match"], ln.get("sku")):
+   107	                    probs.append(f"catalog: answer key says {kk['match']} {kk.get('sku') or ''}".strip())
+   108	                verdict[i] = probs
+   109	                tot["ok_lines"] += not probs
+   110	                tot["ctx_n"] += bool(kk.get("must_mention") or kk.get("must_not_mention"))
+   111	                tot["ctx_ok"] += not [p for p in probs if p.startswith("description")] and bool(kk.get("must_mention") or kk.get("must_not_mention"))
+   112	                if kk.get("match") and "match" in ln:
+   113	                    tot["m_n"] += 1
+   114	                    tot["m_ok"] += (kk["match"], kk.get("sku")) == (ln["match"], ln.get("sku"))
+   115	                    tot["m_wrong"] += ln["match"] == "matched" and (kk["match"], kk.get("sku")) != (ln["match"], ln.get("sku"))
+   116	            for i in extra:
+   117	                verdict[i] = ["not in the answer key (an extra item)"]
+   118	            missed = [kl[j]["raw"] for j in miss]
+   119	            tot["key_lines"] += len(kl)
+   120	            tot["paired"] += len(pairs)
+   121	            tot["extra"] += len(extra)
+   122	            tot["class_ok"] += k["classification"] == o["classification"]
+   123	            tot["review_ok"] += bool(k.get("needs_review")) == o["needs_review"]
+   124	            needs_action = bool(kl) or k.get("needs_review")
+   125	            tot["silent"] += bool(needs_action and not o["line_items"] and not o["needs_review"])
+   126	        tot["emails"] += 1
+   127	        tot["requests"] += o["classification"] in REQUESTS
+   128	        tot["lines"] += len(o["line_items"])
+   129	        tot["review"] += o["needs_review"]
+   130	        tot["attention"] += bool(o.get("attention"))
+   131	        parts = []
+   132	        for p in em.parts:
+   133	            imgs = [thumb(im.data) for im in p.images[:4]]
+   134	            parts.append({"name": p.filename, "kind": p.kind, "notes": p.notes,
+   135	                          "text": (p.all_text if hasattr(p, "all_text") else p.text)[:6000], "images": imgs,
+   136	                          "more_images": max(0, len(p.images) - 4)})
+   137	        cost = cost_usd(model, st["usage"]) if st.get("usage") else None
+   138	        out.append({
+   139	            "id": eid, "from": name(em.sender), "from_full": em.sender, "subject": em.subject, "date": em.date,
+   140	            "kind": o["classification"], "kind_label": KIND.get(o["classification"], o["classification"]),
+   141	            "review": o["needs_review"], "review_reason": o.get("review_reason"), "attention": o.get("attention"),
+   142	            "revises": o.get("revises"), "duplicate_of": o.get("duplicate_of"),
+   143	            "lines": lines, "verdict": {str(i): v for i, v in verdict.items()}, "missed": missed,
+   144	            "key_kind": k["classification"] if k else None, "key_kind_label": KIND.get(k["classification"]) if k else None,
+   145	            "key_review": bool(k.get("needs_review")) if k else None,
+   146	            "reason": st.get("model_reason"), "second_read": st.get("second_read"), "coverage": st.get("coverage_retry"),
+   147	            "windows": st.get("windows"), "fallback": st.get("fallback"),
+   148	            "calls": len(st.get("cache_keys") or []), "cost": round(cost, 5) if cost is not None else None,
+   149	            "body": (em.body or "")[:8000], "body_source": em.body_source, "parts": parts,
+   150	            "scenario": SCENARIO.get(eid),
+   151	        })
+   152	    t = rep["totals"]
+   153	    tot["cost"] = t.get("cost_usd_if_uncached")
+   154	    tot["cost_each"] = t.get("avg_cost_usd_per_email")
+   155	    return {"emails": out, "totals": dict(tot), "model": rep.get("model"), "effort": rep.get("effort")}
+   156	
+   157	
+   158	def fuzz() -> dict:
+   159	    r = subprocess.run([sys.executable, str(ROOT / "scripts" / "matcher_fuzz.py"), "--seed", "7"],
+   160	                       capture_output=True, text=True, encoding="utf-8", cwd=ROOT)
+   161	    n = re.search(r"(\d+) generated lines from (\d+) parts", r.stdout)
+   162	    w = re.search(r"confident wrong matches: (\d+)", r.stdout)
+   163	    return {"lines": int(n[1]) if n else None, "parts": int(n[2]) if n else None, "wrong": int(w[1]) if w else None}
+   164	
+   165	
+   166	def main() -> int:
+   167	    cat = {p.sku: p for p in load_catalog(ROOT / "data" / "catalog.csv")}
+   168	    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
+   169	    # the number pytest actually runs (a parametrized test counts once per case)
+   170	    col = subprocess.run([sys.executable, "-m", "pytest", "--collect-only", "-q", "-p", "no:cacheprovider"],
+   171	                         capture_output=True, text=True, encoding="utf-8", cwd=ROOT).stdout
+   172	    m = re.search(r"(\d+) tests? collected", col)
+   173	    tests = int(m[1]) if m else None
+   174	    data = {
+   175	        "dev": inbox(ROOT / "data" / "dev" / "emails", ROOT / "parsed.json", ROOT / "data" / "dev" / "answer_key.json", cat),
+   176	        "stress": inbox(ROOT / "tests" / "stress" / "emails", ROOT / "tests" / "stress" / "parsed.json",
+   177	                        ROOT / "tests" / "stress" / "answer_key.json", cat),
+   178	        "fuzz": fuzz(), "commit": commit, "tests": tests, "catalog_parts": len(cat),
+   179	    }
+   180	    blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+   181	    html = (ROOT / "scripts" / "report_template.html").read_text(encoding="utf-8").replace("/*__DATA__*/null", blob)
+   182	    out = ROOT / "report.html"
+   183	    out.write_text(html, encoding="utf-8", newline="\n")
+   184	    print(f"report.html: {len(html) / 1e6:.1f} MB | dev {data['dev']['totals']['emails']} emails, "
+   185	          f"stress {data['stress']['totals']['emails']} | matcher test {data['fuzz']}")
+   186	    return 0
+   187	
+   188	
+   189	if __name__ == "__main__":
+   190	    sys.exit(main())
+=== verify.py
+     1	"""Check the submission the way the graders will, from a fresh clone of the last commit.
+     2	
+     3	    python scripts/verify.py [--keep] [--linux]
+     4	
+     5	1. clone HEAD into a temp folder (uncommitted changes are not in the submission: warned)
+     6	2. parse dev with OPENAI_API_KEY removed -> must equal the committed parsed.json byte for byte
+     7	3. parse again -> must make 0 new model calls (idempotent)
+     8	4. data/check_format.py on the output
+     9	5. score dev and stress: 0 silent losses, 0 hallucinated lines, 0 confident wrong matches
+    10	6. the test suite, and one seed of the generated matcher test
+    11	7. hygiene: nothing key-shaped in any tracked file (ai-sessions/ included), repo under 50 MB
+    12	8. --linux (needs Docker): the same on Python 3.11 / Linux: tests, and byte-identical outputs
+    13	
+    14	Exit code 0 only if every check passes. Uses this interpreter's installed packages.
+    15	"""
+    16	
+    17	from __future__ import annotations
+    18	
+    19	import json
+    20	import os
+    21	import re
+    22	import shutil
+    23	import subprocess
+    24	import sys
+    25	import tempfile
+    26	from pathlib import Path
+    27	
+    28	ROOT = Path(__file__).resolve().parents[1]
+    29	PY = sys.executable
+    30	KEY = re.compile(rb"(?<![A-Za-z0-9])sk-(?!REDACTED)[A-Za-z0-9_\-]{20,}")
+    31	
+    32	results: list[tuple[str, bool, str]] = []
+    33	
+    34	
+    35	def check(name: str, ok: bool, detail: str = "") -> bool:
+    36	    results.append((name, ok, detail))
+    37	    print(f"  {'PASS' if ok else 'FAIL'}  {name}" + (f"  ({detail})" if detail else ""), flush=True)
+    38	    return ok
+    39	
+    40	
+    41	def run(args: list[str], cwd: Path, env: dict | None = None) -> subprocess.CompletedProcess:
+    42	    return subprocess.run(args, cwd=cwd, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    43	
+    44	
+    45	def metric(out: str, label: str) -> str:
+    46	    m = re.search(rf"^{re.escape(label)}\s+(.+)$", out, re.M)
+    47	    return m[1].strip() if m else "?"
+    48	
+    49	
+    50	def main() -> int:
+    51	    keep = "--keep" in sys.argv
+    52	    dirty = run(["git", "status", "--porcelain", "--untracked-files=no"], ROOT).stdout.strip()
+    53	    head = run(["git", "rev-parse", "--short", "HEAD"], ROOT).stdout.strip()
+    54	    print(f"verifying commit {head}" + ("  (WARNING: uncommitted changes are not checked)" if dirty else ""))
+    55	
+    56	    tmp = Path(tempfile.mkdtemp(prefix="rfq-verify-"))
+    57	    clone = tmp / "repo"
+    58	    try:
+    59	        c = run(["git", "clone", "-q", str(ROOT), str(clone)], tmp)
+    60	        if not check("fresh clone of HEAD", c.returncode == 0, c.stderr.strip()[:200]):
+    61	            return 1
+    62	        env = {k: v for k, v in os.environ.items() if k not in ("OPENAI_API_KEY", "RFQ_MODEL", "RFQ_EFFORT")}
+    63	        env["PYTHONIOENCODING"] = "utf-8"
+    64	        if (clone / ".env").exists():  # git-ignored; never in a clone, but be sure
+    65	            (clone / ".env").unlink()
+    66	
+    67	        # 2-3. keyless replay, twice
+    68	        for n in (1, 2):
+    69	            r = run([PY, "-m", "rfq", "parse", "--emails", "data/dev/emails", "--out", f"out{n}.json"], clone, env)
+    70	            if not check(f"parse dev without a key (run {n})", r.returncode == 0, r.stderr.strip().splitlines()[-1][:150] if r.stderr.strip() else ""):
+    71	                return 1
+    72	        same = (clone / "out1.json").read_bytes() == (ROOT / "parsed.json").read_bytes()
+    73	        check("keyless output == committed parsed.json (byte for byte)", same)
+    74	        rep = json.loads((clone / "out2.report.json").read_text(encoding="utf-8"))["totals"]
+    75	        check("second run makes no new model calls", rep["model_calls"] == 0 and rep["fallbacks"] == 0,
+    76	              f"calls {rep['model_calls']}, fallbacks {rep['fallbacks']}, cache hits {rep['cache_hits']}/{rep['emails']}")
+    77	        check("cost reported per email", rep.get("avg_cost_usd_per_email", 0) > 0,
+    78	              f"${rep.get('avg_cost_usd_per_email')}/email, ${rep.get('cost_usd_if_uncached')} per dev inbox uncached")
+    79	
+    80	        # 4. format
+    81	        f = run([PY, "data/check_format.py", "out1.json", "--emails", "data/dev/emails"], clone, env)
+    82	        check("check_format.py", f.returncode == 0, (f.stdout + f.stderr).strip().splitlines()[-1][:120])
+    83	
+    84	        # 5. scores
+    85	        for label, parsed, key, cache in (("dev", "out1.json", "data/dev/answer_key.json", None),
+    86	                                          ("stress", "st.json", "tests/stress/answer_key.json", "tests/stress/cache")):
+    87	            if cache:
+    88	                run([PY, "-m", "rfq", "parse", "--emails", "tests/stress/emails", "--cache", cache, "--out", parsed], clone, env)
+    89	            s = run([PY, "scripts/score.py", parsed, key], clone, env).stdout
+    90	            silent, halluc = metric(s, "silent losses"), metric(s, "hallucinated lines")
+    91	            wrong = re.search(r"confident wrong (\d+)", s)
+    92	            check(f"{label}: 0 silent losses, 0 hallucinated lines", silent == "0" and halluc == "0",
+    93	                  f"classes {metric(s, 'classification')}; recall {metric(s, 'line recall')}; "
+    94	                  f"precision {metric(s, 'line precision')}; context {metric(s, 'context carried')}")
+    95	            if wrong:
+    96	                check(f"{label}: 0 confident wrong catalog matches", wrong[1] == "0",
+    97	                      re.search(r"matcher: .+", s)[0].replace("matcher: ", ""))
+    98	
+    99	        r = run([PY, "scripts/build_report.py"], clone, env)
+   100	        check("report.html builds from the committed outputs", r.returncode == 0 and (clone / "report.html").exists(),
+   101	              (r.stdout.strip() or r.stderr.strip()[-150:])[:120])
+   102	
+   103	        # 6. tests
+   104	        t = run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider"], clone, env)
+   105	        check("test suite", t.returncode == 0, (t.stdout.strip().splitlines() or ["?"])[-1])
+   106	        z = run([PY, "scripts/matcher_fuzz.py", "--seed", "101"], clone, env).stdout
+   107	        check("generated matcher test (seed 101)", "confident wrong matches: 0" in z,
+   108	              (z.splitlines() or ["?"])[0])
+   109	
+   110	        # 8 (optional, needs Docker). The graders may run Linux/WSL/Docker and Python 3.11: same
+   111	        # bytes there? (This caught an OS-dependent MIME type that broke a cache key.)
+   112	        if "--linux" in sys.argv:
+   113	            script = (
+   114	                "cp -r /src /w && cd /w && rm -rf .venv .env && "
+   115	                "python -m pip install -q -r requirements.txt -r requirements-dev.txt >/dev/null 2>&1 && "
+   116	                "python -m pytest -q -p no:cacheprovider >/tmp/t.txt 2>&1; tail -1 /tmp/t.txt; "
+   117	                "OPENAI_API_KEY= python -m rfq parse --emails data/dev/emails --out /tmp/d.json >/dev/null 2>&1; "
+   118	                "cmp -s /tmp/d.json parsed.json && echo DEV_SAME; "
+   119	                "OPENAI_API_KEY= python -m rfq parse --emails tests/stress/emails --cache tests/stress/cache "
+   120	                "--out /tmp/s.json >/dev/null 2>&1; cmp -s /tmp/s.json tests/stress/parsed.json && echo STRESS_SAME"
+   121	            )
+   122	            d = run(["docker", "run", "--rm", "-v", f"{clone}:/src:ro", "python:3.11-slim", "sh", "-c", script], clone,
+   123	                    {**os.environ, "MSYS_NO_PATHCONV": "1"})
+   124	            check("Python 3.11 on Linux: tests pass, dev and stress byte-identical",
+   125	                  "passed" in d.stdout and "failed" not in d.stdout and "DEV_SAME" in d.stdout and "STRESS_SAME" in d.stdout,
+   126	                  " ".join(d.stdout.split())[:120] or d.stderr.strip()[-120:])
+   127	
+   128	        # 7. hygiene
+   129	        files = run(["git", "ls-files", "-z"], clone).stdout.split("\0")
+   130	        leaks = [p for p in files if p and (clone / p).is_file() and KEY.search((clone / p).read_bytes())]
+   131	        check("no API key in any tracked file", not leaks, ", ".join(leaks[:5]))
+   132	        size = sum((clone / p).stat().st_size for p in files if p and (clone / p).is_file())
+   133	        git_size = sum(f.stat().st_size for f in (clone / ".git").rglob("*") if f.is_file())
+   134	        check("repo under 50 MB", size + git_size < 50 * 1024 * 1024,
+   135	              f"{(size + git_size) / 1e6:.1f} MB incl. history")
+   136	    finally:
+   137	        if keep:
+   138	            print(f"clone kept at {clone}")
+   139	        else:
+   140	            shutil.rmtree(tmp, ignore_errors=True)
+   141	
+   142	    failed = [n for n, ok, _ in results if not ok]
+   143	    print(f"\n{len(results) - len(failed)}/{len(results)} checks passed" + (f"; FAILED: {', '.join(failed)}" if failed else ""))
+   144	    return 1 if failed else 0
+   145	
+   146	
+   147	if __name__ == "__main__":
+   148	    sys.exit(main())
+=== export_desk.py
+     1	"""Export parsed results as two flat JSON tables for the hosted quote-desk page.
+     2	
+     3	    python scripts/export_desk.py parsed.json data/dev/emails [data/dev/answer_key.json] --out work/desk
+     4	
+     5	lines.json  one row per extracted line item (what a rep would quote from)
+     6	emails.json one row per email (classification, review flag, links, cost, key check)
+     7	"""
+     8	
+     9	from __future__ import annotations
+    10	
+    11	import argparse
+    12	import json
+    13	import re
+    14	import sys
+    15	from email.utils import parsedate_to_datetime
+    16	from pathlib import Path
+    17	
+    18	sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    19	
+    20	from rfq.ingest import load_email  # noqa: E402
+    21	from rfq.llm import cost_usd  # noqa: E402
+    22	from rfq.score import mentions, pair, qty_ok  # noqa: E402
+    23	
+    24	
+    25	def name(sender: str) -> str:
+    26	    return re.sub(r"\s*<.*>", "", sender or "").strip('" ') or sender
+    27	
+    28	
+    29	def main() -> int:
+    30	    ap = argparse.ArgumentParser()
+    31	    ap.add_argument("parsed", type=Path)
+    32	    ap.add_argument("emails", type=Path)
+    33	    ap.add_argument("key", type=Path, nargs="?")
+    34	    ap.add_argument("--out", type=Path, default=Path("work/desk"))
+    35	    a = ap.parse_args()
+    36	    parsed = json.loads(a.parsed.read_text(encoding="utf-8"))
+    37	    rep_path = a.parsed.with_name(a.parsed.stem + ".report.json")
+    38	    report = json.loads(rep_path.read_text(encoding="utf-8")) if rep_path.exists() else {"emails": {}}
+    39	    key = json.loads(a.key.read_text(encoding="utf-8"))["emails"] if a.key else {}
+    40	
+    41	    lines, emails = [], []
+    42	    for eid in sorted(parsed):
+    43	        o, em, st = parsed[eid], load_email(a.emails / f"{eid}.eml"), report["emails"].get(eid, {})
+    44	        k = key.get(eid)
+    45	        checks, missed = {}, []
+    46	        if k:
+    47	            pairs, extra, missed = pair(o["line_items"], k.get("line_items") or [])
+    48	            for i, j in pairs:
+    49	                kk, ln, probs = k["line_items"][j], o["line_items"][i], []
+    50	                if kk.get("qty_tol") is not None and not qty_ok(ln, kk):
+    51	                    probs.append(f"qty should be {kk['qty']}")
+    52	                if (ln["uom"] or "EA") != (kk["uom"] or "EA"):
+    53	                    probs.append(f"unit should be {kk['uom'] or 'EA'}")
+    54	                probs += [f"missing {m}" for m in kk.get("must_mention") or [] if not mentions(ln["description"], m)]
+    55	                probs += [f"should not say {m}" for m in kk.get("must_not_mention") or [] if mentions(ln["description"], m)]
+    56	                checks[i] = "; ".join(probs) or "matches"
+    57	            for i in extra:
+    58	                checks[i] = "not in key"
+    59	        try:
+    60	            received = parsedate_to_datetime(em.date).strftime("%Y-%m-%d %H:%M")
+    61	        except Exception:
+    62	            received = em.date
+    63	        for i, ln in enumerate(o["line_items"], 1):
+    64	            lines.append({
+    65	                "line_id": f"{eid}-{i}", "email": eid, "customer": name(em.sender), "subject": em.subject,
+    66	                "classification": o["classification"], "line_no": i, "raw": ln["raw"],
+    67	                "description": ln["description"], "qty": ln["qty"], "uom": ln["uom"] or "EA",
+    68	                "source": ln["source"], "needs_review": "yes" if o["needs_review"] else "no",
+    69	                "key_check": checks.get(i - 1, "") if k else "",
+    70	            })
+    71	        emails.append({
+    72	            "email": eid, "customer": name(em.sender), "subject": em.subject, "received": received,
+    73	            "classification": o["classification"], "lines": len(o["line_items"]),
+    74	            "needs_review": "yes" if o["needs_review"] else "no", "review_reason": o.get("review_reason") or "",
+    75	            "revises": o.get("revises") or "", "duplicate_of": o.get("duplicate_of") or "",
+    76	            "model_reason": st.get("model_reason") or "",
+    77	            # None (unknown price), not 0: a model missing from PRICES must not look free
+    78	            "cost_usd": (round(c, 5) if (c := cost_usd(report.get("model", ""), st["usage"])) is not None else None)
+    79	            if st.get("usage") else None,
+    80	            "key_classification": k["classification"] if k else "",
+    81	            "key_lines": len(k.get("line_items") or []) if k else None,
+    82	            # key lines no extracted line pairs with: the silent part of a recall miss
+    83	            "missed_lines": [k["line_items"][j]["raw"] for j in missed] if k else [],
+    84	        })
+    85	    a.out.mkdir(parents=True, exist_ok=True)
+    86	    (a.out / "lines.json").write_text(json.dumps(lines, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
+    87	    (a.out / "emails.json").write_text(json.dumps(emails, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
+    88	    print(f"{len(lines)} lines, {len(emails)} emails -> {a.out}")
+    89	    return 0
+    90	
+    91	
+    92	if __name__ == "__main__":
+    93	    sys.exit(main())
+=== export_sessions.py
+     1	"""Copy this project's Claude Code session logs into ai-sessions/, redacting secrets.
+     2	
+     3	    python scripts/export_sessions.py [--src <~/.claude/projects/<folder>>]
+     4	
+     5	Copies the session .jsonl files, their tool-result files, and memory/ (Claude Code's auto-memory
+     6	for this project: the only standing instruction the agent had, which the brief asks for).
+     7	Redacted: anything shaped like an OpenAI key (sk-...), the employer's name and email domain,
+     8	and the Claude account email. Everything else is copied unedited. Re-run before submitting so the
+     9	folder holds the full, final sessions. Exits non-zero if anything key-shaped survives.
+    10	"""
+    11	
+    12	from __future__ import annotations
+    13	
+    14	import argparse
+    15	import re
+    16	import shutil
+    17	import sys
+    18	from pathlib import Path
+    19	
+    20	ROOT = Path(__file__).resolve().parents[1]
+    21	DEFAULT_SRC = Path.home() / ".claude" / "projects" / "c--Users-YashwanthYanala-Desktop-project"
+    22	
+    23	# (?<![A-Za-z0-9]) so words like "task-notification" or "disk-cleanup" are left alone
+    24	KEY = re.compile(r"(?<![A-Za-z0-9])sk-[A-Za-z0-9_\-]{8,}")
+    25	# Names are found by the keyword itself, then widened by hand to the surrounding email address.
+    26	# (A regex that starts with an open-ended [chars]* is quadratic on the logs' long base64 images.)
+    27	NAMES = [
+    28	    (re.compile(r"first[\s_\-]?distributors(?:\.com)?", re.I), "[employer redacted]"),
+    29	    (re.compile(r"[account email redacted][A-Za-z0-9._%+\-]*(?:@[A-Za-z0-9.\-]+)?", re.I), "[account email redacted]"),
+    30	]
+    31	HOST = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-")
+    32	LOCAL = HOST | set("_%+")
+    33	KEYLIKE = re.compile(r"(?<![A-Za-z0-9])sk-(?!REDACTED)[A-Za-z0-9_\-]{8,}")
+    34	LEFTOVER = re.compile(r"first[\s_\-]?distributors|[account email redacted]", re.I)
+    35	
+    36	
+    37	def _widen(text: str, start: int) -> int:
+    38	    """Move start left over the rest of an email address: host labels, then '@' and the user."""
+    39	    i = start
+    40	    while i > 0 and text[i - 1] in HOST and start - i < 200:
+    41	        i -= 1
+    42	    if i > 0 and text[i - 1] == "@":
+    43	        i -= 1
+    44	        while i > 0 and text[i - 1] in LOCAL and start - i < 300:
+    45	            i -= 1
+    46	    return i
+    47	
+    48	
+    49	def redact(text: str) -> tuple[str, int]:
+    50	    text, n = KEY.subn("sk-REDACTED", text)
+    51	    for pat, rep in NAMES:
+    52	        out, last, k = [], 0, 0
+    53	        for m in pat.finditer(text):
+    54	            s = _widen(text, m.start())
+    55	            if s < last:
+    56	                s = last
+    57	            out += [text[last:s], rep]
+    58	            last, k = m.end(), k + 1
+    59	        text, n = "".join(out) + text[last:], n + k
+    60	    return text, n
+    61	
+    62	
+    63	def main() -> int:
+    64	    ap = argparse.ArgumentParser()
+    65	    ap.add_argument("--src", type=Path, default=DEFAULT_SRC)
+    66	    ap.add_argument("--out", type=Path, default=ROOT / "ai-sessions")
+    67	    a = ap.parse_args()
+    68	    # check everything before deleting anything: a wrong --src must not wipe the last good export,
+    69	    # and --out must be this repo's ai-sessions folder, never a parent or a typo
+    70	    logs = list(a.src.glob("*.jsonl")) if a.src.is_dir() else []
+    71	    if not logs:
+    72	        sys.exit(f"no session logs (*.jsonl) in {a.src}; nothing deleted")
+    73	    if a.out.resolve().name != "ai-sessions" or a.out.resolve().parent != ROOT:
+    74	        sys.exit(f"--out must be {ROOT / 'ai-sessions'}; nothing deleted")
+    75	    if a.out.exists():
+    76	        shutil.rmtree(a.out)
+    77	    total, files = 0, 0
+    78	    for f in sorted(a.src.rglob("*")):
+    79	        if not f.is_file():
+    80	            continue
+    81	        dest = a.out / f.relative_to(a.src)
+    82	        dest.parent.mkdir(parents=True, exist_ok=True)
+    83	        text = f.read_bytes().decode("utf-8", errors="surrogateescape")
+    84	        text, n = redact(text)
+    85	        dest.write_bytes(text.encode("utf-8", errors="surrogateescape"))
+    86	        total, files = total + n, files + 1
+    87	    left = [p for p in a.out.rglob("*") if p.is_file()
+    88	            and (KEYLIKE.search(t := p.read_text("utf-8", errors="replace")) or LEFTOVER.search(t))]
+    89	    print(f"{files} files -> {a.out} | {total} redactions | files with anything left to redact: {len(left)}")
+    90	    return 1 if left else 0
+    91	
+    92	
+    93	if __name__ == "__main__":
+    94	    sys.exit(main())
+=== prune_cache.py
+     1	"""Keep only the cache entries a run used (its .report.json lists them); delete the rest.
+     2	
+     3	    python scripts/prune_cache.py parsed.report.json cache
+     4	    python scripts/prune_cache.py tests/stress/parsed.report.json tests/stress/cache
+     5	
+     6	Experiments (other prompts, models, efforts) leave entries no current config can hit.
+     7	The cache dir is required, and every key the report needs must already be in it: a report
+     8	from another run (another cache) is refused instead of emptying this one.
+     9	"""
+    10	
+    11	import json
+    12	import sys
+    13	from pathlib import Path
+    14	
+    15	if len(sys.argv) != 3:
+    16	    sys.exit(__doc__)
+    17	report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+    18	cache = Path(sys.argv[2])
+    19	keep = {k for s in report["emails"].values() for k in (s.get("cache_keys") or [s.get("cache_key")])} - {None}
+    20	missing = [e for e, s in report["emails"].items() if not s.get("cache_key")]
+    21	if missing:
+    22	    sys.exit(f"refusing to prune: emails without a cache entry in this report: {missing}")
+    23	have = {p.stem for p in cache.glob("*.json")}
+    24	if not keep <= have:
+    25	    sys.exit(f"refusing to prune: {len(keep - have)} of the report's {len(keep)} entries are not in {cache}; "
+    26	             "is this the right report for this cache?")
+    27	gone = [p for p in cache.glob("*.json") if p.stem not in keep]
+    28	for p in gone:
+    29	    p.unlink()
+    30	print(f"kept {len(keep)}, removed {len(gone)}")
+=== score.py
+     1	"""Score parsed.json against an answer key. Logic lives in rfq/score.py (the viewer reuses it).
+     2	
+     3	    python scripts/score.py parsed.json [data/dev/answer_key.json] [-v]
+     4	"""
+     5	
+     6	import sys
+     7	from pathlib import Path
+     8	
+     9	sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    10	
+    11	from rfq.score import main  # noqa: E402
+    12	
+    13	sys.exit(main(sys.argv[1:]))
+=== list_models.py
+     1	"""List the OpenAI models this key can use (a free metadata call). Prints model ids only."""
+     2	
+     3	import sys
+     4	from pathlib import Path
+     5	
+     6	sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+     7	
+     8	from openai import OpenAI  # noqa: E402
+     9	
+    10	from rfq.config import api_key  # noqa: E402
+    11	
+    12	key = api_key()
+    13	if not key:
+    14	    sys.exit("No OPENAI_API_KEY in the environment or .env")
+    15	ids = sorted(m.id for m in OpenAI(api_key=key).models.list())
+    16	print(f"{len(ids)} models")
+    17	for i in ids:
+    18	    if not any(x in i for x in ("tts", "whisper", "dall-e", "embedding", "audio", "realtime", "transcribe", "moderation", "image", "search", "davinci", "babbage")):
+    19	        print(" ", i)
